@@ -31,9 +31,9 @@ public static partial class Steam
         }
     }
     
-    public delegate void ClientGameServerDenyEventHandler(long appId, string iP, long serverPort, long secure, long reason);
+    public delegate void ClientGameServerDenyEventHandler(uint appId, string iP, long serverPort, long secure, long reason);
     private static event ClientGameServerDenyEventHandler ClientGameServerDenyEvent;
-    static Action<long, string, long, long, long> _clientGameServerDenyAction = (appId, iP, serverPort, secure, reason) =>
+    static Action<uint, string, long, long, long> _clientGameServerDenyAction = (appId, iP, serverPort, secure, reason) =>
     {
         ClientGameServerDenyEvent?.Invoke(appId, iP, serverPort, secure, reason);
     };
@@ -212,9 +212,9 @@ public static partial class Steam
         }
     }
     
-    public delegate void MicrotransactionAuthResponseEventHandler(long appId, long orderId, bool authorized);
+    public delegate void MicrotransactionAuthResponseEventHandler(uint appId, long orderId, bool authorized);
     private static event MicrotransactionAuthResponseEventHandler MicrotransactionAuthResponseEvent;
-    static Action<long, long, bool> _microtransactionAuthResponseAction = (appId, orderId, authorized) =>
+    static Action<uint, long, bool> _microtransactionAuthResponseAction = (appId, orderId, authorized) =>
     {
         MicrotransactionAuthResponseEvent?.Invoke(appId, orderId, authorized);
     };

@@ -31,9 +31,9 @@ public static partial class Steam
         }
     }
     
-    public delegate void GamepadTextInputDismissedEventHandler(bool submitted, string enteredText, long appId);
+    public delegate void GamepadTextInputDismissedEventHandler(bool submitted, string enteredText, uint appId);
     private static event GamepadTextInputDismissedEventHandler GamepadTextInputDismissedEvent;
-    static Action<bool, string, long> _gamepadTextInputDismissedAction = (submitted, enteredText, appId) =>
+    static Action<bool, string, uint> _gamepadTextInputDismissedAction = (submitted, enteredText, appId) =>
     {
         GamepadTextInputDismissedEvent?.Invoke(submitted, enteredText, appId);
     };

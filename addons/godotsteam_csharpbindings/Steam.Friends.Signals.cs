@@ -291,9 +291,9 @@ public static partial class Steam
         }
     }
     
-    public delegate void FriendRichPresenceUpdateEventHandler(ulong steamId, long appId);
+    public delegate void FriendRichPresenceUpdateEventHandler(ulong steamId, uint appId);
     private static event FriendRichPresenceUpdateEventHandler FriendRichPresenceUpdateEvent;
-    static Action<ulong, long> _friendRichPresenceUpdateAction = (steamId, appId) =>
+    static Action<ulong, uint> _friendRichPresenceUpdateAction = (steamId, appId) =>
     {
         FriendRichPresenceUpdateEvent?.Invoke(steamId, appId);
     };
@@ -499,9 +499,9 @@ public static partial class Steam
         }
     }
     
-    public delegate void OverlayToggledEventHandler(bool active, bool userInitiated, long appId);
+    public delegate void OverlayToggledEventHandler(bool active, bool userInitiated, uint appId);
     private static event OverlayToggledEventHandler OverlayToggledEvent;
-    static Action<bool, bool, long> _overlayToggledAction = (active, userInitiated, appId) =>
+    static Action<bool, bool, uint> _overlayToggledAction = (active, userInitiated, appId) =>
     {
         OverlayToggledEvent?.Invoke(active, userInitiated, appId);
     };

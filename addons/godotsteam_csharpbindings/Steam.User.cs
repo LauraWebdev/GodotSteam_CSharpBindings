@@ -132,7 +132,7 @@ public static partial class Steam
         GetInstance().Call(Methods.TerminateGameConnection, serverIP, serverPort);
     }
     
-    public static int UserHasLicenseForApp(ulong steamId, long appId)
+    public static int UserHasLicenseForApp(ulong steamId, uint appId)
     {
         return GetInstance().Call(Methods.UserHasLicenseForApp, steamId, appId).AsInt32();
     }

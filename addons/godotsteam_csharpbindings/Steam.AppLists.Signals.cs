@@ -5,9 +5,9 @@ namespace GodotSteam;
 
 public static partial class Steam
 {
-    public delegate void AppInstalledEventHandler(long appId, long installFolderIndex);
+    public delegate void AppInstalledEventHandler(uint appId, long installFolderIndex);
     private static event AppInstalledEventHandler AppInstalledEvent;
-    static Action<long, long> _appInstalledAction = (appId, installFolderIndex) =>
+    static Action<uint, long> _appInstalledAction = (appId, installFolderIndex) =>
     {
         AppInstalledEvent?.Invoke(appId, installFolderIndex);
     };
@@ -31,9 +31,9 @@ public static partial class Steam
         }
     }
     
-    public delegate void AppUninstalledEventHandler(long appId, long installFolderIndex);
+    public delegate void AppUninstalledEventHandler(uint appId, long installFolderIndex);
     private static event AppUninstalledEventHandler AppUninstalledEvent;
-    static Action<long, long> _appUninstalledAction = (appId, installFolderIndex) =>
+    static Action<uint, long> _appUninstalledAction = (appId, installFolderIndex) =>
     {
         AppUninstalledEvent?.Invoke(appId, installFolderIndex);
     };

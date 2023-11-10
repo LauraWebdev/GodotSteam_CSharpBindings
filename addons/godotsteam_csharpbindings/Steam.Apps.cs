@@ -4,7 +4,7 @@ namespace GodotSteam;
 
 public static partial class Steam
 {
-    public static bool IsAppInstalled(long appId)
+    public static bool IsAppInstalled(uint appId)
     {
         return GetInstance().Call(Methods.IsAppInstalled, appId).AsBool();
     }
@@ -14,7 +14,7 @@ public static partial class Steam
         return GetInstance().Call(Methods.GetAppBuildId).AsInt64();
     }
     
-    public static Dictionary GetAppInstallDir(long appId)
+    public static Dictionary GetAppInstallDir(uint appId)
     {
         return GetInstance().Call(Methods.GetAppInstallDir, appId).AsGodotDictionary();
     }
@@ -39,7 +39,7 @@ public static partial class Steam
         return GetInstance().Call(Methods.GetCurrentGameLanguage).AsString();
     }
     
-    public static uint GetEarliestPurchaseUnixTime(long appId)
+    public static uint GetEarliestPurchaseUnixTime(uint appId)
     {
         return GetInstance().Call(Methods.GetEarliestPurchaseUnixTime, appId).AsUInt32();
     }
@@ -49,7 +49,7 @@ public static partial class Steam
         GetInstance().Call(Methods.GetFileDetails, fileName);
     }
     
-    public static Godot.Collections.Array GetInstalledDepots(long appId)
+    public static Godot.Collections.Array GetInstalledDepots(uint appId)
     {
         return GetInstance().Call(Methods.GetInstalledDepots, appId).AsGodotArray();
     }
@@ -93,7 +93,7 @@ public static partial class Steam
         return GetInstance().Call(Methods.MarkContentCorrupt, missingFilesOnly).AsBool();
     }
     
-    public static bool SetDLCContext(long appId)
+    public static bool SetDLCContext(uint appId)
     {
         return GetInstance().Call(Methods.SetDLCContext, appId).AsBool();
     }
@@ -113,7 +113,7 @@ public static partial class Steam
         return GetInstance().Call(Methods.IsSubscribed).AsBool();
     }
     
-    public static bool IsSubscribedApp(long appId)
+    public static bool IsSubscribedApp(uint appId)
     {
         return GetInstance().Call(Methods.IsSubscribedApp, appId).AsBool();
     }

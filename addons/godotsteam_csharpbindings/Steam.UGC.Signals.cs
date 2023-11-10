@@ -5,9 +5,9 @@ namespace GodotSteam;
 
 public static partial class Steam
 {
-    public delegate void AddAppDependencyResultEventHandler(long result, long fileId, long appId);
+    public delegate void AddAppDependencyResultEventHandler(long result, long fileId, uint appId);
     private static event AddAppDependencyResultEventHandler AddAppDependencyResultEvent;
-    static Action<long, long, long> _addAppDependencyResultAction = (result, fileId, appId) =>
+    static Action<long, long, uint> _addAppDependencyResultAction = (result, fileId, appId) =>
     {
         AddAppDependencyResultEvent?.Invoke(result, fileId, appId);
     };
@@ -83,9 +83,9 @@ public static partial class Steam
         }
     }
     
-    public delegate void ItemDownloadedEventHandler(long result, long fileId, long appId);
+    public delegate void ItemDownloadedEventHandler(long result, long fileId, uint appId);
     private static event ItemDownloadedEventHandler ItemDownloadedEvent;
-    static Action<long, long, long> _itemDownloadedAction = (result, fileId, appId) =>
+    static Action<long, long, uint> _itemDownloadedAction = (result, fileId, appId) =>
     {
         ItemDownloadedEvent?.Invoke(result, fileId, appId);
     };
@@ -187,9 +187,9 @@ public static partial class Steam
         }
     }
     
-    public delegate void ItemInstalledEventHandler(long appId, long fileId);
+    public delegate void ItemInstalledEventHandler(uint appId, long fileId);
     private static event ItemInstalledEventHandler ItemInstalledEvent;
-    static Action<long, long> _itemInstalledAction = (appId, fileId) =>
+    static Action<uint, long> _itemInstalledAction = (appId, fileId) =>
     {
         ItemInstalledEvent?.Invoke(appId, fileId);
     };
@@ -213,9 +213,9 @@ public static partial class Steam
         }
     }
     
-    public delegate void RemoveAppDependencyResultEventHandler(long result, long fileId, long appId);
+    public delegate void RemoveAppDependencyResultEventHandler(long result, long fileId, uint appId);
     private static event RemoveAppDependencyResultEventHandler RemoveAppDependencyResultEvent;
-    static Action<long, long, long> _removeAppDependencyResultAction = (result, fileId, appId) =>
+    static Action<long, long, uint> _removeAppDependencyResultAction = (result, fileId, appId) =>
     {
         RemoveAppDependencyResultEvent?.Invoke(result, fileId, appId);
     };
@@ -421,9 +421,9 @@ public static partial class Steam
         }
     }
     
-    public delegate void WorkshopEulaStatusEventHandler(long result, long appId, Godot.Collections.Dictionary eulaData);
+    public delegate void WorkshopEulaStatusEventHandler(long result, uint appId, Godot.Collections.Dictionary eulaData);
     private static event WorkshopEulaStatusEventHandler WorkshopEulaStatusEvent;
-    static Action<long, long, Godot.Collections.Dictionary> _workshopEulaStatusAction = (result, appId, eulaData) =>
+    static Action<long, uint, Godot.Collections.Dictionary> _workshopEulaStatusAction = (result, appId, eulaData) =>
     {
         WorkshopEulaStatusEvent?.Invoke(result, appId, eulaData);
     };
@@ -447,9 +447,9 @@ public static partial class Steam
         }
     }
     
-    public delegate void UserSubscribedItemsListChangedEventHandler(long appId);
+    public delegate void UserSubscribedItemsListChangedEventHandler(uint appId);
     private static event UserSubscribedItemsListChangedEventHandler UserSubscribedItemsListChangedEvent;
-    static Action<long> _userSubscribedItemsListChangedAction = (appId) =>
+    static Action<uint> _userSubscribedItemsListChangedAction = (appId) =>
     {
         UserSubscribedItemsListChangedEvent?.Invoke(appId);
     };

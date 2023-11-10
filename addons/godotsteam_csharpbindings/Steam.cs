@@ -71,7 +71,7 @@ public static partial class Steam
         GetInstance().Call(Methods.RunCallbacks);
     }
 
-    public static bool RestartAppIfNecessary(long appId)
+    public static bool RestartAppIfNecessary(uint appId)
     {
         return GetInstance().Call(Methods.RestartAppIfNecessary, appId).AsBool();
     }

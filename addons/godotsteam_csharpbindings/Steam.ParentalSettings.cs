@@ -12,12 +12,12 @@ public static partial class Steam
         return GetInstance().Call(Methods.IsParentalLockLocked).AsBool();
     }
     
-    public static bool IsAppBlocked(long appId)
+    public static bool IsAppBlocked(uint appId)
     {
         return GetInstance().Call(Methods.IsAppBlocked, appId).AsBool();
     }
     
-    public static bool IsAppInBlockList(long appId)
+    public static bool IsAppInBlockList(uint appId)
     {
         return GetInstance().Call(Methods.IsAppInBlockList, appId).AsBool();
     }

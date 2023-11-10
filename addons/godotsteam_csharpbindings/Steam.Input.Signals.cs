@@ -82,9 +82,9 @@ public static partial class Steam
         }
     }
     
-    public delegate void InputConfigurationLoadedEventHandler(long appId, long deviceHandle, Godot.Collections.Dictionary configData);
+    public delegate void InputConfigurationLoadedEventHandler(uint appId, long deviceHandle, Godot.Collections.Dictionary configData);
     private static event InputConfigurationLoadedEventHandler InputConfigurationLoadedEvent;
-    static Action<long, long, Godot.Collections.Dictionary> _inputConfigurationLoadedAction = (appId, deviceHandle, configData) =>
+    static Action<uint, long, Godot.Collections.Dictionary> _inputConfigurationLoadedAction = (appId, deviceHandle, configData) =>
     {
         InputConfigurationLoadedEvent?.Invoke(appId, deviceHandle, configData);
     };
@@ -108,9 +108,9 @@ public static partial class Steam
         }
     }
     
-    public delegate void InputGamepadSlotChangeEventHandler(long appId, long deviceHandle, long deviceType, long oldGamepadSlot, long newGamepadSlot);
+    public delegate void InputGamepadSlotChangeEventHandler(uint appId, long deviceHandle, long deviceType, long oldGamepadSlot, long newGamepadSlot);
     private static event InputGamepadSlotChangeEventHandler InputGamepadSlotChangeEvent;
-    static Action<long, long, long, long, long> _inputGamepadSlotChangeAction = (appId, deviceHandle, deviceType, oldGamepadSlot, newGamepadSlot) =>
+    static Action<uint, long, long, long, long> _inputGamepadSlotChangeAction = (appId, deviceHandle, deviceType, oldGamepadSlot, newGamepadSlot) =>
     {
         InputGamepadSlotChangeEvent?.Invoke(appId, deviceHandle, deviceType, oldGamepadSlot, newGamepadSlot);
     };

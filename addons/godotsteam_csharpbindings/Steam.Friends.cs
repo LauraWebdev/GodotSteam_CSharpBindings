@@ -24,7 +24,7 @@ public static partial class Steam
         GetInstance().Call(Methods.ActivateGameOverlayInviteDialogConnectString, connectString);
     }
     
-    public static void ActivateGameOverlayToStore(long appId = 0)
+    public static void ActivateGameOverlayToStore(uint appId = 0)
     {
         GetInstance().Call(Methods.ActivateGameOverlayToStore, appId);
     }

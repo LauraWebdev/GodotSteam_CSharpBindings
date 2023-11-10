@@ -2,7 +2,7 @@ namespace GodotSteam;
 
 public static partial class Steam
 {
-    public static void AddAppDependency(ulong publishedFileId, long appId)
+    public static void AddAppDependency(ulong publishedFileId, uint appId)
     {
         GetInstance().Call(Methods.AddAppDependency, publishedFileId, appId);
     }
@@ -202,7 +202,7 @@ public static partial class Steam
         return GetInstance().Call(Methods.ReleaseQueryUGCRequest, queryHandle).AsBool();
     }
     
-    public static void RemoveAppDependency(ulong publishedFileId, long appId)
+    public static void RemoveAppDependency(ulong publishedFileId, uint appId)
     {
         GetInstance().Call(Methods.RemoveAppDependency, publishedFileId, appId);
     }

@@ -82,9 +82,9 @@ public static partial class Steam
         }
     }
     
-    public delegate void TimedTrialStatusEventHandler(long appId, bool isOffline, long secondsAllowed, long secondsPlayed);
+    public delegate void TimedTrialStatusEventHandler(uint appId, bool isOffline, long secondsAllowed, long secondsPlayed);
     private static event TimedTrialStatusEventHandler TimedTrialStatusEvent;
-    static Action<long, bool, long, long> _timeTrialStatusAction = (appId, isOffline, secondsAllowed, secondsPlayed) =>
+    static Action<uint, bool, long, long> _timeTrialStatusAction = (appId, isOffline, secondsAllowed, secondsPlayed) =>
     {
         TimedTrialStatusEvent?.Invoke(appId, isOffline, secondsAllowed, secondsPlayed);
     };

@@ -72,7 +72,7 @@ public static partial class Steam
         return GetInstance().Call(Methods.RequestInternetServerList, appId, filters).AsUInt64();
     }
     
-    public static ulong RequestLANServerList(long appId)
+    public static ulong RequestLANServerList(uint appId)
     {
         return GetInstance().Call(Methods.RequestLANServerList, appId).AsUInt64();
     }
