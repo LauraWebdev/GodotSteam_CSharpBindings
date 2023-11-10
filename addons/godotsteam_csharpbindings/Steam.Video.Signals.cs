@@ -7,9 +7,9 @@ public static partial class Steam
 {
     public delegate void GetOpfSettingsResultEventHandler(ErrorResult result, uint appId);
     private static event GetOpfSettingsResultEventHandler GetOpfSettingsResultEvent;
-    static Action<ErrorResult, uint> _getOpfSettingsResultAction = (result, appId) =>
+    static Action<int, uint> _getOpfSettingsResultAction = (result, appId) =>
     {
-        GetOpfSettingsResultEvent?.Invoke(result, appId);
+        GetOpfSettingsResultEvent?.Invoke((ErrorResult)result, appId);
     };
     public static event GetOpfSettingsResultEventHandler GetOpfSettingsResult
     {
@@ -33,9 +33,9 @@ public static partial class Steam
     
     public delegate void GetVideoResultEventHandler(ErrorResult result, uint appId, string url);
     private static event GetVideoResultEventHandler GetVideoResultEvent;
-    static Action<ErrorResult, uint, string> _getVideoResultAction = (result, appId, url) =>
+    static Action<int, uint, string> _getVideoResultAction = (result, appId, url) =>
     {
-        GetVideoResultEvent?.Invoke(result, appId, url);
+        GetVideoResultEvent?.Invoke((ErrorResult)result, appId, url);
     };
     public static event GetVideoResultEventHandler GetVideoResult
     {
