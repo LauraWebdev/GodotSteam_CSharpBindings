@@ -21,12 +21,12 @@ public static partial class Steam
     
     public static BroadcastStatus IsBroadcasting()
     {
-        var rawStatus = GetInstance().Call(Methods.IsBroadcasting).AsGodotDictionary();
+        var raw = GetInstance().Call(Methods.IsBroadcasting).AsGodotDictionary();
 
         return new BroadcastStatus
         {
-            Broadcasting = rawStatus["broadcasting"].AsBool(),
-            Viewers = rawStatus["viewers"].AsInt32(),
+            Broadcasting = raw["broadcasting"].AsBool(),
+            Viewers = raw["viewers"].AsInt32(),
         };
     }
 }

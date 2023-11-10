@@ -349,9 +349,9 @@ public static partial class Steam
     
     public static List<Friend> GetUserSteamFriends()
     {
-        var rawFriends = GetInstance().Call(Methods.GetUserSteamFriends).AsGodotArray();
+        var raw = GetInstance().Call(Methods.GetUserSteamFriends).AsGodotArray();
 
-        return rawFriends.Select(
+        return raw.Select(
             rawFriend => rawFriend.AsGodotDictionary()).Select(
             friendDictionary => new Friend
             {

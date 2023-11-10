@@ -1,3 +1,6 @@
+using System.Collections.Generic;
+using System.Linq;
+using Godot;
 using Godot.Collections;
 
 namespace GodotSteam;
@@ -9,19 +12,25 @@ public static partial class Steam
         return GetInstance().Call(Methods.IsAppInstalled, appId).AsBool();
     }
     
-    public static long GetAppBuildId()
+    public static int GetAppBuildId()
     {
-        return GetInstance().Call(Methods.GetAppBuildId).AsInt64();
+        return GetInstance().Call(Methods.GetAppBuildId).AsInt32();
     }
     
-    public static Dictionary GetAppInstallDir(uint appId)
+    public static InstalledAppsResult GetAppInstallDir(uint appId)
     {
-        return GetInstance().Call(Methods.GetAppInstallDir, appId).AsGodotDictionary();
+        var raw = GetInstance().Call(Methods.GetAppInstallDir, appId).AsGodotDictionary();
+
+        return new InstalledAppsResult
+        {
+            Directory = raw["directory"].AsString(),
+            InstallSize = raw["install_size"].AsUInt32()
+        };
     }
     
-    public static long GetAppOwner()
+    public static ulong GetAppOwner()
     {
-        return GetInstance().Call(Methods.GetAppOwner).AsInt64();
+        return GetInstance().Call(Methods.GetAppOwner).AsUInt64();
     }
     
     public static string GetAvailableGameLanguages()
@@ -49,9 +58,11 @@ public static partial class Steam
         GetInstance().Call(Methods.GetFileDetails, fileName);
     }
     
-    public static Godot.Collections.Array GetInstalledDepots(uint appId)
+    public static List<uint> GetInstalledDepots(uint appId)
     {
-        return GetInstance().Call(Methods.GetInstalledDepots, appId).AsGodotArray();
+        var raw = GetInstance().Call(Methods.GetInstalledDepots, appId).AsGodotArray();
+        
+        return raw.Select(x => x.AsUInt32()).ToList();
     }
     
     public static string GetLaunchCommandLine()
@@ -63,27 +74,49 @@ public static partial class Steam
     {
         return GetInstance().Call(Methods.GetLaunchQueryParam, key).AsString();
     }
-    public static Godot.Collections.Array GetDLCDataByIndex()
+    public static List<Dlc> GetDLCDataByIndex()
     {
-        return GetInstance().Call(Methods.GetDLCDataByIndex).AsGodotArray();
+        var raw = GetInstance().Call(Methods.GetDLCDataByIndex).AsGodotArray();
+
+        return raw.Select(
+                rawDlc => rawDlc.AsGodotDictionary()).Select(
+                dlcDictionary => new Dlc
+                {
+                    AppId = dlcDictionary["app_id"].AsUInt32(),
+                    Available = dlcDictionary["available"].AsBool(),
+                    Name = dlcDictionary["name"].AsString(),
+                })
+            .ToList();
     }
     
-    public static bool IsDLCInstalled(long dlcId)
+    public static bool IsDLCInstalled(uint dlcId)
     {
         return GetInstance().Call(Methods.IsDLCInstalled, dlcId).AsBool();
     }
     
-    public static long GetDLCCount()
+    public static int GetDLCCount()
     {
-        return GetInstance().Call(Methods.GetDLCCount).AsInt64();
+        return GetInstance().Call(Methods.GetDLCCount).AsInt32();
     }
     
-    public static Godot.Collections.Dictionary GetDLCDownloadProgress(long dlcId)
+    public static DlcDownloadProgress GetDLCDownloadProgress(uint dlcId)
     {
-        return GetInstance().Call(Methods.GetDLCDownloadProgress, dlcId).AsGodotDictionary();
+        var raw = GetInstance().Call(Methods.GetDLCDownloadProgress, dlcId).AsGodotDictionary();
+        
+        if (!raw.ContainsKey("ret") || !raw.ContainsKey("downloaded") || !raw.ContainsKey("total"))
+        {
+            return null;
+        }
+        
+        return new DlcDownloadProgress
+        {
+            Ret = raw["ret"].AsBool(),
+            Downloaded = raw["downloaded"].AsUInt64(),
+            Total = raw["total"].AsUInt64()
+        };
     }
     
-    public static void InstallDLC(long dlcId)
+    public static void InstallDLC(uint dlcId)
     {
         GetInstance().Call(Methods.InstallDLC, dlcId);
     }
@@ -98,7 +131,7 @@ public static partial class Steam
         return GetInstance().Call(Methods.SetDLCContext, appId).AsBool();
     }
     
-    public static void UninstallDLC(long dlcId)
+    public static void UninstallDLC(uint dlcId)
     {
         GetInstance().Call(Methods.UninstallDLC, dlcId);
     }
@@ -128,9 +161,20 @@ public static partial class Steam
         return GetInstance().Call(Methods.IsSubscribedFromFreeWeekend).AsBool();
     }
     
-    public static Dictionary IsTimedTrial()
+    public static IsTimedTrialResult IsTimedTrial()
     {
-        return GetInstance().Call(Methods.IsTimedTrial).AsGodotDictionary();
+        var raw = GetInstance().Call(Methods.IsTimedTrial).AsGodotDictionary();
+
+        if (!raw.ContainsKey("seconds_allowed") || !raw.ContainsKey("seconds_played"))
+        {
+            return null;
+        }
+
+        return new IsTimedTrialResult
+        {
+            SecondsAllowed = raw["seconds_allowed"].AsUInt32(),
+            SecondsPlayed = raw["seconds_played"].AsUInt32()
+        };
     }
     
     public static bool IsVACBanned()

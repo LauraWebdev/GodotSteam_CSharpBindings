@@ -17,5 +17,7 @@ public partial class Demo : CanvasLayer
 		OS.SetEnvironment("SteamGameId", AppId.ToString());
 		
 		Steam.SteamInit();
+
+		GD.Print(Steam.GetDLCDownloadProgress(480));
 	}
 }
