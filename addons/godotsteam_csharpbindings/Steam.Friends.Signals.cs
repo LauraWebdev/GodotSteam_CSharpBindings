@@ -1,15 +1,17 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using Godot;
 
 namespace GodotSteam;
 
 public static partial class Steam
 {
-    public delegate void AvatarLoadedEventHandler(long avatarId, int size, byte[] data);
+    public delegate void AvatarLoadedEventHandler(ulong avatarId, int width, byte[] data);
     private static event AvatarLoadedEventHandler AvatarLoadedEvent;
-    static Action<long, int, byte[]> _avatarLoadedAction = (avatarId, size, data) =>
+    static Action<ulong, int, byte[]> _avatarLoadedAction = (avatarId, width, data) =>
     {
-        AvatarLoadedEvent?.Invoke(avatarId, size, data);
+        AvatarLoadedEvent?.Invoke(avatarId, width, data);
     };
     public static event AvatarLoadedEventHandler AvatarLoaded
     {
@@ -31,9 +33,9 @@ public static partial class Steam
         }
     }
     
-    public delegate void AvatarImageLoadedEventHandler(long avatarId, long avatarIndex, int width, int height);
+    public delegate void AvatarImageLoadedEventHandler(ulong avatarId, uint avatarIndex, uint width, uint height);
     private static event AvatarImageLoadedEventHandler AvatarImageLoadedEvent;
-    static Action<long, long, int, int> _avatarImageLoadedAction = (avatarId, avatarIndex, width, height) =>
+    static Action<ulong, uint, uint, uint> _avatarImageLoadedAction = (avatarId, avatarIndex, width, height) =>
     {
         AvatarImageLoadedEvent?.Invoke(avatarId, avatarIndex, width, height);
     };
@@ -83,11 +85,11 @@ public static partial class Steam
         }
     }
     
-    public delegate void ClanActivityDownloadedEventHandler(Godot.Collections.Dictionary activity);
+    public delegate void ClanActivityDownloadedEventHandler(int online, int ingame, int chatting);
     private static event ClanActivityDownloadedEventHandler ClanActivityDownloadedEvent;
-    static Action<Godot.Collections.Dictionary> _clanActivityDownloadedAction = (activity) =>
+    static Action<int, int, int> _clanActivityDownloadedAction = (online, ingame, chatting) =>
     {
-        ClanActivityDownloadedEvent?.Invoke(activity);
+        ClanActivityDownloadedEvent?.Invoke(online, ingame, chatting);
     };
     public static event ClanActivityDownloadedEventHandler ClanActivityDownloaded
     {
@@ -109,9 +111,9 @@ public static partial class Steam
         }
     }
     
-    public delegate void ConnectedChatJoinEventHandler(long chatId, ulong steamId);
+    public delegate void ConnectedChatJoinEventHandler(ulong chatId, ulong steamId);
     private static event ConnectedChatJoinEventHandler ConnectedChatJoinEvent;
-    static Action<long, ulong> _connectedChatJoinAction = (chatId, steamId) =>
+    static Action<ulong, ulong> _connectedChatJoinAction = (chatId, steamId) =>
     {
         ConnectedChatJoinEvent?.Invoke(chatId, steamId);
     };
@@ -135,9 +137,9 @@ public static partial class Steam
         }
     }
     
-    public delegate void ConnectedChatLeaveEventHandler(long chatId, ulong steamId, bool kicked, bool dropped);
+    public delegate void ConnectedChatLeaveEventHandler(ulong chatId, ulong steamId, bool kicked, bool dropped);
     private static event ConnectedChatLeaveEventHandler ConnectedChatLeaveEvent;
-    static Action<long, ulong, bool, bool> _connectedChatLeaveAction = (chatId, steamId, kicked, dropped) =>
+    static Action<ulong, ulong, bool, bool> _connectedChatLeaveAction = (chatId, steamId, kicked, dropped) =>
     {
         ConnectedChatLeaveEvent?.Invoke(chatId, steamId, kicked, dropped);
     };
@@ -161,11 +163,11 @@ public static partial class Steam
         }
     }
     
-    public delegate void ConnectedClanChatMessageEventHandler(Godot.Collections.Dictionary chat);
+    public delegate void ConnectedClanChatMessageEventHandler(int ret, string text, string type, ulong chatter);
     private static event ConnectedClanChatMessageEventHandler ConnectedClanChatMessageEvent;
-    static Action<Godot.Collections.Dictionary> _connectedClanChatMessageAction = (chat) =>
+    static Action<Godot.Collections.Dictionary> _connectedClanChatMessageAction = (raw) =>
     {
-        ConnectedClanChatMessageEvent?.Invoke(chat);
+        ConnectedClanChatMessageEvent?.Invoke(raw["ret"].AsInt32(), raw["text"].AsString(), raw["type"].AsString(), raw["chatter"].AsUInt64());
     };
     public static event ConnectedClanChatMessageEventHandler ConnectedClanChatMessage
     {
@@ -187,11 +189,11 @@ public static partial class Steam
         }
     }
     
-    public delegate void ConnectedFriendChatMessageEventHandler(Godot.Collections.Dictionary chat);
+    public delegate void ConnectedFriendChatMessageEventHandler(int ret, string text);
     private static event ConnectedFriendChatMessageEventHandler ConnectedFriendChatMessageEvent;
-    static Action<Godot.Collections.Dictionary> _connectedFriendChatMessageAction = (chat) =>
+    static Action<Godot.Collections.Dictionary> _connectedFriendChatMessageAction = (raw) =>
     {
-        ConnectedFriendChatMessageEvent?.Invoke(chat);
+        ConnectedFriendChatMessageEvent?.Invoke(raw["ret"].AsInt32(), raw["text"].AsString());
     };
     public static event ConnectedFriendChatMessageEventHandler ConnectedFriendChatMessage
     {
@@ -213,11 +215,22 @@ public static partial class Steam
         }
     }
     
-    public delegate void EnumerateFollowingListSignalEventHandler(string message, Godot.Collections.Array following);
+    public delegate void EnumerateFollowingListSignalEventHandler(string message, List<Follow> following);
     private static event EnumerateFollowingListSignalEventHandler EnumerateFollowingListSignalEvent;
     static Action<string, Godot.Collections.Array> _enumerateFollowingListSignalAction = (message, following) =>
     {
-        EnumerateFollowingListSignalEvent?.Invoke(message, following);
+        EnumerateFollowingListSignalEvent?.Invoke(
+            message,
+            following
+                .Select(rawFollow => rawFollow.AsGodotDictionary())
+                .Select(
+                    followDictionary => new Follow
+                    {
+                        Num = followDictionary["num"].AsInt32(),
+                        Id = followDictionary["id"].AsUInt64(),
+                    })
+                .ToList()
+        );
     };
     public static event EnumerateFollowingListSignalEventHandler EnumerateFollowingListSignal
     {
@@ -265,11 +278,21 @@ public static partial class Steam
         }
     }
     
-    public delegate void EquippedProfileItemsEventHandler(long result, ulong steamId, Godot.Collections.Dictionary profileData);
+    public delegate void EquippedProfileItemsEventHandler(ErrorResult result, ulong steamId, ProfileData profileData);
     private static event EquippedProfileItemsEventHandler EquippedProfileItemsEvent;
-    static Action<long, ulong, Godot.Collections.Dictionary> _equippedProfileItemsAction = (result, steamId, profileData) =>
+    static Action<int, ulong, Godot.Collections.Dictionary> _equippedProfileItemsAction = (result, steamId, profileData) =>
     {
-        EquippedProfileItemsEvent?.Invoke(result, steamId, profileData);
+        EquippedProfileItemsEvent?.Invoke(
+            (ErrorResult)result,
+            steamId, new ProfileData
+            {
+                AvatarAnimated = profileData["avatar_animated"].AsBool(),
+                AvatarFrame = profileData["avatar_frame"].AsBool(),
+                ProfileModifier = profileData["profile_modifier"].AsBool(),
+                ProfileBackground = profileData["profile_background"].AsBool(),
+                ProfileMiniBackground = profileData["profile_mini_background"].AsBool(),
+            }
+        );
     };
     public static event EquippedProfileItemsEventHandler EquippedProfileItems
     {
@@ -317,11 +340,11 @@ public static partial class Steam
         }
     }
     
-    public delegate void GetFollowerCountSignalEventHandler(long result, ulong steamId, long count);
+    public delegate void GetFollowerCountSignalEventHandler(ErrorResult result, ulong steamId, int count);
     private static event GetFollowerCountSignalEventHandler GetFollowerCountSignalEvent;
-    static Action<long, ulong, long> _getFollowerCountSignalAction = (result, steamId, count) =>
+    static Action<int, ulong, int> _getFollowerCountSignalAction = (result, steamId, count) =>
     {
-        GetFollowerCountSignalEvent?.Invoke(result, steamId, count);
+        GetFollowerCountSignalEvent?.Invoke((ErrorResult)result, steamId, count);
     };
     public static event GetFollowerCountSignalEventHandler GetFollowerCountSignal
     {
@@ -343,11 +366,11 @@ public static partial class Steam
         }
     }
     
-    public delegate void IsFollowingSignalEventHandler(long result, ulong steamId, bool following);
+    public delegate void IsFollowingSignalEventHandler(ErrorResult result, ulong steamId, bool following);
     private static event IsFollowingSignalEventHandler IsFollowingSignalEvent;
-    static Action<long, ulong, bool> _isFollowingSignalAction = (result, steamId, following) =>
+    static Action<int, ulong, bool> _isFollowingSignalAction = (result, steamId, following) =>
     {
-        IsFollowingSignalEvent?.Invoke(result, steamId, following);
+        IsFollowingSignalEvent?.Invoke((ErrorResult)result, steamId, following);
     };
     public static event IsFollowingSignalEventHandler IsFollowingSignal
     {
@@ -369,11 +392,11 @@ public static partial class Steam
         }
     }
     
-    public delegate void JoinClanChatCompleteEventHandler(long chatId, long response);
+    public delegate void JoinClanChatCompleteEventHandler(ulong chatId, ChatRoomEnterResponse response);
     private static event JoinClanChatCompleteEventHandler JoinClanChatCompleteEvent;
-    static Action<long, long> _joinClanChatCompleteAction = (chatId, response) =>
+    static Action<ulong, int> _joinClanChatCompleteAction = (chatId, response) =>
     {
-        JoinClanChatCompleteEvent?.Invoke(chatId, response);
+        JoinClanChatCompleteEvent?.Invoke(chatId, (ChatRoomEnterResponse)response);
     };
     public static event JoinClanChatCompleteEventHandler JoinClanChatComplete
     {
@@ -395,9 +418,9 @@ public static partial class Steam
         }
     }
     
-    public delegate void JoinGameRequestedEventHandler(long user, string connect);
+    public delegate void JoinGameRequestedEventHandler(ulong user, string connect);
     private static event JoinGameRequestedEventHandler JoinGameRequestedEvent;
-    static Action<long, string> _joinGameRequestedAction = (user, connect) =>
+    static Action<ulong, string> _joinGameRequestedAction = (user, connect) =>
     {
         JoinGameRequestedEvent?.Invoke(user, connect);
     };
@@ -421,9 +444,9 @@ public static partial class Steam
         }
     }
     
-    public delegate void JoinRequestedEventHandler(long lobbyId, string steamId);
+    public delegate void JoinRequestedEventHandler(ulong lobbyId, ulong steamId);
     private static event JoinRequestedEventHandler JoinRequestedEvent;
-    static Action<long, string> _joinRequestedAction = (lobbyId, steamId) =>
+    static Action<ulong, ulong> _joinRequestedAction = (lobbyId, steamId) =>
     {
         JoinRequestedEvent?.Invoke(lobbyId, steamId);
     };
@@ -447,11 +470,11 @@ public static partial class Steam
         }
     }
     
-    public delegate void NameChangedEventHandler(bool success, bool localSuccess, long result);
+    public delegate void NameChangedEventHandler(bool success, bool localSuccess, ErrorResult result);
     private static event NameChangedEventHandler NameChangedEvent;
-    static Action<bool, bool, long> _nameChangedAction = (success, localSuccess, result) =>
+    static Action<bool, bool, int> _nameChangedAction = (success, localSuccess, result) =>
     {
-        NameChangedEvent?.Invoke(success, localSuccess, result);
+        NameChangedEvent?.Invoke(success, localSuccess, (ErrorResult)result);
     };
     public static event NameChangedEventHandler NameChanged
     {
@@ -473,11 +496,11 @@ public static partial class Steam
         }
     }
     
-    public delegate void OverlayBrowserProtocolEventHandler(string uri);
+    public delegate void OverlayBrowserProtocolEventHandler(Uri uri);
     private static event OverlayBrowserProtocolEventHandler OverlayBrowserProtocolEvent;
     static Action<string> _overlayBrowserProtocolAction = (uri) =>
     {
-        OverlayBrowserProtocolEvent?.Invoke(uri);
+        OverlayBrowserProtocolEvent?.Invoke(new Uri(uri));
     };
     public static event OverlayBrowserProtocolEventHandler OverlayBrowserProtocol
     {
@@ -525,11 +548,11 @@ public static partial class Steam
         }
     }
     
-    public delegate void PersonaStateChangeEventHandler(ulong steamId, long flags);
+    public delegate void PersonaStateChangeEventHandler(ulong steamId, PersonaChange flags);
     private static event PersonaStateChangeEventHandler PersonaStateChangeEvent;
     static Action<ulong, long> _personaStateChangeAction = (steamId, flags) =>
     {
-        PersonaStateChangeEvent?.Invoke(steamId, flags);
+        PersonaStateChangeEvent?.Invoke(steamId, (PersonaChange)flags);
     };
     public static event PersonaStateChangeEventHandler PersonaStateChange
     {
@@ -551,11 +574,22 @@ public static partial class Steam
         }
     }
     
-    public delegate void RequestClanOfficerListSignalEventHandler(string message, Godot.Collections.Array officerList);
+    public delegate void RequestClanOfficerListSignalEventHandler(string message, List<ClanOfficer> officerList);
     private static event RequestClanOfficerListSignalEventHandler RequestClanOfficerListSignalEvent;
     static Action<string, Godot.Collections.Array> _requestClanOfficerListSignalAction = (message, officerList) =>
     {
-        RequestClanOfficerListSignalEvent?.Invoke(message, officerList);
+        RequestClanOfficerListSignalEvent?.Invoke(
+            message,
+            officerList
+                .Select(rawOfficer => rawOfficer.AsGodotDictionary())
+                .Select(
+                    officerDictionary => new ClanOfficer
+                    {
+                        Id = officerDictionary["id"].AsUInt64(),
+                        Name = officerDictionary["name"].AsString(),
+                    })
+                .ToList()
+        );
     };
     public static event RequestClanOfficerListSignalEventHandler RequestClanOfficerListSignal
     {

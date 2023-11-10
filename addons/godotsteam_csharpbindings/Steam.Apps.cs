@@ -17,11 +17,11 @@ public static partial class Steam
         return GetInstance().Call(Methods.GetAppBuildId).AsInt32();
     }
     
-    public static InstalledAppsResult GetAppInstallDir(uint appId)
+    public static InstalledApps GetAppInstallDir(uint appId)
     {
         var raw = GetInstance().Call(Methods.GetAppInstallDir, appId).AsGodotDictionary();
 
-        return new InstalledAppsResult
+        return new InstalledApps
         {
             Directory = raw["directory"].AsString(),
             InstallSize = raw["install_size"].AsUInt32()
@@ -161,7 +161,7 @@ public static partial class Steam
         return GetInstance().Call(Methods.IsSubscribedFromFreeWeekend).AsBool();
     }
     
-    public static IsTimedTrialResult IsTimedTrial()
+    public static TimedTrial IsTimedTrial()
     {
         var raw = GetInstance().Call(Methods.IsTimedTrial).AsGodotDictionary();
 
@@ -170,7 +170,7 @@ public static partial class Steam
             return null;
         }
 
-        return new IsTimedTrialResult
+        return new TimedTrial
         {
             SecondsAllowed = raw["seconds_allowed"].AsUInt32(),
             SecondsPlayed = raw["seconds_played"].AsUInt32()

@@ -1,6 +1,6 @@
 namespace GodotSteam;
 
-public class IsTimedTrialResult
+public class TimedTrial
 {
     public uint SecondsAllowed { get; set; }
     public uint SecondsPlayed { get; set; }

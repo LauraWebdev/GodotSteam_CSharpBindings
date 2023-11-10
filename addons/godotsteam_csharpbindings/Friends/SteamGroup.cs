@@ -1,8 +1,8 @@
 namespace GodotSteam;
 
-public class Friend
+public class SteamGroup
 {
     public ulong Id { get; set; }
     public string Name { get; set; }
-    public PersonaState Status { get; set; }
+    public string Tag { get; set; }
 }

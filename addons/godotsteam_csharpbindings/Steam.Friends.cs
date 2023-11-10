@@ -44,24 +44,24 @@ public static partial class Steam
         GetInstance().Call(Methods.GetFollowerCount, steamId);
     }
     
-    public static ulong GetFriendByIndex(int friendNumber, FriendFlags friendFlags)
+    public static ulong GetFriendByIndex(int friendNumber, FriendFlag friendFlags)
     {
-        return GetInstance().Call(Methods.GetFriendByIndex, friendNumber, (long)friendFlags).AsUInt64();
+        return GetInstance().Call(Methods.GetFriendByIndex, friendNumber, (int)friendFlags).AsUInt64();
     }
     
-    public static uint GetFriendCoplayGame(long friendId)
+    public static uint GetFriendCoplayGame(ulong friendId)
     {
         return GetInstance().Call(Methods.GetFriendCoplayGame, friendId).AsUInt32();
     }
     
-    public static int GetFriendCoplayTime(long friendId)
+    public static int GetFriendCoplayTime(ulong friendId)
     {
         return GetInstance().Call(Methods.GetFriendCoplayTime, friendId).AsInt32();
     }
     
-    public static int GetFriendCount(FriendFlags friendFlags = FriendFlags.Immediate)
+    public static int GetFriendCount(FriendFlag friendFlags = FriendFlag.Immediate)
     {
-        return GetInstance().Call(Methods.GetFriendCount, (long)friendFlags).AsInt32();
+        return GetInstance().Call(Methods.GetFriendCount, (int)friendFlags).AsInt32();
     }
     
     public static int GetFriendCountFromSource(long sourceId)
@@ -109,37 +109,39 @@ public static partial class Steam
         return GetInstance().Call(Methods.GetFriendRichPresence, friendId, key).AsString();
     }
     
-    public static int GetFriendRichPresenceKeyCount(long friendId)
+    public static int GetFriendRichPresenceKeyCount(ulong friendId)
     {
         return GetInstance().Call(Methods.GetFriendRichPresenceKeyCount, friendId).AsInt32();
     }
     
-    public static string GetFriendRichPresenceKeyByIndex(ulong friendId, long key)
+    public static string GetFriendRichPresenceKeyByIndex(ulong friendId, int key)
     {
         return GetInstance().Call(Methods.GetFriendRichPresenceKeyByIndex, friendId, key).AsString();
     }
     
-    public static long GetFriendsGroupCount()
+    public static int GetFriendsGroupCount()
     {
-        return GetInstance().Call(Methods.GetFriendsGroupCount).AsInt64();
+        return GetInstance().Call(Methods.GetFriendsGroupCount).AsInt32();
     }
     
-    public static short GetFriendsGroupIDByIndex(long friendGroup)
+    public static short GetFriendsGroupIDByIndex(short friendGroup)
     {
         return GetInstance().Call(Methods.GetFriendsGroupIDByIndex, friendGroup).AsInt16();
     }
     
-    public static int GetFriendsGroupMembersCount(long friendGroup)
+    public static int GetFriendsGroupMembersCount(short friendGroup)
     {
         return GetInstance().Call(Methods.GetFriendsGroupMembersCount, friendGroup).AsInt32();
     }
     
-    public static Godot.Collections.Array GetFriendsGroupMembersList(int friendGroup, long memberCount)
+    public static List<ulong> GetFriendsGroupMembersList(short friendGroup, long memberCount)
     {
-        return GetInstance().Call(Methods.GetFriendsGroupMembersList, friendGroup, memberCount).AsGodotArray();
+        var raw = GetInstance().Call(Methods.GetFriendsGroupMembersList, friendGroup, memberCount).AsGodotArray();
+        
+        return raw.Select(x => x.AsUInt64()).ToList();
     }
     
-    public static string GetFriendsGroupName(long friendGroup)
+    public static string GetFriendsGroupName(short friendGroup)
     {
         return GetInstance().Call(Methods.GetFriendsGroupName, friendGroup).AsString();
     }
@@ -169,7 +171,7 @@ public static partial class Steam
         return GetInstance().Call(Methods.ReplyToFriendMessage, steamId, message).AsBool();
     }
     
-    public static void RequestFriendRichPresence(long friendId)
+    public static void RequestFriendRichPresence(ulong friendId)
     {
         GetInstance().Call(Methods.RequestFriendRichPresence, friendId);
     }
@@ -178,26 +180,26 @@ public static partial class Steam
     {
         return GetInstance().Call(Methods.SetListenForFriendsMessages, intercept).AsBool();
     }
-    public static ulong GetCoplayFriend(long friendNumber)
+    public static ulong GetCoplayFriend(int friendNumber)
     {
         return GetInstance().Call(Methods.GetCoplayFriend, friendNumber).AsUInt64();
     }
     
-    public static long GetCoplayFriendCount()
+    public static int GetCoplayFriendCount()
     {
-        return GetInstance().Call(Methods.GetCoplayFriendCount).AsInt64();
+        return GetInstance().Call(Methods.GetCoplayFriendCount).AsInt32();
     }
-    public static bool CloseClanChatWindowInSteam(long chatId)
+    public static bool CloseClanChatWindowInSteam(ulong chatId)
     {
         return GetInstance().Call(Methods.CloseClanChatWindowInSteam, chatId).AsBool();
     }
     
-    public static void DownloadClanActivityCounts(ulong chatId, long clansToRequest)
+    public static void DownloadClanActivityCounts(ulong chatId, int clansToRequest)
     {
         GetInstance().Call(Methods.DownloadClanActivityCounts, chatId, clansToRequest);
     }
     
-    public static void EnumerateFollowingList(long startIndex)
+    public static void EnumerateFollowingList(uint startIndex)
     {
         GetInstance().Call(Methods.EnumerateFollowingList, startIndex);
     }
@@ -207,52 +209,78 @@ public static partial class Steam
         return GetInstance().Call(Methods.GetChatMemberByIndex, clanId, user).AsUInt64();
     }
     
-    public static Dictionary GetClanActivityCounts(long clanId)
+    public static ClanActivityCounts GetClanActivityCounts(ulong clanId)
     {
-        return GetInstance().Call(Methods.GetClanActivityCounts, clanId).AsGodotDictionary();
+        var raw = GetInstance().Call(Methods.GetClanActivityCounts, clanId).AsGodotDictionary();
+
+        if (!raw.ContainsKey("clan") || !raw.ContainsKey("online") || !raw.ContainsKey("ingame") || !raw.ContainsKey("chatting"))
+        {
+            return null;
+        }
+
+        return new ClanActivityCounts
+        {
+            Clan = raw["clan"].AsUInt64(),
+            Online = raw["online"].AsInt32(),
+            Ingame = raw["ingame"].AsInt32(),
+            Chatting = raw["chatting"].AsInt32(),
+        };
     }
     
-    public static ulong GetClanByIndex(long clan)
+    public static ulong GetClanByIndex(int clan)
     {
         return GetInstance().Call(Methods.GetClanByIndex, clan).AsUInt64();
     }
     
-    public static int GetClanChatMemberCount(long clanId)
+    public static int GetClanChatMemberCount(ulong clanId)
     {
         return GetInstance().Call(Methods.GetClanChatMemberCount, clanId).AsInt32();
     }
     
-    public static Dictionary GetClanChatMessage(ulong chatId, long message)
+    public static ClanChatMessage GetClanChatMessage(ulong chatId, long message)
     {
-        return GetInstance().Call(Methods.GetClanChatMessage, chatId, message).AsGodotDictionary();
+        var raw = GetInstance().Call(Methods.GetClanChatMessage, chatId, message).AsGodotDictionary();
+
+        if (!raw.ContainsKey("ret"))
+        {
+            return null;
+        }
+        
+        return new ClanChatMessage
+        {
+            Ret = raw["ret"].AsBool(),
+            Text = raw["text"].AsString(),
+            Type = (ClanChatMessageType)raw["type"].AsInt32(),
+            Chatter = raw["chatter"].AsUInt64()
+        };
     }
     
-    public static long GetClanCount()
+    public static int GetClanCount()
     {
-        return GetInstance().Call(Methods.GetClanCount).AsInt64();
+        return GetInstance().Call(Methods.GetClanCount).AsInt32();
     }
     
-    public static string GetClanName(long clanId)
+    public static string GetClanName(ulong clanId)
     {
         return GetInstance().Call(Methods.GetClanName, clanId).AsString();
     }
     
-    public static ulong GetClanOfficerByIndex(ulong clanId, long officer)
+    public static ulong GetClanOfficerByIndex(ulong clanId, int officer)
     {
         return GetInstance().Call(Methods.GetClanOfficerByIndex, clanId, officer).AsUInt64();
     }
     
-    public static int GetClanOfficerCount(long clanId)
+    public static int GetClanOfficerCount(ulong clanId)
     {
         return GetInstance().Call(Methods.GetClanOfficerCount, clanId).AsInt32();
     }
     
-    public static ulong GetClanOwner(long clanId)
+    public static ulong GetClanOwner(ulong clanId)
     {
         return GetInstance().Call(Methods.GetClanOwner, clanId).AsUInt64();
     }
     
-    public static string GetClanTag(long clanId)
+    public static string GetClanTag(ulong clanId)
     {
         return GetInstance().Call(Methods.GetClanTag, clanId).AsString();
     }
@@ -262,37 +290,37 @@ public static partial class Steam
         return GetInstance().Call(Methods.IsClanChatAdmin, chatId, steamId).AsBool();
     }
     
-    public static bool IsClanPublic(long clanId)
+    public static bool IsClanPublic(ulong clanId)
     {
         return GetInstance().Call(Methods.IsClanPublic, clanId).AsBool();
     }
     
-    public static bool IsClanOfficialGameGroup(long clanId)
+    public static bool IsClanOfficialGameGroup(ulong clanId)
     {
         return GetInstance().Call(Methods.IsClanOfficialGameGroup, clanId).AsBool();
     }
     
-    public static bool IsClanChatWindowOpenInSteam(long chatId)
+    public static bool IsClanChatWindowOpenInSteam(ulong chatId)
     {
         return GetInstance().Call(Methods.IsClanChatWindowOpenInSteam, chatId).AsBool();
     }
     
-    public static void JoinClanChatRoom(long clanId)
+    public static void JoinClanChatRoom(ulong clanId)
     {
         GetInstance().Call(Methods.JoinClanChatRoom, clanId);
     }
     
-    public static bool LeaveClanChatRoom(long clanId)
+    public static bool LeaveClanChatRoom(ulong clanId)
     {
         return GetInstance().Call(Methods.LeaveClanChatRoom, clanId).AsBool();
     }
     
-    public static bool OpenClanChatWindowInSteam(long chatId)
+    public static bool OpenClanChatWindowInSteam(ulong chatId)
     {
         return GetInstance().Call(Methods.OpenClanChatWindowInSteam, chatId).AsBool();
     }
     
-    public static void RequestClanOfficerList(long clanId)
+    public static void RequestClanOfficerList(ulong clanId)
     {
         GetInstance().Call(Methods.RequestClanOfficerList, clanId);
     }
@@ -312,7 +340,7 @@ public static partial class Steam
         return (PersonaState)GetInstance().Call(Methods.GetPersonaState).AsInt64();
     }
     
-    public static void GetPlayerAvatar(AvatarSizes size = AvatarSizes.Medium, ulong steamId = 0)
+    public static void GetPlayerAvatar(AvatarSize size = AvatarSize.Medium, ulong steamId = 0)
     {
         GetInstance().Call(Methods.GetPlayerAvatar, (int)size, steamId);
     }
@@ -324,27 +352,48 @@ public static partial class Steam
     
     public static string GetProfileItemPropertyString(ulong steamId, CommunityProfileItemType itemType, CommunityProfileItemProperty itemProperty)
     {
-        return GetInstance().Call(Methods.GetProfileItemPropertyString, steamId, (long)itemType, (long)itemProperty).AsString();
+        return GetInstance().Call(Methods.GetProfileItemPropertyString, steamId, (int)itemType, (int)itemProperty).AsString();
     }
     
     public static uint GetProfileItemPropertyInt(ulong steamId, CommunityProfileItemType itemType, CommunityProfileItemProperty itemProperty)
     {
-        return GetInstance().Call(Methods.GetProfileItemPropertyInt, steamId, (long)itemType, (long)itemProperty).AsUInt32();
+        return GetInstance().Call(Methods.GetProfileItemPropertyInt, steamId, (int)itemType, (int)itemProperty).AsUInt32();
     }
     
-    public static Godot.Collections.Array GetRecentPlayers()
+    public static List<RecentPlayer> GetRecentPlayers()
     {
-        return GetInstance().Call(Methods.GetRecentPlayers).AsGodotArray();
+        var raw = GetInstance().Call(Methods.GetRecentPlayers).AsGodotArray();
+        
+        return raw.Select(
+                rawPlayer => rawPlayer.AsGodotDictionary()).Select(
+                playerDictionary => new RecentPlayer
+                {
+                    Id = playerDictionary["id"].AsUInt64(),
+                    Name = playerDictionary["name"].AsString(),
+                    Time = playerDictionary["time"].AsInt32(),
+                    Status = (PersonaState)playerDictionary["status"].AsInt32(),
+                })
+            .ToList();
     }
     
-    public static Godot.Collections.Array GetUserFriendsGroups()
+    public static List<FriendGroup> GetUserFriendsGroups()
     {
-        return GetInstance().Call(Methods.GetUserFriendsGroups).AsGodotArray();
+        var raw = GetInstance().Call(Methods.GetUserFriendsGroups).AsGodotArray();
+        
+        return raw.Select(
+                rawFriendGroup => rawFriendGroup.AsGodotDictionary()).Select(
+                friendGroupDictionary => new FriendGroup
+                {
+                    Id = friendGroupDictionary["id"].AsInt16(),
+                    Name = friendGroupDictionary["name"].AsString(),
+                    Members = friendGroupDictionary["time"].AsInt32(),
+                })
+            .ToList();
     }
     
-    public static long GetUserRestrictions()
+    public static UserRestriction GetUserRestrictions()
     {
-        return GetInstance().Call(Methods.GetUserRestrictions).AsInt64();
+        return (UserRestriction)GetInstance().Call(Methods.GetUserRestrictions).AsUInt32();
     }
     
     public static List<Friend> GetUserSteamFriends()
@@ -362,9 +411,19 @@ public static partial class Steam
         .ToList();
     }
     
-    public static Godot.Collections.Array GetUserSteamGroups()
+    public static List<SteamGroup> GetUserSteamGroups()
     {
-        return GetInstance().Call(Methods.GetUserSteamGroups).AsGodotArray();
+        var raw = GetInstance().Call(Methods.GetUserSteamGroups).AsGodotArray();
+
+        return raw.Select(
+                rawGroups => rawGroups.AsGodotDictionary()).Select(
+                groupDictionary => new SteamGroup
+                {
+                    Id = groupDictionary["id"].AsUInt64(),
+                    Name = groupDictionary["name"].AsString(),
+                    Tag = groupDictionary["tag"].AsString(),
+                })
+            .ToList();
     }
     
     public static bool HasEquippedProfileItem(ulong steamId, CommunityProfileItemType itemType)
@@ -372,9 +431,9 @@ public static partial class Steam
         return GetInstance().Call(Methods.HasEquippedProfileItem, steamId, (long)itemType).AsBool();
     }
     
-    public static bool HasFriend(ulong steamId, FriendFlags friendFlags)
+    public static bool HasFriend(ulong steamId, FriendFlag friendFlags)
     {
-        return GetInstance().Call(Methods.HasFriend, steamId, (long)friendFlags).AsBool();
+        return GetInstance().Call(Methods.HasFriend, steamId, (int)friendFlags).AsBool();
     }
     
     public static bool InviteUserToGame(ulong friendId, string connectString)
@@ -387,7 +446,7 @@ public static partial class Steam
         GetInstance().Call(Methods.IsFollowing, steamId);
     }
     
-    public static bool IsUserInSource(ulong steamId, long sourceId)
+    public static bool IsUserInSource(ulong steamId, ulong sourceId)
     {
         return GetInstance().Call(Methods.IsUserInSource, steamId, sourceId).AsBool();
     }
@@ -412,9 +471,9 @@ public static partial class Steam
         GetInstance().Call(Methods.SetPlayedWith, steamId);
     }
     
-    public static bool SetRichPresence(RichPresenceKey key, string value)
+    public static bool SetRichPresence(string richPresenceKey, string value)
     {
-        return GetInstance().Call(Methods.SetRichPresence, key.ToGodotSteam(), value).AsBool();
+        return GetInstance().Call(Methods.SetRichPresence, richPresenceKey, value).AsBool();
     }
     public static void SetInGameVoiceSpeaking(ulong steamId, bool speaking)
     {
@@ -431,81 +490,6 @@ public static partial class Steam
         return GetInstance().Call(Methods.RegisterProtocolInOverlayBrowser, protocol).AsBool();
     }
 
-    public enum AvatarSizes
-    {
-        Small = 1,
-        Medium = 2,
-        Large = 3
-    }
-
-    public enum FriendRelationship : long
-    {
-        None = 0,
-        Blocked = 1,
-        RequestRecipient = 2,
-        Friend = 3,
-        RequestInitiator = 4,
-        Ignored = 5,
-        IgnoredFriend = 6,
-        Suggested = 7,
-        Max = 8
-    }
-
-    public enum CommunityProfileItemType : long
-    {
-        AnimatedAvatar = 0,
-        AvatarFrame = 1,
-        ProfileModifier = 2,
-        ProfileBackground = 3,
-        MiniProfileBackground = 4
-    }
-
-    public enum CommunityProfileItemProperty : long
-    {
-        ImageSmall = 0,
-        ImageLarge = 1,
-        InternalName = 2,
-        Title = 3,
-        Description = 4,
-        AppId = 5,
-        TypeId = 6,
-        Class = 7,
-        MovieWebm = 8,
-        MovieMp4 = 9,
-        MovieWebmSmall = 10,
-        MovieMp4Small = 11
-    }
-
-    [System.Flags]
-    public enum FriendFlags : long
-    {
-        None = 0,
-        Blocked = 1,
-        FriendshipRequested = 2,
-        Immediate = 4,
-        ClanMember = 8,
-        OnGameServer = 16,
-        RequestingFriendship = 128,
-        RequestingInfo = 256,
-        Ignored = 512,
-        IgnoredFriend = 1024,
-        ChatMember = 4096,
-        All = 65535
-    }
-
-    [System.Flags]
-    public enum UserRestriction : long
-    {
-        None = 0,
-        Unknown = 1,
-        AnyChat = 2,
-        VoiceChat = 4,
-        GroupChat = 8,
-        Rating = 16,
-        GameInvites = 32,
-        Trading = 64
-    }
-
     public enum OverlayToStoreFlag : long
     {
         None = 0,
@@ -517,38 +501,5 @@ public static partial class Steam
     {
         Default = 0,
         Modal = 1
-    }
-
-    public enum PersonaState
-    {
-        Offline = 0,
-        Online = 1,
-        Busy = 2,
-        Away = 3,
-        Snooze = 4,
-        LookingToTrade = 5,
-        LookingToPlay = 6,
-        Invisible = 7,
-        Max = 8
-    }
-
-    [System.Flags]
-    public enum PersonaChange : long
-    {
-        Name = 1,
-        Status = 2,
-        ComeOnline = 4,
-        GoneOffline = 8,
-        GamePlayed = 16,
-        GameServer = 32,
-        Avatar = 64,
-        JoinedSource = 128,
-        LeftSource = 256,
-        RelationshipChanged = 512,
-        NameFirstSet = 1024,
-        FacebookInfo = 2048,
-        Nickname = 4096,
-        SteamLevel = 8192,
-        RichPresence = 16384
     }
 }

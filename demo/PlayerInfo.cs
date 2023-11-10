@@ -36,7 +36,7 @@ public partial class PlayerInfo : PanelContainer
 		Steam.GetPlayerAvatar();
 	}
 
-	private void LoadPlayerAvatar(long avatarId, int size, byte[] data)
+	private void LoadPlayerAvatar(ulong avatarId, int size, byte[] data)
 	{
 		var avatarImage = Image.CreateFromData(size, size, false, Image.Format.Rgba8, data);
 		

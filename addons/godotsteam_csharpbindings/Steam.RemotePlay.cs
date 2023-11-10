@@ -32,7 +32,7 @@ public static partial class Steam
         return GetInstance().Call(Methods.GetSessionClientResolution, sessionId).AsGodotDictionary();
     }
     
-    public static bool SendRemotePlayTogetherInvite(long friendId)
+    public static bool SendRemotePlayTogetherInvite(ulong friendId)
     {
         return GetInstance().Call(Methods.SendRemotePlayTogetherInvite, friendId).AsBool();
     }

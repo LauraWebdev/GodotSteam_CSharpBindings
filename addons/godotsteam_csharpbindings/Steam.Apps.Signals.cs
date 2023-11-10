@@ -5,11 +5,11 @@ namespace GodotSteam;
 
 public static partial class Steam
 {
-    public delegate void DlcInstalledEventHandler(long app);
+    public delegate void DlcInstalledEventHandler(uint appId);
     private static event DlcInstalledEventHandler DlcInstalledEvent;
-    static Action<long> _dlcInstalledAction = (app) =>
+    static Action<uint> _dlcInstalledAction = (appId) =>
     {
-        DlcInstalledEvent?.Invoke(app);
+        DlcInstalledEvent?.Invoke(appId);
     };
     public static event DlcInstalledEventHandler DlcInstalled
     {
@@ -31,11 +31,11 @@ public static partial class Steam
         }
     }
     
-    public delegate void FileDetailsResultEventHandler(long result, long fileSize, long fileHash, long flags);
+    public delegate void FileDetailsResultEventHandler(ErrorResult result, ulong fileSize, sbyte fileHash, uint flags);
     private static event FileDetailsResultEventHandler FileDetailsResultEvent;
-    static Action<long, long, long, long> _fileDetailsResultAction = (result, fileSize, fileHash, flags) =>
+    static Action<int, ulong, sbyte, uint> _fileDetailsResultAction = (result, fileSize, fileHash, flags) =>
     {
-        FileDetailsResultEvent?.Invoke(result, fileSize, fileHash, flags);
+        FileDetailsResultEvent?.Invoke((ErrorResult)result, fileSize, fileHash, flags);
     };
     public static event FileDetailsResultEventHandler FileDetailsResult
     {
@@ -82,9 +82,9 @@ public static partial class Steam
         }
     }
     
-    public delegate void TimedTrialStatusEventHandler(uint appId, bool isOffline, long secondsAllowed, long secondsPlayed);
+    public delegate void TimedTrialStatusEventHandler(uint appId, bool isOffline, uint secondsAllowed, uint secondsPlayed);
     private static event TimedTrialStatusEventHandler TimedTrialStatusEvent;
-    static Action<uint, bool, long, long> _timeTrialStatusAction = (appId, isOffline, secondsAllowed, secondsPlayed) =>
+    static Action<uint, bool, uint, uint> _timeTrialStatusAction = (appId, isOffline, secondsAllowed, secondsPlayed) =>
     {
         TimedTrialStatusEvent?.Invoke(appId, isOffline, secondsAllowed, secondsPlayed);
     };
