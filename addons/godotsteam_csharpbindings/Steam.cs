@@ -7,27 +7,6 @@ namespace GodotSteam;
 public static partial class Steam
 {
     public static GodotObject Instance;
-    
-    /*
-    public static GodotObject Instance
-    {
-        get
-        {
-            if (!ClassDB.ClassExists("Steam"))
-            {
-                throw new Exception("GodotSteam is not installed.");
-            }
-
-            if (!ClassDB.CanInstantiate("Steam"))
-            {
-                throw new Exception("GodotSteam cannot be instantiated.");
-            }
-            
-            GD.Print("C#: " + ClassDB.ClassHasSignal("Steam", Signals.AvatarLoaded));
-        
-            return ClassDB.Instantiate("Steam").AsGodotObject();
-        }
-    } */
 
     public static GodotObject GetInstance()
     {
@@ -49,20 +28,6 @@ public static partial class Steam
 
     public static bool IsSteamRunning()
     {
-        /*
-         DEBUG: GET ALL METHODS
-        var methods = ClassDB.ClassGetMethodList("Steam", true);
-        foreach (Dictionary method in methods)
-        {
-            foreach (var key in method.Keys)
-            {
-                if (key.AsString() != "name") continue;
-                
-                GD.Print($"{method[key]}");
-            }
-        }
-        */
-        
         return GetInstance().Call(Methods.IsSteamRunning).AsBool();
     }
 
@@ -76,14 +41,26 @@ public static partial class Steam
         return GetInstance().Call(Methods.RestartAppIfNecessary, appId).AsBool();
     }
     
-    public static Dictionary SteamInit(bool retrieveStats = true)
+    public static SteamInitResult SteamInit(bool retrieveStats = true)
     {
-        return GetInstance().Call(Methods.SteamInit, retrieveStats).AsGodotDictionary();
+        var raw = GetInstance().Call(Methods.SteamInit, retrieveStats).AsGodotDictionary();
+
+        return new SteamInitResult
+        {
+            Status = (SteamInitStatus)raw["status"].AsInt32(),
+            Verbal = raw["verbal"].AsString(),
+        };
     }
     
-    public static Dictionary SteamInitEx(bool retrieveStats)
+    public static SteamInitExResult SteamInitEx(bool retrieveStats)
     {
-        return GetInstance().Call(Methods.SteamInitEx, retrieveStats).AsGodotDictionary();
+        var raw = GetInstance().Call(Methods.SteamInitEx, retrieveStats).AsGodotDictionary();
+
+        return new SteamInitExResult
+        {
+            Status = (SteamInitExStatus)raw["status"].AsInt32(),
+            Verbal = raw["verbal"].AsString(),
+        };
     }
     
     public static void SteamShutdown()

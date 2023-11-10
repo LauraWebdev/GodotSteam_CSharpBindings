@@ -5,9 +5,9 @@ namespace GodotSteam;
 
 public static partial class Steam
 {
-    public delegate void GetOpfSettingsResultEventHandler(long result, uint appId);
+    public delegate void GetOpfSettingsResultEventHandler(ErrorResult result, uint appId);
     private static event GetOpfSettingsResultEventHandler GetOpfSettingsResultEvent;
-    static Action<long, uint> _getOpfSettingsResultAction = (result, appId) =>
+    static Action<ErrorResult, uint> _getOpfSettingsResultAction = (result, appId) =>
     {
         GetOpfSettingsResultEvent?.Invoke(result, appId);
     };
@@ -31,9 +31,9 @@ public static partial class Steam
         }
     }
     
-    public delegate void GetVideoResultEventHandler(long result, uint appId, string url);
+    public delegate void GetVideoResultEventHandler(ErrorResult result, uint appId, string url);
     private static event GetVideoResultEventHandler GetVideoResultEvent;
-    static Action<long, uint, string> _getVideoResultAction = (result, appId, url) =>
+    static Action<ErrorResult, uint, string> _getVideoResultAction = (result, appId, url) =>
     {
         GetVideoResultEvent?.Invoke(result, appId, url);
     };
