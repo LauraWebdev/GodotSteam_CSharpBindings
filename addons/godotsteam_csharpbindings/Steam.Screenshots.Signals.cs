@@ -5,11 +5,11 @@ namespace GodotSteam;
 
 public static partial class Steam
 {
-    public delegate void ScreenshotReadyEventHandler(long handle, long result);
+    public delegate void ScreenshotReadyEventHandler(uint handle, ErrorResult result);
     private static event ScreenshotReadyEventHandler ScreenshotReadyEvent;
-    static Action<long, long> _screenshotReadyAction = (handle, result) =>
+    static Action<uint, int> _screenshotReadyAction = (handle, result) =>
     {
-        ScreenshotReadyEvent?.Invoke(handle, result);
+        ScreenshotReadyEvent?.Invoke(handle, (ErrorResult)result);
     };
     public static event ScreenshotReadyEventHandler ScreenshotReady
     {
