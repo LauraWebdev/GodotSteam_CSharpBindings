@@ -1,27 +1,31 @@
+using System.Collections.Generic;
+using System.Linq;
 using Godot.Collections;
 
 namespace GodotSteam;
 
 public static partial class Steam
 {
-    public static Godot.Collections.Array GetInstalledApps(long maxAppIds)
+    public static List<uint> GetInstalledApps(uint maxAppIds)
     {
-        return GetInstance().Call(Methods.GetInstalledApps, maxAppIds).AsGodotArray();
+        var raw = GetInstance().Call(Methods.GetInstalledApps, maxAppIds).AsGodotArray();
+
+        return raw.Select(x => x.AsUInt32()).ToList();
     }
     
-    public static string GetAppName(uint appId, long nameMax)
+    public static string GetAppName(uint appId, int nameMax)
     {
         return GetInstance().Call(Methods.GetAppName, appId, nameMax).AsString();
     }
     
-    public static string GetAppListInstallDir(uint appId, long nameMax)
+    public static string GetAppListInstallDir(uint appId, int nameMax)
     {
         return GetInstance().Call(Methods.GetAppListInstallDir, appId, nameMax).AsString();
     }
     
-    public static string GetAppListBuildId(uint appId, long _UnnamedArg1)
+    public static int GetAppListBuildId(uint appId)
     {
-        return GetInstance().Call(Methods.GetAppListBuildId, appId, _UnnamedArg1).AsString();
+        return GetInstance().Call(Methods.GetAppListBuildId, appId).AsInt32();
     }
     
     public static long GetNumInstalledApps()
