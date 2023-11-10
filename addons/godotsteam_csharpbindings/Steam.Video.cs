@@ -1,3 +1,5 @@
+using System.Linq;
+
 namespace GodotSteam;
 
 public static partial class Steam
@@ -17,8 +19,14 @@ public static partial class Steam
         GetInstance().Call(Methods.GetVideoURL, appId);
     }
     
-    public static Godot.Collections.Dictionary IsBroadcasting()
+    public static BroadcastStatus IsBroadcasting()
     {
-        return GetInstance().Call(Methods.IsBroadcasting).AsGodotDictionary();
+        var rawStatus = GetInstance().Call(Methods.IsBroadcasting).AsGodotDictionary();
+
+        return new BroadcastStatus
+        {
+            Broadcasting = rawStatus["broadcasting"].AsBool(),
+            Viewers = rawStatus["viewers"].AsInt32(),
+        };
     }
 }
