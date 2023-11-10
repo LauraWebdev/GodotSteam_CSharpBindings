@@ -4,7 +4,7 @@ public static partial class Steam
 {
     public static string FilterText(TextFilteringContext context, ulong steamId, string message)
     {
-        return GetInstance().Call(Methods.FilterText, (long)context, steamId, message).AsString();
+        return GetInstance().Call(Methods.FilterText, (int)context, steamId, message).AsString();
     }
     
     public static string GetAPICallFailureReason()
@@ -12,29 +12,51 @@ public static partial class Steam
         return GetInstance().Call(Methods.GetAPICallFailureReason).AsString();
     }
     
-    public static long GetAppID()
+    public static uint GetAppID()
     {
-        return GetInstance().Call(Methods.GetAppID).AsInt64();
+        return GetInstance().Call(Methods.GetAppID).AsUInt32();
     }
     
-    public static long GetCurrentBatteryPower()
+    public static int GetCurrentBatteryPower()
     {
-        return GetInstance().Call(Methods.GetCurrentBatteryPower).AsInt64();
+        return GetInstance().Call(Methods.GetCurrentBatteryPower).AsInt32();
     }
     
-    public static Godot.Collections.Dictionary GetImageRGBA(long image)
+    public static ImageRGBA GetImageRGBA(int image)
     {
-        return GetInstance().Call(Methods.GetImageRGBA, image).AsGodotDictionary();
+        var raw = GetInstance().Call(Methods.GetImageRGBA, image).AsGodotDictionary();
+
+        if (!raw.ContainsKey("buffer") || !raw.ContainsKey("success"))
+        {
+            return null;
+        }
+
+        return new ImageRGBA
+        {
+            Buffer = raw["buffer"].AsByteArray(),
+            Success = raw["success"].AsBool(),
+        };
     }
     
-    public static Godot.Collections.Dictionary GetImageSize(long image)
+    public static ImageSize GetImageSize(int image)
     {
-        return GetInstance().Call(Methods.GetImageSize, image).AsGodotDictionary();
+        var raw = GetInstance().Call(Methods.GetImageSize, image).AsGodotDictionary();
+        
+        if (!raw.ContainsKey("width") || !raw.ContainsKey("height"))
+        {
+            return null;
+        }
+
+        return new ImageSize
+        {
+            Width = raw["width"].AsUInt32(),
+            Height = raw["height"].AsUInt32(),
+        };
     }
     
-    public static long GetIPCCallCount()
+    public static uint GetIPCCallCount()
     {
-        return GetInstance().Call(Methods.GetIPCCallCount).AsInt64();
+        return GetInstance().Call(Methods.GetIPCCallCount).AsUInt32();
     }
     
     public static string GetIPCountry()
@@ -42,19 +64,19 @@ public static partial class Steam
         return GetInstance().Call(Methods.GetIPCountry).AsString();
     }
     
-    public static long GetSecondsSinceAppActive()
+    public static int GetSecondsSinceAppActive()
     {
-        return GetInstance().Call(Methods.GetSecondsSinceAppActive).AsInt64();
+        return GetInstance().Call(Methods.GetSecondsSinceAppActive).AsInt32();
     }
     
-    public static long GetSecondsSinceComputerActive()
+    public static int GetSecondsSinceComputerActive()
     {
-        return GetInstance().Call(Methods.GetSecondsSinceComputerActive).AsInt64();
+        return GetInstance().Call(Methods.GetSecondsSinceComputerActive).AsInt32();
     }
     
-    public static long GetServerRealTime()
+    public static int GetServerRealTime()
     {
-        return GetInstance().Call(Methods.GetServerRealTime).AsInt64();
+        return GetInstance().Call(Methods.GetServerRealTime).AsInt32();
     }
     
     public static string GetSteamUILanguage()
@@ -67,9 +89,20 @@ public static partial class Steam
         return GetInstance().Call(Methods.InitFilterText).AsBool();
     }
     
-    public static Godot.Collections.Dictionary IsAPICallCompleted()
+    public static ApiCallResult IsAPICallCompleted()
     {
-        return GetInstance().Call(Methods.IsAPICallCompleted).AsGodotDictionary();
+        var raw = GetInstance().Call(Methods.IsAPICallCompleted).AsGodotDictionary();
+
+        if (!raw.ContainsKey("completed") || !raw.ContainsKey("failed"))
+        {
+            return null;
+        }
+
+        return new ApiCallResult
+        {
+            Completed = raw["completed"].AsBool(),
+            Failed = raw["failed"].AsBool(),
+        };
     }
     
     public static bool IsOverlayEnabled()
@@ -102,14 +135,14 @@ public static partial class Steam
         return GetInstance().Call(Methods.OverlayNeedsPresent).AsBool();
     }
     
-    public static void SetOverlayNotificationInset(int horizontal, long vertical)
+    public static void SetOverlayNotificationInset(int horizontal, int vertical)
     {
         GetInstance().Call(Methods.SetOverlayNotificationInset, horizontal, vertical);
     }
     
-    public static void SetOverlayNotificationPosition(long pos)
+    public static void SetOverlayNotificationPosition(OverlayNotificationPosition pos)
     {
-        GetInstance().Call(Methods.SetOverlayNotificationPosition, pos);
+        GetInstance().Call(Methods.SetOverlayNotificationPosition, (int)pos);
     }
     
     public static void SetVRHeadsetStreamingEnabled(bool enabled)
@@ -119,10 +152,10 @@ public static partial class Steam
     
     public static bool ShowGamepadTextInput(GamepadTextInputMode inputMode, GamepadTextInputLineMode lineInputMode, string description, uint maxText, string presetText)
     {
-        return GetInstance().Call(Methods.ShowGamepadTextInput, (long)inputMode, (long)lineInputMode, description, maxText, presetText).AsBool();
+        return GetInstance().Call(Methods.ShowGamepadTextInput, (int)inputMode, (int)lineInputMode, description, maxText, presetText).AsBool();
     }
     
-    public static bool ShowFloatingGamepadTextInput(FloatingGamepadTextInputMode inputMode, int textFieldXPosition, int textFieldYPosition, int textFieldWidth, long textFieldHeight)
+    public static bool ShowFloatingGamepadTextInput(FloatingGamepadTextInputMode inputMode, int textFieldXPosition, int textFieldYPosition, int textFieldWidth, int textFieldHeight)
     {
         return GetInstance().Call(Methods.ShowFloatingGamepadTextInput, (long)inputMode, textFieldXPosition, textFieldYPosition, textFieldWidth, textFieldHeight).AsBool();
     }
@@ -163,33 +196,5 @@ public static partial class Steam
         FileNotFound = 2,
         NoSignaturesFoundForThisApp = 3,
         NoSignaturesFoundForThisFile = 4
-    }
-
-    public enum TextFilteringContext : long
-    {
-        Unknown = 0,
-        GameContent = 1,
-        Chat = 2,
-        Name = 3
-    }
-
-    public enum FloatingGamepadTextInputMode : long
-    {
-        SingleLine = 0,
-        MultipleLines = 1,
-        Email = 2,
-        Numeric = 3
-    }
-
-    public enum GamepadTextInputLineMode : long
-    {
-        SingleLine = 0,
-        MultipleLines = 1
-    }
-
-    public enum GamepadTextInputMode : long
-    {
-        Normal = 0,
-        Password = 1
     }
 }

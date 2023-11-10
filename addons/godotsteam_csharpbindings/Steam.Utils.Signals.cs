@@ -82,9 +82,9 @@ public static partial class Steam
         }
     }
     
-    public delegate void LowPowerEventHandler(long power);
+    public delegate void LowPowerEventHandler(byte power);
     private static event LowPowerEventHandler LowPowerEvent;
-    static Action<long> _lowPowerAction = (power) =>
+    static Action<byte> _lowPowerAction = (power) =>
     {
         LowPowerEvent?.Invoke(power);
     };
@@ -108,9 +108,9 @@ public static partial class Steam
         }
     }
     
-    public delegate void SteamApiCallCompletedEventHandler(long asyncCall, long callback, long parameter);
+    public delegate void SteamApiCallCompletedEventHandler(ulong asyncCall, int callback, uint parameter);
     private static event SteamApiCallCompletedEventHandler SteamApiCallCompletedEvent;
-    static Action<long, long, long> _steamApiCallCompletedAction = (asyncCall, callback, parameter) =>
+    static Action<ulong, int, uint> _steamApiCallCompletedAction = (asyncCall, callback, parameter) =>
     {
         SteamApiCallCompletedEvent?.Invoke(asyncCall, callback, parameter);
     };
