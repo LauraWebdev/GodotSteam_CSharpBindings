@@ -12,8 +12,15 @@ config_version=5
 
 config/name="GodotSteam C# Demo"
 config/description="Demo Project for the GodotSteam C# Bindings project"
+run/main_scene="res://demo/demo.tscn"
 config/features=PackedStringArray("4.1", "C#", "Forward Plus")
 config/icon="res://icon.svg"
+
+[display]
+
+window/size/viewport_width=1280
+window/size/viewport_height=720
+window/stretch/mode="canvas_items"
 
 [dotnet]
 

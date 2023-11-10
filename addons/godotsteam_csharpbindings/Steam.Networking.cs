@@ -2,7 +2,7 @@ namespace GodotSteam;
 
 public static partial class Steam
 {
-    public static bool AcceptP2PSessionWithUser(long steamIdRemote)
+    public static bool AcceptP2PSessionWithUser(ulong steamIdRemote)
     {
         return GetInstance().Call(Methods.AcceptP2PSessionWithUser, steamIdRemote).AsBool();
     }
@@ -17,12 +17,12 @@ public static partial class Steam
         return GetInstance().Call(Methods.CloseP2PChannelWithUser, steamIdRemote, channel).AsBool();
     }
     
-    public static bool CloseP2PSessionWithUser(long steamIdRemote)
+    public static bool CloseP2PSessionWithUser(ulong steamIdRemote)
     {
         return GetInstance().Call(Methods.CloseP2PSessionWithUser, steamIdRemote).AsBool();
     }
     
-    public static Godot.Collections.Dictionary GetP2PSessionState(long steamIdRemote)
+    public static Godot.Collections.Dictionary GetP2PSessionState(ulong steamIdRemote)
     {
         return GetInstance().Call(Methods.GetP2PSessionState, steamIdRemote).AsGodotDictionary();
     }

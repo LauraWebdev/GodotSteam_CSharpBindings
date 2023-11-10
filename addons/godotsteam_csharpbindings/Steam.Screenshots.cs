@@ -32,7 +32,7 @@ public static partial class Steam
         return GetInstance().Call(Methods.TagPublishedFile, screenshot, fileId).AsBool();
     }
     
-    public static bool TagUser(uint screenshot, long steamId)
+    public static bool TagUser(uint screenshot, ulong steamId)
     {
         return GetInstance().Call(Methods.TagUser, screenshot, steamId).AsBool();
     }

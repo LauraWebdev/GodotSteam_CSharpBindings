@@ -5,9 +5,9 @@ namespace GodotSteam;
 
 public static partial class Steam
 {
-    public delegate void JoinPartySignalEventHandler(long result, long beaconId, long steamId, string connectString);
+    public delegate void JoinPartySignalEventHandler(long result, long beaconId, ulong steamId, string connectString);
     private static event JoinPartySignalEventHandler JoinPartySignalEvent;
-    static Action<long, long, long, string> _joinPartySignalAction = (result, beaconId, steamId, connectString) =>
+    static Action<long, long, ulong, string> _joinPartySignalAction = (result, beaconId, steamId, connectString) =>
     {
         JoinPartySignalEvent?.Invoke(result, beaconId, steamId, connectString);
     };
@@ -61,9 +61,9 @@ public static partial class Steam
         }
     }
     
-    public delegate void ReservationNotificationEventHandler(long beaconId, long steamId);
+    public delegate void ReservationNotificationEventHandler(long beaconId, ulong steamId);
     private static event ReservationNotificationEventHandler ReservationNotificationEvent;
-    static Action<long, long> _reservationNotificationAction = (beaconId, steamId) =>
+    static Action<long, ulong> _reservationNotificationAction = (beaconId, steamId) =>
     {
         ReservationNotificationEvent?.Invoke(beaconId, steamId);
     };

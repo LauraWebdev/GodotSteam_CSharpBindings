@@ -185,7 +185,7 @@ public static partial class Steam
         GetInstance().Call(Methods.RequestGlobalStats, historyDays);
     }
     
-    public static void RequestUserStats(long steamId)
+    public static void RequestUserStats(ulong steamId)
     {
         GetInstance().Call(Methods.RequestUserStats, steamId);
     }

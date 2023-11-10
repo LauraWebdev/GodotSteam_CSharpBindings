@@ -2,7 +2,7 @@ namespace GodotSteam;
 
 public static partial class Steam
 {
-    public static void CancelReservation(ulong beaconId, long steamId)
+    public static void CancelReservation(ulong beaconId, ulong steamId)
     {
         GetInstance().Call(Methods.CancelReservation, beaconId, steamId);
     }
@@ -52,7 +52,7 @@ public static partial class Steam
         GetInstance().Call(Methods.JoinParty, beaconId);
     }
     
-    public static void OnReservationCompleted(ulong beaconId, long steamId)
+    public static void OnReservationCompleted(ulong beaconId, ulong steamId)
     {
         GetInstance().Call(Methods.OnReservationCompleted, beaconId, steamId);
     }

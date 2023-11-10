@@ -67,7 +67,7 @@ public static partial class Steam
         GetInstance().Call(Methods.LeaveLobby, steamLobbyId);
     }
     
-    public static bool InviteUserToLobby(ulong steamLobbyId, long steamIdInvitee)
+    public static bool InviteUserToLobby(ulong steamLobbyId, ulong steamIdInvitee)
     {
         return GetInstance().Call(Methods.InviteUserToLobby, steamLobbyId, steamIdInvitee).AsBool();
     }
@@ -122,7 +122,7 @@ public static partial class Steam
         return GetInstance().Call(Methods.RequestLobbyData, steamLobbyId).AsBool();
     }
     
-    public static void SetLobbyGameServer(ulong steamLobbyId, string serverIP, int serverPort, long steamIdGameServer)
+    public static void SetLobbyGameServer(ulong steamLobbyId, string serverIP, int serverPort, ulong steamIdGameServer)
     {
         GetInstance().Call(Methods.SetLobbyGameServer, steamLobbyId, serverIP, serverPort, steamIdGameServer);
     }
@@ -157,7 +157,7 @@ public static partial class Steam
         return GetInstance().Call(Methods.GetLobbyOwner, steamLobbyId).AsUInt64();
     }
     
-    public static bool SetLobbyOwner(ulong steamLobbyId, long steamIdNewOwner)
+    public static bool SetLobbyOwner(ulong steamLobbyId, ulong steamIdNewOwner)
     {
         return GetInstance().Call(Methods.SetLobbyOwner, steamLobbyId, steamIdNewOwner).AsBool();
     }

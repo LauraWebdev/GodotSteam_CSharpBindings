@@ -132,12 +132,12 @@ public static partial class Steam
         GetInstance().Call(Methods.SetIdentityLocalHost, referenceName);
     }
     
-    public static void SetIdentitySteamID(string referenceName, long steamId)
+    public static void SetIdentitySteamID(string referenceName, ulong steamId)
     {
         GetInstance().Call(Methods.SetIdentitySteamID, referenceName, steamId);
     }
     
-    public static void SetIdentitySteamID64(string referenceName, long steamId)
+    public static void SetIdentitySteamID64(string referenceName, ulong steamId)
     {
         GetInstance().Call(Methods.SetIdentitySteamID64, referenceName, steamId);
     }

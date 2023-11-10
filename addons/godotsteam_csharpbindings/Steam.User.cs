@@ -7,7 +7,7 @@ public static partial class Steam
         GetInstance().Call(Methods.AdvertiseGame, serverIP, port);
     }
     
-    public static BeginAuthSessionResult BeginAuthSession(byte[] ticket, int ticketSize, long steamId)
+    public static BeginAuthSessionResult BeginAuthSession(byte[] ticket, int ticketSize, ulong steamId)
     {
         return (BeginAuthSessionResult)GetInstance().Call(Methods.BeginAuthSession, ticket, ticketSize, steamId).AsInt64();
     }
@@ -22,7 +22,7 @@ public static partial class Steam
         return GetInstance().Call(Methods.DecompressVoice, voice, voiceSize, sampleRate).AsGodotDictionary();
     }
     
-    public static void EndAuthSession(long steamId)
+    public static void EndAuthSession(ulong steamId)
     {
         GetInstance().Call(Methods.EndAuthSession, steamId);
     }
@@ -137,14 +137,14 @@ public static partial class Steam
         return GetInstance().Call(Methods.UserHasLicenseForApp, steamId, appId).AsInt32();
     }
     
-    public static long GetSteamID()
+    public static ulong GetSteamID()
     {
-        return GetInstance().Call(Methods.GetSteamID).AsInt64();
+        return GetInstance().Call(Methods.GetSteamID).AsUInt64();
     }
     
-    public static long GetPlayerSteamLevel()
+    public static int GetPlayerSteamLevel()
     {
-        return GetInstance().Call(Methods.GetPlayerSteamLevel).AsInt64();
+        return GetInstance().Call(Methods.GetPlayerSteamLevel).AsInt32();
     }
 
     public enum DurationControlProgress : long

@@ -5,9 +5,9 @@ namespace GodotSteam;
 
 public static partial class Steam
 {
-    public delegate void P2PSessionRequestEventHandler(long steamIdRemote);
+    public delegate void P2PSessionRequestEventHandler(ulong steamIdRemote);
     private static event P2PSessionRequestEventHandler P2PSessionRequestEvent;
-    static Action<long> _p2pSessionRequestAction = (steamIdRemote) =>
+    static Action<ulong> _p2pSessionRequestAction = (steamIdRemote) =>
     {
         P2PSessionRequestEvent?.Invoke(steamIdRemote);
     };
@@ -31,9 +31,9 @@ public static partial class Steam
         }
     }
     
-    public delegate void P2PSessionConnectFailEventHandler(long steamIdRemote, long sessionError);
+    public delegate void P2PSessionConnectFailEventHandler(ulong steamIdRemote, long sessionError);
     private static event P2PSessionConnectFailEventHandler P2PSessionConnectFailEvent;
-    static Action<long, long> _p2pSessionConnectFailAction = (steamIdRemote, sessionError) =>
+    static Action<ulong, long> _p2pSessionConnectFailAction = (steamIdRemote, sessionError) =>
     {
         P2PSessionConnectFailEvent?.Invoke(steamIdRemote, sessionError);
     };

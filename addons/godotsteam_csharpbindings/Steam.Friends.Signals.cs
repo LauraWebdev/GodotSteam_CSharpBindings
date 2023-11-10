@@ -5,9 +5,9 @@ namespace GodotSteam;
 
 public static partial class Steam
 {
-    public delegate void AvatarLoadedEventHandler(long avatarId, long size, Godot.Collections.Array data);
+    public delegate void AvatarLoadedEventHandler(long avatarId, int size, byte[] data);
     private static event AvatarLoadedEventHandler AvatarLoadedEvent;
-    static Action<long, long, Godot.Collections.Array> _avatarLoadedAction = (avatarId, size, data) =>
+    static Action<long, int, byte[]> _avatarLoadedAction = (avatarId, size, data) =>
     {
         AvatarLoadedEvent?.Invoke(avatarId, size, data);
     };
@@ -31,9 +31,9 @@ public static partial class Steam
         }
     }
     
-    public delegate void AvatarImageLoadedEventHandler(long avatarId, long avatarIndex, long width, long height);
+    public delegate void AvatarImageLoadedEventHandler(long avatarId, long avatarIndex, int width, int height);
     private static event AvatarImageLoadedEventHandler AvatarImageLoadedEvent;
-    static Action<long, long, long, long> _avatarImageLoadedAction = (avatarId, avatarIndex, width, height) =>
+    static Action<long, long, int, int> _avatarImageLoadedAction = (avatarId, avatarIndex, width, height) =>
     {
         AvatarImageLoadedEvent?.Invoke(avatarId, avatarIndex, width, height);
     };
@@ -109,9 +109,9 @@ public static partial class Steam
         }
     }
     
-    public delegate void ConnectedChatJoinEventHandler(long chatId, long steamId);
+    public delegate void ConnectedChatJoinEventHandler(long chatId, ulong steamId);
     private static event ConnectedChatJoinEventHandler ConnectedChatJoinEvent;
-    static Action<long, long> _connectedChatJoinAction = (chatId, steamId) =>
+    static Action<long, ulong> _connectedChatJoinAction = (chatId, steamId) =>
     {
         ConnectedChatJoinEvent?.Invoke(chatId, steamId);
     };
@@ -135,9 +135,9 @@ public static partial class Steam
         }
     }
     
-    public delegate void ConnectedChatLeaveEventHandler(long chatId, long steamId, bool kicked, bool dropped);
+    public delegate void ConnectedChatLeaveEventHandler(long chatId, ulong steamId, bool kicked, bool dropped);
     private static event ConnectedChatLeaveEventHandler ConnectedChatLeaveEvent;
-    static Action<long, long, bool, bool> _connectedChatLeaveAction = (chatId, steamId, kicked, dropped) =>
+    static Action<long, ulong, bool, bool> _connectedChatLeaveAction = (chatId, steamId, kicked, dropped) =>
     {
         ConnectedChatLeaveEvent?.Invoke(chatId, steamId, kicked, dropped);
     };
@@ -239,9 +239,9 @@ public static partial class Steam
         }
     }
     
-    public delegate void EquippedProfileItemsChangedEventHandler(long steamId);
+    public delegate void EquippedProfileItemsChangedEventHandler(ulong steamId);
     private static event EquippedProfileItemsChangedEventHandler EquippedProfileItemsChangedEvent;
-    static Action<long> _equippedProfileItemsChangedAction = (steamId) =>
+    static Action<ulong> _equippedProfileItemsChangedAction = (steamId) =>
     {
         EquippedProfileItemsChangedEvent?.Invoke(steamId);
     };
@@ -265,9 +265,9 @@ public static partial class Steam
         }
     }
     
-    public delegate void EquippedProfileItemsEventHandler(long result, long steamId, Godot.Collections.Dictionary profileData);
+    public delegate void EquippedProfileItemsEventHandler(long result, ulong steamId, Godot.Collections.Dictionary profileData);
     private static event EquippedProfileItemsEventHandler EquippedProfileItemsEvent;
-    static Action<long, long, Godot.Collections.Dictionary> _equippedProfileItemsAction = (result, steamId, profileData) =>
+    static Action<long, ulong, Godot.Collections.Dictionary> _equippedProfileItemsAction = (result, steamId, profileData) =>
     {
         EquippedProfileItemsEvent?.Invoke(result, steamId, profileData);
     };
@@ -291,9 +291,9 @@ public static partial class Steam
         }
     }
     
-    public delegate void FriendRichPresenceUpdateEventHandler(long steamId, long appId);
+    public delegate void FriendRichPresenceUpdateEventHandler(ulong steamId, long appId);
     private static event FriendRichPresenceUpdateEventHandler FriendRichPresenceUpdateEvent;
-    static Action<long, long> _friendRichPresenceUpdateAction = (steamId, appId) =>
+    static Action<ulong, long> _friendRichPresenceUpdateAction = (steamId, appId) =>
     {
         FriendRichPresenceUpdateEvent?.Invoke(steamId, appId);
     };
@@ -317,9 +317,9 @@ public static partial class Steam
         }
     }
     
-    public delegate void GetFollowerCountSignalEventHandler(long result, long steamId, long count);
+    public delegate void GetFollowerCountSignalEventHandler(long result, ulong steamId, long count);
     private static event GetFollowerCountSignalEventHandler GetFollowerCountSignalEvent;
-    static Action<long, long, long> _getFollowerCountSignalAction = (result, steamId, count) =>
+    static Action<long, ulong, long> _getFollowerCountSignalAction = (result, steamId, count) =>
     {
         GetFollowerCountSignalEvent?.Invoke(result, steamId, count);
     };
@@ -343,9 +343,9 @@ public static partial class Steam
         }
     }
     
-    public delegate void IsFollowingSignalEventHandler(long result, long steamId, bool following);
+    public delegate void IsFollowingSignalEventHandler(long result, ulong steamId, bool following);
     private static event IsFollowingSignalEventHandler IsFollowingSignalEvent;
-    static Action<long, long, bool> _isFollowingSignalAction = (result, steamId, following) =>
+    static Action<long, ulong, bool> _isFollowingSignalAction = (result, steamId, following) =>
     {
         IsFollowingSignalEvent?.Invoke(result, steamId, following);
     };
@@ -525,9 +525,9 @@ public static partial class Steam
         }
     }
     
-    public delegate void PersonaStateChangeEventHandler(long steamId, long flags);
+    public delegate void PersonaStateChangeEventHandler(ulong steamId, long flags);
     private static event PersonaStateChangeEventHandler PersonaStateChangeEvent;
-    static Action<long, long> _personaStateChangeAction = (steamId, flags) =>
+    static Action<ulong, long> _personaStateChangeAction = (steamId, flags) =>
     {
         PersonaStateChangeEvent?.Invoke(steamId, flags);
     };

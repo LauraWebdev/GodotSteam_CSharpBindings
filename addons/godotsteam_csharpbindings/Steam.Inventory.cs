@@ -102,7 +102,7 @@ public static partial class Steam
         return GetInstance().Call(Methods.LoadItemDefinitions).AsBool();
     }
     
-    public static void RequestEligiblePromoItemDefinitionsIDs(long steamId)
+    public static void RequestEligiblePromoItemDefinitionsIDs(ulong steamId)
     {
         GetInstance().Call(Methods.RequestEligiblePromoItemDefinitionsIDs, steamId);
     }

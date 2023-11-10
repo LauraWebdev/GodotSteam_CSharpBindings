@@ -1,0 +1,123 @@
+[gd_scene load_steps=10 format=3 uid="uid://cgiw31sxytsco"]
+
+[ext_resource type="Script" path="res://demo/Demo.cs" id="1_lrdvt"]
+[ext_resource type="Script" path="res://demo/PlayerInfo.cs" id="2_c1djk"]
+[ext_resource type="Script" path="res://demo/Status.cs" id="3_bejbt"]
+[ext_resource type="Script" path="res://demo/FriendsContainer.cs" id="4_ijjpb"]
+[ext_resource type="PackedScene" uid="uid://bpgjh6dicqss7" path="res://demo/friend_item.tscn" id="5_s1anc"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t0sa5"]
+content_margin_left = 25.0
+content_margin_top = 25.0
+content_margin_right = 25.0
+content_margin_bottom = 25.0
+bg_color = Color(0.0666667, 0.0666667, 0.0666667, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rwrev"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(0.133333, 0.133333, 0.133333, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sueh1"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3gbin"]
+content_margin_left = 25.0
+content_margin_top = 0.0
+content_margin_right = 25.0
+content_margin_bottom = 0.0
+bg_color = Color(0.133333, 0.133333, 0.133333, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[node name="Demo" type="CanvasLayer" node_paths=PackedStringArray("PlayerInfo", "Status", "FriendsContainer")]
+script = ExtResource("1_lrdvt")
+PlayerInfo = NodePath("Base/ContentContainer/HeaderContainer/PlayerInfo")
+Status = NodePath("Base/ContentContainer/HeaderContainer/Status")
+FriendsContainer = NodePath("Base/ContentContainer/ScrollContainer/FriendsContainer")
+
+[node name="Base" type="PanelContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_t0sa5")
+
+[node name="ContentContainer" type="VBoxContainer" parent="Base"]
+layout_mode = 2
+theme_override_constants/separation = 25
+
+[node name="HeaderContainer" type="HBoxContainer" parent="Base/ContentContainer"]
+layout_mode = 2
+theme_override_constants/separation = 25
+
+[node name="PlayerInfo" type="PanelContainer" parent="Base/ContentContainer/HeaderContainer" node_paths=PackedStringArray("PlayerAvatar", "PlayerName", "PlayerLevel")]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_rwrev")
+script = ExtResource("2_c1djk")
+PlayerAvatar = NodePath("HBoxContainer/Avatar")
+PlayerName = NodePath("HBoxContainer/VBoxContainer/PlayerName")
+PlayerLevel = NodePath("HBoxContainer/VBoxContainer/PlayerLevel")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Base/ContentContainer/HeaderContainer/PlayerInfo"]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="Avatar" type="Panel" parent="Base/ContentContainer/HeaderContainer/PlayerInfo/HBoxContainer"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_sueh1")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Base/ContentContainer/HeaderContainer/PlayerInfo/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="PlayerName" type="Label" parent="Base/ContentContainer/HeaderContainer/PlayerInfo/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "ThisIsALongPlayerName"
+vertical_alignment = 1
+
+[node name="PlayerLevel" type="Label" parent="Base/ContentContainer/HeaderContainer/PlayerInfo/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 0.490196)
+theme_override_font_sizes/font_size = 12
+text = "Level 0"
+vertical_alignment = 1
+
+[node name="Status" type="PanelContainer" parent="Base/ContentContainer/HeaderContainer" node_paths=PackedStringArray("SteamStatus")]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_3gbin")
+script = ExtResource("3_bejbt")
+SteamStatus = NodePath("SteamStatus")
+
+[node name="SteamStatus" type="Label" parent="Base/ContentContainer/HeaderContainer/Status"]
+layout_mode = 2
+text = "Steam is running"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Base/ContentContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 2
+
+[node name="FriendsContainer" type="GridContainer" parent="Base/ContentContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/h_separation = 15
+theme_override_constants/v_separation = 15
+columns = 3
+script = ExtResource("4_ijjpb")
+FriendItem = ExtResource("5_s1anc")
