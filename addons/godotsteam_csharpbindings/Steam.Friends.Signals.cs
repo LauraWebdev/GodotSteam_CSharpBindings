@@ -5,29 +5,14 @@ using Godot;
 
 namespace GodotSteam;
 
-/// <summary>
-
-/// The steam class
-
-/// </summary>
-
 public static partial class Steam
 {
-    /// <summary>
-    /// The avatar loaded event handler
-    /// </summary>
     public delegate void AvatarLoadedEventHandler(ulong avatarId, int width, byte[] data);
     private static event AvatarLoadedEventHandler AvatarLoadedEvent;
-    /// <summary>
-    /// The data
-    /// </summary>
     static Action<ulong, int, byte[]> _avatarLoadedAction = (avatarId, width, data) =>
     {
         AvatarLoadedEvent?.Invoke(avatarId, width, data);
     };
-    /// <summary>
-    /// The avatar loaded
-    /// </summary>
     public static event AvatarLoadedEventHandler AvatarLoaded
     {
         add
@@ -48,21 +33,12 @@ public static partial class Steam
         }
     }
     
-    /// <summary>
-    /// The avatar image loaded event handler
-    /// </summary>
     public delegate void AvatarImageLoadedEventHandler(ulong avatarId, uint avatarIndex, uint width, uint height);
     private static event AvatarImageLoadedEventHandler AvatarImageLoadedEvent;
-    /// <summary>
-    /// The height
-    /// </summary>
     static Action<ulong, uint, uint, uint> _avatarImageLoadedAction = (avatarId, avatarIndex, width, height) =>
     {
         AvatarImageLoadedEvent?.Invoke(avatarId, avatarIndex, width, height);
     };
-    /// <summary>
-    /// The avatar image loaded
-    /// </summary>
     public static event AvatarImageLoadedEventHandler AvatarImageLoaded
     {
         add
@@ -83,21 +59,12 @@ public static partial class Steam
         }
     }
     
-    /// <summary>
-    /// The change server requested event handler
-    /// </summary>
     public delegate void ChangeServerRequestedEventHandler(string server, string password);
     private static event ChangeServerRequestedEventHandler ChangeServerRequestedEvent;
-    /// <summary>
-    /// The password
-    /// </summary>
     static Action<string, string> _changeServerRequestedAction = (server, password) =>
     {
         ChangeServerRequestedEvent?.Invoke(server, password);
     };
-    /// <summary>
-    /// The change server requested
-    /// </summary>
     public static event ChangeServerRequestedEventHandler ChangeServerRequested
     {
         add
@@ -118,21 +85,12 @@ public static partial class Steam
         }
     }
     
-    /// <summary>
-    /// The clan activity downloaded event handler
-    /// </summary>
     public delegate void ClanActivityDownloadedEventHandler(int online, int ingame, int chatting);
     private static event ClanActivityDownloadedEventHandler ClanActivityDownloadedEvent;
-    /// <summary>
-    /// The chatting
-    /// </summary>
     static Action<int, int, int> _clanActivityDownloadedAction = (online, ingame, chatting) =>
     {
         ClanActivityDownloadedEvent?.Invoke(online, ingame, chatting);
     };
-    /// <summary>
-    /// The clan activity downloaded
-    /// </summary>
     public static event ClanActivityDownloadedEventHandler ClanActivityDownloaded
     {
         add
@@ -153,21 +111,12 @@ public static partial class Steam
         }
     }
     
-    /// <summary>
-    /// The connected chat join event handler
-    /// </summary>
     public delegate void ConnectedChatJoinEventHandler(ulong chatId, ulong steamId);
     private static event ConnectedChatJoinEventHandler ConnectedChatJoinEvent;
-    /// <summary>
-    /// The steam id
-    /// </summary>
     static Action<ulong, ulong> _connectedChatJoinAction = (chatId, steamId) =>
     {
         ConnectedChatJoinEvent?.Invoke(chatId, steamId);
     };
-    /// <summary>
-    /// The connected chat join
-    /// </summary>
     public static event ConnectedChatJoinEventHandler ConnectedChatJoin
     {
         add
@@ -188,21 +137,12 @@ public static partial class Steam
         }
     }
     
-    /// <summary>
-    /// The connected chat leave event handler
-    /// </summary>
     public delegate void ConnectedChatLeaveEventHandler(ulong chatId, ulong steamId, bool kicked, bool dropped);
     private static event ConnectedChatLeaveEventHandler ConnectedChatLeaveEvent;
-    /// <summary>
-    /// The dropped
-    /// </summary>
     static Action<ulong, ulong, bool, bool> _connectedChatLeaveAction = (chatId, steamId, kicked, dropped) =>
     {
         ConnectedChatLeaveEvent?.Invoke(chatId, steamId, kicked, dropped);
     };
-    /// <summary>
-    /// The connected chat leave
-    /// </summary>
     public static event ConnectedChatLeaveEventHandler ConnectedChatLeave
     {
         add
@@ -223,21 +163,12 @@ public static partial class Steam
         }
     }
     
-    /// <summary>
-    /// The connected clan chat message event handler
-    /// </summary>
     public delegate void ConnectedClanChatMessageEventHandler(int ret, string text, string type, ulong chatter);
     private static event ConnectedClanChatMessageEventHandler ConnectedClanChatMessageEvent;
-    /// <summary>
-    /// The as int 64
-    /// </summary>
     static Action<Godot.Collections.Dictionary> _connectedClanChatMessageAction = (raw) =>
     {
         ConnectedClanChatMessageEvent?.Invoke(raw["ret"].AsInt32(), raw["text"].AsString(), raw["type"].AsString(), raw["chatter"].AsUInt64());
     };
-    /// <summary>
-    /// The connected clan chat message
-    /// </summary>
     public static event ConnectedClanChatMessageEventHandler ConnectedClanChatMessage
     {
         add
@@ -258,21 +189,12 @@ public static partial class Steam
         }
     }
     
-    /// <summary>
-    /// The connected friend chat message event handler
-    /// </summary>
     public delegate void ConnectedFriendChatMessageEventHandler(int ret, string text);
     private static event ConnectedFriendChatMessageEventHandler ConnectedFriendChatMessageEvent;
-    /// <summary>
-    /// The as string
-    /// </summary>
     static Action<Godot.Collections.Dictionary> _connectedFriendChatMessageAction = (raw) =>
     {
         ConnectedFriendChatMessageEvent?.Invoke(raw["ret"].AsInt32(), raw["text"].AsString());
     };
-    /// <summary>
-    /// The connected friend chat message
-    /// </summary>
     public static event ConnectedFriendChatMessageEventHandler ConnectedFriendChatMessage
     {
         add
@@ -293,14 +215,8 @@ public static partial class Steam
         }
     }
     
-    /// <summary>
-    /// The enumerate following list signal event handler
-    /// </summary>
     public delegate void EnumerateFollowingListSignalEventHandler(string message, List<Follow> following);
     private static event EnumerateFollowingListSignalEventHandler EnumerateFollowingListSignalEvent;
-    /// <summary>
-    /// The to list
-    /// </summary>
     static Action<string, Godot.Collections.Array> _enumerateFollowingListSignalAction = (message, following) =>
     {
         EnumerateFollowingListSignalEvent?.Invoke(
@@ -316,9 +232,6 @@ public static partial class Steam
                 .ToList()
         );
     };
-    /// <summary>
-    /// The enumerate following list signal
-    /// </summary>
     public static event EnumerateFollowingListSignalEventHandler EnumerateFollowingListSignal
     {
         add
@@ -339,21 +252,12 @@ public static partial class Steam
         }
     }
     
-    /// <summary>
-    /// The equipped profile items changed event handler
-    /// </summary>
     public delegate void EquippedProfileItemsChangedEventHandler(ulong steamId);
     private static event EquippedProfileItemsChangedEventHandler EquippedProfileItemsChangedEvent;
-    /// <summary>
-    /// The steam id
-    /// </summary>
     static Action<ulong> _equippedProfileItemsChangedAction = (steamId) =>
     {
         EquippedProfileItemsChangedEvent?.Invoke(steamId);
     };
-    /// <summary>
-    /// The equipped profile items changed
-    /// </summary>
     public static event EquippedProfileItemsChangedEventHandler EquippedProfileItemsChanged
     {
         add
@@ -374,14 +278,8 @@ public static partial class Steam
         }
     }
     
-    /// <summary>
-    /// The equipped profile items event handler
-    /// </summary>
     public delegate void EquippedProfileItemsEventHandler(ErrorResult result, ulong steamId, ProfileData profileData);
     private static event EquippedProfileItemsEventHandler EquippedProfileItemsEvent;
-    /// <summary>
-    /// The as bool
-    /// </summary>
     static Action<int, ulong, Godot.Collections.Dictionary> _equippedProfileItemsAction = (result, steamId, profileData) =>
     {
         EquippedProfileItemsEvent?.Invoke(
@@ -396,9 +294,6 @@ public static partial class Steam
             }
         );
     };
-    /// <summary>
-    /// The equipped profile items
-    /// </summary>
     public static event EquippedProfileItemsEventHandler EquippedProfileItems
     {
         add
@@ -419,21 +314,12 @@ public static partial class Steam
         }
     }
     
-    /// <summary>
-    /// The friend rich presence update event handler
-    /// </summary>
     public delegate void FriendRichPresenceUpdateEventHandler(ulong steamId, uint appId);
     private static event FriendRichPresenceUpdateEventHandler FriendRichPresenceUpdateEvent;
-    /// <summary>
-    /// The app id
-    /// </summary>
     static Action<ulong, uint> _friendRichPresenceUpdateAction = (steamId, appId) =>
     {
         FriendRichPresenceUpdateEvent?.Invoke(steamId, appId);
     };
-    /// <summary>
-    /// The friend rich presence update
-    /// </summary>
     public static event FriendRichPresenceUpdateEventHandler FriendRichPresenceUpdate
     {
         add
@@ -454,21 +340,12 @@ public static partial class Steam
         }
     }
     
-    /// <summary>
-    /// The get follower count signal event handler
-    /// </summary>
     public delegate void GetFollowerCountSignalEventHandler(ErrorResult result, ulong steamId, int count);
     private static event GetFollowerCountSignalEventHandler GetFollowerCountSignalEvent;
-    /// <summary>
-    /// The count
-    /// </summary>
     static Action<int, ulong, int> _getFollowerCountSignalAction = (result, steamId, count) =>
     {
         GetFollowerCountSignalEvent?.Invoke((ErrorResult)result, steamId, count);
     };
-    /// <summary>
-    /// The get follower count signal
-    /// </summary>
     public static event GetFollowerCountSignalEventHandler GetFollowerCountSignal
     {
         add
@@ -489,21 +366,12 @@ public static partial class Steam
         }
     }
     
-    /// <summary>
-    /// The is following signal event handler
-    /// </summary>
     public delegate void IsFollowingSignalEventHandler(ErrorResult result, ulong steamId, bool following);
     private static event IsFollowingSignalEventHandler IsFollowingSignalEvent;
-    /// <summary>
-    /// The following
-    /// </summary>
     static Action<int, ulong, bool> _isFollowingSignalAction = (result, steamId, following) =>
     {
         IsFollowingSignalEvent?.Invoke((ErrorResult)result, steamId, following);
     };
-    /// <summary>
-    /// The is following signal
-    /// </summary>
     public static event IsFollowingSignalEventHandler IsFollowingSignal
     {
         add
@@ -524,21 +392,12 @@ public static partial class Steam
         }
     }
     
-    /// <summary>
-    /// The join clan chat complete event handler
-    /// </summary>
     public delegate void JoinClanChatCompleteEventHandler(ulong chatId, ChatRoomEnterResponse response);
     private static event JoinClanChatCompleteEventHandler JoinClanChatCompleteEvent;
-    /// <summary>
-    /// The response
-    /// </summary>
     static Action<ulong, int> _joinClanChatCompleteAction = (chatId, response) =>
     {
         JoinClanChatCompleteEvent?.Invoke(chatId, (ChatRoomEnterResponse)response);
     };
-    /// <summary>
-    /// The join clan chat complete
-    /// </summary>
     public static event JoinClanChatCompleteEventHandler JoinClanChatComplete
     {
         add
@@ -559,21 +418,12 @@ public static partial class Steam
         }
     }
     
-    /// <summary>
-    /// The join game requested event handler
-    /// </summary>
     public delegate void JoinGameRequestedEventHandler(ulong user, string connect);
     private static event JoinGameRequestedEventHandler JoinGameRequestedEvent;
-    /// <summary>
-    /// The connect
-    /// </summary>
     static Action<ulong, string> _joinGameRequestedAction = (user, connect) =>
     {
         JoinGameRequestedEvent?.Invoke(user, connect);
     };
-    /// <summary>
-    /// The join game requested
-    /// </summary>
     public static event JoinGameRequestedEventHandler JoinGameRequested
     {
         add
@@ -594,21 +444,12 @@ public static partial class Steam
         }
     }
     
-    /// <summary>
-    /// The join requested event handler
-    /// </summary>
     public delegate void JoinRequestedEventHandler(ulong lobbyId, ulong steamId);
     private static event JoinRequestedEventHandler JoinRequestedEvent;
-    /// <summary>
-    /// The steam id
-    /// </summary>
     static Action<ulong, ulong> _joinRequestedAction = (lobbyId, steamId) =>
     {
         JoinRequestedEvent?.Invoke(lobbyId, steamId);
     };
-    /// <summary>
-    /// The join requested
-    /// </summary>
     public static event JoinRequestedEventHandler JoinRequested
     {
         add
@@ -629,21 +470,12 @@ public static partial class Steam
         }
     }
     
-    /// <summary>
-    /// The name changed event handler
-    /// </summary>
     public delegate void NameChangedEventHandler(bool success, bool localSuccess, ErrorResult result);
     private static event NameChangedEventHandler NameChangedEvent;
-    /// <summary>
-    /// The result
-    /// </summary>
     static Action<bool, bool, int> _nameChangedAction = (success, localSuccess, result) =>
     {
         NameChangedEvent?.Invoke(success, localSuccess, (ErrorResult)result);
     };
-    /// <summary>
-    /// The name changed
-    /// </summary>
     public static event NameChangedEventHandler NameChanged
     {
         add
@@ -664,21 +496,12 @@ public static partial class Steam
         }
     }
     
-    /// <summary>
-    /// The overlay browser protocol event handler
-    /// </summary>
     public delegate void OverlayBrowserProtocolEventHandler(Uri uri);
     private static event OverlayBrowserProtocolEventHandler OverlayBrowserProtocolEvent;
-    /// <summary>
-    /// The uri
-    /// </summary>
     static Action<string> _overlayBrowserProtocolAction = (uri) =>
     {
         OverlayBrowserProtocolEvent?.Invoke(new Uri(uri));
     };
-    /// <summary>
-    /// The overlay browser protocol
-    /// </summary>
     public static event OverlayBrowserProtocolEventHandler OverlayBrowserProtocol
     {
         add
@@ -699,21 +522,12 @@ public static partial class Steam
         }
     }
     
-    /// <summary>
-    /// The overlay toggled event handler
-    /// </summary>
     public delegate void OverlayToggledEventHandler(bool active, bool userInitiated, uint appId);
     private static event OverlayToggledEventHandler OverlayToggledEvent;
-    /// <summary>
-    /// The app id
-    /// </summary>
     static Action<bool, bool, uint> _overlayToggledAction = (active, userInitiated, appId) =>
     {
         OverlayToggledEvent?.Invoke(active, userInitiated, appId);
     };
-    /// <summary>
-    /// The overlay toggled
-    /// </summary>
     public static event OverlayToggledEventHandler OverlayToggled
     {
         add
@@ -734,21 +548,12 @@ public static partial class Steam
         }
     }
     
-    /// <summary>
-    /// The persona state change event handler
-    /// </summary>
     public delegate void PersonaStateChangeEventHandler(ulong steamId, PersonaChange flags);
     private static event PersonaStateChangeEventHandler PersonaStateChangeEvent;
-    /// <summary>
-    /// The flags
-    /// </summary>
     static Action<ulong, long> _personaStateChangeAction = (steamId, flags) =>
     {
         PersonaStateChangeEvent?.Invoke(steamId, (PersonaChange)flags);
     };
-    /// <summary>
-    /// The persona state change
-    /// </summary>
     public static event PersonaStateChangeEventHandler PersonaStateChange
     {
         add
@@ -769,14 +574,8 @@ public static partial class Steam
         }
     }
     
-    /// <summary>
-    /// The request clan officer list signal event handler
-    /// </summary>
     public delegate void RequestClanOfficerListSignalEventHandler(string message, List<ClanOfficer> officerList);
     private static event RequestClanOfficerListSignalEventHandler RequestClanOfficerListSignalEvent;
-    /// <summary>
-    /// The to list
-    /// </summary>
     static Action<string, Godot.Collections.Array> _requestClanOfficerListSignalAction = (message, officerList) =>
     {
         RequestClanOfficerListSignalEvent?.Invoke(
@@ -792,9 +591,6 @@ public static partial class Steam
                 .ToList()
         );
     };
-    /// <summary>
-    /// The request clan officer list signal
-    /// </summary>
     public static event RequestClanOfficerListSignalEventHandler RequestClanOfficerListSignal
     {
         add
@@ -816,16 +612,10 @@ public static partial class Steam
     }
     
     private static event Action UnreadChatMessagesChangedEvent;
-    /// <summary>
-    /// The invoke
-    /// </summary>
     static Action _unreadChatMessagesChangedAction = () =>
     {
         UnreadChatMessagesChangedEvent?.Invoke();
     };
-    /// <summary>
-    /// The unread chat messages changed
-    /// </summary>
     public static event Action UnreadChatMessagesChanged
     {
         add

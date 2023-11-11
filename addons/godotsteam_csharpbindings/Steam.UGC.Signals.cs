@@ -3,29 +3,14 @@ using Godot;
 
 namespace GodotSteam;
 
-/// <summary>
-
-/// The steam class
-
-/// </summary>
-
 public static partial class Steam
 {
-    /// <summary>
-    /// The add app dependency result event handler
-    /// </summary>
     public delegate void AddAppDependencyResultEventHandler(long result, long fileId, uint appId);
     private static event AddAppDependencyResultEventHandler AddAppDependencyResultEvent;
-    /// <summary>
-    /// The app id
-    /// </summary>
     static Action<long, long, uint> _addAppDependencyResultAction = (result, fileId, appId) =>
     {
         AddAppDependencyResultEvent?.Invoke(result, fileId, appId);
     };
-    /// <summary>
-    /// The add app dependency result
-    /// </summary>
     public static event AddAppDependencyResultEventHandler AddAppDependencyResult
     {
         add
@@ -46,21 +31,12 @@ public static partial class Steam
         }
     }
     
-    /// <summary>
-    /// The add ugc dependency result event handler
-    /// </summary>
     public delegate void AddUgcDependencyResultEventHandler(long result, long fileId, long childId);
     private static event AddUgcDependencyResultEventHandler AddUgcDependencyResultEvent;
-    /// <summary>
-    /// The child id
-    /// </summary>
     static Action<long, long, long> _addUgcDependencyResultAction = (result, fileId, childId) =>
     {
         AddUgcDependencyResultEvent?.Invoke(result, fileId, childId);
     };
-    /// <summary>
-    /// The add ugc dependency result
-    /// </summary>
     public static event AddUgcDependencyResultEventHandler AddUgcDependencyResult
     {
         add
@@ -81,21 +57,12 @@ public static partial class Steam
         }
     }
     
-    /// <summary>
-    /// The item created event handler
-    /// </summary>
     public delegate void ItemCreatedEventHandler(long result, long fileId, bool acceptTos);
     private static event ItemCreatedEventHandler ItemCreatedEvent;
-    /// <summary>
-    /// The accept tos
-    /// </summary>
     static Action<long, long, bool> _itemCreatedAction = (result, fileId, acceptTos) =>
     {
         ItemCreatedEvent?.Invoke(result, fileId, acceptTos);
     };
-    /// <summary>
-    /// The item created
-    /// </summary>
     public static event ItemCreatedEventHandler ItemCreated
     {
         add
@@ -116,21 +83,12 @@ public static partial class Steam
         }
     }
     
-    /// <summary>
-    /// The item downloaded event handler
-    /// </summary>
     public delegate void ItemDownloadedEventHandler(long result, long fileId, uint appId);
     private static event ItemDownloadedEventHandler ItemDownloadedEvent;
-    /// <summary>
-    /// The app id
-    /// </summary>
     static Action<long, long, uint> _itemDownloadedAction = (result, fileId, appId) =>
     {
         ItemDownloadedEvent?.Invoke(result, fileId, appId);
     };
-    /// <summary>
-    /// The item downloaded
-    /// </summary>
     public static event ItemDownloadedEventHandler ItemDownloaded
     {
         add
@@ -151,21 +109,12 @@ public static partial class Steam
         }
     }
     
-    /// <summary>
-    /// The get app dependencies result event handler
-    /// </summary>
     public delegate void GetAppDependenciesResultEventHandler(long result, long fileId, long appDependencies, long totalAppDependencies);
     private static event GetAppDependenciesResultEventHandler GetAppDependenciesResultEvent;
-    /// <summary>
-    /// The total app dependencies
-    /// </summary>
     static Action<long, long, long, long> _getAppDependenciesResultAction = (result, fileId, appDependencies, totalAppDependencies) =>
     {
         GetAppDependenciesResultEvent?.Invoke(result, fileId, appDependencies, totalAppDependencies);
     };
-    /// <summary>
-    /// The get app dependencies result
-    /// </summary>
     public static event GetAppDependenciesResultEventHandler GetAppDependenciesResult
     {
         add
@@ -186,21 +135,12 @@ public static partial class Steam
         }
     }
     
-    /// <summary>
-    /// The item deleted event handler
-    /// </summary>
     public delegate void ItemDeletedEventHandler(long result, long fileId);
     private static event ItemDeletedEventHandler ItemDeletedEvent;
-    /// <summary>
-    /// The file id
-    /// </summary>
     static Action<long, long> _itemDeletedAction = (result, fileId) =>
     {
         ItemDeletedEvent?.Invoke(result, fileId);
     };
-    /// <summary>
-    /// The item deleted
-    /// </summary>
     public static event ItemDeletedEventHandler ItemDeleted
     {
         add
@@ -221,21 +161,12 @@ public static partial class Steam
         }
     }
     
-    /// <summary>
-    /// The get item vote result event handler
-    /// </summary>
     public delegate void GetItemVoteResultEventHandler(long result, long fileId, bool voteUp, bool voteDown, bool voteSkipped);
     private static event GetItemVoteResultEventHandler GetItemVoteResultEvent;
-    /// <summary>
-    /// The vote skipped
-    /// </summary>
     static Action<long, long, bool, bool, bool> _getItemVoteResultAction = (result, fileId, voteUp, voteDown, voteSkipped) =>
     {
         GetItemVoteResultEvent?.Invoke(result, fileId, voteUp, voteDown, voteSkipped);
     };
-    /// <summary>
-    /// The get item vote result
-    /// </summary>
     public static event GetItemVoteResultEventHandler GetItemVoteResult
     {
         add
@@ -256,21 +187,12 @@ public static partial class Steam
         }
     }
     
-    /// <summary>
-    /// The item installed event handler
-    /// </summary>
     public delegate void ItemInstalledEventHandler(uint appId, long fileId);
     private static event ItemInstalledEventHandler ItemInstalledEvent;
-    /// <summary>
-    /// The file id
-    /// </summary>
     static Action<uint, long> _itemInstalledAction = (appId, fileId) =>
     {
         ItemInstalledEvent?.Invoke(appId, fileId);
     };
-    /// <summary>
-    /// The item installed
-    /// </summary>
     public static event ItemInstalledEventHandler ItemInstalled
     {
         add
@@ -291,21 +213,12 @@ public static partial class Steam
         }
     }
     
-    /// <summary>
-    /// The remove app dependency result event handler
-    /// </summary>
     public delegate void RemoveAppDependencyResultEventHandler(long result, long fileId, uint appId);
     private static event RemoveAppDependencyResultEventHandler RemoveAppDependencyResultEvent;
-    /// <summary>
-    /// The app id
-    /// </summary>
     static Action<long, long, uint> _removeAppDependencyResultAction = (result, fileId, appId) =>
     {
         RemoveAppDependencyResultEvent?.Invoke(result, fileId, appId);
     };
-    /// <summary>
-    /// The remove app dependency result
-    /// </summary>
     public static event RemoveAppDependencyResultEventHandler RemoveAppDependencyResult
     {
         add
@@ -326,21 +239,12 @@ public static partial class Steam
         }
     }
     
-    /// <summary>
-    /// The remove ugc dependency result event handler
-    /// </summary>
     public delegate void RemoveUgcDependencyResultEventHandler(long result, long fileId, long childId);
     private static event RemoveUgcDependencyResultEventHandler RemoveUgcDependencyResultEvent;
-    /// <summary>
-    /// The child id
-    /// </summary>
     static Action<long, long, long> _removeUgcDependencyResultAction = (result, fileId, childId) =>
     {
         RemoveUgcDependencyResultEvent?.Invoke(result, fileId, childId);
     };
-    /// <summary>
-    /// The remove ugc dependency result
-    /// </summary>
     public static event RemoveUgcDependencyResultEventHandler RemoveUgcDependencyResult
     {
         add
@@ -361,21 +265,12 @@ public static partial class Steam
         }
     }
     
-    /// <summary>
-    /// The set user item vote signal event handler
-    /// </summary>
     public delegate void SetUserItemVoteSignalEventHandler(long result, long fileId, bool voteUp);
     private static event SetUserItemVoteSignalEventHandler SetUserItemVoteSignalEvent;
-    /// <summary>
-    /// The vote up
-    /// </summary>
     static Action<long, long, bool> _setUserItemVoteSignalAction = (result, fileId, voteUp) =>
     {
         SetUserItemVoteSignalEvent?.Invoke(result, fileId, voteUp);
     };
-    /// <summary>
-    /// The set user item vote signal
-    /// </summary>
     public static event SetUserItemVoteSignalEventHandler SetUserItemVoteSignal
     {
         add
@@ -396,21 +291,12 @@ public static partial class Steam
         }
     }
     
-    /// <summary>
-    /// The start playtime tracking signal event handler
-    /// </summary>
     public delegate void StartPlaytimeTrackingSignalEventHandler(long result);
     private static event StartPlaytimeTrackingSignalEventHandler StartPlaytimeTrackingSignalEvent;
-    /// <summary>
-    /// The result
-    /// </summary>
     static Action<long> _startPlaytimeTrackingSignalAction = (result) =>
     {
         StartPlaytimeTrackingSignalEvent?.Invoke(result);
     };
-    /// <summary>
-    /// The start playtime tracking signal
-    /// </summary>
     public static event StartPlaytimeTrackingSignalEventHandler StartPlaytimeTrackingSignal
     {
         add
@@ -431,21 +317,12 @@ public static partial class Steam
         }
     }
     
-    /// <summary>
-    /// The ugc query completed event handler
-    /// </summary>
     public delegate void UgcQueryCompletedEventHandler(long handle, long result, long resultsReturned, long totalMatching, bool cached);
     private static event UgcQueryCompletedEventHandler UgcQueryCompletedEvent;
-    /// <summary>
-    /// The cached
-    /// </summary>
     static Action<long, long, long, long, bool> _ugcQueryCompletedAction = (handle, result, resultsReturned, totalMatching, cached) =>
     {
         UgcQueryCompletedEvent?.Invoke(handle, result, resultsReturned, totalMatching, cached);
     };
-    /// <summary>
-    /// The ugc query completed
-    /// </summary>
     public static event UgcQueryCompletedEventHandler UgcQueryCompleted
     {
         add
@@ -466,21 +343,12 @@ public static partial class Steam
         }
     }
     
-    /// <summary>
-    /// The stop playtime tracking signal event handler
-    /// </summary>
     public delegate void StopPlaytimeTrackingSignalEventHandler(long result);
     private static event StopPlaytimeTrackingSignalEventHandler StopPlaytimeTrackingSignalEvent;
-    /// <summary>
-    /// The result
-    /// </summary>
     static Action<long> _stopPlaytimeTrackingSignalAction = (result) =>
     {
         StopPlaytimeTrackingSignalEvent?.Invoke(result);
     };
-    /// <summary>
-    /// The stop playtime tracking signal
-    /// </summary>
     public static event StopPlaytimeTrackingSignalEventHandler StopPlaytimeTrackingSignal
     {
         add
@@ -501,21 +369,12 @@ public static partial class Steam
         }
     }
     
-    /// <summary>
-    /// The item updated event handler
-    /// </summary>
     public delegate void ItemUpdatedEventHandler(long result, bool acceptTos);
     private static event ItemUpdatedEventHandler ItemUpdatedEvent;
-    /// <summary>
-    /// The accept tos
-    /// </summary>
     static Action<long, bool> _itemUpdatedAction = (result, acceptTos) =>
     {
         ItemUpdatedEvent?.Invoke(result, acceptTos);
     };
-    /// <summary>
-    /// The item updated
-    /// </summary>
     public static event ItemUpdatedEventHandler ItemUpdated
     {
         add
@@ -536,21 +395,12 @@ public static partial class Steam
         }
     }
     
-    /// <summary>
-    /// The user favorite items list changed event handler
-    /// </summary>
     public delegate void UserFavoriteItemsListChangedEventHandler(long result, long fileId, bool wasAddRequest);
     private static event UserFavoriteItemsListChangedEventHandler UserFavoriteItemsListChangedEvent;
-    /// <summary>
-    /// The was add request
-    /// </summary>
     static Action<long, long, bool> _userFavoriteItemsListChangedAction = (result, fileId, wasAddRequest) =>
     {
         UserFavoriteItemsListChangedEvent?.Invoke(result, fileId, wasAddRequest);
     };
-    /// <summary>
-    /// The user favorite items list changed
-    /// </summary>
     public static event UserFavoriteItemsListChangedEventHandler UserFavoriteItemsListChanged
     {
         add
@@ -571,21 +421,12 @@ public static partial class Steam
         }
     }
     
-    /// <summary>
-    /// The workshop eula status event handler
-    /// </summary>
     public delegate void WorkshopEulaStatusEventHandler(long result, uint appId, Godot.Collections.Dictionary eulaData);
     private static event WorkshopEulaStatusEventHandler WorkshopEulaStatusEvent;
-    /// <summary>
-    /// The eula data
-    /// </summary>
     static Action<long, uint, Godot.Collections.Dictionary> _workshopEulaStatusAction = (result, appId, eulaData) =>
     {
         WorkshopEulaStatusEvent?.Invoke(result, appId, eulaData);
     };
-    /// <summary>
-    /// The workshop eula status
-    /// </summary>
     public static event WorkshopEulaStatusEventHandler WorkshopEulaStatus
     {
         add
@@ -606,21 +447,12 @@ public static partial class Steam
         }
     }
     
-    /// <summary>
-    /// The user subscribed items list changed event handler
-    /// </summary>
     public delegate void UserSubscribedItemsListChangedEventHandler(uint appId);
     private static event UserSubscribedItemsListChangedEventHandler UserSubscribedItemsListChangedEvent;
-    /// <summary>
-    /// The app id
-    /// </summary>
     static Action<uint> _userSubscribedItemsListChangedAction = (appId) =>
     {
         UserSubscribedItemsListChangedEvent?.Invoke(appId);
     };
-    /// <summary>
-    /// The user subscribed items list changed
-    /// </summary>
     public static event UserSubscribedItemsListChangedEventHandler UserSubscribedItemsListChanged
     {
         add

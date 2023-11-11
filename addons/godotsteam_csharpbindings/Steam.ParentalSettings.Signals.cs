@@ -3,25 +3,13 @@ using Godot;
 
 namespace GodotSteam;
 
-/// <summary>
-
-/// The steam class
-
-/// </summary>
-
 public static partial class Steam
 {
     private static event Action ParentalSettingChangedEvent;
-    /// <summary>
-    /// The invoke
-    /// </summary>
     static Action _parentalSettingChangedAction = () =>
     {
         ParentalSettingChangedEvent?.Invoke();
     };
-    /// <summary>
-    /// The parental setting changed
-    /// </summary>
     public static event Action ParentalSettingChanged
     {
         add

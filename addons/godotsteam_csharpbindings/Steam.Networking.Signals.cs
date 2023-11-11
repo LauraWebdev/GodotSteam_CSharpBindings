@@ -3,29 +3,14 @@ using Godot;
 
 namespace GodotSteam;
 
-/// <summary>
-
-/// The steam class
-
-/// </summary>
-
 public static partial class Steam
 {
-    /// <summary>
-    /// The session request event handler
-    /// </summary>
     public delegate void P2PSessionRequestEventHandler(ulong steamIdRemote);
     private static event P2PSessionRequestEventHandler P2PSessionRequestEvent;
-    /// <summary>
-    /// The steam id remote
-    /// </summary>
     static Action<ulong> _p2pSessionRequestAction = (steamIdRemote) =>
     {
         P2PSessionRequestEvent?.Invoke(steamIdRemote);
     };
-    /// <summary>
-    /// The session request
-    /// </summary>
     public static event P2PSessionRequestEventHandler P2PSessionRequest
     {
         add
@@ -46,21 +31,12 @@ public static partial class Steam
         }
     }
     
-    /// <summary>
-    /// The session connect fail event handler
-    /// </summary>
     public delegate void P2PSessionConnectFailEventHandler(ulong steamIdRemote, long sessionError);
     private static event P2PSessionConnectFailEventHandler P2PSessionConnectFailEvent;
-    /// <summary>
-    /// The session error
-    /// </summary>
     static Action<ulong, long> _p2pSessionConnectFailAction = (steamIdRemote, sessionError) =>
     {
         P2PSessionConnectFailEvent?.Invoke(steamIdRemote, sessionError);
     };
-    /// <summary>
-    /// The session connect fail
-    /// </summary>
     public static event P2PSessionConnectFailEventHandler P2PSessionConnectFail
     {
         add

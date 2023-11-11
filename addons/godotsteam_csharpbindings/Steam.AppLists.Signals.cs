@@ -3,29 +3,14 @@ using Godot;
 
 namespace GodotSteam;
 
-/// <summary>
-
-/// The steam class
-
-/// </summary>
-
 public static partial class Steam
 {
-    /// <summary>
-    /// The app installed event handler
-    /// </summary>
     public delegate void AppInstalledEventHandler(uint appId, uint installFolderIndex);
     private static event AppInstalledEventHandler AppInstalledEvent;
-    /// <summary>
-    /// The install folder index
-    /// </summary>
     static Action<uint, uint> _appInstalledAction = (appId, installFolderIndex) =>
     {
         AppInstalledEvent?.Invoke(appId, installFolderIndex);
     };
-    /// <summary>
-    /// The app installed
-    /// </summary>
     public static event AppInstalledEventHandler AppInstalled
     {
         add
@@ -46,21 +31,12 @@ public static partial class Steam
         }
     }
     
-    /// <summary>
-    /// The app uninstalled event handler
-    /// </summary>
     public delegate void AppUninstalledEventHandler(uint appId, uint installFolderIndex);
     private static event AppUninstalledEventHandler AppUninstalledEvent;
-    /// <summary>
-    /// The install folder index
-    /// </summary>
     static Action<uint, uint> _appUninstalledAction = (appId, installFolderIndex) =>
     {
         AppUninstalledEvent?.Invoke(appId, installFolderIndex);
     };
-    /// <summary>
-    /// The app uninstalled
-    /// </summary>
     public static event AppUninstalledEventHandler AppUninstalled
     {
         add

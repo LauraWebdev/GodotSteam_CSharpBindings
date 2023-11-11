@@ -3,25 +3,13 @@ using Godot;
 
 namespace GodotSteam;
 
-/// <summary>
-
-/// The steam class
-
-/// </summary>
-
 public static partial class Steam
 {
     public static event Action MusicPlayerRemoteToFrontEvent;
-    /// <summary>
-    /// The invoke
-    /// </summary>
     static Action _musicPlayerRemoteToFrontAction = () =>
     {
         MusicPlayerRemoteToFrontEvent?.Invoke();
     };
-    /// <summary>
-    /// The music player remote to front
-    /// </summary>
     public static event Action MusicPlayerRemoteToFront
     {
         add
@@ -43,16 +31,10 @@ public static partial class Steam
     }
     
     public static event Action MusicPlayerRemoteWillActivateEvent;
-    /// <summary>
-    /// The invoke
-    /// </summary>
     static Action _musicPlayerRemoteWillActivateAction = () =>
     {
         MusicPlayerRemoteWillActivateEvent?.Invoke();
     };
-    /// <summary>
-    /// The music player remote will activate
-    /// </summary>
     public static event Action MusicPlayerRemoteWillActivate
     {
         add
@@ -74,16 +56,10 @@ public static partial class Steam
     }
     
     public static event Action MusicPlayerRemoteWillDeactivateEvent;
-    /// <summary>
-    /// The invoke
-    /// </summary>
     static Action _musicPlayerRemoteWillDeactivateAction = () =>
     {
         MusicPlayerRemoteWillDeactivateEvent?.Invoke();
     };
-    /// <summary>
-    /// The music player remote will deactivate
-    /// </summary>
     public static event Action MusicPlayerRemoteWillDeactivate
     {
         add
@@ -104,21 +80,12 @@ public static partial class Steam
         }
     }
     
-    /// <summary>
-    /// The music player selects playlist entry event handler
-    /// </summary>
     public delegate void MusicPlayerSelectsPlaylistEntryEventHandler(long entry);
     private static event MusicPlayerSelectsPlaylistEntryEventHandler MusicPlayerSelectsPlaylistEntryEvent;
-    /// <summary>
-    /// The entry
-    /// </summary>
     static Action<long> _musicPlayerSelectsPlaylistEntryAction = (entry) =>
     {
         MusicPlayerSelectsPlaylistEntryEvent?.Invoke(entry);
     };
-    /// <summary>
-    /// The music player selects playlist entry
-    /// </summary>
     public static event MusicPlayerSelectsPlaylistEntryEventHandler MusicPlayerSelectsPlaylistEntry
     {
         add
@@ -139,21 +106,12 @@ public static partial class Steam
         }
     }
     
-    /// <summary>
-    /// The music player selects queue entry event handler
-    /// </summary>
     public delegate void MusicPlayerSelectsQueueEntryEventHandler(long entry);
     private static event MusicPlayerSelectsQueueEntryEventHandler MusicPlayerSelectsQueueEntryEvent;
-    /// <summary>
-    /// The entry
-    /// </summary>
     static Action<long> _musicPlayerSelectsQueueEntryAction = (entry) =>
     {
         MusicPlayerSelectsQueueEntryEvent?.Invoke(entry);
     };
-    /// <summary>
-    /// The music player selects queue entry
-    /// </summary>
     public static event MusicPlayerSelectsQueueEntryEventHandler MusicPlayerSelectsQueueEntry
     {
         add
@@ -174,21 +132,12 @@ public static partial class Steam
         }
     }
     
-    /// <summary>
-    /// The music player wants looped event handler
-    /// </summary>
     public delegate void MusicPlayerWantsLoopedEventHandler(bool looped);
     private static event MusicPlayerWantsLoopedEventHandler MusicPlayerWantsLoopedEvent;
-    /// <summary>
-    /// The looped
-    /// </summary>
     static Action<bool> _musicPlayerWantsLoopedAction = (looped) =>
     {
         MusicPlayerWantsLoopedEvent?.Invoke(looped);
     };
-    /// <summary>
-    /// The music player wants looped
-    /// </summary>
     public static event MusicPlayerWantsLoopedEventHandler MusicPlayerWantsLooped
     {
         add
@@ -210,16 +159,10 @@ public static partial class Steam
     }
     
     public static event Action MusicPlayerWantsPauseEvent;
-    /// <summary>
-    /// The invoke
-    /// </summary>
     static Action _musicPlayerWantsPauseAction = () =>
     {
         MusicPlayerWantsPauseEvent?.Invoke();
     };
-    /// <summary>
-    /// The music player wants pause
-    /// </summary>
     public static event Action MusicPlayerWantsPause
     {
         add
@@ -240,21 +183,12 @@ public static partial class Steam
         }
     }
     
-    /// <summary>
-    /// The music player wants playing repeat status event handler
-    /// </summary>
     public delegate void MusicPlayerWantsPlayingRepeatStatusEventHandler(long status);
     private static event MusicPlayerWantsPlayingRepeatStatusEventHandler MusicPlayerWantsPlayingRepeatStatusEvent;
-    /// <summary>
-    /// The status
-    /// </summary>
     static Action<long> _musicPlayerWantsPlayingRepeatStatusAction = (status) =>
     {
         MusicPlayerWantsPlayingRepeatStatusEvent?.Invoke(status);
     };
-    /// <summary>
-    /// The music player wants playing repeat status
-    /// </summary>
     public static event MusicPlayerWantsPlayingRepeatStatusEventHandler MusicPlayerWantsPlayingRepeatStatus
     {
         add
@@ -276,16 +210,10 @@ public static partial class Steam
     }
     
     public static event Action MusicPlayerWantsPlayNextEvent;
-    /// <summary>
-    /// The invoke
-    /// </summary>
     static Action _musicPlayerWantsPlayNextAction = () =>
     {
         MusicPlayerWantsPlayNextEvent?.Invoke();
     };
-    /// <summary>
-    /// The music player wants play next
-    /// </summary>
     public static event Action MusicPlayerWantsPlayNext
     {
         add
@@ -307,16 +235,10 @@ public static partial class Steam
     }
     
     public static event Action MusicPlayerWantsPlayPreviousEvent;
-    /// <summary>
-    /// The invoke
-    /// </summary>
     static Action _musicPlayerWantsPlayPreviousAction = () =>
     {
         MusicPlayerWantsPlayPreviousEvent?.Invoke();
     };
-    /// <summary>
-    /// The music player wants play previous
-    /// </summary>
     public static event Action MusicPlayerWantsPlayPrevious
     {
         add
@@ -338,16 +260,10 @@ public static partial class Steam
     }
     
     public static event Action MusicPlayerWantsPlayEvent;
-    /// <summary>
-    /// The invoke
-    /// </summary>
     static Action _musicPlayerWantsPlayAction = () =>
     {
         MusicPlayerWantsPlayEvent?.Invoke();
     };
-    /// <summary>
-    /// The music player wants play
-    /// </summary>
     public static event Action MusicPlayerWantsPlay
     {
         add
@@ -368,21 +284,12 @@ public static partial class Steam
         }
     }
     
-    /// <summary>
-    /// The music player wants shuffled event handler
-    /// </summary>
     public delegate void MusicPlayerWantsShuffledEventHandler(bool shuffled);
     private static event MusicPlayerWantsShuffledEventHandler MusicPlayerWantsShuffledEvent;
-    /// <summary>
-    /// The shuffled
-    /// </summary>
     static Action<bool> _musicPlayerWantsShuffledAction = (shuffled) =>
     {
         MusicPlayerWantsShuffledEvent?.Invoke(shuffled);
     };
-    /// <summary>
-    /// The music player wants shuffled
-    /// </summary>
     public static event MusicPlayerWantsShuffledEventHandler MusicPlayerWantsShuffled
     {
         add
@@ -403,21 +310,12 @@ public static partial class Steam
         }
     }
     
-    /// <summary>
-    /// The music player wants volume event handler
-    /// </summary>
     public delegate void MusicPlayerWantsVolumeEventHandler(double volume);
     private static event MusicPlayerWantsVolumeEventHandler MusicPlayerWantsVolumeEvent;
-    /// <summary>
-    /// The volume
-    /// </summary>
     static Action<double> _musicPlayerWantsVolumeAction = (volume) =>
     {
         MusicPlayerWantsVolumeEvent?.Invoke(volume);
     };
-    /// <summary>
-    /// The music player wants volume
-    /// </summary>
     public static event MusicPlayerWantsVolumeEventHandler MusicPlayerWantsVolume
     {
         add
@@ -439,16 +337,10 @@ public static partial class Steam
     }
     
     public static event Action MusicPlayerWillQuitEvent;
-    /// <summary>
-    /// The invoke
-    /// </summary>
     static Action _musicPlayerWillQuitAction = () =>
     {
         MusicPlayerWillQuitEvent?.Invoke();
     };
-    /// <summary>
-    /// The music player will quit
-    /// </summary>
     public static event Action MusicPlayerWillQuit
     {
         add

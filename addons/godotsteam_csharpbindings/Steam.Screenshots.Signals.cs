@@ -3,29 +3,14 @@ using Godot;
 
 namespace GodotSteam;
 
-/// <summary>
-
-/// The steam class
-
-/// </summary>
-
 public static partial class Steam
 {
-    /// <summary>
-    /// The screenshot ready event handler
-    /// </summary>
     public delegate void ScreenshotReadyEventHandler(uint handle, ErrorResult result);
     private static event ScreenshotReadyEventHandler ScreenshotReadyEvent;
-    /// <summary>
-    /// The result
-    /// </summary>
     static Action<uint, int> _screenshotReadyAction = (handle, result) =>
     {
         ScreenshotReadyEvent?.Invoke(handle, (ErrorResult)result);
     };
-    /// <summary>
-    /// The screenshot ready
-    /// </summary>
     public static event ScreenshotReadyEventHandler ScreenshotReady
     {
         add
@@ -47,16 +32,10 @@ public static partial class Steam
     }
     
     private static event Action ScreenshotRequestedEvent;
-    /// <summary>
-    /// The invoke
-    /// </summary>
     static Action _screenshotRequestedAction = () =>
     {
         ScreenshotRequestedEvent?.Invoke();
     };
-    /// <summary>
-    /// The screenshot requested
-    /// </summary>
     public static event Action ScreenshotRequested
     {
         add

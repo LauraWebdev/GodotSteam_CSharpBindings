@@ -3,29 +3,14 @@ using Godot;
 
 namespace GodotSteam;
 
-/// <summary>
-
-/// The steam class
-
-/// </summary>
-
 public static partial class Steam
 {
-    /// <summary>
-    /// The remote play session connected event handler
-    /// </summary>
     public delegate void RemotePlaySessionConnectedEventHandler(long sessionId);
     private static event RemotePlaySessionConnectedEventHandler RemotePlaySessionConnectedEvent;
-    /// <summary>
-    /// The session id
-    /// </summary>
     static Action<long> _remotePlaySessionConnectedAction = (sessionId) =>
     {
         RemotePlaySessionConnectedEvent?.Invoke(sessionId);
     };
-    /// <summary>
-    /// The remote play session connected
-    /// </summary>
     public static event RemotePlaySessionConnectedEventHandler RemotePlaySessionConnected
     {
         add
@@ -46,21 +31,12 @@ public static partial class Steam
         }
     }
     
-    /// <summary>
-    /// The remote play session disconnected event handler
-    /// </summary>
     public delegate void RemotePlaySessionDisconnectedEventHandler(long sessionId);
     private static event RemotePlaySessionDisconnectedEventHandler RemotePlaySessionDisconnectedEvent;
-    /// <summary>
-    /// The session id
-    /// </summary>
     static Action<long> _remotePlaySessionDisconnectedAction = (sessionId) =>
     {
         RemotePlaySessionDisconnectedEvent?.Invoke(sessionId);
     };
-    /// <summary>
-    /// The remote play session disconnected
-    /// </summary>
     public static event RemotePlaySessionDisconnectedEventHandler RemotePlaySessionDisconnected
     {
         add

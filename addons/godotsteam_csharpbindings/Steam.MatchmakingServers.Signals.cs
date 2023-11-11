@@ -3,25 +3,13 @@ using Godot;
 
 namespace GodotSteam;
 
-/// <summary>
-
-/// The steam class
-
-/// </summary>
-
 public static partial class Steam
 {
     public static event Action ServerRespondedEvent;
-    /// <summary>
-    /// The invoke
-    /// </summary>
     static Action _serverRespondedAction = () =>
     {
         ServerRespondedEvent?.Invoke();
     };
-    /// <summary>
-    /// The server responded
-    /// </summary>
     public static event Action ServerResponded
     {
         add
@@ -43,16 +31,10 @@ public static partial class Steam
     }
     
     public static event Action ServerFailedToRespondEvent;
-    /// <summary>
-    /// The invoke
-    /// </summary>
     static Action _serverFailedToRespondAction = () =>
     {
         ServerFailedToRespondEvent?.Invoke();
     };
-    /// <summary>
-    /// The server failed to respond
-    /// </summary>
     public static event Action ServerFailedToRespond
     {
         add
