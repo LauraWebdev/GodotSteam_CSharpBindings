@@ -69,7 +69,7 @@ public static partial class Steam
     }
     
     /// <summary>
-    /// Steams the init using the specified retrieve stats
+    /// Initializes Steam
     /// </summary>
     /// <param name="retrieveStats">The retrieve stats</param>
     /// <returns>The steam init result</returns>
@@ -85,7 +85,7 @@ public static partial class Steam
     }
     
     /// <summary>
-    /// Steams the init ex using the specified retrieve stats
+    /// Initialized SteamEx
     /// </summary>
     /// <param name="retrieveStats">The retrieve stats</param>
     /// <returns>The steam init ex result</returns>
