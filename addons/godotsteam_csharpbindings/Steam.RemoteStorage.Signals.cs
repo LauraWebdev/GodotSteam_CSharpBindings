@@ -3,14 +3,29 @@ using Godot;
 
 namespace GodotSteam;
 
+/// <summary>
+
+/// The steam class
+
+/// </summary>
+
 public static partial class Steam
 {
+    /// <summary>
+    /// The file read async complete event handler
+    /// </summary>
     public delegate void FileReadAsyncCompleteEventHandler(Godot.Collections.Dictionary fileRead);
     private static event FileReadAsyncCompleteEventHandler FileReadAsyncCompleteEvent;
+    /// <summary>
+    /// The file read
+    /// </summary>
     static Action<Godot.Collections.Dictionary> _fileReadAsyncCompleteAction = (fileRead) =>
     {
         FileReadAsyncCompleteEvent?.Invoke(fileRead);
     };
+    /// <summary>
+    /// The file read async complete
+    /// </summary>
     public static event FileReadAsyncCompleteEventHandler FileReadAsyncComplete
     {
         add
@@ -31,12 +46,21 @@ public static partial class Steam
         }
     }
     
+    /// <summary>
+    /// The file share result event handler
+    /// </summary>
     public delegate void FileShareResultEventHandler(long result, long handle, string name);
     private static event FileShareResultEventHandler FileShareResultEvent;
+    /// <summary>
+    /// The name
+    /// </summary>
     static Action<long, long, string> _fileShareResultAction = (result, handle, name) =>
     {
         FileShareResultEvent?.Invoke(result, handle, name);
     };
+    /// <summary>
+    /// The file share result
+    /// </summary>
     public static event FileShareResultEventHandler FileShareResult
     {
         add
@@ -57,12 +81,21 @@ public static partial class Steam
         }
     }
     
+    /// <summary>
+    /// The file write async complete event handler
+    /// </summary>
     public delegate void FileWriteAsyncCompleteEventHandler(long result);
     private static event FileWriteAsyncCompleteEventHandler FileWriteAsyncCompleteEvent;
+    /// <summary>
+    /// The result
+    /// </summary>
     static Action<long> _fileWriteAsyncCompleteAction = (result) =>
     {
         FileWriteAsyncCompleteEvent?.Invoke(result);
     };
+    /// <summary>
+    /// The file write async complete
+    /// </summary>
     public static event FileWriteAsyncCompleteEventHandler FileWriteAsyncComplete
     {
         add
@@ -83,12 +116,21 @@ public static partial class Steam
         }
     }
     
+    /// <summary>
+    /// The download ugc result event handler
+    /// </summary>
     public delegate void DownloadUgcResultEventHandler(long result, Godot.Collections.Dictionary downloadData);
     private static event DownloadUgcResultEventHandler DownloadUgcResultEvent;
+    /// <summary>
+    /// The download data
+    /// </summary>
     static Action<long, Godot.Collections.Dictionary> _downloadUgcResultAction = (result, downloadData) => 
     {
         DownloadUgcResultEvent?.Invoke(result, downloadData);
     };
+    /// <summary>
+    /// The download ugc result
+    /// </summary>
     public static event DownloadUgcResultEventHandler DownloadUgcResult
     {
         add
@@ -109,12 +151,21 @@ public static partial class Steam
         }
     }
     
+    /// <summary>
+    /// The unsubscribe item signal event handler
+    /// </summary>
     public delegate void UnsubscribeItemSignalEventHandler(long result, long fileId);
     private static event UnsubscribeItemSignalEventHandler UnsubscribeItemSignalEvent;
+    /// <summary>
+    /// The file id
+    /// </summary>
     static Action<long, long> _unsubscribeItemSignalAction = (result, fileId) =>
     {
         UnsubscribeItemSignalEvent?.Invoke(result, fileId);
     };
+    /// <summary>
+    /// The unsubscribe item signal
+    /// </summary>
     public static event UnsubscribeItemSignalEventHandler UnsubscribeItemSignal
     {
         add
@@ -135,12 +186,21 @@ public static partial class Steam
         }
     }
     
+    /// <summary>
+    /// The subscribe item signal event handler
+    /// </summary>
     public delegate void SubscribeItemSignalEventHandler(long result, long fileId);
     private static event SubscribeItemSignalEventHandler SubscribeItemSignalEvent;
+    /// <summary>
+    /// The file id
+    /// </summary>
     static Action<long, long> _subscribeItemSignalAction = (result, fileId) =>
     {
         SubscribeItemSignalEvent?.Invoke(result, fileId);
     };
+    /// <summary>
+    /// The subscribe item signal
+    /// </summary>
     public static event SubscribeItemSignalEventHandler SubscribeItemSignal
     {
         add
@@ -162,10 +222,16 @@ public static partial class Steam
     }
     
     private static event Action LocalFileChangedEvent;
+    /// <summary>
+    /// The invoke
+    /// </summary>
     static Action _localFileChangedAction = () =>
     {
         LocalFileChangedEvent?.Invoke();
     };
+    /// <summary>
+    /// The local file changed
+    /// </summary>
     public static event Action LocalFileChanged
     {
         add

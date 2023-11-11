@@ -3,14 +3,29 @@ using Godot;
 
 namespace GodotSteam;
 
+/// <summary>
+
+/// The steam class
+
+/// </summary>
+
 public static partial class Steam
 {
+    /// <summary>
+    /// The html browser ready event handler
+    /// </summary>
     public delegate void HtmlBrowserReadyEventHandler(long browserHandle);
     private static event HtmlBrowserReadyEventHandler HtmlBrowserReadyEvent;
+    /// <summary>
+    /// The browser handle
+    /// </summary>
     static Action<long> _htmlBrowserReadyAction = (browserHandle) =>
     {
         HtmlBrowserReadyEvent?.Invoke(browserHandle);
     };
+    /// <summary>
+    /// The html browser ready
+    /// </summary>
     public static event HtmlBrowserReadyEventHandler HtmlBrowserReady
     {
         add
@@ -31,12 +46,21 @@ public static partial class Steam
         }
     }
     
+    /// <summary>
+    /// The html can go backandforward event handler
+    /// </summary>
     public delegate void HtmlCanGoBackandforwardEventHandler(long browserHandle, bool goBack, bool goForward);
     private static event HtmlCanGoBackandforwardEventHandler HtmlCanGoBackandforwardEvent;
+    /// <summary>
+    /// The go forward
+    /// </summary>
     static Action<long, bool, bool> _htmlCanGoBackandforwardAction = (browserHandle, goBack, goForward) =>
     {
         HtmlCanGoBackandforwardEvent?.Invoke(browserHandle, goBack, goForward);
     };
+    /// <summary>
+    /// The html can go backandforward
+    /// </summary>
     public static event HtmlCanGoBackandforwardEventHandler HtmlCanGoBackandforward
     {
         add
@@ -57,12 +81,21 @@ public static partial class Steam
         }
     }
     
+    /// <summary>
+    /// The html changed title event handler
+    /// </summary>
     public delegate void HtmlChangedTitleEventHandler(long browserHandle, string title);
     private static event HtmlChangedTitleEventHandler HtmlChangedTitleEvent;
+    /// <summary>
+    /// The title
+    /// </summary>
     static Action<long, string> _htmlChangedTitleAction = (browserHandle, title) =>
     {
         HtmlChangedTitleEvent?.Invoke(browserHandle, title);
     };
+    /// <summary>
+    /// The html changed title
+    /// </summary>
     public static event HtmlChangedTitleEventHandler HtmlChangedTitle
     {
         add
@@ -83,12 +116,21 @@ public static partial class Steam
         }
     }
     
+    /// <summary>
+    /// The html close browser event handler
+    /// </summary>
     public delegate void HtmlCloseBrowserEventHandler(long browserHandle);
     private static event HtmlCloseBrowserEventHandler HtmlCloseBrowserEvent;
+    /// <summary>
+    /// The browser handle
+    /// </summary>
     static Action<long> _htmlCloseBrowserAction = (browserHandle) =>
     {
         HtmlCloseBrowserEvent?.Invoke(browserHandle);
     };
+    /// <summary>
+    /// The html close browser
+    /// </summary>
     public static event HtmlCloseBrowserEventHandler HtmlCloseBrowser
     {
         add
@@ -109,12 +151,21 @@ public static partial class Steam
         }
     }
     
+    /// <summary>
+    /// The html file open dialog event handler
+    /// </summary>
     public delegate void HtmlFileOpenDialogEventHandler(long browserHandle, string title, string initialFile);
     private static event HtmlFileOpenDialogEventHandler HtmlFileOpenDialogEvent;
+    /// <summary>
+    /// The initial file
+    /// </summary>
     static Action<long, string, string> _htmlFileOpenDialogAction = (browserHandle, title, initialFile) =>
     {
         HtmlFileOpenDialogEvent?.Invoke(browserHandle, title, initialFile);
     };
+    /// <summary>
+    /// The html file open dialog
+    /// </summary>
     public static event HtmlFileOpenDialogEventHandler HtmlFileOpenDialog
     {
         add
@@ -135,12 +186,21 @@ public static partial class Steam
         }
     }
     
+    /// <summary>
+    /// The html finished request event handler
+    /// </summary>
     public delegate void HtmlFinishedRequestEventHandler(long browserHandle, string url, string title);
     private static event HtmlFinishedRequestEventHandler HtmlFinishedRequestEvent;
+    /// <summary>
+    /// The title
+    /// </summary>
     static Action<long, string, string> _htmlFinishedRequestAction = (browserHandle, url, title) =>
     {
         HtmlFinishedRequestEvent?.Invoke(browserHandle, url, title);
     };
+    /// <summary>
+    /// The html finished request
+    /// </summary>
     public static event HtmlFinishedRequestEventHandler HtmlFinishedRequest
     {
         add
@@ -161,12 +221,21 @@ public static partial class Steam
         }
     }
     
+    /// <summary>
+    /// The html hide tooltip event handler
+    /// </summary>
     public delegate void HtmlHideTooltipEventHandler(long browserHandle);
     private static event HtmlHideTooltipEventHandler HtmlHideTooltipEvent;
+    /// <summary>
+    /// The browser handle
+    /// </summary>
     static Action<long> _htmlHideTooltipAction = (browserHandle) =>
     {
         HtmlHideTooltipEvent?.Invoke(browserHandle);
     };
+    /// <summary>
+    /// The html hide tooltip
+    /// </summary>
     public static event HtmlHideTooltipEventHandler HtmlHideTooltip
     {
         add
@@ -187,12 +256,21 @@ public static partial class Steam
         }
     }
     
+    /// <summary>
+    /// The html horizontal scroll event handler
+    /// </summary>
     public delegate void HtmlHorizontalScrollEventHandler(long browserHandle, Godot.Collections.Dictionary scrollData);
     private static event HtmlHorizontalScrollEventHandler HtmlHorizontalScrollEvent;
+    /// <summary>
+    /// The scroll data
+    /// </summary>
     static Action<long, Godot.Collections.Dictionary> _htmlHorizontalScrollAction = (browserHandle, scrollData) =>
     {
         HtmlHorizontalScrollEvent?.Invoke(browserHandle, scrollData);
     };
+    /// <summary>
+    /// The html horizontal scroll
+    /// </summary>
     public static event HtmlHorizontalScrollEventHandler HtmlHorizontalScroll
     {
         add
@@ -213,12 +291,21 @@ public static partial class Steam
         }
     }
     
+    /// <summary>
+    /// The html js alert event handler
+    /// </summary>
     public delegate void HtmlJsAlertEventHandler(long browserHandle, string message);
     private static event HtmlJsAlertEventHandler HtmlJsAlertEvent;
+    /// <summary>
+    /// The message
+    /// </summary>
     static Action<long, string> _htmlJsAlertAction = (browserHandle, message) =>
     {
         HtmlJsAlertEvent?.Invoke(browserHandle, message);
     };
+    /// <summary>
+    /// The html js alert
+    /// </summary>
     public static event HtmlJsAlertEventHandler HtmlJsAlert
     {
         add
@@ -239,12 +326,21 @@ public static partial class Steam
         }
     }
     
+    /// <summary>
+    /// The html js confirm event handler
+    /// </summary>
     public delegate void HtmlJsConfirmEventHandler(long browserHandle, string message);
     private static event HtmlJsConfirmEventHandler HtmlJsConfirmEvent;
+    /// <summary>
+    /// The message
+    /// </summary>
     static Action<long, string> _htmlJsConfirmAction = (browserHandle, message) =>
     {
         HtmlJsConfirmEvent?.Invoke(browserHandle, message);
     };
+    /// <summary>
+    /// The html js confirm
+    /// </summary>
     public static event HtmlJsConfirmEventHandler HtmlJsConfirm
     {
         add
@@ -265,12 +361,21 @@ public static partial class Steam
         }
     }
     
+    /// <summary>
+    /// The html link at position event handler
+    /// </summary>
     public delegate void HtmlLinkAtPositionEventHandler(long browserHandle, Godot.Collections.Dictionary linkData);
     private static event HtmlLinkAtPositionEventHandler HtmlLinkAtPositionEvent;
+    /// <summary>
+    /// The link data
+    /// </summary>
     static Action<long, Godot.Collections.Dictionary> _htmlLinkAtPositionAction = (browserHandle, linkData) =>
     {
         HtmlLinkAtPositionEvent?.Invoke(browserHandle, linkData);
     };
+    /// <summary>
+    /// The html link at position
+    /// </summary>
     public static event HtmlLinkAtPositionEventHandler HtmlLinkAtPosition
     {
         add
@@ -291,12 +396,21 @@ public static partial class Steam
         }
     }
     
+    /// <summary>
+    /// The html needs paint event handler
+    /// </summary>
     public delegate void HtmlNeedsPaintEventHandler(long browserHandle, Godot.Collections.Dictionary pageData);
     private static event HtmlNeedsPaintEventHandler HtmlNeedsPaintEvent;
+    /// <summary>
+    /// The page data
+    /// </summary>
     static Action<long, Godot.Collections.Dictionary> _htmlNeedsPaintAction = (browserHandle, pageData) =>
     {
         HtmlNeedsPaintEvent?.Invoke(browserHandle, pageData);
     };
+    /// <summary>
+    /// The html needs paint
+    /// </summary>
     public static event HtmlNeedsPaintEventHandler HtmlNeedsPaint
     {
         add
@@ -317,12 +431,21 @@ public static partial class Steam
         }
     }
     
+    /// <summary>
+    /// The html new window event handler
+    /// </summary>
     public delegate void HtmlNewWindowEventHandler(long browserHandle, Godot.Collections.Dictionary windowData);
     private static event HtmlNewWindowEventHandler HtmlNewWindowEvent;
+    /// <summary>
+    /// The window data
+    /// </summary>
     static Action<long, Godot.Collections.Dictionary> _htmlNewWindowAction = (browserHandle, windowData) =>
     {
         HtmlNewWindowEvent?.Invoke(browserHandle, windowData);
     };
+    /// <summary>
+    /// The html new window
+    /// </summary>
     public static event HtmlNewWindowEventHandler HtmlNewWindow
     {
         add
@@ -343,12 +466,21 @@ public static partial class Steam
         }
     }
     
+    /// <summary>
+    /// The html open link in new tab event handler
+    /// </summary>
     public delegate void HtmlOpenLinkInNewTabEventHandler(long browserHandle, string url);
     private static event HtmlOpenLinkInNewTabEventHandler HtmlOpenLinkInNewTabEvent;
+    /// <summary>
+    /// The url
+    /// </summary>
     static Action<long, string> _htmlOpenLinkInNewTabAction = (browserHandle, url) =>
     {
         HtmlOpenLinkInNewTabEvent?.Invoke(browserHandle, url);
     };
+    /// <summary>
+    /// The html open link in new tab
+    /// </summary>
     public static event HtmlOpenLinkInNewTabEventHandler HtmlOpenLinkInNewTab
     {
         add
@@ -369,12 +501,21 @@ public static partial class Steam
         }
     }
     
+    /// <summary>
+    /// The html search results event handler
+    /// </summary>
     public delegate void HtmlSearchResultsEventHandler(long browserHandle, long results, long currentMatch);
     private static event HtmlSearchResultsEventHandler HtmlSearchResultsEvent;
+    /// <summary>
+    /// The current match
+    /// </summary>
     static Action<long, long, long> _htmlSearchResultsAction = (browserHandle, results, currentMatch) =>
     {
         HtmlSearchResultsEvent?.Invoke(browserHandle, results, currentMatch);
     };
+    /// <summary>
+    /// The html search results
+    /// </summary>
     public static event HtmlSearchResultsEventHandler HtmlSearchResults
     {
         add
@@ -395,12 +536,21 @@ public static partial class Steam
         }
     }
     
+    /// <summary>
+    /// The html set cursor event handler
+    /// </summary>
     public delegate void HtmlSetCursorEventHandler(long browserHandle, long mouseCursor);
     private static event HtmlSetCursorEventHandler HtmlSetCursorEvent;
+    /// <summary>
+    /// The mouse cursor
+    /// </summary>
     static Action<long, long> _htmlSetCursorAction = (browserHandle, mouseCursor) =>
     {
         HtmlSetCursorEvent?.Invoke(browserHandle, mouseCursor);
     };
+    /// <summary>
+    /// The html set cursor
+    /// </summary>
     public static event HtmlSetCursorEventHandler HtmlSetCursor
     {
         add
@@ -421,12 +571,21 @@ public static partial class Steam
         }
     }
     
+    /// <summary>
+    /// The html show tooltip event handler
+    /// </summary>
     public delegate void HtmlShowTooltipEventHandler(long browserHandle, string message);
     private static event HtmlShowTooltipEventHandler HtmlShowTooltipEvent;
+    /// <summary>
+    /// The message
+    /// </summary>
     static Action<long, string> _htmlShowTooltipAction = (browserHandle, message) =>
     {
         HtmlShowTooltipEvent?.Invoke(browserHandle, message);
     };
+    /// <summary>
+    /// The html show tooltip
+    /// </summary>
     public static event HtmlShowTooltipEventHandler HtmlShowTooltip
     {
         add
@@ -447,12 +606,21 @@ public static partial class Steam
         }
     }
     
+    /// <summary>
+    /// The html start request event handler
+    /// </summary>
     public delegate void HtmlStartRequestEventHandler(long browserHandle, string url, string target, string postData, bool redirect);
     private static event HtmlStartRequestEventHandler HtmlStartRequestEvent;
+    /// <summary>
+    /// The redirect
+    /// </summary>
     static Action<long, string, string, string, bool> _htmlStartRequestAction = (browserHandle, url, target, postData, redirect) =>
     {
         HtmlStartRequestEvent?.Invoke(browserHandle, url, target, postData, redirect);
     };
+    /// <summary>
+    /// The html start request
+    /// </summary>
     public static event HtmlStartRequestEventHandler HtmlStartRequest
     {
         add
@@ -473,12 +641,21 @@ public static partial class Steam
         }
     }
     
+    /// <summary>
+    /// The html status text event handler
+    /// </summary>
     public delegate void HtmlStatusTextEventHandler(long browserHandle, string message);
     private static event HtmlStatusTextEventHandler HtmlStatusTextEvent;
+    /// <summary>
+    /// The message
+    /// </summary>
     static Action<long, string> _htmlStatusTextAction = (browserHandle, message) =>
     {
         HtmlStatusTextEvent?.Invoke(browserHandle, message);
     };
+    /// <summary>
+    /// The html status text
+    /// </summary>
     public static event HtmlStatusTextEventHandler HtmlStatusText
     {
         add
@@ -499,12 +676,21 @@ public static partial class Steam
         }
     }
     
+    /// <summary>
+    /// The html update tooltip event handler
+    /// </summary>
     public delegate void HtmlUpdateTooltipEventHandler(long browserHandle, string message);
     private static event HtmlUpdateTooltipEventHandler HtmlUpdateTooltipEvent;
+    /// <summary>
+    /// The message
+    /// </summary>
     static Action<long, string> _htmlUpdateTooltipAction = (browserHandle, message) =>
     {
         HtmlUpdateTooltipEvent?.Invoke(browserHandle, message);
     };
+    /// <summary>
+    /// The html update tooltip
+    /// </summary>
     public static event HtmlUpdateTooltipEventHandler HtmlUpdateTooltip
     {
         add
@@ -525,12 +711,21 @@ public static partial class Steam
         }
     }
     
+    /// <summary>
+    /// The html url changed event handler
+    /// </summary>
     public delegate void HtmlUrlChangedEventHandler(long browserHandle, Godot.Collections.Dictionary urlData);
     private static event HtmlUrlChangedEventHandler HtmlUrlChangedEvent;
+    /// <summary>
+    /// The url data
+    /// </summary>
     static Action<long, Godot.Collections.Dictionary> _htmlUrlChangedAction = (browserHandle, urlData) =>
     {
         HtmlUrlChangedEvent?.Invoke(browserHandle, urlData);
     };
+    /// <summary>
+    /// The html url changed
+    /// </summary>
     public static event HtmlUrlChangedEventHandler HtmlUrlChanged
     {
         add
@@ -551,12 +746,21 @@ public static partial class Steam
         }
     }
     
+    /// <summary>
+    /// The html vertical scroll event handler
+    /// </summary>
     public delegate void HtmlVerticalScrollEventHandler(long browserHandle, Godot.Collections.Dictionary scrollData);
     private static event HtmlVerticalScrollEventHandler HtmlVerticalScrollEvent;
+    /// <summary>
+    /// The scroll data
+    /// </summary>
     static Action<long, Godot.Collections.Dictionary> _htmlVerticalScrollAction = (browserHandle, scrollData) =>
     {
         HtmlVerticalScrollEvent?.Invoke(browserHandle, scrollData);
     };
+    /// <summary>
+    /// The html vertical scroll
+    /// </summary>
     public static event HtmlVerticalScrollEventHandler HtmlVerticalScroll
     {
         add

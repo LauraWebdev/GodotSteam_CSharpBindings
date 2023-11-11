@@ -3,14 +3,29 @@ using Godot;
 
 namespace GodotSteam;
 
+/// <summary>
+
+/// The steam class
+
+/// </summary>
+
 public static partial class Steam
 {
+    /// <summary>
+    /// The inventory definition update event handler
+    /// </summary>
     public delegate void InventoryDefinitionUpdateEventHandler(Godot.Collections.Array definitions);
     private static event InventoryDefinitionUpdateEventHandler InventoryDefinitionUpdateEvent;
+    /// <summary>
+    /// The definitions
+    /// </summary>
     static Action<Godot.Collections.Array> _inventoryDefinitionUpdateAction = (definitions) =>
     {
         InventoryDefinitionUpdateEvent?.Invoke(definitions);
     };
+    /// <summary>
+    /// The inventory definition update
+    /// </summary>
     public static event InventoryDefinitionUpdateEventHandler InventoryDefinitionUpdate
     {
         add
@@ -31,12 +46,21 @@ public static partial class Steam
         }
     }
     
+    /// <summary>
+    /// The inventory eligible promo item event handler
+    /// </summary>
     public delegate void InventoryEligiblePromoItemEventHandler(long result, bool cached, Godot.Collections.Array definitions);
     private static event InventoryEligiblePromoItemEventHandler InventoryEligiblePromoItemEvent;
+    /// <summary>
+    /// The definitions
+    /// </summary>
     static Action<long, bool, Godot.Collections.Array> _inventoryEligiblePromoItemAction = (result, cached, definitions) =>
     {
         InventoryEligiblePromoItemEvent?.Invoke(result, cached, definitions);
     };
+    /// <summary>
+    /// The inventory eligible promo item
+    /// </summary>
     public static event InventoryEligiblePromoItemEventHandler InventoryEligiblePromoItem
     {
         add
@@ -57,12 +81,21 @@ public static partial class Steam
         }
     }
     
+    /// <summary>
+    /// The inventory full update event handler
+    /// </summary>
     public delegate void InventoryFullUpdateEventHandler(long inventoryHandle);
     private static event InventoryFullUpdateEventHandler InventoryFullUpdateEvent;
+    /// <summary>
+    /// The inventory handle
+    /// </summary>
     static Action<long> _inventoryFullUpdateAction = (inventoryHandle) =>
     {
         InventoryFullUpdateEvent?.Invoke(inventoryHandle);
     };
+    /// <summary>
+    /// The inventory full update
+    /// </summary>
     public static event InventoryFullUpdateEventHandler InventoryFullUpdate
     {
         add
@@ -83,12 +116,21 @@ public static partial class Steam
         }
     }
     
+    /// <summary>
+    /// The inventory result ready event handler
+    /// </summary>
     public delegate void InventoryResultReadyEventHandler(long result, long inventoryHandle);
     private static event InventoryResultReadyEventHandler InventoryResultReadyEvent;
+    /// <summary>
+    /// The inventory handle
+    /// </summary>
     static Action<long, long> _inventoryResultReadyAction = (result, inventoryHandle) =>
     {
         InventoryResultReadyEvent?.Invoke(result, inventoryHandle);
     };
+    /// <summary>
+    /// The inventory result ready
+    /// </summary>
     public static event InventoryResultReadyEventHandler InventoryResultReady
     {
         add
@@ -109,12 +151,21 @@ public static partial class Steam
         }
     }
     
+    /// <summary>
+    /// The inventory start purchase result event handler
+    /// </summary>
     public delegate void InventoryStartPurchaseResultEventHandler(string result, long orderId, long transactionId);
     private static event InventoryStartPurchaseResultEventHandler InventoryStartPurchaseResultEvent;
+    /// <summary>
+    /// The transaction id
+    /// </summary>
     static Action<string, long, long> _inventoryStartPurchaseResultAction = (result, orderId, transactionId) =>
     {
         InventoryStartPurchaseResultEvent?.Invoke(result, orderId, transactionId);
     };
+    /// <summary>
+    /// The inventory start purchase result
+    /// </summary>
     public static event InventoryStartPurchaseResultEventHandler InventoryStartPurchaseResult
     {
         add
@@ -135,12 +186,21 @@ public static partial class Steam
         }
     }
     
+    /// <summary>
+    /// The inventory request prices result event handler
+    /// </summary>
     public delegate void InventoryRequestPricesResultEventHandler(long result, string currency);
     private static event InventoryRequestPricesResultEventHandler InventoryRequestPricesResultEvent;
+    /// <summary>
+    /// The currency
+    /// </summary>
     static Action<long, string> _inventoryRequestPricesResultAction = (result, currency) =>
     {
         InventoryRequestPricesResultEvent?.Invoke(result, currency);
     };
+    /// <summary>
+    /// The inventory request prices result
+    /// </summary>
     public static event InventoryRequestPricesResultEventHandler InventoryRequestPricesResult
     {
         add

@@ -3,14 +3,29 @@ using Godot;
 
 namespace GodotSteam;
 
+/// <summary>
+
+/// The steam class
+
+/// </summary>
+
 public static partial class Steam
 {
+    /// <summary>
+    /// The join party signal event handler
+    /// </summary>
     public delegate void JoinPartySignalEventHandler(long result, long beaconId, ulong steamId, string connectString);
     private static event JoinPartySignalEventHandler JoinPartySignalEvent;
+    /// <summary>
+    /// The connect string
+    /// </summary>
     static Action<long, long, ulong, string> _joinPartySignalAction = (result, beaconId, steamId, connectString) =>
     {
         JoinPartySignalEvent?.Invoke(result, beaconId, steamId, connectString);
     };
+    /// <summary>
+    /// The join party signal
+    /// </summary>
     public static event JoinPartySignalEventHandler JoinPartySignal
     {
         add
@@ -33,12 +48,21 @@ public static partial class Steam
         }
     }
     
+    /// <summary>
+    /// The create beacon signal event handler
+    /// </summary>
     public delegate void CreateBeaconSignalEventHandler(long result, long beaconId);
     private static event CreateBeaconSignalEventHandler CreateBeaconSignalEvent;
+    /// <summary>
+    /// The beacon id
+    /// </summary>
     static Action<long, long> _createBeaconSignalAction = (result, beaconId) =>
     {
         CreateBeaconSignalEvent?.Invoke(result, beaconId);
     };
+    /// <summary>
+    /// The create beacon signal
+    /// </summary>
     public static event CreateBeaconSignalEventHandler CreateBeaconSignal
     {
         add
@@ -61,12 +85,21 @@ public static partial class Steam
         }
     }
     
+    /// <summary>
+    /// The reservation notification event handler
+    /// </summary>
     public delegate void ReservationNotificationEventHandler(long beaconId, ulong steamId);
     private static event ReservationNotificationEventHandler ReservationNotificationEvent;
+    /// <summary>
+    /// The steam id
+    /// </summary>
     static Action<long, ulong> _reservationNotificationAction = (beaconId, steamId) =>
     {
         ReservationNotificationEvent?.Invoke(beaconId, steamId);
     };
+    /// <summary>
+    /// The reservation notification
+    /// </summary>
     public static event ReservationNotificationEventHandler ReservationNotification
     {
         add
@@ -89,12 +122,21 @@ public static partial class Steam
         }
     }
     
+    /// <summary>
+    /// The change num open slots signal event handler
+    /// </summary>
     public delegate void ChangeNumOpenSlotsSignalEventHandler(long result);
     private static event ChangeNumOpenSlotsSignalEventHandler ChangeNumOpenSlotsSignalEvent;
+    /// <summary>
+    /// The result
+    /// </summary>
     static Action<long> _changeNumOpenSlotsSignalAction = (result) =>
     {
         ChangeNumOpenSlotsSignalEvent?.Invoke(result);
     };
+    /// <summary>
+    /// The change num open slots signal
+    /// </summary>
     public static event ChangeNumOpenSlotsSignalEventHandler ChangeNumOpenSlotsSignal
     {
         add
@@ -118,10 +160,16 @@ public static partial class Steam
     }
     
     private static event Action AvailableBeaconLocationsUpdatedEvent;
+    /// <summary>
+    /// The invoke
+    /// </summary>
     static Action _availableBeaconLocationsUpdatedAction = () =>
     {
         AvailableBeaconLocationsUpdatedEvent?.Invoke();
     };
+    /// <summary>
+    /// The available beacon locations updated
+    /// </summary>
     public static event Action AvailableBeaconLocationsUpdated
     {
         add
@@ -143,10 +191,16 @@ public static partial class Steam
     }
     
     private static event Action ActiveBeaconsUpdatedEvent;
+    /// <summary>
+    /// The invoke
+    /// </summary>
     static Action _activeBeaconsUpdatedAction = () =>
     {
         ActiveBeaconsUpdatedEvent?.Invoke();
     };
+    /// <summary>
+    /// The active beacons updated
+    /// </summary>
     public static event Action ActiveBeaconsUpdated
     {
         add
