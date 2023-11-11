@@ -5,11 +5,11 @@ namespace GodotSteam;
 
 public static partial class Steam
 {
-    public delegate void EndGameResultEventHandler(long result, long gameId);
+    public delegate void EndGameResultEventHandler(ErrorResult result, ulong gameId);
     private static event EndGameResultEventHandler EndGameResultEvent;
-    static Action<long, long> _endGameResultAction = (result, gameId) =>
+    static Action<int, ulong> _endGameResultAction = (result, gameId) =>
     {
-        EndGameResultEvent?.Invoke(result, gameId);
+        EndGameResultEvent?.Invoke((ErrorResult)result, gameId);
     };
     public static event EndGameResultEventHandler EndGameResult
     {
@@ -31,11 +31,11 @@ public static partial class Steam
         }
     }
     
-    public delegate void RequestPlayersForGameFinalResultEventHandler(long result, long searchId, long gameId);
+    public delegate void RequestPlayersForGameFinalResultEventHandler(ErrorResult result, ulong searchId, ulong gameId);
     private static event RequestPlayersForGameFinalResultEventHandler RequestPlayersForGameFinalResultEvent;
-    static Action<long, long, long> _requestPlayersForGameFinalResultAction = (result, searchId, gameId) =>
+    static Action<int, ulong, ulong> _requestPlayersForGameFinalResultAction = (result, searchId, gameId) =>
     {
-        RequestPlayersForGameFinalResultEvent?.Invoke(result, searchId, gameId);
+        RequestPlayersForGameFinalResultEvent?.Invoke((ErrorResult)result, searchId, gameId);
     };
     public static event RequestPlayersForGameFinalResultEventHandler RequestPlayersForGameFinalResult
     {
@@ -57,11 +57,11 @@ public static partial class Steam
         }
     }
     
-    public delegate void RequestPlayersForGameProgressEventHandler(long result, long searchId);
+    public delegate void RequestPlayersForGameProgressEventHandler(ErrorResult result, ulong searchId);
     private static event RequestPlayersForGameProgressEventHandler RequestPlayersForGameProgressEvent;
-    static Action<long, long> _requestPlayersForGameProgressAction = (result, searchId) =>
+    static Action<int, ulong> _requestPlayersForGameProgressAction = (result, searchId) =>
     {
-        RequestPlayersForGameProgressEvent?.Invoke(result, searchId);
+        RequestPlayersForGameProgressEvent?.Invoke((ErrorResult)result, searchId);
     };
     public static event RequestPlayersForGameProgressEventHandler RequestPlayersForGameProgress
     {
@@ -83,11 +83,25 @@ public static partial class Steam
         }
     }
     
-    public delegate void RequestPlayersForGameResultEventHandler(long result, long searchId, Godot.Collections.Dictionary playerData);
+    public delegate void RequestPlayersForGameResultEventHandler(ErrorResult result, ulong searchId, PlayerData playerData);
     private static event RequestPlayersForGameResultEventHandler RequestPlayersForGameResultEvent;
-    static Action<long, long, Godot.Collections.Dictionary> _requestPlayersForGameResultAction = (result, searchId, playerData) =>
+    static Action<int, ulong, Godot.Collections.Dictionary> _requestPlayersForGameResultAction = (result, searchId, playerData) =>
     {
-        RequestPlayersForGameResultEvent?.Invoke(result, searchId, playerData);
+        RequestPlayersForGameResultEvent?.Invoke(
+            (ErrorResult)result,
+            searchId,
+            new PlayerData
+            {
+                PlayerId = playerData["player_id"].AsUInt64(),
+                LobbyId = playerData["lobby_id"].AsUInt64(),
+                PlayerAcceptState = playerData["player_accept_state"].AsInt32(),
+                PlayerIndex = playerData["player_index"].AsInt32(),
+                TotalPlayers = playerData["total_players"].AsInt32(),
+                TotalPlayersAcceptedGame = playerData["total_players_accepted_game"].AsInt32(),
+                SuggestedTeamIndex = playerData["suggested_team_index"].AsInt32(),
+                UniqueGameId = playerData["unique_game_id"].AsUInt64(),
+            }
+        );
     };
     public static event RequestPlayersForGameResultEventHandler RequestPlayersForGameResult
     {
@@ -109,11 +123,21 @@ public static partial class Steam
         }
     }
     
-    public delegate void SearchForGameProgressEventHandler(long result, long searchId, Godot.Collections.Dictionary searchProgress);
+    public delegate void SearchForGameProgressEventHandler(ErrorResult result, long searchId, SearchProgress searchProgress);
     private static event SearchForGameProgressEventHandler SearchForGameProgressEvent;
-    static Action<long, long, Godot.Collections.Dictionary> _searchForGameProgressAction = (result, searchId, searchProgress) =>
+    static Action<int, long, Godot.Collections.Dictionary> _searchForGameProgressAction = (result, searchId, searchProgress) =>
     {
-        SearchForGameProgressEvent?.Invoke(result, searchId, searchProgress);
+        SearchForGameProgressEvent?.Invoke(
+            (ErrorResult)result,
+            searchId,
+            new SearchProgress
+            {
+                LobbyId = searchProgress["lobby_id"].AsUInt64(),
+                EndedSearchId = searchProgress["lobby_id"].AsUInt64(),
+                SecondsRemainingEstimate = searchProgress["seconds_remaining_estimate"].AsInt32(),
+                PlayersSearching = searchProgress["players_searching"].AsInt32(),
+            }
+        );
     };
     public static event SearchForGameProgressEventHandler SearchForGameProgress
     {
@@ -135,11 +159,21 @@ public static partial class Steam
         }
     }
     
-    public delegate void SearchForGameResultEventHandler(long result, long searchId, Godot.Collections.Dictionary searchResult);
+    public delegate void SearchForGameResultEventHandler(ErrorResult result, ulong searchId, SearchResult searchResult);
     private static event SearchForGameResultEventHandler SearchForGameResultEvent;
-    static Action<long, long, Godot.Collections.Dictionary> _searchForGameResultAction = (result, searchId, searchResult) =>
+    static Action<int, ulong, Godot.Collections.Dictionary> _searchForGameResultAction = (result, searchId, searchResult) =>
     {
-        SearchForGameResultEvent?.Invoke(result, searchId, searchResult);
+        SearchForGameResultEvent?.Invoke(
+            (ErrorResult)result,
+            searchId,
+            new SearchResult
+            {
+                CountPlayersIngame = searchResult["count_players_ingame"].AsInt32(),
+                CountAcceptedGame = searchResult["count_accepted_game"].AsInt32(),
+                HostId = searchResult["host_id"].AsUInt64(),
+                FinalCallback = searchResult["final_callback"].AsBool()
+            }
+        );
     };
     public static event SearchForGameResultEventHandler SearchForGameResult
     {
@@ -161,11 +195,11 @@ public static partial class Steam
         }
     }
     
-    public delegate void SubmitPlayerResultSignalEventHandler(long result, long gameId, long playerId);
+    public delegate void SubmitPlayerResultSignalEventHandler(ErrorResult result, ulong gameId, ulong playerId);
     private static event SubmitPlayerResultSignalEventHandler SubmitPlayerResultSignalEvent;
-    static Action<long, long, long> _submitPlayerResultSignalAction = (result, gameId, playerId) =>
+    static Action<int, ulong, ulong> _submitPlayerResultSignalAction = (result, gameId, playerId) =>
     {
-        SubmitPlayerResultSignalEvent?.Invoke(result, gameId, playerId);
+        SubmitPlayerResultSignalEvent?.Invoke((ErrorResult)result, gameId, playerId);
     };
     public static event SubmitPlayerResultSignalEventHandler SubmitPlayerResultSignal
     {
