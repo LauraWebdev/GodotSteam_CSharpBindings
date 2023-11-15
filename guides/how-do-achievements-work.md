@@ -1,2 +1,0 @@
-# How do achievements work?
-

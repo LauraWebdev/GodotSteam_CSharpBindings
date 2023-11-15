@@ -1,15 +1,18 @@
-# Getting Started
+# GodotSteam C# Bindings
 
-### Installation
+[Back to README](../README.md)
 
+## Table of Contents
+- [Installation](#installation)
+- [Getting Started](#getting-started)
+- [Signals / Events](#signals--events)
+
+## Installation
 1. Make sure you have set up GodotSteam GDExtension. You can get it either from the GitHub Releases or the Godot AssetLib.
 2. Copy the `/addons/godotsteam_csharpbindings` folder into your project. Alternatively, you can download "GodotSteam C# Bindings" from the Godot AssetLib or just drop in the latest GitHub Release.
 3. Now build your C# solution in JetBrains Rider.
 
-
-
-### Getting Started
-
+## Getting Started
 Once everything is set up properly, you can test C# Bindings with this initial example script:
 
 ```csharp
@@ -45,10 +48,7 @@ public partial class SteamDemo : Node
 }
 ```
 
-
-
-### Signals & Events
-
+## Signals / Events
 This project aims to create a familiar developer experience for C# developers. Thus, GDScript signals emitted from GodotSteam are available as events which can be subscribed to.
 
 ```csharp
