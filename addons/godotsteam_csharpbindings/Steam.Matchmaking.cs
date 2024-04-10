@@ -178,7 +178,7 @@ public static partial class Steam
         LobbyComparisonLessThan = -1,
         LobbyComparisonEqual = 0,
         LobbyComparisonGreaterThan = 1,
-        ObbyComparisonEqualToGreaterThan = 2,
+        LobbyComparisonEqualToGreaterThan = 2,
         LobbyComparisonNotEqual = 3
     }
 
