@@ -57,9 +57,9 @@ public static partial class Steam
         }
     }
     
-    public delegate void LobbyMessageEventHandler(long lobbyId, long user, string message, long chatType);
+    public delegate void LobbyMessageEventHandler(ulong lobbyId, long user, string message, long chatType);
     private static event LobbyMessageEventHandler LobbyMessageEvent;
-    static Action<long, long, string, long> _lobbyMessageAction = (lobbyId, user, message, chatType) =>
+    static Action<ulong, long, string, long> _lobbyMessageAction = (lobbyId, user, message, chatType) =>
     {
         LobbyMessageEvent?.Invoke(lobbyId, user, message, chatType);
     };
@@ -83,9 +83,9 @@ public static partial class Steam
         }
     }
     
-    public delegate void LobbyChatUpdateEventHandler(long lobbyId, long changedId, long makingChangeId, long chatState);
+    public delegate void LobbyChatUpdateEventHandler(ulong lobbyId, long changedId, long makingChangeId, long chatState);
     private static event LobbyChatUpdateEventHandler LobbyChatUpdateEvent;
-    static Action<long, long, long, long> _lobbyChatUpdateAction = (lobbyId, changedId, makingChangeId, chatState) =>
+    static Action<ulong, long, long, long> _lobbyChatUpdateAction = (lobbyId, changedId, makingChangeId, chatState) =>
     {
         LobbyChatUpdateEvent?.Invoke(lobbyId, changedId, makingChangeId, chatState);
     };
@@ -109,9 +109,9 @@ public static partial class Steam
         }
     }
     
-    public delegate void LobbyCreatedEventHandler(long connect, long lobbyId);
+    public delegate void LobbyCreatedEventHandler(long connect, ulong lobbyId);
     private static event LobbyCreatedEventHandler LobbyCreatedEvent;
-    static Action<long, long> _lobbyCreatedAction = (connect, lobbyId) =>
+    static Action<long, ulong> _lobbyCreatedAction = (connect, lobbyId) =>
     {
         LobbyCreatedEvent?.Invoke(connect, lobbyId);
     };
@@ -160,9 +160,9 @@ public static partial class Steam
         }
     }
     
-    public delegate void LobbyJoinedEventHandler(long lobby, long permissions, bool locked, long response);
+    public delegate void LobbyJoinedEventHandler(ulong lobby, long permissions, bool locked, long response);
     private static event LobbyJoinedEventHandler LobbyJoinedEvent;
-    static Action<long, long, bool, long> _lobbyJoinedAction = (lobby, permissions, locked, response) =>
+    static Action<ulong, long, bool, long> _lobbyJoinedAction = (lobby, permissions, locked, response) =>
     {
         LobbyJoinedEvent?.Invoke(lobby, permissions, locked, response);
     };
@@ -186,9 +186,9 @@ public static partial class Steam
         }
     }
     
-    public delegate void LobbyGameCreatedEventHandler(long lobbyId, long serverId, string serverIP, long port);
+    public delegate void LobbyGameCreatedEventHandler(ulong lobbyId, ulong serverId, string serverIP, ushort port);
     private static event LobbyGameCreatedEventHandler LobbyGameCreatedEvent;
-    static Action<long, long, string, long> _lobbyGameCreatedAction = (lobbyId, serverId, serverIP, port) =>
+    static Action<ulong, ulong, string, ushort> _lobbyGameCreatedAction = (lobbyId, serverId, serverIP, port) =>
     {
         LobbyGameCreatedEvent?.Invoke(lobbyId, serverId, serverIP, port);
     };
@@ -212,9 +212,9 @@ public static partial class Steam
         }
     }
     
-    public delegate void LobbyInviteEventHandler(long inviter, long lobby, long game);
+    public delegate void LobbyInviteEventHandler(ulong inviter, ulong lobby, ulong game);
     private static event LobbyInviteEventHandler LobbyInviteEvent;
-    static Action<long, long, long> _lobbyInviteAction = (inviter, lobby, game) =>
+    static Action<ulong, ulong, ulong> _lobbyInviteAction = (inviter, lobby, game) =>
     {
         LobbyInviteEvent?.Invoke(inviter, lobby, game);
     };
@@ -264,9 +264,9 @@ public static partial class Steam
         }
     }
     
-    public delegate void LobbyKickedEventHandler(long lobbyId, long adminId, long dueToDisconnect);
+    public delegate void LobbyKickedEventHandler(ulong lobbyId, ulong adminId, byte dueToDisconnect);
     private static event LobbyKickedEventHandler LobbyKickedEvent;
-    static Action<long, long, long> _lobbyKickedAction = (lobbyId, adminId, dueToDisconnect) =>
+    static Action<ulong, ulong, byte> _lobbyKickedAction = (lobbyId, adminId, dueToDisconnect) =>
     {
         LobbyKickedEvent?.Invoke(lobbyId, adminId, dueToDisconnect);
     };

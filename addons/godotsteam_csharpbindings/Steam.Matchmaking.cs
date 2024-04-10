@@ -57,12 +57,12 @@ public static partial class Steam
         GetInstance().Call(Methods.CreateLobby, (long)lobbyType, maxMembers);
     }
     
-    public static void JoinLobby(long steamLobbyId)
+    public static void JoinLobby(ulong steamLobbyId)
     {
         GetInstance().Call(Methods.JoinLobby, steamLobbyId);
     }
     
-    public static void LeaveLobby(long steamLobbyId)
+    public static void LeaveLobby(ulong steamLobbyId)
     {
         GetInstance().Call(Methods.LeaveLobby, steamLobbyId);
     }
@@ -72,7 +72,7 @@ public static partial class Steam
         return GetInstance().Call(Methods.InviteUserToLobby, steamLobbyId, steamIdInvitee).AsBool();
     }
     
-    public static int GetNumLobbyMembers(long steamLobbyId)
+    public static int GetNumLobbyMembers(ulong steamLobbyId)
     {
         return GetInstance().Call(Methods.GetNumLobbyMembers, steamLobbyId).AsInt32();
     }
@@ -92,7 +92,7 @@ public static partial class Steam
         return GetInstance().Call(Methods.SetLobbyData, steamLobbyId, key, value).AsBool();
     }
     
-    public static Godot.Collections.Dictionary GetAllLobbyData(long steamLobbyId)
+    public static Godot.Collections.Dictionary GetAllLobbyData(ulong steamLobbyId)
     {
         return GetInstance().Call(Methods.GetAllLobbyData, steamLobbyId).AsGodotDictionary();
     }
@@ -117,7 +117,7 @@ public static partial class Steam
         return GetInstance().Call(Methods.SendLobbyChatMsg, steamLobbyId, messageBody).AsBool();
     }
     
-    public static bool RequestLobbyData(long steamLobbyId)
+    public static bool RequestLobbyData(ulong steamLobbyId)
     {
         return GetInstance().Call(Methods.RequestLobbyData, steamLobbyId).AsBool();
     }
@@ -127,7 +127,7 @@ public static partial class Steam
         GetInstance().Call(Methods.SetLobbyGameServer, steamLobbyId, serverIP, serverPort, steamIdGameServer);
     }
     
-    public static Godot.Collections.Dictionary GetLobbyGameServer(long steamLobbyId)
+    public static Godot.Collections.Dictionary GetLobbyGameServer(ulong steamLobbyId)
     {
         return GetInstance().Call(Methods.GetLobbyGameServer, steamLobbyId).AsGodotDictionary();
     }
@@ -137,7 +137,7 @@ public static partial class Steam
         return GetInstance().Call(Methods.SetLobbyMemberLimit, steamLobbyId, maxMembers).AsBool();
     }
     
-    public static int GetLobbyMemberLimit(long steamLobbyId)
+    public static int GetLobbyMemberLimit(ulong steamLobbyId)
     {
         return GetInstance().Call(Methods.GetLobbyMemberLimit, steamLobbyId).AsInt32();
     }
@@ -152,7 +152,7 @@ public static partial class Steam
         return GetInstance().Call(Methods.SetLobbyJoinable, steamLobbyId, joinable).AsBool();
     }
     
-    public static ulong GetLobbyOwner(long steamLobbyId)
+    public static ulong GetLobbyOwner(ulong steamLobbyId)
     {
         return GetInstance().Call(Methods.GetLobbyOwner, steamLobbyId).AsUInt64();
     }
