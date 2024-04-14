@@ -134,13 +134,14 @@ public static partial class Steam
             }
         }
     }
-    
-    public static event Action LobbyDataUpdateEvent;
-    static Action _lobbyDataUpdateAction = () =>
+
+    public delegate void LobbyDataUpdateEventHandler(uint success, ulong lobbyID, ulong memberID);
+    public static event LobbyDataUpdateEventHandler LobbyDataUpdateEvent;
+    static Action<uint, ulong, ulong> _lobbyDataUpdateAction = (success, lobbyID, memberID) =>
     {
-        LobbyDataUpdateEvent?.Invoke();
+        LobbyDataUpdateEvent?.Invoke(success, lobbyID, memberID);
     };
-    public static event Action LobbyDataUpdate
+    public static event LobbyDataUpdateEventHandler LobbyDataUpdate
     {
         add
         {
