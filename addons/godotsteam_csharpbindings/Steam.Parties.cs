@@ -19,7 +19,7 @@ public static partial class Steam
     
     public static bool DestroyBeacon(long beaconId)
     {
-        return GetInstance().Call(Methods.DestroyBeacon, beaconId).AsBool();
+        return GetInstance().Call(Methods.DestroyBeacon, beaconId).As<bool>();
     }
     
     public static Godot.Collections.Array GetAvailableBeaconLocations(long max)
@@ -29,7 +29,7 @@ public static partial class Steam
     
     public static ulong GetBeaconByIndex(long index)
     {
-        return GetInstance().Call(Methods.GetBeaconByIndex, index).AsUInt64();
+        return GetInstance().Call(Methods.GetBeaconByIndex, index).As<ulong>();
     }
     
     public static Godot.Collections.Dictionary GetBeaconDetails(long beaconId)
@@ -39,7 +39,7 @@ public static partial class Steam
     
     public static string GetBeaconLocationData(ulong locationId, PartyBeaconLocationType locationType, PartyBeaconLocationData locationData)
     {
-        return GetInstance().Call(Methods.GetBeaconLocationData, locationId, (long)locationType, (long)locationData).AsString();
+        return GetInstance().Call(Methods.GetBeaconLocationData, locationId, (long)locationType, (long)locationData).As<string>();
     }
     
     public static long GetNumActiveBeacons()

@@ -4,32 +4,32 @@ public static partial class Steam
 {
     public static bool BeginFileWriteBatch()
     {
-        return GetInstance().Call(Methods.BeginFileWriteBatch).AsBool();
+        return GetInstance().Call(Methods.BeginFileWriteBatch).As<bool>();
     }
     
     public static bool EndFileWriteBatch()
     {
-        return GetInstance().Call(Methods.EndFileWriteBatch).AsBool();
+        return GetInstance().Call(Methods.EndFileWriteBatch).As<bool>();
     }
     
     public static bool FileDelete(string file)
     {
-        return GetInstance().Call(Methods.FileDelete, file).AsBool();
+        return GetInstance().Call(Methods.FileDelete, file).As<bool>();
     }
     
     public static bool FileExists(string file)
     {
-        return GetInstance().Call(Methods.FileExists, file).AsBool();
+        return GetInstance().Call(Methods.FileExists, file).As<bool>();
     }
     
     public static bool FileForget(string file)
     {
-        return GetInstance().Call(Methods.FileForget, file).AsBool();
+        return GetInstance().Call(Methods.FileForget, file).As<bool>();
     }
     
     public static bool FilePersisted(string file)
     {
-        return GetInstance().Call(Methods.FilePersisted, file).AsBool();
+        return GetInstance().Call(Methods.FilePersisted, file).As<bool>();
     }
     
     public static Godot.Collections.Dictionary FileRead(string file, long dataToRead)
@@ -49,7 +49,7 @@ public static partial class Steam
     
     public static bool FileWrite(string file, byte[] data, long size = 0)
     {
-        return GetInstance().Call(Methods.FileWrite, file, data, size).AsBool();
+        return GetInstance().Call(Methods.FileWrite, file, data, size).As<bool>();
     }
     
     public static void FileWriteAsync(string file, byte[] data, long size = 0)
@@ -59,22 +59,22 @@ public static partial class Steam
     
     public static bool FileWriteStreamCancel(long writeHandle)
     {
-        return GetInstance().Call(Methods.FileWriteStreamCancel, writeHandle).AsBool();
+        return GetInstance().Call(Methods.FileWriteStreamCancel, writeHandle).As<bool>();
     }
     
     public static bool FileWriteStreamClose(long writeHandle)
     {
-        return GetInstance().Call(Methods.FileWriteStreamClose, writeHandle).AsBool();
+        return GetInstance().Call(Methods.FileWriteStreamClose, writeHandle).As<bool>();
     }
     
     public static ulong FileWriteStreamOpen(string file)
     {
-        return GetInstance().Call(Methods.FileWriteStreamOpen, file).AsUInt64();
+        return GetInstance().Call(Methods.FileWriteStreamOpen, file).As<ulong>();
     }
     
     public static bool FileWriteStreamWriteChunk(ulong writeHandle, byte[] data)
     {
-        return GetInstance().Call(Methods.FileWriteStreamWriteChunk, writeHandle, data).AsBool();
+        return GetInstance().Call(Methods.FileWriteStreamWriteChunk, writeHandle, data).As<bool>();
     }
     
     public static long GetCachedUGCCount()
@@ -84,7 +84,7 @@ public static partial class Steam
     
     public static ulong GetCachedUGCHandle(long content)
     {
-        return GetInstance().Call(Methods.GetCachedUGCHandle, content).AsUInt64();
+        return GetInstance().Call(Methods.GetCachedUGCHandle, content).As<ulong>();
     }
     
     public static long GetFileCount()
@@ -99,7 +99,7 @@ public static partial class Steam
     
     public static int GetFileSize(string file)
     {
-        return GetInstance().Call(Methods.GetFileSize, file).AsInt32();
+        return GetInstance().Call(Methods.GetFileSize, file).As<int>();
     }
     
     public static long GetFileTimestamp(string file)
@@ -139,12 +139,12 @@ public static partial class Steam
     
     public static bool IsCloudEnabledForAccount()
     {
-        return GetInstance().Call(Methods.IsCloudEnabledForAccount).AsBool();
+        return GetInstance().Call(Methods.IsCloudEnabledForAccount).As<bool>();
     }
     
     public static bool IsCloudEnabledForApp()
     {
-        return GetInstance().Call(Methods.IsCloudEnabledForApp).AsBool();
+        return GetInstance().Call(Methods.IsCloudEnabledForApp).As<bool>();
     }
     
     public static void SetCloudEnabledForApp(bool enabled)
@@ -154,7 +154,7 @@ public static partial class Steam
     
     public static bool SetSyncPlatforms(string file, long platform)
     {
-        return GetInstance().Call(Methods.SetSyncPlatforms, file, platform).AsBool();
+        return GetInstance().Call(Methods.SetSyncPlatforms, file, platform).As<bool>();
     }
     
     public static void UgcDownload(ulong content, long priority)

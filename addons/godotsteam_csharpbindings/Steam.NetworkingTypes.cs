@@ -4,12 +4,12 @@ public static partial class Steam
 {
     public static bool AddIdentity(string referenceName)
     {
-        return GetInstance().Call(Methods.AddIdentity, referenceName).AsBool();
+        return GetInstance().Call(Methods.AddIdentity, referenceName).As<bool>();
     }
     
     public static bool AddIPAddress(string referenceName)
     {
-        return GetInstance().Call(Methods.AddIPAddress, referenceName).AsBool();
+        return GetInstance().Call(Methods.AddIPAddress, referenceName).As<bool>();
     }
     
     public static void ClearIdentity(string referenceName)
@@ -29,7 +29,7 @@ public static partial class Steam
     
     public static string GetGenericString(string referenceName)
     {
-        return GetInstance().Call(Methods.GetGenericString, referenceName).AsString();
+        return GetInstance().Call(Methods.GetGenericString, referenceName).As<string>();
     }
     
     public static Godot.Collections.Array GetIdentities()
@@ -39,17 +39,17 @@ public static partial class Steam
     
     public static uint GetIdentityIPAddr(string referenceName)
     {
-        return GetInstance().Call(Methods.GetIdentityIPAddr, referenceName).AsUInt32();
+        return GetInstance().Call(Methods.GetIdentityIPAddr, referenceName).As<uint>();
     }
     
     public static uint GetIdentitySteamID(string referenceName)
     {
-        return GetInstance().Call(Methods.GetIdentitySteamID, referenceName).AsUInt32();
+        return GetInstance().Call(Methods.GetIdentitySteamID, referenceName).As<uint>();
     }
     
     public static ulong GetIdentitySteamID64(string referenceName)
     {
-        return GetInstance().Call(Methods.GetIdentitySteamID64, referenceName).AsUInt64();
+        return GetInstance().Call(Methods.GetIdentitySteamID64, referenceName).As<ulong>();
     }
     
     public static Godot.Collections.Array GetIPAddresses()
@@ -59,72 +59,72 @@ public static partial class Steam
     
     public static uint GetIPv4(string referenceName)
     {
-        return GetInstance().Call(Methods.GetIPv4, referenceName).AsUInt32();
+        return GetInstance().Call(Methods.GetIPv4, referenceName).As<uint>();
     }
     
     public static ulong GetPSNID(string referenceName)
     {
-        return GetInstance().Call(Methods.GetPSNID, referenceName).AsUInt64();
+        return GetInstance().Call(Methods.GetPSNID, referenceName).As<ulong>();
     }
     
     public static ulong GetStadiaID(string referenceName)
     {
-        return GetInstance().Call(Methods.GetStadiaID, referenceName).AsUInt64();
+        return GetInstance().Call(Methods.GetStadiaID, referenceName).As<ulong>();
     }
     
     public static string GetXboxPairwiseID(string referenceName)
     {
-        return GetInstance().Call(Methods.GetXboxPairwiseID, referenceName).AsString();
+        return GetInstance().Call(Methods.GetXboxPairwiseID, referenceName).As<string>();
     }
     
     public static bool IsAddressLocalHost(string referenceName)
     {
-        return GetInstance().Call(Methods.IsAddressLocalHost, referenceName).AsBool();
+        return GetInstance().Call(Methods.IsAddressLocalHost, referenceName).As<bool>();
     }
     
     public static bool IsIdentityInvalid(string referenceName)
     {
-        return GetInstance().Call(Methods.IsIdentityInvalid, referenceName).AsBool();
+        return GetInstance().Call(Methods.IsIdentityInvalid, referenceName).As<bool>();
     }
     
     public static bool IsIdentityLocalHost(string referenceName)
     {
-        return GetInstance().Call(Methods.IsIdentityLocalHost, referenceName).AsBool();
+        return GetInstance().Call(Methods.IsIdentityLocalHost, referenceName).As<bool>();
     }
     
     public static bool IsIPv4(string referenceName)
     {
-        return GetInstance().Call(Methods.IsIPv4, referenceName).AsBool();
+        return GetInstance().Call(Methods.IsIPv4, referenceName).As<bool>();
     }
     
     public static bool IsIPv6AllZeros(string referenceName)
     {
-        return GetInstance().Call(Methods.IsIPv6AllZeros, referenceName).AsBool();
+        return GetInstance().Call(Methods.IsIPv6AllZeros, referenceName).As<bool>();
     }
     
     public static bool ParseIdentityString(string referenceName, string stringToParse)
     {
-        return GetInstance().Call(Methods.ParseIdentityString, referenceName, stringToParse).AsBool();
+        return GetInstance().Call(Methods.ParseIdentityString, referenceName, stringToParse).As<bool>();
     }
     
     public static bool ParseIPAddressString(string referenceName, string stringToParse)
     {
-        return GetInstance().Call(Methods.ParseIPAddressString, referenceName, stringToParse).AsBool();
+        return GetInstance().Call(Methods.ParseIPAddressString, referenceName, stringToParse).As<bool>();
     }
     
     public static bool SetGenericBytes(string referenceName, long data)
     {
-        return GetInstance().Call(Methods.SetGenericBytes, referenceName, data).AsBool();
+        return GetInstance().Call(Methods.SetGenericBytes, referenceName, data).As<bool>();
     }
     
     public static bool SetGenericString(string referenceName, string thisString)
     {
-        return GetInstance().Call(Methods.SetGenericString, referenceName, thisString).AsBool();
+        return GetInstance().Call(Methods.SetGenericString, referenceName, thisString).As<bool>();
     }
     
     public static bool SetIdentityIPAddr(string referenceName, string iPAddressName)
     {
-        return GetInstance().Call(Methods.SetIdentityIPAddr, referenceName, iPAddressName).AsBool();
+        return GetInstance().Call(Methods.SetIdentityIPAddr, referenceName, iPAddressName).As<bool>();
     }
     
     public static void SetIdentityLocalHost(string referenceName)
@@ -169,16 +169,16 @@ public static partial class Steam
     
     public static bool SetXboxPairwiseID(string referenceName, string xboxId)
     {
-        return GetInstance().Call(Methods.SetXboxPairwiseID, referenceName, xboxId).AsBool();
+        return GetInstance().Call(Methods.SetXboxPairwiseID, referenceName, xboxId).As<bool>();
     }
     
     public static string ToIdentityString(string referenceName)
     {
-        return GetInstance().Call(Methods.ToIdentityString, referenceName).AsString();
+        return GetInstance().Call(Methods.ToIdentityString, referenceName).As<string>();
     }
     
     public static string ToIPAddressString(string referenceName, bool withPort)
     {
-        return GetInstance().Call(Methods.ToIPAddressString, referenceName, withPort).AsString();
+        return GetInstance().Call(Methods.ToIPAddressString, referenceName, withPort).As<string>();
     }
 }

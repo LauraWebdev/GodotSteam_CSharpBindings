@@ -109,12 +109,16 @@ public static partial class Steam
         }
     }
     
+    [Obsolete]
     public delegate void UnsubscribeItemSignalEventHandler(long result, long fileId);
+    [Obsolete]
     private static event UnsubscribeItemSignalEventHandler UnsubscribeItemSignalEvent;
+    [Obsolete]
     static Action<long, long> _unsubscribeItemSignalAction = (result, fileId) =>
     {
         UnsubscribeItemSignalEvent?.Invoke(result, fileId);
     };
+    [Obsolete]
     public static event UnsubscribeItemSignalEventHandler UnsubscribeItemSignal
     {
         add
@@ -135,12 +139,16 @@ public static partial class Steam
         }
     }
     
+    [Obsolete]
     public delegate void SubscribeItemSignalEventHandler(long result, long fileId);
+    [Obsolete]
     private static event SubscribeItemSignalEventHandler SubscribeItemSignalEvent;
+    [Obsolete]
     static Action<long, long> _subscribeItemSignalAction = (result, fileId) =>
     {
         SubscribeItemSignalEvent?.Invoke(result, fileId);
     };
+    [Obsolete]
     public static event SubscribeItemSignalEventHandler SubscribeItemSignal
     {
         add

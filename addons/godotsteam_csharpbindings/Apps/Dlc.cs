@@ -1,6 +1,6 @@
 namespace GodotSteam;
 
-public class Dlc
+public struct Dlc
 {
     public uint AppId { get; set; }
     public bool Available { get; set; }

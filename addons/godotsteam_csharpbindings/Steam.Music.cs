@@ -4,12 +4,12 @@ public static partial class Steam
 {
     public static bool MusicIsEnabled()
     {
-        return GetInstance().Call(Methods.MusicIsEnabled).AsBool();
+        return GetInstance().Call(Methods.MusicIsEnabled).As<bool>();
     }
     
     public static bool MusicIsPlaying()
     {
-        return GetInstance().Call(Methods.MusicIsPlaying).AsBool();
+        return GetInstance().Call(Methods.MusicIsPlaying).As<bool>();
     }
     
     public static AudioPlaybackStatus GetPlaybackStatus()

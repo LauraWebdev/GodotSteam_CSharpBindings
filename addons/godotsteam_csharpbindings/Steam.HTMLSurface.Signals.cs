@@ -195,11 +195,11 @@ public static partial class Steam
             browserHandle,
             new HtmlScrollData
             {
-                ScrollMax = scrollData["scroll_max"].AsUInt32(),
-                ScrollCurrent = scrollData["scroll_current"].AsUInt32(),
+                ScrollMax = scrollData["scroll_max"].As<uint>(),
+                ScrollCurrent = scrollData["scroll_current"].As<uint>(),
                 PageScale = scrollData["page_scale"].AsSingle(),
-                Visible = scrollData["visible"].AsBool(),
-                PageSize = scrollData["page_size"].AsUInt32(),
+                Visible = scrollData["visible"].As<bool>(),
+                PageSize = scrollData["page_size"].As<uint>(),
             }
         );
     };
@@ -283,11 +283,11 @@ public static partial class Steam
             browserHandle,
             new HtmlLinkData
             {
-                X = linkData["x"].AsUInt32(),
-                Y = linkData["y"].AsUInt32(),
-                Url = new Uri(linkData["url"].AsString()),
-                Input = linkData["input"].AsBool(),
-                LiveLink = linkData["live_link"].AsBool(),
+                X = linkData["x"].As<uint>(),
+                Y = linkData["y"].As<uint>(),
+                Url = new Uri(linkData["url"].As<string>()),
+                Input = linkData["input"].As<bool>(),
+                LiveLink = linkData["live_link"].As<bool>(),
             }
         );
     };
@@ -319,17 +319,17 @@ public static partial class Steam
             browserHandle,
             new HtmlPageData
             {
-                Bgra = pageData["bgra"].AsString(),
-                Wide = pageData["wide"].AsUInt32(),
-                Tall = pageData["tall"].AsUInt32(),
-                UpdateX = pageData["update_x"].AsUInt32(),
-                UpdateY = pageData["update_y"].AsUInt32(),
-                UpdateWide = pageData["update_wide"].AsUInt32(),
-                UpdateTall = pageData["update_tall"].AsUInt32(),
-                ScrollX = pageData["scroll_x"].AsUInt32(),
-                ScrollY = pageData["scroll_y"].AsUInt32(),
+                Bgra = pageData["bgra"].As<string>(),
+                Wide = pageData["wide"].As<uint>(),
+                Tall = pageData["tall"].As<uint>(),
+                UpdateX = pageData["update_x"].As<uint>(),
+                UpdateY = pageData["update_y"].As<uint>(),
+                UpdateWide = pageData["update_wide"].As<uint>(),
+                UpdateTall = pageData["update_tall"].As<uint>(),
+                ScrollX = pageData["scroll_x"].As<uint>(),
+                ScrollY = pageData["scroll_y"].As<uint>(),
                 PageScale = pageData["page_scale"].AsSingle(),
-                PageSerial = pageData["page_serial"].AsUInt32(),
+                PageSerial = pageData["page_serial"].As<uint>(),
             }
         );
     };
@@ -361,12 +361,12 @@ public static partial class Steam
             browserHandle,
             new HtmlWindowData
             {
-                Url = new Uri(windowData["url"].AsString()),
-                X = windowData["x"].AsUInt32(),
-                Y = windowData["y"].AsUInt32(),
-                Wide = windowData["wide"].AsUInt32(),
-                Tall = windowData["tall"].AsUInt32(),
-                NewHandle = windowData["new_handle"].AsUInt32(),
+                Url = new Uri(windowData["url"].As<string>()),
+                X = windowData["x"].As<uint>(),
+                Y = windowData["y"].As<uint>(),
+                Wide = windowData["wide"].As<uint>(),
+                Tall = windowData["tall"].As<uint>(),
+                NewHandle = windowData["new_handle"].As<uint>(),
             }
         );
     };
@@ -580,11 +580,11 @@ public static partial class Steam
             browserHandle,
             new HtmlUrlData
             {
-                Url = new Uri(urlData["url"].AsString()),
-                PostData = urlData["post_data"].AsString(),
-                Redirect = urlData["redirect"].AsBool(),
-                Title = urlData["title"].AsString(),
-                NewNavigation = urlData["new_navigation"].AsBool(),
+                Url = new Uri(urlData["url"].As<string>()),
+                PostData = urlData["post_data"].As<string>(),
+                Redirect = urlData["redirect"].As<bool>(),
+                Title = urlData["title"].As<string>(),
+                NewNavigation = urlData["new_navigation"].As<bool>(),
             }
         );
     };
@@ -616,11 +616,11 @@ public static partial class Steam
             browserHandle, 
             new HtmlScrollData
             {
-                ScrollMax = scrollData["scroll_max"].AsUInt32(),
-                ScrollCurrent = scrollData["scroll_current"].AsUInt32(),
+                ScrollMax = scrollData["scroll_max"].As<uint>(),
+                ScrollCurrent = scrollData["scroll_current"].As<uint>(),
                 PageScale = scrollData["page_scale"].AsSingle(),
-                Visible = scrollData["visible"].AsBool(),
-                PageSize = scrollData["page_size"].AsUInt32(),
+                Visible = scrollData["visible"].As<bool>(),
+                PageSize = scrollData["page_size"].As<uint>(),
             }
         );
     };

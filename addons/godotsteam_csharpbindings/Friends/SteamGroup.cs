@@ -1,6 +1,6 @@
 namespace GodotSteam;
 
-public class SteamGroup
+public struct SteamGroup
 {
     public ulong Id { get; set; }
     public string Name { get; set; }

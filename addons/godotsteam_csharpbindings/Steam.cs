@@ -28,7 +28,7 @@ public static partial class Steam
 
     public static bool IsSteamRunning()
     {
-        return GetInstance().Call(Methods.IsSteamRunning).AsBool();
+        return GetInstance().Call(Methods.IsSteamRunning).As<bool>();
     }
 
     public static void RunCallbacks()
@@ -38,7 +38,7 @@ public static partial class Steam
 
     public static bool RestartAppIfNecessary(uint appId)
     {
-        return GetInstance().Call(Methods.RestartAppIfNecessary, appId).AsBool();
+        return GetInstance().Call(Methods.RestartAppIfNecessary, appId).As<bool>();
     }
     
     public static SteamInitResult SteamInit(bool retrieveStats = true)
@@ -47,8 +47,8 @@ public static partial class Steam
 
         return new SteamInitResult
         {
-            Status = (SteamInitStatus)raw["status"].AsInt32(),
-            Verbal = raw["verbal"].AsString(),
+            Status = (SteamInitStatus)raw["status"].As<int>(),
+            Verbal = raw["verbal"].As<string>(),
         };
     }
     
@@ -58,8 +58,8 @@ public static partial class Steam
 
         return new SteamInitExResult
         {
-            Status = (SteamInitExStatus)raw["status"].AsInt32(),
-            Verbal = raw["verbal"].AsString(),
+            Status = (SteamInitExStatus)raw["status"].As<int>(),
+            Verbal = raw["verbal"].As<string>(),
         };
     }
     
@@ -70,7 +70,7 @@ public static partial class Steam
     
     public static bool IsCybercafe()
     {
-        return GetInstance().Call(Methods.IsCybercafe).AsBool();
+        return GetInstance().Call(Methods.IsCybercafe).As<bool>();
     }
     
     public enum AccountType : long
@@ -86,7 +86,7 @@ public static partial class Steam
         Chat = 8,
         ConsoleUser = 9,
         AnonUser = 10,
-        Max = 11
+        Max = 11,
     }
 
     public enum AuthSessionResponse : long
@@ -139,7 +139,7 @@ public static partial class Steam
         Shutdown = 20,
         Disconnect = 21,
         VideoInitFailed = 22,
-        AudioInitFailed = 23
+        AudioInitFailed = 23,
     }
 
     [System.Flags]

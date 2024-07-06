@@ -9,7 +9,7 @@ public static partial class Steam
     
     public static bool AddContentDescriptor(ulong updateHandle, long descriptorId)
     {
-        return GetInstance().Call(Methods.AddContentDescriptor, updateHandle, descriptorId).AsBool();
+        return GetInstance().Call(Methods.AddContentDescriptor, updateHandle, descriptorId).As<bool>();
     }
     
     public static void AddDependency(ulong publishedFileId, long childPublishedFileId)
@@ -19,22 +19,22 @@ public static partial class Steam
     
     public static bool AddExcludedTag(ulong queryHandle, string tagName)
     {
-        return GetInstance().Call(Methods.AddExcludedTag, queryHandle, tagName).AsBool();
+        return GetInstance().Call(Methods.AddExcludedTag, queryHandle, tagName).As<bool>();
     }
     
     public static bool AddItemKeyValueTag(ulong queryHandle, string key, string value)
     {
-        return GetInstance().Call(Methods.AddItemKeyValueTag, queryHandle, key, value).AsBool();
+        return GetInstance().Call(Methods.AddItemKeyValueTag, queryHandle, key, value).As<bool>();
     }
     
     public static bool AddItemPreviewFile(ulong queryHandle, string previewFile, ItemPreviewType type)
     {
-        return GetInstance().Call(Methods.AddItemPreviewFile, queryHandle, previewFile, (long)type).AsBool();
+        return GetInstance().Call(Methods.AddItemPreviewFile, queryHandle, previewFile, (long)type).As<bool>();
     }
     
     public static bool AddItemPreviewVideo(ulong queryHandle, string videoId)
     {
-        return GetInstance().Call(Methods.AddItemPreviewVideo, queryHandle, videoId).AsBool();
+        return GetInstance().Call(Methods.AddItemPreviewVideo, queryHandle, videoId).As<bool>();
     }
     
     public static void AddItemToFavorites(uint appId, long publishedFileId)
@@ -44,22 +44,22 @@ public static partial class Steam
     
     public static bool AddRequiredKeyValueTag(ulong queryHandle, string key, string value)
     {
-        return GetInstance().Call(Methods.AddRequiredKeyValueTag, queryHandle, key, value).AsBool();
+        return GetInstance().Call(Methods.AddRequiredKeyValueTag, queryHandle, key, value).As<bool>();
     }
     
     public static bool AddRequiredTag(ulong queryHandle, string tagName)
     {
-        return GetInstance().Call(Methods.AddRequiredTag, queryHandle, tagName).AsBool();
+        return GetInstance().Call(Methods.AddRequiredTag, queryHandle, tagName).As<bool>();
     }
     
     public static bool AddRequiredTagGroup(ulong queryHandle, Godot.Collections.Array tagArray)
     {
-        return GetInstance().Call(Methods.AddRequiredTagGroup, queryHandle, tagArray).AsBool();
+        return GetInstance().Call(Methods.AddRequiredTagGroup, queryHandle, tagArray).As<bool>();
     }
     
     public static bool InitWorkshopForGameServer(long workshopDepotId)
     {
-        return GetInstance().Call(Methods.InitWorkshopForGameServer, workshopDepotId).AsBool();
+        return GetInstance().Call(Methods.InitWorkshopForGameServer, workshopDepotId).As<bool>();
     }
     
     public static void CreateItem(uint appId, WorkshopFileType fileType)
@@ -69,17 +69,17 @@ public static partial class Steam
     
     public static ulong CreateQueryAllUGCRequest(UgcQuery queryType, UgcMatchingUgcType matchingType, uint creatorId, uint consumerId, long page)
     {
-        return GetInstance().Call(Methods.CreateQueryAllUGCRequest, (long)queryType, (long)matchingType, creatorId, consumerId, page).AsUInt64();
+        return GetInstance().Call(Methods.CreateQueryAllUGCRequest, (long)queryType, (long)matchingType, creatorId, consumerId, page).As<ulong>();
     }
     
     public static ulong CreateQueryUGCDetailsRequest(Godot.Collections.Array publishedFileId)
     {
-        return GetInstance().Call(Methods.CreateQueryUGCDetailsRequest, publishedFileId).AsUInt64();
+        return GetInstance().Call(Methods.CreateQueryUGCDetailsRequest, publishedFileId).As<ulong>();
     }
     
     public static ulong CreateQueryUserUGCRequest(ulong accountId, UserUgcList listType, UgcMatchingUgcType matchingUgcType, UserUgcListSortOrder sortOrder, uint creatorId, uint consumerId, long page)
     {
-        return GetInstance().Call(Methods.CreateQueryUserUGCRequest, accountId, (long)listType, (long)matchingUgcType, (long)sortOrder, creatorId, consumerId, page).AsUInt64();
+        return GetInstance().Call(Methods.CreateQueryUserUGCRequest, accountId, (long)listType, (long)matchingUgcType, (long)sortOrder, creatorId, consumerId, page).As<ulong>();
     }
     
     public static void DeleteItem(long publishedFileId)
@@ -89,7 +89,7 @@ public static partial class Steam
     
     public static bool DownloadItem(ulong publishedFileId, bool highPriority)
     {
-        return GetInstance().Call(Methods.DownloadItem, publishedFileId, highPriority).AsBool();
+        return GetInstance().Call(Methods.DownloadItem, publishedFileId, highPriority).As<bool>();
     }
     
     public static Godot.Collections.Dictionary GetItemDownloadInfo(long publishedFileId)
@@ -104,7 +104,7 @@ public static partial class Steam
     
     public static uint GetItemState(long publishedFileId)
     {
-        return GetInstance().Call(Methods.GetItemState, publishedFileId).AsUInt32();
+        return GetInstance().Call(Methods.GetItemState, publishedFileId).As<uint>();
     }
     
     public static Godot.Collections.Dictionary GetItemUpdateProgress(long updateHandle)
@@ -139,27 +139,27 @@ public static partial class Steam
     
     public static string GetQueryUGCMetadata(ulong queryHandle, long index)
     {
-        return GetInstance().Call(Methods.GetQueryUGCMetadata, queryHandle, index).AsString();
+        return GetInstance().Call(Methods.GetQueryUGCMetadata, queryHandle, index).As<string>();
     }
     
     public static uint GetQueryUGCNumAdditionalPreviews(ulong queryHandle, long index)
     {
-        return GetInstance().Call(Methods.GetQueryUGCNumAdditionalPreviews, queryHandle, index).AsUInt32();
+        return GetInstance().Call(Methods.GetQueryUGCNumAdditionalPreviews, queryHandle, index).As<uint>();
     }
     
     public static uint GetQueryUGCNumKeyValueTags(ulong queryHandle, long index)
     {
-        return GetInstance().Call(Methods.GetQueryUGCNumKeyValueTags, queryHandle, index).AsUInt32();
+        return GetInstance().Call(Methods.GetQueryUGCNumKeyValueTags, queryHandle, index).As<uint>();
     }
     
     public static uint GetQueryUGCNumTags(ulong queryHandle, long index)
     {
-        return GetInstance().Call(Methods.GetQueryUGCNumTags, queryHandle, index).AsUInt32();
+        return GetInstance().Call(Methods.GetQueryUGCNumTags, queryHandle, index).As<uint>();
     }
     
     public static string GetQueryUGCPreviewURL(ulong queryHandle, long index)
     {
-        return GetInstance().Call(Methods.GetQueryUGCPreviewURL, queryHandle, index).AsString();
+        return GetInstance().Call(Methods.GetQueryUGCPreviewURL, queryHandle, index).As<string>();
     }
     
     public static Godot.Collections.Dictionary GetQueryUGCResult(ulong queryHandle, long index)
@@ -174,12 +174,12 @@ public static partial class Steam
     
     public static string GetQueryUGCTag(ulong queryHandle, uint index, long tagIndex)
     {
-        return GetInstance().Call(Methods.GetQueryUGCTag, queryHandle, index, tagIndex).AsString();
+        return GetInstance().Call(Methods.GetQueryUGCTag, queryHandle, index, tagIndex).As<string>();
     }
     
     public static string GetQueryUGCTagDisplayName(ulong queryHandle, uint index, long tagIndex)
     {
-        return GetInstance().Call(Methods.GetQueryUGCTagDisplayName, queryHandle, index, tagIndex).AsString();
+        return GetInstance().Call(Methods.GetQueryUGCTagDisplayName, queryHandle, index, tagIndex).As<string>();
     }
     
     public static Godot.Collections.Array GetSubscribedItems()
@@ -199,7 +199,7 @@ public static partial class Steam
     
     public static bool ReleaseQueryUGCRequest(long queryHandle)
     {
-        return GetInstance().Call(Methods.ReleaseQueryUGCRequest, queryHandle).AsBool();
+        return GetInstance().Call(Methods.ReleaseQueryUGCRequest, queryHandle).As<bool>();
     }
     
     public static void RemoveAppDependency(ulong publishedFileId, uint appId)
@@ -209,7 +209,7 @@ public static partial class Steam
     
     public static bool RemoveContentDescriptor(ulong updateHandle, long descriptorId)
     {
-        return GetInstance().Call(Methods.RemoveContentDescriptor, updateHandle, descriptorId).AsBool();
+        return GetInstance().Call(Methods.RemoveContentDescriptor, updateHandle, descriptorId).As<bool>();
     }
     
     public static void RemoveDependency(ulong publishedFileId, long childPublishedFileId)
@@ -224,12 +224,12 @@ public static partial class Steam
     
     public static bool RemoveItemKeyValueTags(ulong updateHandle, string key)
     {
-        return GetInstance().Call(Methods.RemoveItemKeyValueTags, updateHandle, key).AsBool();
+        return GetInstance().Call(Methods.RemoveItemKeyValueTags, updateHandle, key).As<bool>();
     }
     
     public static bool RemoveItemPreview(ulong updateHandle, long index)
     {
-        return GetInstance().Call(Methods.RemoveItemPreview, updateHandle, index).AsBool();
+        return GetInstance().Call(Methods.RemoveItemPreview, updateHandle, index).As<bool>();
     }
     
     public static void SendQueryUGCRequest(long updateHandle)
@@ -239,112 +239,112 @@ public static partial class Steam
     
     public static bool SetAllowCachedResponse(ulong updateHandle, long maxAgeSeconds)
     {
-        return GetInstance().Call(Methods.SetAllowCachedResponse, updateHandle, maxAgeSeconds).AsBool();
+        return GetInstance().Call(Methods.SetAllowCachedResponse, updateHandle, maxAgeSeconds).As<bool>();
     }
     
     public static bool SetCloudFileNameFilter(ulong updateHandle, string matchCloudFileName)
     {
-        return GetInstance().Call(Methods.SetCloudFileNameFilter, updateHandle, matchCloudFileName).AsBool();
+        return GetInstance().Call(Methods.SetCloudFileNameFilter, updateHandle, matchCloudFileName).As<bool>();
     }
     
     public static bool SetItemContent(ulong updateHandle, string contentFolder)
     {
-        return GetInstance().Call(Methods.SetItemContent, updateHandle, contentFolder).AsBool();
+        return GetInstance().Call(Methods.SetItemContent, updateHandle, contentFolder).As<bool>();
     }
     
     public static bool SetItemDescription(ulong updateHandle, string description)
     {
-        return GetInstance().Call(Methods.SetItemDescription, updateHandle, description).AsBool();
+        return GetInstance().Call(Methods.SetItemDescription, updateHandle, description).As<bool>();
     }
     
     public static bool SetItemMetadata(ulong updateHandle, string ugcMetadata)
     {
-        return GetInstance().Call(Methods.SetItemMetadata, updateHandle, ugcMetadata).AsBool();
+        return GetInstance().Call(Methods.SetItemMetadata, updateHandle, ugcMetadata).As<bool>();
     }
     
     public static bool SetItemPreview(ulong updateHandle, string previewFile)
     {
-        return GetInstance().Call(Methods.SetItemPreview, updateHandle, previewFile).AsBool();
+        return GetInstance().Call(Methods.SetItemPreview, updateHandle, previewFile).As<bool>();
     }
     
     public static bool SetItemTags(ulong updateHandle, Godot.Collections.Array tagArray, bool allowAdminTags = false)
     {
-        return GetInstance().Call(Methods.SetItemTags, updateHandle, tagArray, allowAdminTags).AsBool();
+        return GetInstance().Call(Methods.SetItemTags, updateHandle, tagArray, allowAdminTags).As<bool>();
     }
     
     public static bool SetItemTitle(ulong updateHandle, string title)
     {
-        return GetInstance().Call(Methods.SetItemTitle, updateHandle, title).AsBool();
+        return GetInstance().Call(Methods.SetItemTitle, updateHandle, title).As<bool>();
     }
     
     public static bool SetItemUpdateLanguage(ulong updateHandle, string language)
     {
-        return GetInstance().Call(Methods.SetItemUpdateLanguage, updateHandle, language).AsBool();
+        return GetInstance().Call(Methods.SetItemUpdateLanguage, updateHandle, language).As<bool>();
     }
     
     public static bool SetItemVisibility(ulong updateHandle, RemoteStoragePublishedFileVisibility visibility)
     {
-        return GetInstance().Call(Methods.SetItemVisibility, updateHandle, (long)visibility).AsBool();
+        return GetInstance().Call(Methods.SetItemVisibility, updateHandle, (long)visibility).As<bool>();
     }
     
     public static bool SetLanguage(ulong queryHandle, string language)
     {
-        return GetInstance().Call(Methods.SetLanguage, queryHandle, language).AsBool();
+        return GetInstance().Call(Methods.SetLanguage, queryHandle, language).As<bool>();
     }
     
     public static bool SetMatchAnyTag(ulong queryHandle, bool matchAnyTag)
     {
-        return GetInstance().Call(Methods.SetMatchAnyTag, queryHandle, matchAnyTag).AsBool();
+        return GetInstance().Call(Methods.SetMatchAnyTag, queryHandle, matchAnyTag).As<bool>();
     }
     
     public static bool SetRankedByTrendDays(ulong queryHandle, long days)
     {
-        return GetInstance().Call(Methods.SetRankedByTrendDays, queryHandle, days).AsBool();
+        return GetInstance().Call(Methods.SetRankedByTrendDays, queryHandle, days).As<bool>();
     }
     
     public static bool SetReturnAdditionalPreviews(ulong queryHandle, bool returnAdditionalPreviews)
     {
-        return GetInstance().Call(Methods.SetReturnAdditionalPreviews, queryHandle, returnAdditionalPreviews).AsBool();
+        return GetInstance().Call(Methods.SetReturnAdditionalPreviews, queryHandle, returnAdditionalPreviews).As<bool>();
     }
     
     public static bool SetReturnChildren(ulong queryHandle, bool returnChildren)
     {
-        return GetInstance().Call(Methods.SetReturnChildren, queryHandle, returnChildren).AsBool();
+        return GetInstance().Call(Methods.SetReturnChildren, queryHandle, returnChildren).As<bool>();
     }
     
     public static bool SetReturnKeyValueTags(ulong queryHandle, bool returnKeyValueTags)
     {
-        return GetInstance().Call(Methods.SetReturnKeyValueTags, queryHandle, returnKeyValueTags).AsBool();
+        return GetInstance().Call(Methods.SetReturnKeyValueTags, queryHandle, returnKeyValueTags).As<bool>();
     }
     
     public static bool SetReturnLongDescription(ulong queryHandle, bool returnLongDescription)
     {
-        return GetInstance().Call(Methods.SetReturnLongDescription, queryHandle, returnLongDescription).AsBool();
+        return GetInstance().Call(Methods.SetReturnLongDescription, queryHandle, returnLongDescription).As<bool>();
     }
     
     public static bool SetReturnMetadata(ulong queryHandle, bool returnMetadata)
     {
-        return GetInstance().Call(Methods.SetReturnMetadata, queryHandle, returnMetadata).AsBool();
+        return GetInstance().Call(Methods.SetReturnMetadata, queryHandle, returnMetadata).As<bool>();
     }
     
     public static bool SetReturnOnlyIDs(ulong queryHandle, bool returnOnlyIds)
     {
-        return GetInstance().Call(Methods.SetReturnOnlyIDs, queryHandle, returnOnlyIds).AsBool();
+        return GetInstance().Call(Methods.SetReturnOnlyIDs, queryHandle, returnOnlyIds).As<bool>();
     }
     
     public static bool SetReturnPlaytimeStats(ulong queryHandle, long days)
     {
-        return GetInstance().Call(Methods.SetReturnPlaytimeStats, queryHandle, days).AsBool();
+        return GetInstance().Call(Methods.SetReturnPlaytimeStats, queryHandle, days).As<bool>();
     }
     
     public static bool SetReturnTotalOnly(ulong queryHandle, bool returnTotalOnly)
     {
-        return GetInstance().Call(Methods.SetReturnTotalOnly, queryHandle, returnTotalOnly).AsBool();
+        return GetInstance().Call(Methods.SetReturnTotalOnly, queryHandle, returnTotalOnly).As<bool>();
     }
     
     public static bool SetSearchText(ulong queryHandle, string searchText)
     {
-        return GetInstance().Call(Methods.SetSearchText, queryHandle, searchText).AsBool();
+        return GetInstance().Call(Methods.SetSearchText, queryHandle, searchText).As<bool>();
     }
     
     public static void SetUserItemVote(ulong publishedFileId, bool voteUp)
@@ -354,7 +354,7 @@ public static partial class Steam
     
     public static ulong StartItemUpdate(uint appId, long fileId)
     {
-        return GetInstance().Call(Methods.StartItemUpdate, appId, fileId).AsUInt64();
+        return GetInstance().Call(Methods.StartItemUpdate, appId, fileId).As<ulong>();
     }
     
     public static void StartPlaytimeTracking(Godot.Collections.Array publishedFileIds)
@@ -399,17 +399,17 @@ public static partial class Steam
     
     public static bool UpdateItemPreviewFile(ulong updateHandle, uint index, string previewFile)
     {
-        return GetInstance().Call(Methods.UpdateItemPreviewFile, updateHandle, index, previewFile).AsBool();
+        return GetInstance().Call(Methods.UpdateItemPreviewFile, updateHandle, index, previewFile).As<bool>();
     }
     
     public static bool UpdateItemPreviewVideo(ulong updateHandle, uint index, string videoId)
     {
-        return GetInstance().Call(Methods.UpdateItemPreviewVideo, updateHandle, index, videoId).AsBool();
+        return GetInstance().Call(Methods.UpdateItemPreviewVideo, updateHandle, index, videoId).As<bool>();
     }
     
     public static bool ShowWorkshopEULA()
     {
-        return GetInstance().Call(Methods.ShowWorkshopEULA).AsBool();
+        return GetInstance().Call(Methods.ShowWorkshopEULA).As<bool>();
     }
     
     public static void GetWorkshopEULAStatus()
@@ -419,12 +419,12 @@ public static partial class Steam
     
     public static bool SetTimeCreatedDateRange(ulong updateHandle, uint start, long end)
     {
-        return GetInstance().Call(Methods.SetTimeCreatedDateRange, updateHandle, start, end).AsBool();
+        return GetInstance().Call(Methods.SetTimeCreatedDateRange, updateHandle, start, end).As<bool>();
     }
     
     public static bool SetTimeUpdatedDateRange(ulong updateHandle, uint start, long end)
     {
-        return GetInstance().Call(Methods.SetTimeUpdatedDateRange, updateHandle, start, end).AsBool();
+        return GetInstance().Call(Methods.SetTimeUpdatedDateRange, updateHandle, start, end).As<bool>();
     }
 
     public enum ItemPreviewType : long

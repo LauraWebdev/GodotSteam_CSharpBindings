@@ -12,7 +12,7 @@ public static partial class Steam
     
     public static bool ClearAchievement(string achievementName)
     {
-        return GetInstance().Call(Methods.ClearAchievement, achievementName).AsBool();
+        return GetInstance().Call(Methods.ClearAchievement, achievementName).As<bool>();
     }
     
     public static void DownloadLeaderboardEntries(int start, int end, LeaderboardDataRequest type = 0, long thisLeaderboard = 0)
@@ -52,17 +52,17 @@ public static partial class Steam
     
     public static string GetAchievementDisplayAttribute(string achievementName, string key)
     {
-        return GetInstance().Call(Methods.GetAchievementDisplayAttribute, achievementName, key).AsString();
+        return GetInstance().Call(Methods.GetAchievementDisplayAttribute, achievementName, key).As<string>();
     }
     
     public static int GetAchievementIcon(string achievementName)
     {
-        return GetInstance().Call(Methods.GetAchievementIcon, achievementName).AsInt32();
+        return GetInstance().Call(Methods.GetAchievementIcon, achievementName).As<int>();
     }
     
     public static string GetAchievementName(long achievement)
     {
-        return GetInstance().Call(Methods.GetAchievementName, achievement).AsString();
+        return GetInstance().Call(Methods.GetAchievementName, achievement).As<string>();
     }
     
     public static Godot.Collections.Dictionary GetAchievementProgressLimitsInt(string achievementName)
@@ -77,7 +77,7 @@ public static partial class Steam
     
     public static ulong GetGlobalStatInt(string statName)
     {
-        return GetInstance().Call(Methods.GetGlobalStatInt, statName).AsUInt64();
+        return GetInstance().Call(Methods.GetGlobalStatInt, statName).As<ulong>();
     }
     
     public static double GetGlobalStatFloat(string statName)
@@ -87,7 +87,7 @@ public static partial class Steam
     
     public static ulong GetGlobalStatIntHistory(string statName)
     {
-        return GetInstance().Call(Methods.GetGlobalStatIntHistory, statName).AsUInt64();
+        return GetInstance().Call(Methods.GetGlobalStatIntHistory, statName).As<ulong>();
     }
     
     public static double GetGlobalStatFloatHistory(string statName)
@@ -102,12 +102,12 @@ public static partial class Steam
     
     public static int GetLeaderboardEntryCount(long thisLeaderboard = 0)
     {
-        return GetInstance().Call(Methods.GetLeaderboardEntryCount, thisLeaderboard).AsInt32();
+        return GetInstance().Call(Methods.GetLeaderboardEntryCount, thisLeaderboard).As<int>();
     }
     
     public static string GetLeaderboardName(long thisLeaderboard = 0)
     {
-        return GetInstance().Call(Methods.GetLeaderboardName, thisLeaderboard).AsString();
+        return GetInstance().Call(Methods.GetLeaderboardName, thisLeaderboard).As<string>();
     }
     
     public static Godot.Collections.Dictionary GetLeaderboardSortMethod(long thisLeaderboard = 0)
@@ -142,7 +142,7 @@ public static partial class Steam
     
     public static int GetStatInt(string statName)
     {
-        return GetInstance().Call(Methods.GetStatInt, statName).AsInt32();
+        return GetInstance().Call(Methods.GetStatInt, statName).As<int>();
     }
     
     public static Godot.Collections.Dictionary GetUserAchievement(ulong steamId, string name)
@@ -162,17 +162,17 @@ public static partial class Steam
     
     public static int GetUserStatInt(ulong steamId, string name)
     {
-        return GetInstance().Call(Methods.GetUserStatInt, steamId, name).AsInt32();
+        return GetInstance().Call(Methods.GetUserStatInt, steamId, name).As<int>();
     }
     
     public static bool IndicateAchievementProgress(string name, int currentProgress, long maxProgress)
     {
-        return GetInstance().Call(Methods.IndicateAchievementProgress, name, currentProgress, maxProgress).AsBool();
+        return GetInstance().Call(Methods.IndicateAchievementProgress, name, currentProgress, maxProgress).As<bool>();
     }
     
     public static bool RequestCurrentStats()
     {
-        return GetInstance().Call(Methods.RequestCurrentStats).AsBool();
+        return GetInstance().Call(Methods.RequestCurrentStats).As<bool>();
     }
     
     public static void RequestGlobalAchievementPercentages()
@@ -192,37 +192,38 @@ public static partial class Steam
     
     public static bool ResetAllStats(bool achievementsToo)
     {
-        return GetInstance().Call(Methods.ResetAllStats, achievementsToo).AsBool();
+        return GetInstance().Call(Methods.ResetAllStats, achievementsToo).As<bool>();
     }
     
     public static bool SetAchievement(string name)
     {
-        return GetInstance().Call(Methods.SetAchievement, name).AsBool();
+        return GetInstance().Call(Methods.SetAchievement, name).As<bool>();
     }
     
+    [Obsolete]
     public static int SetLeaderboardDetailsMax(long max)
     {
-        return GetInstance().Call(Methods.SetLeaderboardDetailsMax, max).AsInt32();
+        return GetInstance().Call(Methods.SetLeaderboardDetailsMax, max).As<int>();
     }
     
     public static bool SetStatFloat(string name, double value)
     {
-        return GetInstance().Call(Methods.SetStatFloat, name, value).AsBool();
+        return GetInstance().Call(Methods.SetStatFloat, name, value).As<bool>();
     }
     
     public static bool SetStatInt(string name, long value)
     {
-        return GetInstance().Call(Methods.SetStatInt, name, value).AsBool();
+        return GetInstance().Call(Methods.SetStatInt, name, value).As<bool>();
     }
     
     public static bool StoreStats()
     {
-        return GetInstance().Call(Methods.StoreStats).AsBool();
+        return GetInstance().Call(Methods.StoreStats).As<bool>();
     }
     
     public static bool UpdateAvgRateStat(string name, float thisSession, double sessionLength)
     {
-        return GetInstance().Call(Methods.UpdateAvgRateStat, name, thisSession, sessionLength).AsBool();
+        return GetInstance().Call(Methods.UpdateAvgRateStat, name, thisSession, sessionLength).As<bool>();
     }
     
     /// <param name="details">If the parameter is null, then the default value is <c>Array.Empty&lt;int&gt;()</c>.</param>
