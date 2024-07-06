@@ -5,11 +5,11 @@ namespace GodotSteam;
 
 public static partial class Steam
 {
-    public delegate void NetworkMessagesSessionRequestEventHandler(string identity);
+    public delegate void NetworkMessagesSessionRequestEventHandler(ulong remoteSteamId);
     private static event NetworkMessagesSessionRequestEventHandler NetworkMessagesSessionRequestEvent;
-    static Action<string> _networkMessagesSessionRequestAction = (identity) =>
+    static Action<ulong> _networkMessagesSessionRequestAction = (remoteSteamId) =>
     {
-        NetworkMessagesSessionRequestEvent?.Invoke(identity);
+        NetworkMessagesSessionRequestEvent?.Invoke(remoteSteamId);
     };
     public static event NetworkMessagesSessionRequestEventHandler NetworkMessagesSessionRequest
     {
