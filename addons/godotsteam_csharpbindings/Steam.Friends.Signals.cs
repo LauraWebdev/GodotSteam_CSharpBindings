@@ -167,7 +167,7 @@ public static partial class Steam
     private static event ConnectedClanChatMessageEventHandler ConnectedClanChatMessageEvent;
     static Action<Godot.Collections.Dictionary> _connectedClanChatMessageAction = (raw) =>
     {
-        ConnectedClanChatMessageEvent?.Invoke(raw["ret"].AsInt32(), raw["text"].AsString(), raw["type"].AsString(), raw["chatter"].AsUInt64());
+        ConnectedClanChatMessageEvent?.Invoke(raw["ret"].As<int>(), raw["text"].As<string>(), raw["type"].As<string>(), raw["chatter"].As<ulong>());
     };
     public static event ConnectedClanChatMessageEventHandler ConnectedClanChatMessage
     {
@@ -193,7 +193,7 @@ public static partial class Steam
     private static event ConnectedFriendChatMessageEventHandler ConnectedFriendChatMessageEvent;
     static Action<Godot.Collections.Dictionary> _connectedFriendChatMessageAction = (raw) =>
     {
-        ConnectedFriendChatMessageEvent?.Invoke(raw["ret"].AsInt32(), raw["text"].AsString());
+        ConnectedFriendChatMessageEvent?.Invoke(raw["ret"].As<int>(), raw["text"].As<string>());
     };
     public static event ConnectedFriendChatMessageEventHandler ConnectedFriendChatMessage
     {
@@ -226,8 +226,8 @@ public static partial class Steam
                 .Select(
                     followDictionary => new Follow
                     {
-                        Num = followDictionary["num"].AsInt32(),
-                        Id = followDictionary["id"].AsUInt64(),
+                        Num = followDictionary["num"].As<int>(),
+                        Id = followDictionary["id"].As<ulong>(),
                     })
                 .ToList()
         );
@@ -286,11 +286,11 @@ public static partial class Steam
             (ErrorResult)result,
             steamId, new ProfileData
             {
-                AvatarAnimated = profileData["avatar_animated"].AsBool(),
-                AvatarFrame = profileData["avatar_frame"].AsBool(),
-                ProfileModifier = profileData["profile_modifier"].AsBool(),
-                ProfileBackground = profileData["profile_background"].AsBool(),
-                ProfileMiniBackground = profileData["profile_mini_background"].AsBool(),
+                AvatarAnimated = profileData["avatar_animated"].As<bool>(),
+                AvatarFrame = profileData["avatar_frame"].As<bool>(),
+                ProfileModifier = profileData["profile_modifier"].As<bool>(),
+                ProfileBackground = profileData["profile_background"].As<bool>(),
+                ProfileMiniBackground = profileData["profile_mini_background"].As<bool>(),
             }
         );
     };
@@ -585,8 +585,8 @@ public static partial class Steam
                 .Select(
                     officerDictionary => new ClanOfficer
                     {
-                        Id = officerDictionary["id"].AsUInt64(),
-                        Name = officerDictionary["name"].AsString(),
+                        Id = officerDictionary["id"].As<ulong>(),
+                        Name = officerDictionary["name"].As<string>(),
                     })
                 .ToList()
         );

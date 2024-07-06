@@ -4,22 +4,22 @@ public static partial class Steam
 {
     public static bool AcceptP2PSessionWithUser(ulong steamIdRemote)
     {
-        return GetInstance().Call(Methods.AcceptP2PSessionWithUser, steamIdRemote).AsBool();
+        return GetInstance().Call(Methods.AcceptP2PSessionWithUser, steamIdRemote).As<bool>();
     }
     
     public static bool AllowP2PPacketRelay(bool allow)
     {
-        return GetInstance().Call(Methods.AllowP2PPacketRelay, allow).AsBool();
+        return GetInstance().Call(Methods.AllowP2PPacketRelay, allow).As<bool>();
     }
     
     public static bool CloseP2PChannelWithUser(ulong steamIdRemote, long channel)
     {
-        return GetInstance().Call(Methods.CloseP2PChannelWithUser, steamIdRemote, channel).AsBool();
+        return GetInstance().Call(Methods.CloseP2PChannelWithUser, steamIdRemote, channel).As<bool>();
     }
     
     public static bool CloseP2PSessionWithUser(ulong steamIdRemote)
     {
-        return GetInstance().Call(Methods.CloseP2PSessionWithUser, steamIdRemote).AsBool();
+        return GetInstance().Call(Methods.CloseP2PSessionWithUser, steamIdRemote).As<bool>();
     }
     
     public static Godot.Collections.Dictionary GetP2PSessionState(ulong steamIdRemote)
@@ -29,7 +29,7 @@ public static partial class Steam
     
     public static uint GetAvailableP2PPacketSize(long channel = 0)
     {
-        return GetInstance().Call(Methods.GetAvailableP2PPacketSize, channel).AsUInt32();
+        return GetInstance().Call(Methods.GetAvailableP2PPacketSize, channel).As<uint>();
     }
     
     public static Godot.Collections.Dictionary ReadP2PPacket(uint packet, long channel = 0)
@@ -39,7 +39,7 @@ public static partial class Steam
     
     public static bool SendP2PPacket(ulong steamIdRemote, byte[] data, P2PSend sendType, long channel = 0)
     {
-        return GetInstance().Call(Methods.SendP2PPacket, steamIdRemote, data, (long)sendType, channel).AsBool();
+        return GetInstance().Call(Methods.SendP2PPacket, steamIdRemote, data, (long)sendType, channel).As<bool>();
     }
     
     public enum P2PSend : long

@@ -92,14 +92,14 @@ public static partial class Steam
             searchId,
             new PlayerData
             {
-                PlayerId = playerData["player_id"].AsUInt64(),
-                LobbyId = playerData["lobby_id"].AsUInt64(),
-                PlayerAcceptState = playerData["player_accept_state"].AsInt32(),
-                PlayerIndex = playerData["player_index"].AsInt32(),
-                TotalPlayers = playerData["total_players"].AsInt32(),
-                TotalPlayersAcceptedGame = playerData["total_players_accepted_game"].AsInt32(),
-                SuggestedTeamIndex = playerData["suggested_team_index"].AsInt32(),
-                UniqueGameId = playerData["unique_game_id"].AsUInt64(),
+                PlayerId = playerData["player_id"].As<ulong>(),
+                LobbyId = playerData["lobby_id"].As<ulong>(),
+                PlayerAcceptState = playerData["player_accept_state"].As<int>(),
+                PlayerIndex = playerData["player_index"].As<int>(),
+                TotalPlayers = playerData["total_players"].As<int>(),
+                TotalPlayersAcceptedGame = playerData["total_players_accepted_game"].As<int>(),
+                SuggestedTeamIndex = playerData["suggested_team_index"].As<int>(),
+                UniqueGameId = playerData["unique_game_id"].As<ulong>(),
             }
         );
     };
@@ -132,10 +132,10 @@ public static partial class Steam
             searchId,
             new SearchProgress
             {
-                LobbyId = searchProgress["lobby_id"].AsUInt64(),
-                EndedSearchId = searchProgress["lobby_id"].AsUInt64(),
-                SecondsRemainingEstimate = searchProgress["seconds_remaining_estimate"].AsInt32(),
-                PlayersSearching = searchProgress["players_searching"].AsInt32(),
+                LobbyId = searchProgress["lobby_id"].As<ulong>(),
+                EndedSearchId = searchProgress["lobby_id"].As<ulong>(),
+                SecondsRemainingEstimate = searchProgress["seconds_remaining_estimate"].As<int>(),
+                PlayersSearching = searchProgress["players_searching"].As<int>(),
             }
         );
     };
@@ -168,10 +168,10 @@ public static partial class Steam
             searchId,
             new SearchResult
             {
-                CountPlayersIngame = searchResult["count_players_ingame"].AsInt32(),
-                CountAcceptedGame = searchResult["count_accepted_game"].AsInt32(),
-                HostId = searchResult["host_id"].AsUInt64(),
-                FinalCallback = searchResult["final_callback"].AsBool()
+                CountPlayersIngame = searchResult["count_players_ingame"].As<int>(),
+                CountAcceptedGame = searchResult["count_accepted_game"].As<int>(),
+                HostId = searchResult["host_id"].As<ulong>(),
+                FinalCallback = searchResult["final_callback"].As<bool>()
             }
         );
     };

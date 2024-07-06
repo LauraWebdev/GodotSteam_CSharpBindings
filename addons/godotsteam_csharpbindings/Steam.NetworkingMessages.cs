@@ -4,17 +4,17 @@ public static partial class Steam
 {
     public static bool AcceptSessionWithUser(ulong remoteSteamId)
     {
-        return GetInstance().Call(Methods.AcceptSessionWithUser, remoteSteamId).AsBool();
+        return GetInstance().Call(Methods.AcceptSessionWithUser, remoteSteamId).As<bool>();
     }
     
     public static bool CloseChannelWithUser(ulong remoteSteamId, long channel)
     {
-        return GetInstance().Call(Methods.CloseChannelWithUser, remoteSteamId, channel).AsBool();
+        return GetInstance().Call(Methods.CloseChannelWithUser, remoteSteamId, channel).As<bool>();
     }
     
     public static bool CloseSessionWithUser(ulong remoteSteamId)
     {
-        return GetInstance().Call(Methods.CloseSessionWithUser, remoteSteamId).AsBool();
+        return GetInstance().Call(Methods.CloseSessionWithUser, remoteSteamId).As<bool>();
     }
     
     public static Godot.Collections.Dictionary GetSessionConnectionInfo(ulong remoteSteamId, bool getConnection, bool getStatus)
@@ -29,6 +29,6 @@ public static partial class Steam
     
     public static int SendMessageToUser(ulong remoteSteamId, byte[] data, int flags, long channel)
     {
-        return GetInstance().Call(Methods.SendMessageToUser, remoteSteamId, data, flags, channel).AsInt32();
+        return GetInstance().Call(Methods.SendMessageToUser, remoteSteamId, data, flags, channel).As<int>();
     }
 }

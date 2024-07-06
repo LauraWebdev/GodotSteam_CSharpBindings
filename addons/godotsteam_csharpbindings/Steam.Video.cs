@@ -11,7 +11,7 @@ public static partial class Steam
     
     public static string GetOPFStringForApp(uint appId)
     {
-        return GetInstance().Call(Methods.GetOPFStringForApp, appId).AsString();
+        return GetInstance().Call(Methods.GetOPFStringForApp, appId).As<string>();
     }
     
     public static void GetVideoURL(uint appId)
@@ -25,8 +25,8 @@ public static partial class Steam
 
         return new BroadcastStatus
         {
-            Broadcasting = raw["broadcasting"].AsBool(),
-            Viewers = raw["viewers"].AsInt32(),
+            Broadcasting = raw["broadcasting"].As<bool>(),
+            Viewers = raw["viewers"].As<int>(),
         };
     }
 }

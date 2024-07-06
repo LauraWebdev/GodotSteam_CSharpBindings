@@ -34,7 +34,7 @@ public static partial class Steam
     
     public static uint GetAuthTicketForWebApi(string identityReference = "")
     {
-        return GetInstance().Call(Methods.GetAuthTicketForWebApi, identityReference).AsUInt32();
+        return GetInstance().Call(Methods.GetAuthTicketForWebApi, identityReference).As<uint>();
     }
     
     public static Godot.Collections.Dictionary GetAvailableVoice()
@@ -54,7 +54,7 @@ public static partial class Steam
     
     public static int GetGameBadgeLevel(int series, bool foil)
     {
-        return GetInstance().Call(Methods.GetGameBadgeLevel, series, foil).AsInt32();
+        return GetInstance().Call(Methods.GetGameBadgeLevel, series, foil).As<int>();
     }
     
     public static Godot.Collections.Dictionary GetVoice()
@@ -74,32 +74,32 @@ public static partial class Steam
     
     public static bool IsBehindNAT()
     {
-        return GetInstance().Call(Methods.IsBehindNAT).AsBool();
+        return GetInstance().Call(Methods.IsBehindNAT).As<bool>();
     }
     
     public static bool IsPhoneIdentifying()
     {
-        return GetInstance().Call(Methods.IsPhoneIdentifying).AsBool();
+        return GetInstance().Call(Methods.IsPhoneIdentifying).As<bool>();
     }
     
     public static bool IsPhoneRequiringVerification()
     {
-        return GetInstance().Call(Methods.IsPhoneRequiringVerification).AsBool();
+        return GetInstance().Call(Methods.IsPhoneRequiringVerification).As<bool>();
     }
     
     public static bool IsPhoneVerified()
     {
-        return GetInstance().Call(Methods.IsPhoneVerified).AsBool();
+        return GetInstance().Call(Methods.IsPhoneVerified).As<bool>();
     }
     
     public static bool IsTwoFactorEnabled()
     {
-        return GetInstance().Call(Methods.IsTwoFactorEnabled).AsBool();
+        return GetInstance().Call(Methods.IsTwoFactorEnabled).As<bool>();
     }
     
     public static bool LoggedOn()
     {
-        return GetInstance().Call(Methods.LoggedOn).AsBool();
+        return GetInstance().Call(Methods.LoggedOn).As<bool>();
     }
     
     public static void RequestEncryptedAppTicket(string secret)
@@ -119,7 +119,7 @@ public static partial class Steam
     
     public static bool SetDurationControlOnlineState(long newState)
     {
-        return GetInstance().Call(Methods.SetDurationControlOnlineState, newState).AsBool();
+        return GetInstance().Call(Methods.SetDurationControlOnlineState, newState).As<bool>();
     }
     
     public static void StopVoiceRecording()
@@ -134,17 +134,17 @@ public static partial class Steam
     
     public static int UserHasLicenseForApp(ulong steamId, uint appId)
     {
-        return GetInstance().Call(Methods.UserHasLicenseForApp, steamId, appId).AsInt32();
+        return GetInstance().Call(Methods.UserHasLicenseForApp, steamId, appId).As<int>();
     }
     
     public static ulong GetSteamID()
     {
-        return GetInstance().Call(Methods.GetSteamID).AsUInt64();
+        return GetInstance().Call(Methods.GetSteamID).As<ulong>();
     }
     
     public static int GetPlayerSteamLevel()
     {
-        return GetInstance().Call(Methods.GetPlayerSteamLevel).AsInt32();
+        return GetInstance().Call(Methods.GetPlayerSteamLevel).As<int>();
     }
 
     public enum DurationControlProgress : long

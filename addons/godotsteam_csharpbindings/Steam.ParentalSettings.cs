@@ -4,32 +4,32 @@ public static partial class Steam
 {
     public static bool IsParentalLockEnabled()
     {
-        return GetInstance().Call(Methods.IsParentalLockEnabled).AsBool();
+        return GetInstance().Call(Methods.IsParentalLockEnabled).As<bool>();
     }
     
     public static bool IsParentalLockLocked()
     {
-        return GetInstance().Call(Methods.IsParentalLockLocked).AsBool();
+        return GetInstance().Call(Methods.IsParentalLockLocked).As<bool>();
     }
     
     public static bool IsAppBlocked(uint appId)
     {
-        return GetInstance().Call(Methods.IsAppBlocked, appId).AsBool();
+        return GetInstance().Call(Methods.IsAppBlocked, appId).As<bool>();
     }
     
     public static bool IsAppInBlockList(uint appId)
     {
-        return GetInstance().Call(Methods.IsAppInBlockList, appId).AsBool();
+        return GetInstance().Call(Methods.IsAppInBlockList, appId).As<bool>();
     }
     
     public static bool IsFeatureBlocked(ParentalFeature feature)
     {
-        return GetInstance().Call(Methods.IsFeatureBlocked, (long)feature).AsBool();
+        return GetInstance().Call(Methods.IsFeatureBlocked, (long)feature).As<bool>();
     }
     
     public static bool IsFeatureInBlockList(ParentalFeature feature)
     {
-        return GetInstance().Call(Methods.IsFeatureInBlockList, (long)feature).AsBool();
+        return GetInstance().Call(Methods.IsFeatureInBlockList, (long)feature).As<bool>();
     }
     
     public enum ParentalFeature : long

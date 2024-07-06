@@ -4,22 +4,22 @@ public static partial class Steam
 {
     public static bool CheckPingDataUpToDate(double maxAgeInSeconds)
     {
-        return GetInstance().Call(Methods.CheckPingDataUpToDate, maxAgeInSeconds).AsBool();
+        return GetInstance().Call(Methods.CheckPingDataUpToDate, maxAgeInSeconds).As<bool>();
     }
     
     public static string ConvertPingLocationToString(byte[] location)
     {
-        return GetInstance().Call(Methods.ConvertPingLocationToString, location).AsString();
+        return GetInstance().Call(Methods.ConvertPingLocationToString, location).As<string>();
     }
     
     public static int EstimatePingTimeBetweenTwoLocations(byte[] location1, byte[] location2)
     {
-        return GetInstance().Call(Methods.EstimatePingTimeBetweenTwoLocations, location1, location2).AsInt32();
+        return GetInstance().Call(Methods.EstimatePingTimeBetweenTwoLocations, location1, location2).As<int>();
     }
     
     public static int EstimatePingTimeFromLocalHost(byte[] location)
     {
-        return GetInstance().Call(Methods.EstimatePingTimeFromLocalHost, location).AsInt32();
+        return GetInstance().Call(Methods.EstimatePingTimeFromLocalHost, location).As<int>();
     }
     
     public static Godot.Collections.Dictionary GetConfigValue(NetworkingConfigValue configValue, NetworkingConfigScope scopeType, long connectionHandle)
@@ -34,7 +34,7 @@ public static partial class Steam
     
     public static int GetDirectPingToPOP(long popId)
     {
-        return GetInstance().Call(Methods.GetDirectPingToPOP, popId).AsInt32();
+        return GetInstance().Call(Methods.GetDirectPingToPOP, popId).As<int>();
     }
     
     public static Godot.Collections.Dictionary GetLocalPingLocation()
@@ -79,32 +79,32 @@ public static partial class Steam
     
     public static bool SetConnectionConfigValueFloat(uint connection, NetworkingConfigValue config, double value)
     {
-        return GetInstance().Call(Methods.SetConnectionConfigValueFloat, connection, (long)config, value).AsBool();
+        return GetInstance().Call(Methods.SetConnectionConfigValueFloat, connection, (long)config, value).As<bool>();
     }
     
     public static bool SetConnectionConfigValueInt32(uint connection, NetworkingConfigValue config, long value)
     {
-        return GetInstance().Call(Methods.SetConnectionConfigValueInt32, connection, (long)config, value).AsBool();
+        return GetInstance().Call(Methods.SetConnectionConfigValueInt32, connection, (long)config, value).As<bool>();
     }
     
     public static bool SetConnectionConfigValueString(uint connection, NetworkingConfigValue config, string value)
     {
-        return GetInstance().Call(Methods.SetConnectionConfigValueString, connection, (long)config, value).AsBool();
+        return GetInstance().Call(Methods.SetConnectionConfigValueString, connection, (long)config, value).As<bool>();
     }
     
     public static bool SetGlobalConfigValueFloat(NetworkingConfigValue config, double value)
     {
-        return GetInstance().Call(Methods.SetGlobalConfigValueFloat, (long)config, value).AsBool();
+        return GetInstance().Call(Methods.SetGlobalConfigValueFloat, (long)config, value).As<bool>();
     }
     
     public static bool SetGlobalConfigValueInt32(NetworkingConfigValue config, long value)
     {
-        return GetInstance().Call(Methods.SetGlobalConfigValueInt32, (long)config, value).AsBool();
+        return GetInstance().Call(Methods.SetGlobalConfigValueInt32, (long)config, value).As<bool>();
     }
     
     public static bool SetGlobalConfigValueString(NetworkingConfigValue config, string value)
     {
-        return GetInstance().Call(Methods.SetGlobalConfigValueString, (long)config, value).AsBool();
+        return GetInstance().Call(Methods.SetGlobalConfigValueString, (long)config, value).As<bool>();
     }
     
     public enum NetworkingAvailability : long

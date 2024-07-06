@@ -24,7 +24,7 @@ public static partial class Steam
     
     public static ulong GetActionSetHandle(string actionSetName)
     {
-        return GetInstance().Call(Methods.GetActionSetHandle, actionSetName).AsUInt64();
+        return GetInstance().Call(Methods.GetActionSetHandle, actionSetName).As<ulong>();
     }
     
     public static InputActionOrigin GetActionOriginFromXboxOrigin(ulong inputHandle, long origin)
@@ -44,7 +44,7 @@ public static partial class Steam
     
     public static ulong GetAnalogActionHandle(string actionName)
     {
-        return GetInstance().Call(Methods.GetAnalogActionHandle, actionName).AsUInt16();
+        return GetInstance().Call(Methods.GetAnalogActionHandle, actionName).As<ulong>();
     }
     
     public static Godot.Collections.Array GetAnalogActionOrigins(ulong inputHandle, ulong actionSetHandle, long analogActionHandle)
@@ -59,12 +59,12 @@ public static partial class Steam
     
     public static ulong GetControllerForGamepadIndex(long index)
     {
-        return GetInstance().Call(Methods.GetControllerForGamepadIndex, index).AsUInt16();
+        return GetInstance().Call(Methods.GetControllerForGamepadIndex, index).As<ulong>();
     }
     
     public static ulong GetCurrentActionSet(long inputHandle)
     {
-        return GetInstance().Call(Methods.GetCurrentActionSet, inputHandle).AsUInt16();
+        return GetInstance().Call(Methods.GetCurrentActionSet, inputHandle).As<ulong>();
     }
     
     public static Godot.Collections.Array GetDeviceBindingRevision(long inputHandle)
@@ -79,7 +79,7 @@ public static partial class Steam
     
     public static ulong GetDigitalActionHandle(string actionName)
     {
-        return GetInstance().Call(Methods.GetDigitalActionHandle, actionName).AsUInt64();
+        return GetInstance().Call(Methods.GetDigitalActionHandle, actionName).As<ulong>();
     }
     
     public static Godot.Collections.Array GetDigitalActionOrigins(ulong inputHandle, ulong actionSetHandle, long digitalActionHandle)
@@ -89,17 +89,17 @@ public static partial class Steam
     
     public static int GetGamepadIndexForController(long inputHandle)
     {
-        return GetInstance().Call(Methods.GetGamepadIndexForController, inputHandle).AsInt32();
+        return GetInstance().Call(Methods.GetGamepadIndexForController, inputHandle).As<int>();
     }
     
     public static string GetGlyphForActionOrigin(InputActionOrigin origin)
     {
-        return GetInstance().Call(Methods.GetGlyphForActionOrigin, (long)origin).AsString();
+        return GetInstance().Call(Methods.GetGlyphForActionOrigin, (long)origin).As<string>();
     }
     
     public static string GetInputTypeForHandle(long inputHandle)
     {
-        return GetInstance().Call(Methods.GetInputTypeForHandle, inputHandle).AsString();
+        return GetInstance().Call(Methods.GetInputTypeForHandle, inputHandle).As<string>();
     }
     
     public static Godot.Collections.Dictionary GetMotionData(long inputHandle)
@@ -109,22 +109,22 @@ public static partial class Steam
     
     public static int GetRemotePlaySessionID(long inputHandle)
     {
-        return GetInstance().Call(Methods.GetRemotePlaySessionID, inputHandle).AsInt32();
+        return GetInstance().Call(Methods.GetRemotePlaySessionID, inputHandle).As<int>();
     }
     
     public static string GetStringForActionOrigin(InputActionOrigin origin)
     {
-        return GetInstance().Call(Methods.GetStringForActionOrigin, (long)origin).AsString();
+        return GetInstance().Call(Methods.GetStringForActionOrigin, (long)origin).As<string>();
     }
     
     public static bool InputInit(bool explicitlyCallRunframe = false)
     {
-        return GetInstance().Call(Methods.InputInit, explicitlyCallRunframe).AsBool();
+        return GetInstance().Call(Methods.InputInit, explicitlyCallRunframe).As<bool>();
     }
     
     public static bool InputShutdown()
     {
-        return GetInstance().Call(Methods.InputShutdown).AsBool();
+        return GetInstance().Call(Methods.InputShutdown).As<bool>();
     }
     
     public static void RunFrame(bool reservedValue = true)
@@ -139,7 +139,7 @@ public static partial class Steam
     
     public static bool ShowBindingPanel(long inputHandle)
     {
-        return GetInstance().Call(Methods.ShowBindingPanel, inputHandle).AsBool();
+        return GetInstance().Call(Methods.ShowBindingPanel, inputHandle).As<bool>();
     }
     
     public static void StopAnalogActionMomentum(ulong inputHandle, long action)
@@ -149,7 +149,7 @@ public static partial class Steam
     
     public static int TranslateActionOrigin(InputType destinationInput, InputActionOrigin sourceOrigin)
     {
-        return GetInstance().Call(Methods.TranslateActionOrigin, (long)destinationInput, (long)sourceOrigin).AsInt32();
+        return GetInstance().Call(Methods.TranslateActionOrigin, (long)destinationInput, (long)sourceOrigin).As<int>();
     }
     
     public static void TriggerHapticPulse(ulong inputHandle, int targetPad, long duration)
@@ -169,7 +169,7 @@ public static partial class Steam
     
     public static bool SetInputActionManifestFilePath(string manifestPath)
     {
-        return GetInstance().Call(Methods.SetInputActionManifestFilePath, manifestPath).AsBool();
+        return GetInstance().Call(Methods.SetInputActionManifestFilePath, manifestPath).As<bool>();
     }
     
     public static void SetDualSenseTriggerEffect(ulong inputHandle, int parameters, int triggerMask, ScePadTriggerEffectMode effectMode, int position, int amplitude, long frequency)
@@ -179,12 +179,12 @@ public static partial class Steam
     
     public static bool WaitForData(bool waitForever, long timeout)
     {
-        return GetInstance().Call(Methods.WaitForData, waitForever, timeout).AsBool();
+        return GetInstance().Call(Methods.WaitForData, waitForever, timeout).As<bool>();
     }
     
     public static bool NewDataAvailable()
     {
-        return GetInstance().Call(Methods.NewDataAvailable).AsBool();
+        return GetInstance().Call(Methods.NewDataAvailable).As<bool>();
     }
     
     public static void EnableDeviceCallbacks()
@@ -194,12 +194,12 @@ public static partial class Steam
     
     public static string GetGlyphPNGForActionOrigin(InputActionOrigin origin, InputGlyphSize size, long flags)
     {
-        return GetInstance().Call(Methods.GetGlyphPNGForActionOrigin, (long)origin, (long)size, flags).AsString();
+        return GetInstance().Call(Methods.GetGlyphPNGForActionOrigin, (long)origin, (long)size, flags).As<string>();
     }
     
     public static string GetGlyphSVGForActionOrigin(InputActionOrigin origin, long flags)
     {
-        return GetInstance().Call(Methods.GetGlyphSVGForActionOrigin, (long)origin, flags).AsString();
+        return GetInstance().Call(Methods.GetGlyphSVGForActionOrigin, (long)origin, flags).As<string>();
     }
     
     public static void TriggerVibrationExtended(ulong inputHandle, int leftSpeed, int rightSpeed, int leftTriggerSpeed, long rightTriggerSpeed)
@@ -214,12 +214,12 @@ public static partial class Steam
     
     public static string GetStringForXboxOrigin(long origin)
     {
-        return GetInstance().Call(Methods.GetStringForXboxOrigin, origin).AsString();
+        return GetInstance().Call(Methods.GetStringForXboxOrigin, origin).As<string>();
     }
     
     public static string GetGlyphForXboxOrigin(long origin)
     {
-        return GetInstance().Call(Methods.GetGlyphForXboxOrigin, origin).AsString();
+        return GetInstance().Call(Methods.GetGlyphForXboxOrigin, origin).As<string>();
     }
     
     public static long GetSessionInputConfigurationSettings()
@@ -229,12 +229,12 @@ public static partial class Steam
     
     public static string GetStringForDigitalActionName(long actionHandle)
     {
-        return GetInstance().Call(Methods.GetStringForDigitalActionName, actionHandle).AsString();
+        return GetInstance().Call(Methods.GetStringForDigitalActionName, actionHandle).As<string>();
     }
     
     public static string GetStringForAnalogActionName(long actionHandle)
     {
-        return GetInstance().Call(Methods.GetStringForAnalogActionName, actionHandle).AsString();
+        return GetInstance().Call(Methods.GetStringForAnalogActionName, actionHandle).As<string>();
     }
 
     public enum InputActionEventType : long

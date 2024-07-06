@@ -9,12 +9,12 @@ public static partial class Steam
 {
     public static bool IsAppInstalled(uint appId)
     {
-        return GetInstance().Call(Methods.IsAppInstalled, appId).AsBool();
+        return GetInstance().Call(Methods.IsAppInstalled, appId).As<bool>();
     }
     
     public static int GetAppBuildId()
     {
-        return GetInstance().Call(Methods.GetAppBuildId).AsInt32();
+        return GetInstance().Call(Methods.GetAppBuildId).As<int>();
     }
     
     public static InstalledApps GetAppInstallDir(uint appId)
@@ -23,34 +23,34 @@ public static partial class Steam
 
         return new InstalledApps
         {
-            Directory = raw["directory"].AsString(),
-            InstallSize = raw["install_size"].AsUInt32()
+            Directory = raw["directory"].As<string>(),
+            InstallSize = raw["install_size"].As<uint>()
         };
     }
     
     public static ulong GetAppOwner()
     {
-        return GetInstance().Call(Methods.GetAppOwner).AsUInt64();
+        return GetInstance().Call(Methods.GetAppOwner).As<ulong>();
     }
     
     public static string GetAvailableGameLanguages()
     {
-        return GetInstance().Call(Methods.GetAvailableGameLanguages).AsString();
+        return GetInstance().Call(Methods.GetAvailableGameLanguages).As<string>();
     }
     
     public static string GetCurrentBetaName()
     {
-        return GetInstance().Call(Methods.GetCurrentBetaName).AsString();
+        return GetInstance().Call(Methods.GetCurrentBetaName).As<string>();
     }
     
     public static string GetCurrentGameLanguage()
     {
-        return GetInstance().Call(Methods.GetCurrentGameLanguage).AsString();
+        return GetInstance().Call(Methods.GetCurrentGameLanguage).As<string>();
     }
     
     public static uint GetEarliestPurchaseUnixTime(uint appId)
     {
-        return GetInstance().Call(Methods.GetEarliestPurchaseUnixTime, appId).AsUInt32();
+        return GetInstance().Call(Methods.GetEarliestPurchaseUnixTime, appId).As<uint>();
     }
     
     public static void GetFileDetails(string fileName)
@@ -62,17 +62,17 @@ public static partial class Steam
     {
         var raw = GetInstance().Call(Methods.GetInstalledDepots, appId).AsGodotArray();
         
-        return raw.Select(x => x.AsUInt32()).ToList();
+        return raw.Select(x => x.As<uint>()).ToList();
     }
     
     public static string GetLaunchCommandLine()
     {
-        return GetInstance().Call(Methods.GetLaunchCommandLine).AsString();
+        return GetInstance().Call(Methods.GetLaunchCommandLine).As<string>();
     }
     
     public static string GetLaunchQueryParam(string key)
     {
-        return GetInstance().Call(Methods.GetLaunchQueryParam, key).AsString();
+        return GetInstance().Call(Methods.GetLaunchQueryParam, key).As<string>();
     }
     public static List<Dlc> GetDLCDataByIndex()
     {
@@ -82,21 +82,21 @@ public static partial class Steam
                 rawDlc => rawDlc.AsGodotDictionary()).Select(
                 dlcDictionary => new Dlc
                 {
-                    AppId = dlcDictionary["app_id"].AsUInt32(),
-                    Available = dlcDictionary["available"].AsBool(),
-                    Name = dlcDictionary["name"].AsString(),
+                    AppId = dlcDictionary["app_id"].As<uint>(),
+                    Available = dlcDictionary["available"].As<bool>(),
+                    Name = dlcDictionary["name"].As<string>(),
                 })
             .ToList();
     }
     
     public static bool IsDLCInstalled(uint dlcId)
     {
-        return GetInstance().Call(Methods.IsDLCInstalled, dlcId).AsBool();
+        return GetInstance().Call(Methods.IsDLCInstalled, dlcId).As<bool>();
     }
     
     public static int GetDLCCount()
     {
-        return GetInstance().Call(Methods.GetDLCCount).AsInt32();
+        return GetInstance().Call(Methods.GetDLCCount).As<int>();
     }
     
     public static DlcDownloadProgress GetDLCDownloadProgress(uint dlcId)
@@ -110,9 +110,9 @@ public static partial class Steam
         
         return new DlcDownloadProgress
         {
-            Ret = raw["ret"].AsBool(),
-            Downloaded = raw["downloaded"].AsUInt64(),
-            Total = raw["total"].AsUInt64()
+            Ret = raw["ret"].As<bool>(),
+            Downloaded = raw["downloaded"].As<ulong>(),
+            Total = raw["total"].As<ulong>()
         };
     }
     
@@ -123,12 +123,12 @@ public static partial class Steam
     
     public static bool MarkContentCorrupt(bool missingFilesOnly)
     {
-        return GetInstance().Call(Methods.MarkContentCorrupt, missingFilesOnly).AsBool();
+        return GetInstance().Call(Methods.MarkContentCorrupt, missingFilesOnly).As<bool>();
     }
     
     public static bool SetDLCContext(uint appId)
     {
-        return GetInstance().Call(Methods.SetDLCContext, appId).AsBool();
+        return GetInstance().Call(Methods.SetDLCContext, appId).As<bool>();
     }
     
     public static void UninstallDLC(uint dlcId)
@@ -138,27 +138,27 @@ public static partial class Steam
     
     public static bool IsLowViolence()
     {
-        return GetInstance().Call(Methods.IsLowViolence).AsBool();
+        return GetInstance().Call(Methods.IsLowViolence).As<bool>();
     }
     
     public static bool IsSubscribed()
     {
-        return GetInstance().Call(Methods.IsSubscribed).AsBool();
+        return GetInstance().Call(Methods.IsSubscribed).As<bool>();
     }
     
     public static bool IsSubscribedApp(uint appId)
     {
-        return GetInstance().Call(Methods.IsSubscribedApp, appId).AsBool();
+        return GetInstance().Call(Methods.IsSubscribedApp, appId).As<bool>();
     }
     
     public static bool IsSubscribedFromFamilySharing()
     {
-        return GetInstance().Call(Methods.IsSubscribedFromFamilySharing).AsBool();
+        return GetInstance().Call(Methods.IsSubscribedFromFamilySharing).As<bool>();
     }
     
     public static bool IsSubscribedFromFreeWeekend()
     {
-        return GetInstance().Call(Methods.IsSubscribedFromFreeWeekend).AsBool();
+        return GetInstance().Call(Methods.IsSubscribedFromFreeWeekend).As<bool>();
     }
     
     public static TimedTrial IsTimedTrial()
@@ -172,13 +172,13 @@ public static partial class Steam
 
         return new TimedTrial
         {
-            SecondsAllowed = raw["seconds_allowed"].AsUInt32(),
-            SecondsPlayed = raw["seconds_played"].AsUInt32()
+            SecondsAllowed = raw["seconds_allowed"].As<uint>(),
+            SecondsPlayed = raw["seconds_played"].As<uint>()
         };
     }
     
     public static bool IsVACBanned()
     {
-        return GetInstance().Call(Methods.IsVACBanned).AsBool();
+        return GetInstance().Call(Methods.IsVACBanned).As<bool>();
     }
 }

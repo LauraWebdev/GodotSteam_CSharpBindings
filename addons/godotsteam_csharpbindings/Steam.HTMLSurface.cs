@@ -154,7 +154,7 @@ public static partial class Steam
     
     public static bool HtmlShutdown()
     {
-        return GetInstance().Call(Methods.HtmlShutdown).AsBool();
+        return GetInstance().Call(Methods.HtmlShutdown).As<bool>();
     }
     
     public static void StopFind(uint thisHandle = 0)
