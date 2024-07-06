@@ -1,6 +1,6 @@
 namespace GodotSteam;
 
-public class ClanChatMessage
+public struct ClanChatMessage
 {
     public bool Ret { get; set; }
     public string Text { get; set; }

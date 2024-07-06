@@ -1,6 +1,6 @@
 namespace GodotSteam;
 
-public class RecentPlayer
+public struct RecentPlayer
 {
     public ulong Id { get; set; }
     public string Name { get; set; }

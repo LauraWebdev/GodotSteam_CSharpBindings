@@ -1,6 +1,6 @@
 namespace GodotSteam;
 
-public class ClanActivityCounts
+public struct ClanActivityCounts
 {
     public ulong Clan { get; set; }
     public int Online { get; set; }

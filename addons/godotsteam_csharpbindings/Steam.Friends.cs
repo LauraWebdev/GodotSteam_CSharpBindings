@@ -64,24 +64,50 @@ public static partial class Steam
         return GetInstance().Call(Methods.GetFriendCount, (int)friendFlags).As<int>();
     }
     
-    public static int GetFriendCountFromSource(long sourceId)
+    public static int GetFriendCountFromSource(ulong sourceId)
     {
         return GetInstance().Call(Methods.GetFriendCountFromSource, sourceId).As<int>();
     }
     
-    public static ulong GetFriendFromSourceByIndex(ulong sourceId, long friendNumber)
+    public static ulong GetFriendFromSourceByIndex(ulong sourceId, int friendNumber)
     {
         return GetInstance().Call(Methods.GetFriendFromSourceByIndex, sourceId, friendNumber).As<ulong>();
     }
     
-    public static Godot.Collections.Dictionary GetFriendGamePlayed(ulong steamId)
+    public static FriendGame? GetFriendGamePlayed(ulong steamId)
     {
-        return GetInstance().Call(Methods.GetFriendGamePlayed, steamId).AsGodotDictionary();
+        var raw = GetInstance().Call(Methods.GetFriendGamePlayed, steamId).AsGodotDictionary();
+        
+        if (!raw.ContainsKey("game_port") || !raw.ContainsKey("id") || !raw.ContainsKey("ip") || !raw.ContainsKey("lobby") || raw["lobby"].As<string>() == "No valid lobby" || !raw.ContainsKey("query_port"))
+        {
+            return null;
+        }
+        
+        return new FriendGame
+        {
+            GamePort = raw["game_port"].As<ushort>(),
+            Id = raw["id"].As<int>(),
+            Ip = raw["ip"].As<string>(),
+            Lobby = raw["lobby"].As<ulong>(),
+            QueryPort = raw["query_port"].As<ushort>(),
+        };
     }
     
-    public static Godot.Collections.Dictionary GetFriendMessage(ulong friendId, long message)
+    public static FriendMessage? GetFriendMessage(ulong friendId, int message)
     {
-        return GetInstance().Call(Methods.GetFriendMessage, friendId, message).AsGodotDictionary();
+        var raw = GetInstance().Call(Methods.GetFriendMessage, friendId, message).AsGodotDictionary();
+        
+        if (!raw.ContainsKey("ret") || !raw.ContainsKey("text") || !raw.ContainsKey("type"))
+        {
+            return null;
+        }
+        
+        return new FriendMessage
+        {
+            Ret = raw["ret"].As<int>(),
+            Text = raw["text"].As<string>(),
+            Type = raw["type"].As<ChatEntryType>(),
+        };
     }
     
     public static string GetFriendPersonaName(ulong steamId)
@@ -89,19 +115,19 @@ public static partial class Steam
         return GetInstance().Call(Methods.GetFriendPersonaName, steamId).As<string>();
     }
     
-    public static string GetFriendPersonaNameHistory(ulong steamId, long nameHistory)
+    public static string GetFriendPersonaNameHistory(ulong steamId, int nameHistory)
     {
         return GetInstance().Call(Methods.GetFriendPersonaNameHistory, steamId, nameHistory).As<string>();
     }
     
     public static PersonaState GetFriendPersonaState(ulong steamId)
     {
-        return (PersonaState)GetInstance().Call(Methods.GetFriendPersonaState, steamId).AsInt64();
+        return GetInstance().Call(Methods.GetFriendPersonaState, steamId).As<PersonaState>();
     }
     
     public static FriendRelationship GetFriendRelationship(ulong steamId)
     {
-        return (FriendRelationship)GetInstance().Call(Methods.GetFriendRelationship, steamId).AsInt64();
+        return GetInstance().Call(Methods.GetFriendRelationship, steamId).As<FriendRelationship>();
     }
     
     public static string GetFriendRichPresence(ulong friendId, string key)
@@ -134,7 +160,7 @@ public static partial class Steam
         return GetInstance().Call(Methods.GetFriendsGroupMembersCount, friendGroup).As<int>();
     }
     
-    public static List<ulong> GetFriendsGroupMembersList(short friendGroup, long memberCount)
+    public static List<ulong> GetFriendsGroupMembersList(short friendGroup, int memberCount)
     {
         var raw = GetInstance().Call(Methods.GetFriendsGroupMembersList, friendGroup, memberCount).AsGodotArray();
         
@@ -204,12 +230,12 @@ public static partial class Steam
         GetInstance().Call(Methods.EnumerateFollowingList, startIndex);
     }
     
-    public static ulong GetChatMemberByIndex(ulong clanId, long user)
+    public static ulong GetChatMemberByIndex(ulong clanId, int user)
     {
         return GetInstance().Call(Methods.GetChatMemberByIndex, clanId, user).As<ulong>();
     }
     
-    public static ClanActivityCounts GetClanActivityCounts(ulong clanId)
+    public static ClanActivityCounts? GetClanActivityCounts(ulong clanId)
     {
         var raw = GetInstance().Call(Methods.GetClanActivityCounts, clanId).AsGodotDictionary();
 
@@ -237,7 +263,7 @@ public static partial class Steam
         return GetInstance().Call(Methods.GetClanChatMemberCount, clanId).As<int>();
     }
     
-    public static ClanChatMessage GetClanChatMessage(ulong chatId, long message)
+    public static ClanChatMessage? GetClanChatMessage(ulong chatId, long message)
     {
         var raw = GetInstance().Call(Methods.GetClanChatMessage, chatId, message).AsGodotDictionary();
 
@@ -250,7 +276,7 @@ public static partial class Steam
         {
             Ret = raw["ret"].As<bool>(),
             Text = raw["text"].As<string>(),
-            Type = (ClanChatMessageType)raw["type"].As<int>(),
+            Type = raw["type"].As<ClanChatMessageType>(),
             Chatter = raw["chatter"].As<ulong>()
         };
     }
@@ -337,7 +363,7 @@ public static partial class Steam
     
     public static PersonaState GetPersonaState()
     {
-        return (PersonaState)GetInstance().Call(Methods.GetPersonaState).AsInt64();
+        return GetInstance().Call(Methods.GetPersonaState).As<PersonaState>();
     }
     
     public static void GetPlayerAvatar(AvatarSize size = AvatarSize.Medium, ulong steamId = 0)
@@ -371,7 +397,7 @@ public static partial class Steam
                     Id = playerDictionary["id"].As<ulong>(),
                     Name = playerDictionary["name"].As<string>(),
                     Time = playerDictionary["time"].As<int>(),
-                    Status = (PersonaState)playerDictionary["status"].As<int>(),
+                    Status = playerDictionary["status"].As<PersonaState>(),
                 })
             .ToList();
     }
@@ -386,14 +412,14 @@ public static partial class Steam
                 {
                     Id = friendGroupDictionary["id"].AsInt16(),
                     Name = friendGroupDictionary["name"].As<string>(),
-                    Members = friendGroupDictionary["time"].As<int>(),
+                    Members = friendGroupDictionary["members"].As<int>(),
                 })
             .ToList();
     }
     
     public static UserRestriction GetUserRestrictions()
     {
-        return (UserRestriction)GetInstance().Call(Methods.GetUserRestrictions).As<uint>();
+        return GetInstance().Call(Methods.GetUserRestrictions).As<UserRestriction>();
     }
     
     public static List<Friend> GetUserSteamFriends()
@@ -406,7 +432,7 @@ public static partial class Steam
             {
                 Id = friendDictionary["id"].As<ulong>(),
                 Name = friendDictionary["name"].As<string>(),
-                Status = (PersonaState)friendDictionary["status"].As<int>(),
+                Status = friendDictionary["status"].As<PersonaState>(),
             })
         .ToList();
     }
@@ -428,7 +454,7 @@ public static partial class Steam
     
     public static bool HasEquippedProfileItem(ulong steamId, CommunityProfileItemType itemType)
     {
-        return GetInstance().Call(Methods.HasEquippedProfileItem, steamId, (long)itemType).As<bool>();
+        return GetInstance().Call(Methods.HasEquippedProfileItem, steamId, (int)itemType).As<bool>();
     }
     
     public static bool HasFriend(ulong steamId, FriendFlag friendFlags)

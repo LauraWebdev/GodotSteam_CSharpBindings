@@ -1,6 +1,6 @@
 namespace GodotSteam;
 
-public class Friend
+public struct Friend
 {
     public ulong Id { get; set; }
     public string Name { get; set; }

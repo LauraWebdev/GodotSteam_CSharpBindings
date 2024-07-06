@@ -1,6 +1,6 @@
 namespace GodotSteam;
 
-public class FriendGroup
+public struct FriendGroup
 {
     public short Id { get; set; }
     public string Name { get; set; }
