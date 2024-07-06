@@ -200,6 +200,7 @@ public static partial class Steam
         return GetInstance().Call(Methods.SetAchievement, name).As<bool>();
     }
     
+    [Obsolete]
     public static int SetLeaderboardDetailsMax(long max)
     {
         return GetInstance().Call(Methods.SetLeaderboardDetailsMax, max).As<int>();

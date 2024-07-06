@@ -1,6 +1,6 @@
 namespace GodotSteam;
 
-public class DlcDownloadProgress
+public struct DlcDownloadProgress
 {
     public bool Ret { get; set; }
     public ulong Downloaded { get; set; }

@@ -99,7 +99,7 @@ public static partial class Steam
         return GetInstance().Call(Methods.GetDLCCount).As<int>();
     }
     
-    public static DlcDownloadProgress GetDLCDownloadProgress(uint dlcId)
+    public static DlcDownloadProgress? GetDLCDownloadProgress(uint dlcId)
     {
         var raw = GetInstance().Call(Methods.GetDLCDownloadProgress, dlcId).AsGodotDictionary();
         
