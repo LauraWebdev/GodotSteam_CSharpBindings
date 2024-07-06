@@ -9,30 +9,30 @@ public static partial class Steam
     
     public static uint CreateHTTPRequest(HttpMethod requestMethod, string absoluteUrl)
     {
-        return GetInstance().Call(Methods.CreateHTTPRequest, (long)requestMethod, absoluteUrl).As<uint>();
+        return GetInstance().Call(Methods.CreateHTTPRequest, (int)requestMethod, absoluteUrl).As<uint>();
     }
     
-    public static bool DeferHTTPRequest(long requestHandle)
+    public static bool DeferHTTPRequest(uint requestHandle)
     {
         return GetInstance().Call(Methods.DeferHTTPRequest, requestHandle).As<bool>();
     }
     
-    public static float GetHTTPDownloadProgressPct(long requestHandle)
+    public static float GetHTTPDownloadProgressPct(uint requestHandle)
     {
         return GetInstance().Call(Methods.GetHTTPDownloadProgressPct, requestHandle).AsSingle();
     }
     
-    public static bool GetHTTPRequestWasTimedOut(long requestHandle)
+    public static bool GetHTTPRequestWasTimedOut(uint requestHandle)
     {
         return GetInstance().Call(Methods.GetHTTPRequestWasTimedOut, requestHandle).As<bool>();
     }
     
-    public static byte[] GetHTTPResponseBodyData(uint requestHandle, long bufferSize)
+    public static byte[] GetHTTPResponseBodyData(uint requestHandle, uint bufferSize)
     {
         return GetInstance().Call(Methods.GetHTTPResponseBodyData, requestHandle, bufferSize).AsByteArray();
     }
     
-    public static uint GetHTTPResponseBodySize(long requestHandle)
+    public static uint GetHTTPResponseBodySize(uint requestHandle)
     {
         return GetInstance().Call(Methods.GetHTTPResponseBodySize, requestHandle).As<uint>();
     }
@@ -42,57 +42,57 @@ public static partial class Steam
         return GetInstance().Call(Methods.GetHTTPResponseHeaderSize, requestHandle, headerName).As<uint>();
     }
     
-    public static byte GetHTTPResponseHeaderValue(uint requestHandle, string headerName, long bufferSize)
+    public static byte GetHTTPResponseHeaderValue(uint requestHandle, string headerName, uint bufferSize)
     {
         return GetInstance().Call(Methods.GetHTTPResponseHeaderValue, requestHandle, headerName, bufferSize).AsByte();
     }
     
-    public static byte GetHTTPStreamingResponseBodyData(uint requestHandle, uint offset, long bufferSize)
+    public static byte GetHTTPStreamingResponseBodyData(uint requestHandle, uint offset, uint bufferSize)
     {
         return GetInstance().Call(Methods.GetHTTPStreamingResponseBodyData, requestHandle, offset, bufferSize).AsByte();
     }
     
-    public static bool PrioritizeHTTPRequest(long requestHandle)
+    public static bool PrioritizeHTTPRequest(uint requestHandle)
     {
         return GetInstance().Call(Methods.PrioritizeHTTPRequest, requestHandle).As<bool>();
     }
     
-    public static bool ReleaseCookieContainer(long cookieHandle)
+    public static bool ReleaseCookieContainer()
     {
-        return GetInstance().Call(Methods.ReleaseCookieContainer, cookieHandle).As<bool>();
+        return GetInstance().Call(Methods.ReleaseCookieContainer).As<bool>();
     }
     
-    public static bool ReleaseHTTPRequest(long requestHandle)
+    public static bool ReleaseHTTPRequest(uint requestHandle)
     {
         return GetInstance().Call(Methods.ReleaseHTTPRequest, requestHandle).As<bool>();
     }
     
-    public static bool SendHTTPRequest(long requestHandle)
+    public static bool SendHTTPRequest(uint requestHandle)
     {
         return GetInstance().Call(Methods.SendHTTPRequest, requestHandle).As<bool>();
     }
     
-    public static bool SendHTTPRequestAndStreamResponse(long requestHandle)
+    public static bool SendHTTPRequestAndStreamResponse(uint requestHandle)
     {
         return GetInstance().Call(Methods.SendHTTPRequestAndStreamResponse, requestHandle).As<bool>();
     }
     
-    public static bool SetHTTPCookie(uint cookieHandle, string host, string url, string cookie)
+    public static bool SetHTTPCookie(string host, string url, string cookie)
     {
-        return GetInstance().Call(Methods.SetHTTPCookie, cookieHandle, host, url, cookie).As<bool>();
+        return GetInstance().Call(Methods.SetHTTPCookie, host, url, cookie).As<bool>();
     }
     
-    public static bool SetHTTPRequestAbsoluteTimeoutMS(uint requestHandle, long milliseconds)
+    public static bool SetHTTPRequestAbsoluteTimeoutMS(uint requestHandle, uint milliseconds)
     {
         return GetInstance().Call(Methods.SetHTTPRequestAbsoluteTimeoutMS, requestHandle, milliseconds).As<bool>();
     }
     
-    public static bool SetHTTPRequestContextValue(uint requestHandle, long contextValue)
+    public static bool SetHTTPRequestContextValue(uint requestHandle, ulong contextValue)
     {
         return GetInstance().Call(Methods.SetHTTPRequestContextValue, requestHandle, contextValue).As<bool>();
     }
     
-    public static bool SetHTTPRequestCookieContainer(uint requestHandle, long cookieHandle)
+    public static bool SetHTTPRequestCookieContainer(uint requestHandle, uint cookieHandle)
     {
         return GetInstance().Call(Methods.SetHTTPRequestCookieContainer, requestHandle, cookieHandle).As<bool>();
     }
@@ -107,12 +107,12 @@ public static partial class Steam
         return GetInstance().Call(Methods.SetHTTPRequestHeaderValue, requestHandle, headerName, headerValue).As<bool>();
     }
     
-    public static bool SetHTTPRequestNetworkActivityTimeout(uint requestHandle, long timeoutSeconds)
+    public static bool SetHTTPRequestNetworkActivityTimeout(uint requestHandle, uint timeoutSeconds)
     {
         return GetInstance().Call(Methods.SetHTTPRequestNetworkActivityTimeout, requestHandle, timeoutSeconds).As<bool>();
     }
     
-    public static byte SetHTTPRequestRawPostBody(uint requestHandle, string contentType, long bodyLength)
+    public static byte SetHTTPRequestRawPostBody(uint requestHandle, string contentType, uint bodyLength)
     {
         return GetInstance().Call(Methods.SetHTTPRequestRawPostBody, requestHandle, contentType, bodyLength).AsByte();
     }
