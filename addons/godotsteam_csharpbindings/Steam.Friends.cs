@@ -44,9 +44,9 @@ public static partial class Steam
         GetInstance().Call(Methods.GetFollowerCount, steamId);
     }
     
-    public static int GetFriendByIndex(int friendNumber, FriendFlag friendFlags)
+    public static ulong GetFriendByIndex(int friendNumber, FriendFlag friendFlags)
     {
-        return GetInstance().Call(Methods.GetFriendByIndex, (int)friendNumber, (int)friendFlags).As<int>();
+        return GetInstance().Call(Methods.GetFriendByIndex, (int)friendNumber, (int)friendFlags).As<ulong>();
     }
     
     public static uint GetFriendCoplayGame(ulong friendId)

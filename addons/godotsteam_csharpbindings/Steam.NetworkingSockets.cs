@@ -2,7 +2,7 @@ namespace GodotSteam;
 
 public static partial class Steam
 {
-    public static int AcceptConnection(long connection)
+    public static int AcceptConnection(uint connection)
     {
         return GetInstance().Call(Methods.AcceptConnection, connection).As<int>();
     }
@@ -27,9 +27,9 @@ public static partial class Steam
         return GetInstance().Call(Methods.ConfigureConnectionLanes, connection, lanes, priorities, weights).As<int>();
     }
     
-    public static uint ConnectP2P(string identityReference, int virtualPort, Godot.Collections.Array options)
+    public static uint ConnectP2P(ulong identity, int virtualPort, Godot.Collections.Array options)
     {
-        return GetInstance().Call(Methods.ConnectP2P, identityReference, virtualPort, options).As<uint>();
+        return GetInstance().Call(Methods.ConnectP2P, identity, virtualPort, options).As<uint>();
     }
     
     public static uint ConnectByIPAddress(string iPAddressWithPort, Godot.Collections.Array options)
@@ -82,7 +82,7 @@ public static partial class Steam
         return GetInstance().Call(Methods.DestroyPollGroup, pollGroup).As<bool>();
     }
     
-    public static int FlushMessagesOnConnection(long connectionHandle)
+    public static int FlushMessagesOnConnection(uint connectionHandle)
     {
         return GetInstance().Call(Methods.FlushMessagesOnConnection, connectionHandle).As<int>();
     }
@@ -97,7 +97,7 @@ public static partial class Steam
         return GetInstance().Call(Methods.GetCertificateRequest).AsGodotDictionary();
     }
     
-    public static Godot.Collections.Dictionary GetConnectionInfo(long connectionHandle)
+    public static Godot.Collections.Dictionary GetConnectionInfo(uint connectionHandle)
     {
         return GetInstance().Call(Methods.GetConnectionInfo, connectionHandle).AsGodotDictionary();
     }
@@ -117,7 +117,7 @@ public static partial class Steam
         return GetInstance().Call(Methods.GetConnectionUserData, peer).As<ulong>();
     }
     
-    public static Godot.Collections.Dictionary GetDetailedConnectionStatus(long connectionHandle)
+    public static Godot.Collections.Dictionary GetDetailedConnectionStatus(uint connectionHandle)
     {
         return GetInstance().Call(Methods.GetDetailedConnectionStatus, connectionHandle).AsGodotDictionary();
     }
@@ -147,7 +147,7 @@ public static partial class Steam
         return GetInstance().Call(Methods.GetIdentity).As<string>();
     }
     
-    public static Godot.Collections.Dictionary GetRemoteFakeIPForConnection(long connection)
+    public static Godot.Collections.Dictionary GetRemoteFakeIPForConnection(uint connection)
     {
         return GetInstance().Call(Methods.GetRemoteFakeIPForConnection, connection).AsGodotDictionary();
     }
