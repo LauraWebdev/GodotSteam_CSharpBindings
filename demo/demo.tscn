@@ -1,9 +1,9 @@
 [gd_scene load_steps=10 format=3 uid="uid://cgiw31sxytsco"]
 
-[ext_resource type="Script" path="res://demo/Demo.cs" id="1_lrdvt"]
-[ext_resource type="Script" path="res://demo/PlayerInfo.cs" id="2_c1djk"]
-[ext_resource type="Script" path="res://demo/Status.cs" id="3_bejbt"]
-[ext_resource type="Script" path="res://demo/FriendsContainer.cs" id="4_ijjpb"]
+[ext_resource type="Script" uid="uid://crmnowfptaney" path="res://demo/Demo.cs" id="1_lrdvt"]
+[ext_resource type="Script" uid="uid://71qk48ougod6" path="res://demo/PlayerInfo.cs" id="2_c1djk"]
+[ext_resource type="Script" uid="uid://c24r1gp34x1xa" path="res://demo/Status.cs" id="3_bejbt"]
+[ext_resource type="Script" uid="uid://bpmmfmk8xx3br" path="res://demo/FriendsContainer.cs" id="4_ijjpb"]
 [ext_resource type="PackedScene" uid="uid://bpgjh6dicqss7" path="res://demo/friend_item.tscn" id="5_s1anc"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t0sa5"]

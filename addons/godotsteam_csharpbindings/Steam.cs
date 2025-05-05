@@ -41,25 +41,29 @@ public static partial class Steam
         return GetInstance().Call(Methods.RestartAppIfNecessary, appId).As<bool>();
     }
     
-    public static SteamInitResult SteamInit(bool retrieveStats = true)
+    public static bool SteamInit(bool retrieveStats = true, uint appId = 0)
     {
-        var raw = GetInstance().Call(Methods.SteamInit, retrieveStats).AsGodotDictionary();
-
-        return new SteamInitResult
+        if (appId == 0)
         {
-            Status = (SteamInitStatus)raw["status"].As<int>(),
-            Verbal = raw["verbal"].As<string>(),
-        };
+            appId = Convert.ToUInt32(OS.GetEnvironment("SteamAppId"));
+        }
+        
+        return GetInstance().Call(Methods.SteamInit, appId, retrieveStats).AsBool();
     }
     
-    public static SteamInitExResult SteamInitEx(bool retrieveStats)
+    public static SteamInitExResult SteamInitEx(bool retrieveStats, uint appId = 0)
     {
-        var raw = GetInstance().Call(Methods.SteamInitEx, retrieveStats).AsGodotDictionary();
+        if (appId == 0)
+        {
+            appId = Convert.ToUInt32(OS.GetEnvironment("SteamAppId"));
+        }
+        
+        var raw = GetInstance().Call(Methods.SteamInitEx, appId, retrieveStats).AsGodotDictionary();
 
         return new SteamInitExResult
         {
-            Status = (SteamInitExStatus)raw["status"].As<int>(),
-            Verbal = raw["verbal"].As<string>(),
+            Status = (SteamInitExStatus)raw["status"].AsInt32(),
+            Verbal = raw["verbal"].AsString(),
         };
     }
     
