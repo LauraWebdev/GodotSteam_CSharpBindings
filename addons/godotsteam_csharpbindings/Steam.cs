@@ -43,7 +43,7 @@ public static partial class Steam
     
     public static SteamInitResult SteamInit(bool retrieveStats = true, uint appId = 0)
     {
-        if (0 == appId)
+        if (appId == 0)
         {
             appId = Convert.ToUInt32(OS.GetEnvironment("SteamAppId"));
         }
@@ -69,7 +69,7 @@ public static partial class Steam
     
     public static SteamInitExResult SteamInitEx(bool retrieveStats, uint appId = 0)
     {
-        if (0 == appId)
+        if (appId == 0)
         {
             appId = Convert.ToUInt32(OS.GetEnvironment("SteamAppId"));
         }
