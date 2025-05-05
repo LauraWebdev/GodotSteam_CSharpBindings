@@ -41,30 +41,14 @@ public static partial class Steam
         return GetInstance().Call(Methods.RestartAppIfNecessary, appId).As<bool>();
     }
     
-    public static SteamInitResult SteamInit(bool retrieveStats = true, uint appId = 0)
+    public static bool SteamInit(bool retrieveStats = true, uint appId = 0)
     {
         if (appId == 0)
         {
             appId = Convert.ToUInt32(OS.GetEnvironment("SteamAppId"));
         }
         
-        var result = GetInstance().Call(Methods.SteamInit, appId, retrieveStats).AsBool();
-        
-        if (!result)
-        {
-            return new SteamInitResult
-            {
-                Status = SteamInitStatus.SteamworksFailedToInitialize,
-                Verbal = "SteamInit returned false. Use SteamInitEx for more information.",
-            };
-        }
-
-
-        return new SteamInitResult
-        {
-            Status = SteamInitStatus.SteamworksActive,
-            Verbal = "Steam is running.",
-        };
+        return GetInstance().Call(Methods.SteamInit, appId, retrieveStats).AsBool();
     }
     
     public static SteamInitExResult SteamInitEx(bool retrieveStats, uint appId = 0)
