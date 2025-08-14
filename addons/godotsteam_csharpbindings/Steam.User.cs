@@ -27,7 +27,7 @@ public static partial class Steam
         GetInstance().Call(Methods.EndAuthSession, steamId);
     }
     
-    public static Godot.Collections.Dictionary GetAuthSessionTicket(string identityReference = "")
+    public static Godot.Collections.Dictionary GetAuthSessionTicket(ulong identityReference = 0)
     {
         return GetInstance().Call(Methods.GetAuthSessionTicket, identityReference).AsGodotDictionary();
     }
