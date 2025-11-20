@@ -32,7 +32,7 @@ public static partial class Steam
         GetInstance().Call(Methods.DestroyResult, thisInventoryHandle);
     }
     
-    public static int ExchangeItems(long[] outputItems, uint outputQuantity, ulong inputItems, long inputQuantity)
+    public static int ExchangeItems(long[] outputItems, int[] outputQuantity, long[] inputItems, int[] inputQuantity)
     {
         return GetInstance().Call(Methods.ExchangeItems, outputItems, outputQuantity, inputItems, inputQuantity).As<int>();
     }
