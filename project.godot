@@ -1,0 +1,22 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=5
+
+[application]
+
+config/name="GodotSteamBindings"
+config/features=PackedStringArray("4.4", "C#", "Forward Plus")
+
+[dotnet]
+
+project/assembly_name="GodotSteamBindings"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/GodotSteamBindings/plugin.cfg", "res://addons/csharp_wrapper_generator_for_gdextension/plugin.cfg")
