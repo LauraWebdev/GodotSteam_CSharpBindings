@@ -1,0 +1,9 @@
+# Normalize line endings for all files that Git considers text files.
+* text=auto eol=lf
+
+# Only include the addons/GodotSteamBindings folder when downloading from the Asset Store.
+/**        export-ignore
+/addons    !export-ignore
+/addons/** export-ignore
+/addons/GodotSteamBindings !export-ignore
+/addons/GodotSteamBindings/** !export-ignore
