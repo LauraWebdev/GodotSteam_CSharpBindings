@@ -1,6 +1,6 @@
 #if TOOLS
 using Godot;
-using System;
+namespace GodotSteam.Bindings;
 
 [Tool]
 public partial class Plugin : EditorPlugin

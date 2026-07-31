@@ -6,7 +6,7 @@ using System.Reflection;
 using Godot;
 using Godot.Collections;
 
-namespace Games.Indiegesindel;
+namespace GodotSteam.Bindings;
 
 [Tool]
 public partial class Steam : GodotObject
