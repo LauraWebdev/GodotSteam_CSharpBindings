@@ -7747,7 +7747,7 @@ public enum RemoteStoragePlatform
     public new string GetGodotsteamVersion() => 
         Call(GDExtensionMethodName.GetGodotsteamVersion, []).As<string>();
 
-    public new long GetSteamId32(long steamId) => 
+    public new long GetSteamId32(ulong steamId) =>
         Call(GDExtensionMethodName.GetSteamId32, [steamId]).As<long>();
 
     public new bool IsAnonAccount(long steamId) => 
@@ -9676,8 +9676,8 @@ public enum RemoteStoragePlatform
     public new long GetPlayerSteamLevel() => 
         Call(GDExtensionMethodName.GetPlayerSteamLevel, []).As<long>();
 
-    public new long GetSteamId() => 
-        Call(GDExtensionMethodName.GetSteamId, []).As<long>();
+    public new ulong GetSteamId() =>
+        Call(GDExtensionMethodName.GetSteamId, []).As<ulong>();
 
     public new Godot.Collections.Dictionary GetVoice(long bufferSizeOverride = 0) => 
         Call(GDExtensionMethodName.GetVoice, [bufferSizeOverride]).As<Godot.Collections.Dictionary>();

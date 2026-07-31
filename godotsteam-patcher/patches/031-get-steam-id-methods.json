@@ -1,0 +1,26 @@
+{
+  "id": "steam-id-type-update",
+  "operations": [
+	{
+      "op": "replaceLine",
+      "id": "update-GetSteamId32-method",
+      "pattern": "public new long GetSteamId32(long steamId) =>",
+      "code": "public new long GetSteamId32(ulong steamId) =>",
+      "skipIfPresent": true
+    },
+    {
+      "op": "replaceBetween",
+      "id": "update-GetSteamId-method",
+      "start": "public new long GetSteamId() =>",
+      "end": ";",
+      "includeStart": true,
+      "includeEnd": true,
+      "useRegex": false,
+      "caseInsensitive": false,
+      "code": [
+		"public new ulong GetSteamId() =>",
+		"    Call(GDExtensionMethodName.GetSteamId, []).As<ulong>();"
+      ]
+    }
+  ]
+}
