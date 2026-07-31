@@ -173,7 +173,7 @@ function applyOperation(op, state) {
 
 function main() {
   const root = path.resolve(__dirname, "..");
-  const steamPath = path.resolve(root, "gluecode-project", "addons", "godotsteam_csharpbindings", "Steam.cs");
+  const steamPath = path.resolve(root, "addons", "GodotSteamBindings", "Steam.cs");
 
   console.log("Loading Steam.cs");
   if (!fs.existsSync(steamPath)) {
