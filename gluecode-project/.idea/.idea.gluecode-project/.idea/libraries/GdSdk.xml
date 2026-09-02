@@ -3,7 +3,7 @@
     <CLASSES />
     <JAVADOC />
     <SOURCES>
-      <root url="file://$APPLICATION_HOME_DIR$/plugins/rider-gdscript/sdk/extracted/Master" />
+      <root url="file://$APPLICATION_PLUGINS_DIR$/GdScript/extracted/Master" />
     </SOURCES>
   </library>
 </component>

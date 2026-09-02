@@ -2,8 +2,6 @@ MIT License
 
 Copyright (c) 2015-Current | GP Garcia, Chris Ridenour, and Contributors
 
-View all contributors at https://godotsteam.com/contribute/contributors/
-
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
 in the Software without restriction, including without limitation the rights

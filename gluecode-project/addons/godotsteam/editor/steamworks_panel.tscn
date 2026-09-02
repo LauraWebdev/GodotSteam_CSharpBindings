@@ -1,0 +1,125 @@
+[gd_scene load_steps=6 format=3 uid="uid://cyniebd6yahu5"]
+
+[ext_resource type="Script" uid="uid://1oo0gvamoxgp" path="res://addons/godotsteam/editor/steamworks_panel.gd" id="1_qn6cd"]
+[ext_resource type="Script" uid="uid://b4nvgu7h84u53" path="res://addons/godotsteam/editor/updates/updates.gd" id="2_qn6cd"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qn6cd"]
+content_margin_top = 2.0
+content_margin_bottom = 2.0
+bg_color = Color(0.0980392, 0.0980392, 0.0980392, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qf1vo"]
+content_margin_top = 2.0
+content_margin_bottom = 2.0
+bg_color = Color(0.337255, 0.619608, 1, 1)
+
+[sub_resource type="Theme" id="Theme_sqmbs"]
+ProgressBar/styles/background = SubResource("StyleBoxFlat_qn6cd")
+ProgressBar/styles/fill = SubResource("StyleBoxFlat_qf1vo")
+
+[node name="Steamworks" type="Control"]
+process_mode = 3
+custom_minimum_size = Vector2(0, 150)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_qn6cd")
+metadata/_edit_lock_ = true
+
+[node name="Scroller" type="ScrollContainer" parent="."]
+custom_minimum_size = Vector2(0, 150)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_lock_ = true
+
+[node name="DockFrame" type="TabContainer" parent="Scroller"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+current_tab = 0
+metadata/_edit_lock_ = true
+
+[node name="Updates" type="MarginContainer" parent="Scroller/DockFrame"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+script = ExtResource("2_qn6cd")
+metadata/_tab_index = 0
+metadata/_edit_lock_ = true
+
+[node name="ContainerFrame" type="VBoxContainer" parent="Scroller/DockFrame/Updates"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 10
+metadata/_edit_lock_ = true
+
+[node name="HFrame" type="HBoxContainer" parent="Scroller/DockFrame/Updates/ContainerFrame"]
+layout_mode = 2
+theme_override_constants/separation = 25
+metadata/_edit_lock_ = true
+
+[node name="Type" type="Label" parent="Scroller/DockFrame/Updates/ContainerFrame/HFrame"]
+custom_minimum_size = Vector2(125, 25)
+layout_mode = 2
+text = "GodotSteam"
+metadata/_edit_lock_ = true
+
+[node name="InstalledLabel" type="Label" parent="Scroller/DockFrame/Updates/ContainerFrame/HFrame"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Installed version 4.18"
+metadata/_edit_lock_ = true
+
+[node name="UpdateLabel" type="Label" parent="Scroller/DockFrame/Updates/ContainerFrame/HFrame"]
+unique_name_in_owner = true
+layout_mode = 2
+metadata/_edit_lock_ = true
+
+[node name="Updating" type="HBoxContainer" parent="Scroller/DockFrame/Updates/ContainerFrame/HFrame"]
+layout_mode = 2
+size_flags_horizontal = 10
+theme_override_constants/separation = 25
+metadata/_edit_lock_ = true
+
+[node name="Downloading" type="ProgressBar" parent="Scroller/DockFrame/Updates/ContainerFrame/HFrame/Updating"]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(200, 30)
+layout_mode = 2
+theme = SubResource("Theme_sqmbs")
+step = 1.0
+rounded = true
+metadata/_edit_lock_ = true
+
+[node name="InstallButton" type="Button" parent="Scroller/DockFrame/Updates/ContainerFrame/HFrame/Updating"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+text = "Install"
+metadata/_edit_lock_ = true
+
+[node name="UpdateButton" type="Button" parent="Scroller/DockFrame/Updates/ContainerFrame/HFrame/Updating"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 8
+disabled = true
+text = "Up-to-date"
+metadata/_edit_lock_ = true
+
+[node name="CancelButton" type="Button" parent="Scroller/DockFrame/Updates/ContainerFrame/HFrame/Updating"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+text = "Cancel"
+metadata/_edit_lock_ = true

@@ -1,6 +1,6 @@
 using Godot;
 using System;
-using Games.Indiegesindel;
+using GDExtension.Wrappers;
 
 public partial class Test000IsSteamRunning : Node
 {

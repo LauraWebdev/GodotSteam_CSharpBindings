@@ -13,7 +13,7 @@ We are currently working on this new version of the C# Bindings. Please try it o
 - [License](#license)
 
 ### Support
-Currently, we support **Godot 4.4+** with the **GodotSteam 4.6.1** plugin.
+Currently, we support **Godot 4.4+** with the **GodotSteam 4.22** plugin.
 
 ### Getting started
 Install the GodotSteam C# Bindings by adding the addon to your project's addons folder.

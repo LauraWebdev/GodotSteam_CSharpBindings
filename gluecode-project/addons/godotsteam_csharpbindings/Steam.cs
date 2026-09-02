@@ -6,7 +6,7 @@ using System.Reflection;
 using Godot;
 using Godot.Collections;
 
-namespace Games.Indiegesindel;
+namespace GDExtension.Wrappers;
 
 [Tool]
 public partial class Steam : GodotObject
@@ -275,12 +275,6 @@ public partial class Steam : GodotObject
         Click = 2,
     }
 
-    public enum ControllerPad
-    {
-        SteamControllerPadLeft = 0,
-        SteamControllerPadRight = 1,
-    }
-
     public enum DenyReason
     {
         Invalid = 0,
@@ -341,6 +335,12 @@ public partial class Steam : GodotObject
         ExitSoonNight = 5,
     }
 
+    public enum FailureType
+    {
+        FlushedCallbackQueue = 0,
+        PipeFail = 1,
+    }
+
     public enum FilePathType
     {
         Invalid = 0,
@@ -391,7 +391,6 @@ public partial class Steam : GodotObject
         App = 0,
         GameMod = 1,
         Shortcut = 2,
-        P2p = 3,
     }
 
     public enum GamepadTextInputLineMode
@@ -406,17 +405,14 @@ public partial class Steam : GodotObject
         Password = 1,
     }
 
-    public enum GameSearchErrorCode
+    public enum GamePerformanceSetting
     {
-        Ok = 1,
-        SearchAreadyInProgress = 2,
-        NoSearchInProgress = 3,
-        NotLobbyLeader = 4,
-        NoHostAvailable = 5,
-        SearchParamsInvalid = 6,
-        Offline = 7,
-        NotAuthorized = 8,
-        UnknownError = 9,
+        NotSet = 0,
+        Low = 1,
+        Medium = 2,
+        High = 3,
+        Ultra = 4,
+        Custom = 5,
     }
 
     [Flags]
@@ -433,6 +429,54 @@ public partial class Steam : GodotObject
         Left = 0,
         Right = 1,
         Middle = 2,
+    }
+
+    public enum HtmlMouseCursor
+    {
+        User = 0,
+        None = 1,
+        Arrow = 2,
+        Ibeam = 3,
+        Hourglass = 4,
+        WaitArrow = 5,
+        Crosshair = 6,
+        Up = 7,
+        SizeNw = 8,
+        SizeSe = 9,
+        SizeNe = 10,
+        SizeSw = 11,
+        SizeW = 12,
+        SizeE = 13,
+        SizeN = 14,
+        SizeS = 15,
+        SizeWe = 16,
+        SizeNs = 17,
+        SizeAll = 18,
+        CursorNo = 19,
+        CursorHand = 20,
+        CursorBlank = 21,
+        MiddlePan = 22,
+        NorthPan = 23,
+        NorthEastPan = 24,
+        EastPan = 25,
+        SouthEastPan = 26,
+        SouthPan = 27,
+        SouthWestPan = 28,
+        WestPan = 29,
+        NorthWestPan = 30,
+        Alias = 31,
+        Cell = 32,
+        ColResize = 33,
+        CopyCur = 34,
+        VerticalText = 35,
+        RowResize = 36,
+        ZoomIn = 37,
+        ZoomOut = 38,
+        Help = 39,
+        Custom = 40,
+        SizeNwse = 41,
+        SizeNesw = 42,
+        Last = 43,
     }
 
     public enum HttpMethod
@@ -486,14 +530,28 @@ public partial class Steam : GodotObject
         Code416RequestedRangeNotSatisfiable = 416,
         Code417ExpectationFailed = 417,
         Code4xxUnknown = 418,
+        Code421MisdirectRequest = 421,
+        Code422UnprocessableContent = 422,
+        Code423Locked = 423,
+        Code424FailedDependency = 424,
+        Code425TooEarly = 425,
+        Code426UpgradeRequired = 426,
+        Code428PreconditionRequired = 428,
         Code429TooManyRequests = 429,
+        Code431RequestHeaderFieldsTooLarge = 431,
         Code444ConnectionClosed = 444,
+        Code451UnavailableForLegalAreasons = 451,
         Code500InternalServerError = 500,
         Code501NotImplemented = 501,
         Code502BadGateway = 502,
         Code503ServiceUnavailable = 503,
         Code504GatewayTimeout = 504,
         Code505HttpVersionNotSupported = 505,
+        Code506VariantAlsoNegotiates = 506,
+        Code507InsufficientStorage = 507,
+        Code508LoopDetected = 508,
+        Code510NotExtended = 510,
+        Code511NetworkAuthenticationRequired = 511,
         Code5xxUnknown = 599,
     }
 
@@ -510,36 +568,36 @@ public partial class Steam : GodotObject
         SteamcontrollerB = 2,
         SteamcontrollerX = 3,
         SteamcontrollerY = 4,
-        SteamcontrollerLeftbumper = 5,
-        SteamcontrollerRightbumper = 6,
-        SteamcontrollerLeftgrip = 7,
-        SteamcontrollerRightgrip = 8,
+        SteamcontrollerLeftBumper = 5,
+        SteamcontrollerRightBumper = 6,
+        SteamcontrollerLeftGrip = 7,
+        SteamcontrollerRightGrip = 8,
         SteamcontrollerStart = 9,
         SteamcontrollerBack = 10,
-        SteamcontrollerLeftpadTouch = 11,
-        SteamcontrollerLeftpadSwipe = 12,
-        SteamcontrollerLeftpadClick = 13,
-        SteamcontrollerLeftpadDpadnorth = 14,
-        SteamcontrollerLeftpadDpadsouth = 15,
-        SteamcontrollerLeftpadDpadwest = 16,
-        SteamcontrollerLeftpadDpadeast = 17,
-        SteamcontrollerRightpadTouch = 18,
-        SteamcontrollerRightpadSwipe = 19,
-        SteamcontrollerRightpadClick = 20,
-        SteamcontrollerRightpadDpadnorth = 21,
-        SteamcontrollerRightpadDpadsouth = 22,
-        SteamcontrollerRightpadDpadwest = 23,
-        SteamcontrollerRightpadDpadeast = 24,
-        SteamcontrollerLefttriggerPull = 25,
-        SteamcontrollerLefttriggerClick = 26,
-        SteamcontrollerRighttriggerPull = 27,
-        SteamcontrollerRighttriggerClick = 28,
-        SteamcontrollerLeftstickMove = 29,
-        SteamcontrollerLeftstickClick = 30,
-        SteamcontrollerLeftstickDpadnorth = 31,
-        SteamcontrollerLeftstickDpadsouth = 32,
-        SteamcontrollerLeftstickDpadwest = 33,
-        SteamcontrollerLeftstickDpadeast = 34,
+        SteamcontrollerLeftPadTouch = 11,
+        SteamcontrollerLeftPadSwipe = 12,
+        SteamcontrollerLeftPadClick = 13,
+        SteamcontrollerLeftPadDpadNorth = 14,
+        SteamcontrollerLeftPadDpadSouth = 15,
+        SteamcontrollerLeftPadDpadWest = 16,
+        SteamcontrollerLeftPadDpadEast = 17,
+        SteamcontrollerRightPadTouch = 18,
+        SteamcontrollerRightPadSwipe = 19,
+        SteamcontrollerRightPadClick = 20,
+        SteamcontrollerRightPadDpadNorth = 21,
+        SteamcontrollerRightPadDpadSouth = 22,
+        SteamcontrollerRightPadDpadWest = 23,
+        SteamcontrollerRightPadDpadEast = 24,
+        SteamcontrollerLeftTriggerPull = 25,
+        SteamcontrollerLeftTriggerClick = 26,
+        SteamcontrollerRightTriggerPull = 27,
+        SteamcontrollerRightTriggerClick = 28,
+        SteamcontrollerLeftStickMove = 29,
+        SteamcontrollerLeftStickClick = 30,
+        SteamcontrollerLeftStickDpadNorth = 31,
+        SteamcontrollerLeftStickDpadSouth = 32,
+        SteamcontrollerLeftStickDpadWest = 33,
+        SteamcontrollerLeftStickDpadEast = 34,
         SteamcontrollerGyroMove = 35,
         SteamcontrollerGyroPitch = 36,
         SteamcontrollerGyroYaw = 37,
@@ -559,47 +617,47 @@ public partial class Steam : GodotObject
         Ps4Circle = 51,
         Ps4Triangle = 52,
         Ps4Square = 53,
-        Ps4Leftbumper = 54,
-        Ps4Rightbumper = 55,
+        Ps4LeftBumper = 54,
+        Ps4RightBumper = 55,
         Ps4Options = 56,
         Ps4Share = 57,
-        Ps4LeftpadTouch = 58,
-        Ps4LeftpadSwipe = 59,
-        Ps4LeftpadClick = 60,
-        Ps4LeftpadDpadnorth = 61,
-        Ps4LeftpadDpadsouth = 62,
-        Ps4LeftpadDpadwest = 63,
-        Ps4LeftpadDpadeast = 64,
-        Ps4RightpadTouch = 65,
-        Ps4RightpadSwipe = 66,
-        Ps4RightpadClick = 67,
-        Ps4RightpadDpadnorth = 68,
-        Ps4RightpadDpadsouth = 69,
-        Ps4RightpadDpadwest = 70,
-        Ps4RightpadDpadeast = 71,
-        Ps4CenterpadTouch = 72,
-        Ps4CenterpadSwipe = 73,
-        Ps4CenterpadClick = 74,
-        Ps4CenterpadDpadnorth = 75,
-        Ps4CenterpadDpadsouth = 76,
-        Ps4CenterpadDpadwest = 77,
-        Ps4CenterpadDpadeast = 78,
-        Ps4LefttriggerPull = 79,
-        Ps4LefttriggerClick = 80,
-        Ps4RighttriggerPull = 81,
-        Ps4RighttriggerClick = 82,
-        Ps4LeftstickMove = 83,
-        Ps4LeftstickClick = 84,
-        Ps4LeftstickDpadnorth = 85,
-        Ps4LeftstickDpadsouth = 86,
-        Ps4LeftstickDpadwest = 87,
-        Ps4LeftstickDpadeast = 88,
-        Ps4RightstickMove = 89,
-        Ps4RightstickClick = 90,
-        Ps4RightstickDpadnorth = 91,
-        Ps4RightstickDpadsouth = 92,
-        Ps4RightstickDpadwest = 93,
-        Ps4RightstickDpadeast = 94,
+        Ps4LeftPadTouch = 58,
+        Ps4LeftPadSwipe = 59,
+        Ps4LeftPadClick = 60,
+        Ps4LeftPadDpadNorth = 61,
+        Ps4LeftPadDpadSouth = 62,
+        Ps4LeftPadDpadWest = 63,
+        Ps4LeftPadDpadEast = 64,
+        Ps4RightPadTouch = 65,
+        Ps4RightPadSwipe = 66,
+        Ps4RightPadClick = 67,
+        Ps4RightPadDpadNorth = 68,
+        Ps4RightPadDpadSouth = 69,
+        Ps4RightPadDpadWest = 70,
+        Ps4RightPadDpadEast = 71,
+        Ps4CenterPadTouch = 72,
+        Ps4CenterPadSwipe = 73,
+        Ps4CenterPadClick = 74,
+        Ps4CenterPadDpadNorth = 75,
+        Ps4CenterPadDpadSouth = 76,
+        Ps4CenterPadDpadWest = 77,
+        Ps4CenterPadDpadEast = 78,
+        Ps4LeftTriggerPull = 79,
+        Ps4LeftTriggerClick = 80,
+        Ps4RightTriggerPull = 81,
+        Ps4RightTriggerClick = 82,
+        Ps4LeftStickMove = 83,
+        Ps4LeftStickClick = 84,
+        Ps4LeftStickDpadNorth = 85,
+        Ps4LeftStickDpadSouth = 86,
+        Ps4LeftStickDpadWest = 87,
+        Ps4LeftStickDpadEast = 88,
+        Ps4RightStickMove = 89,
+        Ps4RightStickClick = 90,
+        Ps4RightStickDpadNorth = 91,
+        Ps4RightStickDpadSouth = 92,
+        Ps4RightStickDpadWest = 93,
+        Ps4RightStickDpadEast = 94,
         Ps4DpadNorth = 95,
         Ps4DpadSouth = 96,
         Ps4DpadWest = 97,
@@ -623,35 +681,35 @@ public partial class Steam : GodotObject
         XboxoneB = 115,
         XboxoneX = 116,
         XboxoneY = 117,
-        XboxoneLeftbumper = 118,
-        XboxoneRightbumper = 119,
+        XboxoneLeftBumper = 118,
+        XboxoneRightBumper = 119,
         XboxoneMenu = 120,
         XboxoneView = 121,
-        XboxoneLefttriggerPull = 122,
-        XboxoneLefttriggerClick = 123,
-        XboxoneRighttriggerPull = 124,
-        XboxoneRighttriggerClick = 125,
-        XboxoneLeftstickMove = 126,
-        XboxoneLeftstickClick = 127,
-        XboxoneLeftstickDpadnorth = 128,
-        XboxoneLeftstickDpadsouth = 129,
-        XboxoneLeftstickDpadwest = 130,
-        XboxoneLeftstickDpadeast = 131,
-        XboxoneRightstickMove = 132,
-        XboxoneRightstickClick = 133,
-        XboxoneRightstickDpadnorth = 134,
-        XboxoneRightstickDpadsouth = 135,
-        XboxoneRightstickDpadwest = 136,
-        XboxoneRightstickDpadeast = 137,
+        XboxoneLeftTriggerPull = 122,
+        XboxoneLeftTriggerClick = 123,
+        XboxoneRightTriggerPull = 124,
+        XboxoneRightTriggerClick = 125,
+        XboxoneLeftStickMove = 126,
+        XboxoneLeftStickClick = 127,
+        XboxoneLeftStickDpadNorth = 128,
+        XboxoneLeftStickDpadSouth = 129,
+        XboxoneLeftStickDpadWest = 130,
+        XboxoneLeftStickDpadEast = 131,
+        XboxoneRightStickMove = 132,
+        XboxoneRightStickClick = 133,
+        XboxoneRightStickDpadNorth = 134,
+        XboxoneRightStickDpadSouth = 135,
+        XboxoneRightStickDpadWest = 136,
+        XboxoneRightStickDpadEast = 137,
         XboxoneDpadNorth = 138,
         XboxoneDpadSouth = 139,
         XboxoneDpadWest = 140,
         XboxoneDpadEast = 141,
         XboxoneDpadMove = 142,
-        XboxoneLeftgripLower = 143,
-        XboxoneLeftgripUpper = 144,
-        XboxoneRightgripLower = 145,
-        XboxoneRightgripUpper = 146,
+        XboxoneLeftGripLower = 143,
+        XboxoneLeftGripUpper = 144,
+        XboxoneRightGripLower = 145,
+        XboxoneRightGripUpper = 146,
         XboxoneShare = 147,
         XboxoneReserved6 = 148,
         XboxoneReserved7 = 149,
@@ -662,26 +720,26 @@ public partial class Steam : GodotObject
         Xbox360B = 154,
         Xbox360X = 155,
         Xbox360Y = 156,
-        Xbox360Leftbumper = 157,
-        Xbox360Rightbumper = 158,
+        Xbox360LeftBumper = 157,
+        Xbox360RightBumper = 158,
         Xbox360Start = 159,
         Xbox360Back = 160,
-        Xbox360LefttriggerPull = 161,
-        Xbox360LefttriggerClick = 162,
-        Xbox360RighttriggerPull = 163,
-        Xbox360RighttriggerClick = 164,
-        Xbox360LeftstickMove = 165,
-        Xbox360LeftstickClick = 166,
-        Xbox360LeftstickDpadnorth = 167,
-        Xbox360LeftstickDpadsouth = 168,
-        Xbox360LeftstickDpadwest = 169,
-        Xbox360LeftstickDpadeast = 170,
-        Xbox360RightstickMove = 171,
-        Xbox360RightstickClick = 172,
-        Xbox360RightstickDpadnorth = 173,
-        Xbox360RightstickDpadsouth = 174,
-        Xbox360RightstickDpadwest = 175,
-        Xbox360RightstickDpadeast = 176,
+        Xbox360LeftTriggerPull = 161,
+        Xbox360LeftTriggerClick = 162,
+        Xbox360RightTriggerPull = 163,
+        Xbox360RightTriggerClick = 164,
+        Xbox360LeftStickMove = 165,
+        Xbox360LeftStickClick = 166,
+        Xbox360LeftStickDpadNorth = 167,
+        Xbox360LeftStickDpadSouth = 168,
+        Xbox360LeftStickDpadWest = 169,
+        Xbox360LeftStickDpadEast = 170,
+        Xbox360RightStickMove = 171,
+        Xbox360RightStickClick = 172,
+        Xbox360RightStickDpadNorth = 173,
+        Xbox360RightStickDpadSouth = 174,
+        Xbox360RightStickDpadWest = 175,
+        Xbox360RightStickDpadEast = 176,
         Xbox360DpadNorth = 177,
         Xbox360DpadSouth = 178,
         Xbox360DpadWest = 179,
@@ -701,35 +759,35 @@ public partial class Steam : GodotObject
         SwitchB = 193,
         SwitchX = 194,
         SwitchY = 195,
-        SwitchLeftbumper = 196,
-        SwitchRightbumper = 197,
+        SwitchLeftBumper = 196,
+        SwitchRightBumper = 197,
         SwitchPlus = 198,
         SwitchMinus = 199,
         SwitchCapture = 200,
-        SwitchLefttriggerPull = 201,
-        SwitchLefttriggerClick = 202,
-        SwitchRighttriggerPull = 203,
-        SwitchRighttriggerClick = 204,
-        SwitchLeftstickMove = 205,
-        SwitchLeftstickClick = 206,
-        SwitchLeftstickDpadnorth = 207,
-        SwitchLeftstickDpadsouth = 208,
-        SwitchLeftstickDpadwest = 209,
-        SwitchLeftstickDpadeast = 210,
-        SwitchRightstickMove = 211,
-        SwitchRightstickClick = 212,
-        SwitchRightstickDpadnorth = 213,
-        SwitchRightstickDpadsouth = 214,
-        SwitchRightstickDpadwest = 215,
-        SwitchRightstickDpadeast = 216,
+        SwitchLeftTriggerPull = 201,
+        SwitchLeftTriggerClick = 202,
+        SwitchRightTriggerPull = 203,
+        SwitchRightTriggerClick = 204,
+        SwitchLeftStickMove = 205,
+        SwitchLeftStickClick = 206,
+        SwitchLeftStickDpadNorth = 207,
+        SwitchLeftStickDpadSouth = 208,
+        SwitchLeftStickDpadWest = 209,
+        SwitchLeftStickDpadEast = 210,
+        SwitchRightStickMove = 211,
+        SwitchRightStickClick = 212,
+        SwitchRightStickDpadNorth = 213,
+        SwitchRightStickDpadSouth = 214,
+        SwitchRightStickDpadWest = 215,
+        SwitchRightStickDpadEast = 216,
         SwitchDpadNorth = 217,
         SwitchDpadSouth = 218,
         SwitchDpadWest = 219,
         SwitchDpadEast = 220,
-        SwitchProgyroMove = 221,
-        SwitchProgyroPitch = 222,
-        SwitchProgyroYaw = 223,
-        SwitchProgyroRoll = 224,
+        SwitchProGyroMove = 221,
+        SwitchProGyroPitch = 222,
+        SwitchProGyroYaw = 223,
+        SwitchProGyroRoll = 224,
         SwitchDpadMove = 225,
         SwitchReserved1 = 226,
         SwitchReserved2 = 227,
@@ -741,18 +799,18 @@ public partial class Steam : GodotObject
         SwitchReserved8 = 233,
         SwitchReserved9 = 234,
         SwitchReserved10 = 235,
-        SwitchRightgyroMove = 236,
-        SwitchRightgyroPitch = 237,
-        SwitchRightgyroYaw = 238,
-        SwitchRightgyroRoll = 239,
-        SwitchLeftgyroMove = 240,
-        SwitchLeftgyroPitch = 241,
-        SwitchLeftgyroYaw = 242,
-        SwitchLeftgyroRoll = 243,
-        SwitchLeftgripLower = 244,
-        SwitchLeftgripUpper = 245,
-        SwitchRightgripLower = 246,
-        SwitchRightgripUpper = 247,
+        SwitchRightGyroMove = 236,
+        SwitchRightGyroPitch = 237,
+        SwitchRightGyroYaw = 238,
+        SwitchRightGyroRoll = 239,
+        SwitchLeftGyroMove = 240,
+        SwitchLeftGyroPitch = 241,
+        SwitchLeftGyroYaw = 242,
+        SwitchLeftGyroRoll = 243,
+        SwitchLeftGripLower = 244,
+        SwitchLeftGripUpper = 245,
+        SwitchRightGripLower = 246,
+        SwitchRightGripUpper = 247,
         SwitchJoyconButtonN = 248,
         SwitchJoyconButtonE = 249,
         SwitchJoyconButtonS = 250,
@@ -767,48 +825,48 @@ public partial class Steam : GodotObject
         Ps5Circle = 259,
         Ps5Triangle = 260,
         Ps5Square = 261,
-        Ps5Leftbumper = 262,
-        Ps5Rightbumper = 263,
+        Ps5LeftBumper = 262,
+        Ps5RightBumper = 263,
         Ps5Option = 264,
         Ps5Create = 265,
         Ps5Mute = 266,
-        Ps5LeftpadTouch = 267,
-        Ps5LeftpadSwipe = 268,
-        Ps5LeftpadClick = 269,
-        Ps5LeftpadDpadnorth = 270,
-        Ps5LeftpadDpadsouth = 271,
-        Ps5LeftpadDpadwest = 272,
-        Ps5LeftpadDpadeast = 273,
-        Ps5RightpadTouch = 274,
-        Ps5RightpadSwipe = 275,
-        Ps5RightpadClick = 276,
-        Ps5RightpadDpadnorth = 277,
-        Ps5RightpadDpadsouth = 278,
-        Ps5RightpadDpadwest = 279,
-        Ps5RightpadDpadeast = 280,
-        Ps5CenterpadTouch = 281,
-        Ps5CenterpadSwipe = 282,
-        Ps5CenterpadClick = 283,
-        Ps5CenterpadDpadnorth = 284,
-        Ps5CenterpadDpadsouth = 285,
-        Ps5CenterpadDpadwest = 286,
-        Ps5CenterpadDpadeast = 287,
-        Ps5LefttriggerPull = 288,
-        Ps5LefttriggerClick = 289,
-        Ps5RighttriggerPull = 290,
-        Ps5RighttriggerClick = 291,
-        Ps5LeftstickMove = 292,
-        Ps5LeftstickClick = 293,
-        Ps5LeftstickDpadnorth = 294,
-        Ps5LeftstickDpadsouth = 295,
-        Ps5LeftstickDpadwest = 296,
-        Ps5LeftstickDpadeast = 297,
-        Ps5RightstickMove = 298,
-        Ps5RightstickClick = 299,
-        Ps5RightstickDpadnorth = 300,
-        Ps5RightstickDpadsouth = 301,
-        Ps5RightstickDpadwest = 302,
-        Ps5RightstickDpadeast = 303,
+        Ps5LeftPadTouch = 267,
+        Ps5LeftPadSwipe = 268,
+        Ps5LeftPadClick = 269,
+        Ps5LeftPadDpadNorth = 270,
+        Ps5LeftPadDpadSouth = 271,
+        Ps5LeftPadDpadWest = 272,
+        Ps5LeftPadDpadEast = 273,
+        Ps5RightPadTouch = 274,
+        Ps5RightPadSwipe = 275,
+        Ps5RightPadClick = 276,
+        Ps5RightPadDpadNorth = 277,
+        Ps5RightPadDpadSouth = 278,
+        Ps5RightPadDpadWest = 279,
+        Ps5RightPadDpadEast = 280,
+        Ps5CenterPadTouch = 281,
+        Ps5CenterPadSwipe = 282,
+        Ps5CenterPadClick = 283,
+        Ps5CenterPadDpadNorth = 284,
+        Ps5CenterPadDpadSouth = 285,
+        Ps5CenterPadDpadWest = 286,
+        Ps5CenterPadDpadEast = 287,
+        Ps5LeftTriggerPull = 288,
+        Ps5LeftTriggerClick = 289,
+        Ps5RightTriggerPull = 290,
+        Ps5RightTriggerClick = 291,
+        Ps5LeftStickMove = 292,
+        Ps5LeftStickClick = 293,
+        Ps5LeftStickDpadNorth = 294,
+        Ps5LeftStickDpadSouth = 295,
+        Ps5LeftStickDpadWest = 296,
+        Ps5LeftStickDpadEast = 297,
+        Ps5RightStickMove = 298,
+        Ps5RightStickClick = 299,
+        Ps5RightStickDpadNorth = 300,
+        Ps5RightStickDpadSouth = 301,
+        Ps5RightStickDpadWest = 302,
+        Ps5RightStickDpadEast = 303,
         Ps5DpadNorth = 304,
         Ps5DpadSouth = 305,
         Ps5DpadWest = 306,
@@ -818,10 +876,10 @@ public partial class Steam : GodotObject
         Ps5GyroYaw = 310,
         Ps5GyroRoll = 311,
         Ps5DpadMove = 312,
-        Ps5Leftgrip = 313,
-        Ps5Rightgrip = 314,
-        Ps5Leftfn = 315,
-        Ps5Rightfn = 316,
+        Ps5LeftGrip = 313,
+        Ps5RightGrip = 314,
+        Ps5LeftFn = 315,
+        Ps5RightFn = 316,
         Ps5Reserved5 = 317,
         Ps5Reserved6 = 318,
         Ps5Reserved7 = 319,
@@ -846,38 +904,38 @@ public partial class Steam : GodotObject
         SteamdeckR1 = 338,
         SteamdeckMenu = 339,
         SteamdeckView = 340,
-        SteamdeckLeftpadTouch = 341,
-        SteamdeckLeftpadSwipe = 342,
-        SteamdeckLeftpadClick = 343,
-        SteamdeckLeftpadDpadnorth = 344,
-        SteamdeckLeftpadDpadsouth = 345,
-        SteamdeckLeftpadDpadwest = 346,
-        SteamdeckLeftpadDpadeast = 347,
-        SteamdeckRightpadTouch = 348,
-        SteamdeckRightpadSwipe = 349,
-        SteamdeckRightpadClick = 350,
-        SteamdeckRightpadDpadnorth = 351,
-        SteamdeckRightpadDpadsouth = 352,
-        SteamdeckRightpadDpadwest = 353,
-        SteamdeckRightpadDpadeast = 354,
+        SteamdeckLeftPadTouch = 341,
+        SteamdeckLeftPadSwipe = 342,
+        SteamdeckLeftPadClick = 343,
+        SteamdeckLeftPadDpadNorth = 344,
+        SteamdeckLeftPadDpadSouth = 345,
+        SteamdeckLeftPadDpadWest = 346,
+        SteamdeckLeftPadDpadEast = 347,
+        SteamdeckRightPadTouch = 348,
+        SteamdeckRightPadSwipe = 349,
+        SteamdeckRightPadClick = 350,
+        SteamdeckRightPadDpadNorth = 351,
+        SteamdeckRightPadDpadSouth = 352,
+        SteamdeckRightPadDpadWest = 353,
+        SteamdeckRightPadDpadEast = 354,
         SteamdeckL2Softpull = 355,
         SteamdeckL2 = 356,
         SteamdeckR2Softpull = 357,
         SteamdeckR2 = 358,
-        SteamdeckLeftstickMove = 359,
+        SteamdeckLeftStickMove = 359,
         SteamdeckL3 = 360,
-        SteamdeckLeftstickDpadnorth = 361,
-        SteamdeckLeftstickDpadsouth = 362,
-        SteamdeckLeftstickDpadwest = 363,
-        SteamdeckLeftstickDpadeast = 364,
-        SteamdeckLeftstickTouch = 365,
-        SteamdeckRightstickMove = 366,
+        SteamdeckLeftStickDpadNorth = 361,
+        SteamdeckLeftStickDpadSouth = 362,
+        SteamdeckLeftStickDpadWest = 363,
+        SteamdeckLeftStickDpadEast = 364,
+        SteamdeckLeftStickTouch = 365,
+        SteamdeckRightStickMove = 366,
         SteamdeckR3 = 367,
-        SteamdeckRightstickDpadnorth = 368,
-        SteamdeckRightstickDpadsouth = 369,
-        SteamdeckRightstickDpadwest = 370,
-        SteamdeckRightstickDpadeast = 371,
-        SteamdeckRightstickTouch = 372,
+        SteamdeckRightStickDpadNorth = 368,
+        SteamdeckRightStickDpadSouth = 369,
+        SteamdeckRightStickDpadWest = 370,
+        SteamdeckRightStickDpadEast = 371,
+        SteamdeckRightStickTouch = 372,
         SteamdeckL4 = 373,
         SteamdeckR4 = 374,
         SteamdeckL5 = 375,
@@ -915,7 +973,281 @@ public partial class Steam : GodotObject
         HoripadM2 = 407,
         HoripadL4 = 408,
         HoripadR4 = 409,
-        Count = 410,
+        LenovoLegionGoA = 410,
+        LenovoLegionGoB = 411,
+        LenovoLegionGoX = 412,
+        LenovoLegionGoY = 413,
+        LenovoLegionGoLb = 414,
+        LenovoLegionGoRb = 415,
+        LenovoLegionGoMenu = 416,
+        LenovoLegionGoView = 417,
+        LenovoLegionGoLeftPadTouch = 418,
+        LenovoLegionGoLeftPadSwipe = 419,
+        LenovoLegionGoLeftPadClick = 420,
+        LenovoLegionGoLeftPadDpadNorth = 421,
+        LenovoLegionGoLeftPadDpadSouth = 422,
+        LenovoLegionGoLeftPadDpadWest = 423,
+        LenovoLegionGoLeftPadDpadEast = 424,
+        LenovoLegionGoRightPadTouch = 425,
+        LenovoLegionGoRightPadSwipe = 426,
+        LenovoLegionGoRightPadClick = 427,
+        LenovoLegionGoRightPadDpadNorth = 428,
+        LenovoLegionGoRightPadDpadSouth = 429,
+        LenovoLegionGoRightPadDpadWest = 430,
+        LenovoLegionGoRightPadDpadEast = 431,
+        LenovoLegionGoLtSoftpull = 432,
+        LenovoLegionGoLt = 433,
+        LenovoLegionGoRtSoftpull = 434,
+        LenovoLegionGoRt = 435,
+        LenovoLegionGoLeftStickMove = 436,
+        LenovoLegionGoLs = 437,
+        LenovoLegionGoLeftStickDpadNorth = 438,
+        LenovoLegionGoLeftStickDpadSouth = 439,
+        LenovoLegionGoLeftStickDpadWest = 440,
+        LenovoLegionGoLeftStickDpadEast = 441,
+        LenovoLegionGoRightStickMove = 442,
+        LenovoLegionGoRs = 443,
+        LenovoLegionGoRightStickDpadNorth = 444,
+        LenovoLegionGoRightStickDpadSouth = 445,
+        LenovoLegionGoRightStickDpadWest = 446,
+        LenovoLegionGoRightStickDpadEast = 447,
+        LenovoLegionGoY1 = 448,
+        LenovoLegionGoY2 = 449,
+        LenovoLegionGoDpadMove = 450,
+        LenovoLegionGoDpadNorth = 451,
+        LenovoLegionGoDpadSouth = 452,
+        LenovoLegionGoDpadWest = 453,
+        LenovoLegionGoDpadEast = 454,
+        LenovoLegionGoGyroMove = 455,
+        LenovoLegionGoGyroPitch = 456,
+        LenovoLegionGoGyroYaw = 457,
+        LenovoLegionGoGyroRoll = 458,
+        LenovoLegionGoReserved1 = 459,
+        LenovoLegionGoReserved2 = 460,
+        LenovoLegionGoReserved3 = 461,
+        LenovoLegionGoReserved4 = 462,
+        LenovoLegionGoReserved5 = 463,
+        LenovoLegionGoReserved6 = 464,
+        LenovoLegionGoReserved7 = 465,
+        LenovoLegionGoReserved8 = 466,
+        LenovoLegionGoReserved9 = 467,
+        LenovoLegionGoReserved10 = 468,
+        LenovoLegionGoReserved11 = 469,
+        LenovoLegionGoReserved12 = 470,
+        LenovoLegionGoReserved13 = 471,
+        LenovoLegionGoReserved14 = 472,
+        LenovoLegionGoReserved15 = 473,
+        LenovoLegionGoReserved16 = 474,
+        LenovoLegionGoReserved17 = 475,
+        LenovoLegionGoReserved18 = 476,
+        LenovoLegionGoReserved19 = 477,
+        LenovoLegionGoReserved20 = 478,
+        GenericL4 = 479,
+        GenericR4 = 480,
+        GenericL5 = 481,
+        GenericR5 = 482,
+        GenericPl = 483,
+        GenericPr = 484,
+        GenericC = 485,
+        GenericZ = 486,
+        GenericMisc1 = 487,
+        GenericMisc2 = 488,
+        GenericMisc3 = 489,
+        GenericMisc4 = 490,
+        GenericMisc5 = 491,
+        GenericMisc6 = 492,
+        GenericMisc7 = 493,
+        GenericMisc8 = 494,
+        Switch2RightTriggerPull = 506,
+        Switch2RightTriggerClick = 507,
+        Switch2LeftStickMove = 508,
+        Switch2LeftStickClick = 509,
+        Switch2LeftStickDpadNorth = 510,
+        Switch2LeftStickDpadSouth = 511,
+        Switch2LeftStickDpadWest = 512,
+        Switch2LeftStickDpadEast = 513,
+        Switch2RightStickMove = 514,
+        Switch2RightStickClick = 515,
+        Switch2RightStickDpadNorth = 516,
+        Switch2RightStickDpadSouth = 517,
+        Switch2RightStickDpadWest = 518,
+        Switch2RightStickDpadEast = 519,
+        Switch2DpadMove = 520,
+        Switch2DpadNorth = 521,
+        Switch2DpadSouth = 522,
+        Switch2DpadWest = 523,
+        Switch2DpadEast = 524,
+        Switch2ProGyroMove = 525,
+        Switch2ProGyroPitch = 526,
+        Switch2ProGyroYaw = 527,
+        Switch2ProGyroRoll = 528,
+        Switch2Gl = 529,
+        Switch2Gr = 530,
+        Switch2C = 531,
+        Switch2Reserved1 = 532,
+        Switch2Reserved2 = 533,
+        Switch2Reserved3 = 534,
+        Switch2Reserved4 = 535,
+        Switch2Reserved5 = 536,
+        Switch2Reserved6 = 537,
+        Switch2Reserved7 = 538,
+        Switch2Reserved8 = 539,
+        Switch2Reserved9 = 540,
+        Switch2Reserved10 = 541,
+        Steamcontroller2026A = 542,
+        Steamcontroller2026B = 543,
+        Steamcontroller2026X = 544,
+        Steamcontroller2026Y = 545,
+        Steamcontroller2026L1 = 546,
+        Steamcontroller2026R1 = 547,
+        Steamcontroller2026Menu = 548,
+        Steamcontroller2026View = 549,
+        Steamcontroller2026LeftPadTouch = 550,
+        Steamcontroller2026LeftPadSwipe = 551,
+        Steamcontroller2026LeftPadClick = 552,
+        Steamcontroller2026LeftPadDpadNorth = 553,
+        Steamcontroller2026LeftPadDpadSouth = 554,
+        Steamcontroller2026LeftPadDpadWest = 555,
+        Steamcontroller2026LeftPadDpadEast = 556,
+        Steamcontroller2026RightPadTouch = 557,
+        Steamcontroller2026RightPadSwipe = 558,
+        Steamcontroller2026RightPadClick = 559,
+        Steamcontroller2026RightPadDpadNorth = 560,
+        Steamcontroller2026RightPadDpadSouth = 561,
+        Steamcontroller2026RightPadDpadWest = 562,
+        Steamcontroller2026RightPadDpadEast = 563,
+        Steamcontroller2026L2Softpull = 564,
+        Steamcontroller2026L2 = 565,
+        Steamcontroller2026R2Softpull = 566,
+        Steamcontroller2026R2 = 567,
+        Steamcontroller2026LeftStickMove = 568,
+        Steamcontroller2026L3 = 569,
+        Steamcontroller2026LeftStickDpadNorth = 570,
+        Steamcontroller2026LeftStickDpadSouth = 571,
+        Steamcontroller2026LeftStickDpadWest = 572,
+        Steamcontroller2026LeftStickDpadEast = 573,
+        Steamcontroller2026LeftStickTouch = 574,
+        Steamcontroller2026RightStickMove = 575,
+        Steamcontroller2026R3 = 576,
+        Steamcontroller2026RightStickDpadNorth = 577,
+        Steamcontroller2026RightStickDpadSouth = 578,
+        Steamcontroller2026RightStickDpadWest = 579,
+        Steamcontroller2026RightStickDpadEast = 580,
+        Steamcontroller2026RightStickTouch = 581,
+        Steamcontroller2026L4 = 582,
+        Steamcontroller2026R4 = 583,
+        Steamcontroller2026L5 = 584,
+        Steamcontroller2026R5 = 585,
+        Steamcontroller2026DpadMove = 586,
+        Steamcontroller2026DpadNorth = 587,
+        Steamcontroller2026DpadSouth = 588,
+        Steamcontroller2026DpadWest = 589,
+        Steamcontroller2026DpadEast = 590,
+        Steamcontroller2026GyroMove = 591,
+        Steamcontroller2026GyroPitch = 592,
+        Steamcontroller2026GyroYaw = 593,
+        Steamcontroller2026GyroRoll = 594,
+        Steamcontroller2026Lgrip = 595,
+        Steamcontroller2026Rgrip = 596,
+        Steamcontroller2026Reserved1 = 597,
+        Steamcontroller2026Reserved2 = 598,
+        Steamcontroller2026Reserved3 = 599,
+        Steamcontroller2026Reserved4 = 600,
+        Steamcontroller2026Reserved5 = 601,
+        Steamcontroller2026Reserved6 = 602,
+        Steamcontroller2026Reserved7 = 603,
+        Steamcontroller2026Reserved8 = 604,
+        Steamcontroller2026Reserved9 = 605,
+        Steamcontroller2026Reserved10 = 606,
+        Steamcontroller2026Reserved11 = 607,
+        Steamcontroller2026Reserved12 = 608,
+        Steamcontroller2026Reserved13 = 609,
+        Steamcontroller2026Reserved14 = 610,
+        Steamcontroller2026Reserved15 = 611,
+        Steamcontroller2026Reserved16 = 612,
+        Steamcontroller2026Reserved17 = 613,
+        Steamcontroller2026Reserved18 = 614,
+        Steamcontroller2026Reserved19 = 615,
+        Steamcontroller2026Reserved20 = 616,
+        SteamframecontrollerAClick = 617,
+        SteamframecontrollerATouch = 618,
+        SteamframecontrollerBClick = 619,
+        SteamframecontrollerBTouch = 620,
+        SteamframecontrollerXClick = 621,
+        SteamframecontrollerXTouch = 622,
+        SteamframecontrollerYClick = 623,
+        SteamframecontrollerYTouch = 624,
+        SteamframecontrollerLeftTriggerPull = 625,
+        SteamframecontrollerLeftTriggerClick = 626,
+        SteamframecontrollerLeftTriggerTouch = 627,
+        SteamframecontrollerRightTriggerPull = 628,
+        SteamframecontrollerRightTriggerClick = 629,
+        SteamframecontrollerRightTriggerTouch = 630,
+        SteamframecontrollerMenuClick = 631,
+        SteamframecontrollerMenuTouch = 632,
+        SteamframecontrollerViewClick = 633,
+        SteamframecontrollerViewTouch = 634,
+        SteamframecontrollerLeftBumperClick = 635,
+        SteamframecontrollerLeftBumperTouch = 636,
+        SteamframecontrollerRightBumperClick = 637,
+        SteamframecontrollerRightBumperTouch = 638,
+        SteamframecontrollerLeftStickMove = 639,
+        SteamframecontrollerLeftStickClick = 640,
+        SteamframecontrollerLeftStickDpadNorth = 641,
+        SteamframecontrollerLeftStickDpadSouth = 642,
+        SteamframecontrollerLeftStickDpadWest = 643,
+        SteamframecontrollerLeftStickDpadEast = 644,
+        SteamframecontrollerLeftStickTouch = 645,
+        SteamframecontrollerRightStickMove = 646,
+        SteamframecontrollerRightStickClick = 647,
+        SteamframecontrollerRightStickDpadNorth = 648,
+        SteamframecontrollerRightStickDpadSouth = 649,
+        SteamframecontrollerRightStickDpadWest = 650,
+        SteamframecontrollerRightStickDpadEast = 651,
+        SteamframecontrollerRightStickTouch = 652,
+        SteamframecontrollerDpadMove = 653,
+        SteamframecontrollerDpadNorth = 654,
+        SteamframecontrollerDpadSouth = 655,
+        SteamframecontrollerDpadWest = 656,
+        SteamframecontrollerDpadEast = 657,
+        SteamframecontrollerDpadTouch = 658,
+        SteamframecontrollerLeftGyroMove = 659,
+        SteamframecontrollerLeftGyroPitch = 660,
+        SteamframecontrollerLeftGyroYaw = 661,
+        SteamframecontrollerLeftGyroRoll = 662,
+        SteamframecontrollerRightGyroMove = 663,
+        SteamframecontrollerRightGyroPitch = 664,
+        SteamframecontrollerRightGyroYaw = 665,
+        SteamframecontrollerRightGyroRoll = 666,
+        SteamframecontrollerLeftGripPull = 667,
+        SteamframecontrollerLeftGripClick = 668,
+        SteamframecontrollerLeftGripTouch = 669,
+        SteamframecontrollerRightGripPull = 670,
+        SteamframecontrollerRightGripClick = 671,
+        SteamframecontrollerRightGripTouch = 672,
+        SteamframecontrollerLeftThumbrestTouch = 673,
+        SteamframecontrollerRightThumbrestTouch = 674,
+        SteamframecontrollerReserved1 = 675,
+        SteamframecontrollerReserved2 = 676,
+        SteamframecontrollerReserved3 = 677,
+        SteamframecontrollerReserved4 = 678,
+        SteamframecontrollerReserved5 = 679,
+        SteamframecontrollerReserved6 = 680,
+        SteamframecontrollerReserved7 = 681,
+        SteamframecontrollerReserved8 = 682,
+        SteamframecontrollerReserved9 = 683,
+        SteamframecontrollerReserved10 = 684,
+        SteamframecontrollerReserved11 = 685,
+        SteamframecontrollerReserved12 = 686,
+        SteamframecontrollerReserved13 = 687,
+        SteamframecontrollerReserved14 = 688,
+        SteamframecontrollerReserved15 = 689,
+        SteamframecontrollerReserved16 = 690,
+        SteamframecontrollerReserved17 = 691,
+        SteamframecontrollerReserved18 = 692,
+        SteamframecontrollerReserved19 = 693,
+        SteamframecontrollerReserved20 = 694,
+        Count = 695,
         MaximumPossibleValue = 32767,
     }
 
@@ -991,7 +1323,11 @@ public partial class Steam : GodotObject
         Ps3Controller = 12,
         Ps5Controller = 13,
         SteamDeckController = 14,
-        Count = 15,
+        SteamOsHandheld = 15,
+        Switch2ProController = 16,
+        SteamController2 = 17,
+        SteamFrameControllerPair = 18,
+        Count = 19,
         MaximumPossibleValue = 255,
     }
 
@@ -1138,6 +1474,7 @@ public partial class Steam : GodotObject
         FileDeleted = 2,
     }
 
+    [Flags]
     public enum MarketNotAllowedReasonFlags
     {
         None = 0,
@@ -1148,7 +1485,7 @@ public partial class Steam : GodotObject
         TradeBanned = 16,
         AccountNotTrusted = 32,
         SteamGuardNotEnabled = 64,
-        SteamGaurdOnlyRecentlyEnabled = 128,
+        SteamGuardOnlyRecentlyEnabled = 128,
         RecentPasswordReset = 256,
         NewPaymentMethod = 512,
         InvalidCookie = 1024,
@@ -1157,6 +1494,7 @@ public partial class Steam : GodotObject
         NewPaymentMethodCannotBeVerified = 8192,
         NoRecentPurchases = 16384,
         AcceptedWalletGift = 32768,
+        TradeCooldown = 65536,
     }
 
     public enum MatchMakingServerResponse
@@ -1164,54 +1502,6 @@ public partial class Steam : GodotObject
         Responded = 0,
         FailedToRespond = 1,
         NoServersListedOnMasterServer = 2,
-    }
-
-    public enum HtmlMouseCursor
-    {
-        User = 0,
-        None = 1,
-        Arrow = 2,
-        Ibeam = 3,
-        Hourglass = 4,
-        WaitArrow = 5,
-        Crosshair = 6,
-        Up = 7,
-        SizeNw = 8,
-        SizeSe = 9,
-        SizeNe = 10,
-        SizeSw = 11,
-        SizeW = 12,
-        SizeE = 13,
-        SizeN = 14,
-        SizeS = 15,
-        SizeWe = 16,
-        SizeNs = 17,
-        SizeAll = 18,
-        CursorNo = 19,
-        CursorHand = 20,
-        CursorBlank = 21,
-        MiddlePan = 22,
-        NorthPan = 23,
-        NorthEastPan = 24,
-        EastPan = 25,
-        SouthEastPan = 26,
-        SouthPan = 27,
-        SouthWestPan = 28,
-        WestPan = 29,
-        NorthWestPan = 30,
-        Alias = 31,
-        Cell = 32,
-        ColResize = 33,
-        CopyCur = 34,
-        VerticalText = 35,
-        RowResize = 36,
-        ZoomIn = 37,
-        ZoomOut = 38,
-        Help = 39,
-        Custom = 40,
-        SizeNwse = 41,
-        SizeNesw = 42,
-        Last = 43,
     }
 
     public enum NetworkingAvailability
@@ -1254,6 +1544,12 @@ public partial class Steam : GodotObject
         FakePacketLossRecv = 3,
         FakePacketLagSend = 4,
         FakePacketLagRecv = 5,
+        FakePacketJitterSendAvg = 53,
+        FakePacketJitterSendMax = 54,
+        FakePacketJitterSendPct = 55,
+        FakePacketJitterRecvAvg = 56,
+        FakePacketJitterRecvMax = 57,
+        FakePacketJitterRecvPct = 58,
         FakePacketReorderSend = 6,
         FakePacketReorderRecv = 7,
         FakePacketReorderTime = 8,
@@ -1314,7 +1610,7 @@ public partial class Steam : GodotObject
         P2pTransportIcePenalty = 105,
         P2pTransportSdrPenalty = 106,
         P2pTurnServerList = 107,
-        P2pTurnUSerList = 108,
+        P2pTurnUserList = 108,
         P2pTurnPassList = 109,
         P2pTransportIceImplementation = 110,
         Ecn = 999,
@@ -1476,12 +1772,13 @@ public partial class Steam : GodotObject
         SiteLicense = 13,
         KioskMode = 14,
         BlockAlways = 15,
-        Max = 16,
+        Desktop = 16,
+        Max = 17,
     }
 
     public enum PartyBeaconLocationData
     {
-        SteamPartyBeaconLocationData = 0,
+        SteamPartyBeaconLocationDataInvalid = 0,
         SteamPartyBeaconLocationDataName = 1,
         SteamPartyBeaconLocationDataUrlSmall = 2,
         SteamPartyBeaconLocationDataUrlMedium = 3,
@@ -1490,8 +1787,8 @@ public partial class Steam : GodotObject
 
     public enum PartyBeaconLocationType
     {
-        SteamPartyBeaconLocationtypeInvalid = 0,
-        SteamPartyBeaconLocationtypeChatGroup = 1,
+        SteamPartyBeaconLocationTypeInvalid = 0,
+        SteamPartyBeaconLocationTypeChatGroup = 1,
         SteamPartyBeaconLocationTypeMax = 2,
     }
 
@@ -1509,7 +1806,7 @@ public partial class Steam : GodotObject
         LeftSource = 256,
         RelationshipChanged = 512,
         NameFirstSet = 1024,
-        FacebookInfo = 2048,
+        Broadcast = 2048,
         Nickname = 4096,
         SteamLevel = 8192,
         RichPresence = 16384,
@@ -1526,15 +1823,6 @@ public partial class Steam : GodotObject
         LookingToPlay = 6,
         Invisible = 7,
         Max = 8,
-    }
-
-    public enum PlayerResult
-    {
-        FailedToConnect = 1,
-        Abandoned = 2,
-        Kicked = 3,
-        Incomplete = 4,
-        Completed = 5,
     }
 
     public enum RemotePlayInputType
@@ -1661,6 +1949,22 @@ public partial class Steam : GodotObject
         RemotePlayerScancodeLeft = 80,
         RemotePlayerScancodeDown = 81,
         RemotePlayerScancodeUp = 82,
+        RemotePlayerScancodeKeypadDivide = 84,
+        RemotePlayerScancodeKeypadMultiply = 85,
+        RemotePlayerScancodeKeypadMinus = 86,
+        RemotePlayerScancodeKeypadPlus = 87,
+        RemotePlayerScancodeKeypadEnter = 88,
+        RemotePlayerScancodeKeypad1 = 89,
+        RemotePlayerScancodeKeypad2 = 90,
+        RemotePlayerScancodeKeypad3 = 91,
+        RemotePlayerScancodeKeypad4 = 92,
+        RemotePlayerScancodeKeypad5 = 93,
+        RemotePlayerScancodeKeypad6 = 94,
+        RemotePlayerScancodeKeypad7 = 95,
+        RemotePlayerScancodeKeypad8 = 96,
+        RemotePlayerScancodeKeypad9 = 97,
+        RemotePlayerScancodeKeypad0 = 98,
+        RemotePlayerScancodeKeypadPeriod = 99,
         RemotePlayerScancodeLeftControl = 224,
         RemotePlayerScancodeLeftShift = 225,
         RemotePlayerScancodeLeftAlt = 226,
@@ -1672,17 +1976,17 @@ public partial class Steam : GodotObject
     }
 
     [Flags]
-public enum RemoteStoragePlatform
-{
-    None = 0,
-    Windows = 1,
-    Osx = 2,
-    Ps3 = 4,
-    Linux = 8,
-    Reserved1 = 16,
-    Reserved2 = 32,
-    All = -1,
-}
+    public enum RemoteStoragePlatform
+    {
+        None = 0,
+        Windows = 1,
+        Osx = 2,
+        Ps3 = 4,
+        Linux = 8,
+        Reserved1 = 16,
+        Reserved2 = 32,
+        All = -1,
+    }
 
     public enum RemoteStoragePublishedFileVisibility
     {
@@ -1824,6 +2128,7 @@ public enum RemoteStoragePlatform
         NotSupported = 128,
         FamilySizeLimitExceeded = 129,
         OfflineAppCacheInvalid = 130,
+        TryLater = 131,
     }
 
     public enum ScePadTriggerEffectMode
@@ -1865,6 +2170,36 @@ public enum RemoteStoragePlatform
         FailedGeneric = 1,
         NoSteamClient = 2,
         VersionMismatch = 3,
+    }
+
+    public enum SteamControllerPad
+    {
+        Left = 0,
+        Right = 1,
+        Both = 2,
+        GripLeft = 3,
+        GripRight = 4,
+        GripBoth = 5,
+    }
+
+    public enum SteamHardwareType
+    {
+        None = 0,
+        SteamDeck = 1,
+        SteamMachine = 2,
+        SteamFrame = 3,
+    }
+
+    public enum SteamHardwareDefaultConfig
+    {
+        None = 0,
+        Low = 1,
+        Medium = 2,
+        High = 3,
+        Max = 4,
+        SteamDeck = 5,
+        SteamMachine = 6,
+        SteamFrame = 7,
     }
 
     public enum TextFilteringContext
@@ -1952,6 +2287,8 @@ public enum RemoteStoragePlatform
         RankedByPlaytimeSessionsTrend = 17,
         RankedByLifetimePlaytimeSessions = 18,
         RankedByLastUpdatedDate = 19,
+        RankedByNumParentItems = 20,
+        RankedByNumParentCollections = 21,
     }
 
     public enum UgcReadAction
@@ -1997,7 +2334,7 @@ public enum RemoteStoragePlatform
         Ok = 0,
         NotInitialized = 1,
         NotRecording = 2,
-        NoDate = 3,
+        NoData = 3,
         BufferTooSmall = 4,
         DataCorrupted = 5,
         Restricted = 6,
@@ -2089,7 +2426,7 @@ public enum RemoteStoragePlatform
         LeftStickDpadNorth = 14,
         LeftStickDpadSouth = 15,
         LeftStickDpadWest = 16,
-        LeftStickDpadEat = 17,
+        LeftStickDpadEast = 17,
         RightStickMove = 18,
         RightStickClick = 19,
         RightStickDpadNorth = 20,
@@ -2185,33 +2522,22 @@ public enum RemoteStoragePlatform
         public new static readonly StringName LobbyInvite = "lobby_invite";
         public new static readonly StringName LobbyMatchList = "lobby_match_list";
         public new static readonly StringName LobbyKicked = "lobby_kicked";
-        public new static readonly StringName RequestServerListServerResponded = "request_server_list_server_responded";
-        public new static readonly StringName RequestServerListServerFailedToRespond = "request_server_list_server_failed_to_respond";
-        public new static readonly StringName RequestServerListRefreshComplete = "request_server_list_refresh_complete";
-        public new static readonly StringName PingServerResponded = "ping_server_responded";
+        public new static readonly StringName AddFriendToList = "add_friend_to_list";
+        public new static readonly StringName FriendsFailedToRespond = "friends_failed_to_respond";
+        public new static readonly StringName FriendsRefreshComplete = "friends_refresh_complete";
         public new static readonly StringName PingServerFailedToRespond = "ping_server_failed_to_respond";
-        public new static readonly StringName PlayerDetailsPlayerAdded = "player_details_player_added";
+        public new static readonly StringName PingServerResponded = "ping_server_responded";
         public new static readonly StringName PlayerDetailsFailedToRespond = "player_details_failed_to_respond";
+        public new static readonly StringName PlayerDetailsPlayerAdded = "player_details_player_added";
         public new static readonly StringName PlayerDetailsRefreshComplete = "player_details_refresh_complete";
-        public new static readonly StringName ServerRulesResponded = "server_rules_responded";
+        public new static readonly StringName RequestServerListRefreshComplete = "request_server_list_refresh_complete";
+        public new static readonly StringName RequestServerListServerFailedToRespond = "request_server_list_server_failed_to_respond";
+        public new static readonly StringName RequestServerListServerResponded = "request_server_list_server_responded";
         public new static readonly StringName ServerRulesFailedToRespond = "server_rules_failed_to_respond";
         public new static readonly StringName ServerRulesRefreshComplete = "server_rules_refresh_complete";
+        public new static readonly StringName ServerRulesResponded = "server_rules_responded";
         public new static readonly StringName MusicPlaybackStatusHasChanged = "music_playback_status_has_changed";
         public new static readonly StringName MusicVolumeHasChanged = "music_volume_has_changed";
-        public new static readonly StringName MusicPlayerRemoteToFront = "music_player_remote_to_front";
-        public new static readonly StringName MusicPlayerRemoteWillActivate = "music_player_remote_will_activate";
-        public new static readonly StringName MusicPlayerRemoteWillDeactivate = "music_player_remote_will_deactivate";
-        public new static readonly StringName MusicPlayerSelectsPlaylistEntry = "music_player_selects_playlist_entry";
-        public new static readonly StringName MusicPlayerSelectsQueueEntry = "music_player_selects_queue_entry";
-        public new static readonly StringName MusicPlayerWantsLooped = "music_player_wants_looped";
-        public new static readonly StringName MusicPlayerWantsPause = "music_player_wants_pause";
-        public new static readonly StringName MusicPlayerWantsPlayingRepeatStatus = "music_player_wants_playing_repeat_status";
-        public new static readonly StringName MusicPlayerWantsPlayNext = "music_player_wants_play_next";
-        public new static readonly StringName MusicPlayerWantsPlayPrevious = "music_player_wants_play_previous";
-        public new static readonly StringName MusicPlayerWantsPlay = "music_player_wants_play";
-        public new static readonly StringName MusicPlayerWantsShuffled = "music_player_wants_shuffled";
-        public new static readonly StringName MusicPlayerWantsVolume = "music_player_wants_volume";
-        public new static readonly StringName MusicPlayerWillQuit = "music_player_will_quit";
         public new static readonly StringName P2pSessionRequest = "p2p_session_request";
         public new static readonly StringName P2pSessionConnectFail = "p2p_session_connect_fail";
         public new static readonly StringName NetworkMessagesSessionRequest = "network_messages_session_request";
@@ -2227,12 +2553,16 @@ public enum RemoteStoragePlatform
         public new static readonly StringName ChangeNumOpenSlots = "change_num_open_slots";
         public new static readonly StringName AvailableBeaconLocationsUpdated = "available_beacon_locations_updated";
         public new static readonly StringName ActiveBeaconsUpdated = "active_beacons_updated";
+        public new static readonly StringName RemotePlayGuestInvite = "remote_play_guest_invite";
+        public new static readonly StringName RemotePlaySessionAvatarLoaded = "remote_play_session_avatar_loaded";
         public new static readonly StringName RemotePlaySessionConnected = "remote_play_session_connected";
         public new static readonly StringName RemotePlaySessionDisconnected = "remote_play_session_disconnected";
         public new static readonly StringName FileReadAsyncComplete = "file_read_async_complete";
         public new static readonly StringName FileShareResult = "file_share_result";
         public new static readonly StringName FileWriteAsyncComplete = "file_write_async_complete";
         public new static readonly StringName DownloadUgcResult = "download_ugc_result";
+        public new static readonly StringName PublishedFileSubscribed = "published_file_subscribed";
+        public new static readonly StringName PublishedFileUnsubscribed = "published_file_unsubscribed";
         public new static readonly StringName UnsubscribeItem = "unsubscribe_item";
         public new static readonly StringName SubscribeItem = "subscribe_item";
         public new static readonly StringName LocalFileChanged = "local_file_changed";
@@ -2242,22 +2572,22 @@ public enum RemoteStoragePlatform
         public new static readonly StringName TimelineGamePhaseRecordingExists = "timeline_game_phase_recording_exists";
         public new static readonly StringName AddAppDependencyResult = "add_app_dependency_result";
         public new static readonly StringName AddUgcDependencyResult = "add_ugc_dependency_result";
-        public new static readonly StringName ItemCreated = "item_created";
-        public new static readonly StringName ItemDownloaded = "item_downloaded";
         public new static readonly StringName GetAppDependenciesResult = "get_app_dependencies_result";
-        public new static readonly StringName ItemDeleted = "item_deleted";
         public new static readonly StringName GetItemVoteResult = "get_item_vote_result";
+        public new static readonly StringName ItemCreated = "item_created";
+        public new static readonly StringName ItemDeleted = "item_deleted";
+        public new static readonly StringName ItemDownloaded = "item_downloaded";
         public new static readonly StringName ItemInstalled = "item_installed";
+        public new static readonly StringName ItemUpdated = "item_updated";
         public new static readonly StringName RemoveAppDependencyResult = "remove_app_dependency_result";
         public new static readonly StringName RemoveUgcDependencyResult = "remove_ugc_dependency_result";
         public new static readonly StringName SetUserItemVote = "set_user_item_vote";
         public new static readonly StringName StartPlaytimeTracking = "start_playtime_tracking";
-        public new static readonly StringName UgcQueryCompleted = "ugc_query_completed";
         public new static readonly StringName StopPlaytimeTracking = "stop_playtime_tracking";
-        public new static readonly StringName ItemUpdated = "item_updated";
+        public new static readonly StringName UgcQueryCompleted = "ugc_query_completed";
         public new static readonly StringName UserFavoriteItemsListChanged = "user_favorite_items_list_changed";
-        public new static readonly StringName WorkshopEulaStatus = "workshop_eula_status";
         public new static readonly StringName UserSubscribedItemsListChanged = "user_subscribed_items_list_changed";
+        public new static readonly StringName WorkshopEulaStatus = "workshop_eula_status";
         public new static readonly StringName ClientGameServerDeny = "client_game_server_deny";
         public new static readonly StringName DurationControl = "duration_control";
         public new static readonly StringName EncryptedAppTicketResponse = "encrypted_app_ticket_response";
@@ -2266,13 +2596,13 @@ public enum RemoteStoragePlatform
         public new static readonly StringName GetTicketForWebApi = "get_ticket_for_web_api";
         public new static readonly StringName IpcFailure = "ipc_failure";
         public new static readonly StringName LicensesUpdated = "licenses_updated";
+        public new static readonly StringName MarketEligibilityResponse = "market_eligibility_response";
         public new static readonly StringName MicrotransactionAuthResponse = "microtransaction_auth_response";
         public new static readonly StringName SteamServerConnectFailed = "steam_server_connect_failed";
         public new static readonly StringName SteamServerConnected = "steam_server_connected";
         public new static readonly StringName SteamServerDisconnected = "steam_server_disconnected";
         public new static readonly StringName StoreAuthUrlResponse = "store_auth_url_response";
         public new static readonly StringName ValidateAuthTicketResponse = "validate_auth_ticket_response";
-        public new static readonly StringName CurrentStatsReceived = "current_stats_received";
         public new static readonly StringName GlobalAchievementPercentagesReady = "global_achievement_percentages_ready";
         public new static readonly StringName GlobalStatsReceived = "global_stats_received";
         public new static readonly StringName LeaderboardFindResult = "leaderboard_find_result";
@@ -2420,7 +2750,7 @@ public enum RemoteStoragePlatform
         }
     }
 
-    public new delegate void AvatarLoadedSignalHandler(long avatarId, long size, Godot.Collections.Array data);
+    public new delegate void AvatarLoadedSignalHandler(long avatarId, long size, byte[] data);
     private AvatarLoadedSignalHandler _avatarLoadedSignal;
     private Callable _avatarLoadedSignalCallable;
     public event AvatarLoadedSignalHandler AvatarLoadedSignal
@@ -2430,7 +2760,7 @@ public enum RemoteStoragePlatform
             if (_avatarLoadedSignal is null)
             {
                 _avatarLoadedSignalCallable = Callable.From((Variant avatarId, Variant size, Variant data) => 
-                    _avatarLoadedSignal?.Invoke(avatarId.As<long>(), size.As<long>(), data.As<Godot.Collections.Array>()));
+                    _avatarLoadedSignal?.Invoke(avatarId.As<long>(), size.As<long>(), data.As<byte[]>()));
                 Connect(GDExtensionSignalName.AvatarLoaded, _avatarLoadedSignalCallable);
             }
             _avatarLoadedSignal += value;
@@ -2540,7 +2870,7 @@ public enum RemoteStoragePlatform
         }
     }
 
-    public new delegate void ConnectedClanChatMessageSignalHandler(Godot.Collections.Dictionary chat);
+    public new delegate void ConnectedClanChatMessageSignalHandler(long clanChatId, long messageIndex, string messageText, long type, long chatter);
     private ConnectedClanChatMessageSignalHandler _connectedClanChatMessageSignal;
     private Callable _connectedClanChatMessageSignalCallable;
     public event ConnectedClanChatMessageSignalHandler ConnectedClanChatMessageSignal
@@ -2549,8 +2879,8 @@ public enum RemoteStoragePlatform
         {
             if (_connectedClanChatMessageSignal is null)
             {
-                _connectedClanChatMessageSignalCallable = Callable.From((Variant chat) => 
-                    _connectedClanChatMessageSignal?.Invoke(chat.As<Godot.Collections.Dictionary>()));
+                _connectedClanChatMessageSignalCallable = Callable.From((Variant clanChatId, Variant messageIndex, Variant messageText, Variant type, Variant chatter) => 
+                    _connectedClanChatMessageSignal?.Invoke(clanChatId.As<long>(), messageIndex.As<long>(), messageText.As<string>(), type.As<long>(), chatter.As<long>()));
                 Connect(GDExtensionSignalName.ConnectedClanChatMessage, _connectedClanChatMessageSignalCallable);
             }
             _connectedClanChatMessageSignal += value;
@@ -2564,7 +2894,7 @@ public enum RemoteStoragePlatform
         }
     }
 
-    public new delegate void ConnectedFriendChatMessageSignalHandler(Godot.Collections.Dictionary chat);
+    public new delegate void ConnectedFriendChatMessageSignalHandler(long steamId, long messageIndex, long messageText, long type);
     private ConnectedFriendChatMessageSignalHandler _connectedFriendChatMessageSignal;
     private Callable _connectedFriendChatMessageSignalCallable;
     public event ConnectedFriendChatMessageSignalHandler ConnectedFriendChatMessageSignal
@@ -2573,8 +2903,8 @@ public enum RemoteStoragePlatform
         {
             if (_connectedFriendChatMessageSignal is null)
             {
-                _connectedFriendChatMessageSignalCallable = Callable.From((Variant chat) => 
-                    _connectedFriendChatMessageSignal?.Invoke(chat.As<Godot.Collections.Dictionary>()));
+                _connectedFriendChatMessageSignalCallable = Callable.From((Variant steamId, Variant messageIndex, Variant messageText, Variant type) => 
+                    _connectedFriendChatMessageSignal?.Invoke(steamId.As<long>(), messageIndex.As<long>(), messageText.As<long>(), type.As<long>()));
                 Connect(GDExtensionSignalName.ConnectedFriendChatMessage, _connectedFriendChatMessageSignalCallable);
             }
             _connectedFriendChatMessageSignal += value;
@@ -2588,7 +2918,7 @@ public enum RemoteStoragePlatform
         }
     }
 
-    public new delegate void EnumerateFollowingListSignalHandler(string message, Godot.Collections.Array following);
+    public new delegate void EnumerateFollowingListSignalHandler(string message, long[] following);
     private EnumerateFollowingListSignalHandler _enumerateFollowingListSignal;
     private Callable _enumerateFollowingListSignalCallable;
     public event EnumerateFollowingListSignalHandler EnumerateFollowingListSignal
@@ -2598,7 +2928,7 @@ public enum RemoteStoragePlatform
             if (_enumerateFollowingListSignal is null)
             {
                 _enumerateFollowingListSignalCallable = Callable.From((Variant message, Variant following) => 
-                    _enumerateFollowingListSignal?.Invoke(message.As<string>(), following.As<Godot.Collections.Array>()));
+                    _enumerateFollowingListSignal?.Invoke(message.As<string>(), following.As<long[]>()));
                 Connect(GDExtensionSignalName.EnumerateFollowingList, _enumerateFollowingListSignalCallable);
             }
             _enumerateFollowingListSignal += value;
@@ -2876,7 +3206,7 @@ public enum RemoteStoragePlatform
         }
     }
 
-    public new delegate void RequestClanOfficerListSignalHandler(string message, Godot.Collections.Array officerList);
+    public new delegate void RequestClanOfficerListSignalHandler(bool success, Godot.Collections.Array officerList);
     private RequestClanOfficerListSignalHandler _requestClanOfficerListSignal;
     private Callable _requestClanOfficerListSignalCallable;
     public event RequestClanOfficerListSignalHandler RequestClanOfficerListSignal
@@ -2885,8 +3215,8 @@ public enum RemoteStoragePlatform
         {
             if (_requestClanOfficerListSignal is null)
             {
-                _requestClanOfficerListSignalCallable = Callable.From((Variant message, Variant officerList) => 
-                    _requestClanOfficerListSignal?.Invoke(message.As<string>(), officerList.As<Godot.Collections.Array>()));
+                _requestClanOfficerListSignalCallable = Callable.From((Variant success, Variant officerList) => 
+                    _requestClanOfficerListSignal?.Invoke(success.As<bool>(), officerList.As<Godot.Collections.Array>()));
                 Connect(GDExtensionSignalName.RequestClanOfficerList, _requestClanOfficerListSignalCallable);
             }
             _requestClanOfficerListSignal += value;
@@ -3620,7 +3950,7 @@ public enum RemoteStoragePlatform
         }
     }
 
-    public new delegate void HttpRequestCompletedSignalHandler(long cookieHandle, long contextValue, bool requestSuccess, long statusCode, long bodySize);
+    public new delegate void HttpRequestCompletedSignalHandler(long requestHandle, long contextValue, bool requestSuccess, long statusCode, long bodySize);
     private HttpRequestCompletedSignalHandler _httpRequestCompletedSignal;
     private Callable _httpRequestCompletedSignalCallable;
     public event HttpRequestCompletedSignalHandler HttpRequestCompletedSignal
@@ -3629,8 +3959,8 @@ public enum RemoteStoragePlatform
         {
             if (_httpRequestCompletedSignal is null)
             {
-                _httpRequestCompletedSignalCallable = Callable.From((Variant cookieHandle, Variant contextValue, Variant requestSuccess, Variant statusCode, Variant bodySize) => 
-                    _httpRequestCompletedSignal?.Invoke(cookieHandle.As<long>(), contextValue.As<long>(), requestSuccess.As<bool>(), statusCode.As<long>(), bodySize.As<long>()));
+                _httpRequestCompletedSignalCallable = Callable.From((Variant requestHandle, Variant contextValue, Variant requestSuccess, Variant statusCode, Variant bodySize) => 
+                    _httpRequestCompletedSignal?.Invoke(requestHandle.As<long>(), contextValue.As<long>(), requestSuccess.As<bool>(), statusCode.As<long>(), bodySize.As<long>()));
                 Connect(GDExtensionSignalName.HttpRequestCompleted, _httpRequestCompletedSignalCallable);
             }
             _httpRequestCompletedSignal += value;
@@ -3644,7 +3974,7 @@ public enum RemoteStoragePlatform
         }
     }
 
-    public new delegate void HttpRequestDataReceivedSignalHandler(long cookieHandle, long contextValue, long offset, long bytesReceived);
+    public new delegate void HttpRequestDataReceivedSignalHandler(long requestHandle, long contextValue, long offset, long bytesReceived);
     private HttpRequestDataReceivedSignalHandler _httpRequestDataReceivedSignal;
     private Callable _httpRequestDataReceivedSignalCallable;
     public event HttpRequestDataReceivedSignalHandler HttpRequestDataReceivedSignal
@@ -3653,8 +3983,8 @@ public enum RemoteStoragePlatform
         {
             if (_httpRequestDataReceivedSignal is null)
             {
-                _httpRequestDataReceivedSignalCallable = Callable.From((Variant cookieHandle, Variant contextValue, Variant offset, Variant bytesReceived) => 
-                    _httpRequestDataReceivedSignal?.Invoke(cookieHandle.As<long>(), contextValue.As<long>(), offset.As<long>(), bytesReceived.As<long>()));
+                _httpRequestDataReceivedSignalCallable = Callable.From((Variant requestHandle, Variant contextValue, Variant offset, Variant bytesReceived) => 
+                    _httpRequestDataReceivedSignal?.Invoke(requestHandle.As<long>(), contextValue.As<long>(), offset.As<long>(), bytesReceived.As<long>()));
                 Connect(GDExtensionSignalName.HttpRequestDataReceived, _httpRequestDataReceivedSignalCallable);
             }
             _httpRequestDataReceivedSignal += value;
@@ -3668,7 +3998,7 @@ public enum RemoteStoragePlatform
         }
     }
 
-    public new delegate void HttpRequestHeadersReceivedSignalHandler(long cookieHandle, long contextValue);
+    public new delegate void HttpRequestHeadersReceivedSignalHandler(long requestHandle, long contextValue);
     private HttpRequestHeadersReceivedSignalHandler _httpRequestHeadersReceivedSignal;
     private Callable _httpRequestHeadersReceivedSignalCallable;
     public event HttpRequestHeadersReceivedSignalHandler HttpRequestHeadersReceivedSignal
@@ -3677,8 +4007,8 @@ public enum RemoteStoragePlatform
         {
             if (_httpRequestHeadersReceivedSignal is null)
             {
-                _httpRequestHeadersReceivedSignalCallable = Callable.From((Variant cookieHandle, Variant contextValue) => 
-                    _httpRequestHeadersReceivedSignal?.Invoke(cookieHandle.As<long>(), contextValue.As<long>()));
+                _httpRequestHeadersReceivedSignalCallable = Callable.From((Variant requestHandle, Variant contextValue) => 
+                    _httpRequestHeadersReceivedSignal?.Invoke(requestHandle.As<long>(), contextValue.As<long>()));
                 Connect(GDExtensionSignalName.HttpRequestHeadersReceived, _httpRequestHeadersReceivedSignalCallable);
             }
             _httpRequestHeadersReceivedSignal += value;
@@ -4220,99 +4550,75 @@ public enum RemoteStoragePlatform
         }
     }
 
-    public new delegate void RequestServerListServerRespondedSignalHandler(long requestHandle, long server);
-    private RequestServerListServerRespondedSignalHandler _requestServerListServerRespondedSignal;
-    private Callable _requestServerListServerRespondedSignalCallable;
-    public event RequestServerListServerRespondedSignalHandler RequestServerListServerRespondedSignal
+    public new delegate void AddFriendToListSignalHandler(long friendId, string friendName, bool currentlyConnected);
+    private AddFriendToListSignalHandler _addFriendToListSignal;
+    private Callable _addFriendToListSignalCallable;
+    public event AddFriendToListSignalHandler AddFriendToListSignal
     {
         add
         {
-            if (_requestServerListServerRespondedSignal is null)
+            if (_addFriendToListSignal is null)
             {
-                _requestServerListServerRespondedSignalCallable = Callable.From((Variant requestHandle, Variant server) => 
-                    _requestServerListServerRespondedSignal?.Invoke(requestHandle.As<long>(), server.As<long>()));
-                Connect(GDExtensionSignalName.RequestServerListServerResponded, _requestServerListServerRespondedSignalCallable);
+                _addFriendToListSignalCallable = Callable.From((Variant friendId, Variant friendName, Variant currentlyConnected) => 
+                    _addFriendToListSignal?.Invoke(friendId.As<long>(), friendName.As<string>(), currentlyConnected.As<bool>()));
+                Connect(GDExtensionSignalName.AddFriendToList, _addFriendToListSignalCallable);
             }
-            _requestServerListServerRespondedSignal += value;
+            _addFriendToListSignal += value;
         }
         remove
         {
-            _requestServerListServerRespondedSignal -= value;
-            if (_requestServerListServerRespondedSignal is not null) return;
-            Disconnect(GDExtensionSignalName.RequestServerListServerResponded, _requestServerListServerRespondedSignalCallable);
-            _requestServerListServerRespondedSignalCallable = default;
+            _addFriendToListSignal -= value;
+            if (_addFriendToListSignal is not null) return;
+            Disconnect(GDExtensionSignalName.AddFriendToList, _addFriendToListSignalCallable);
+            _addFriendToListSignalCallable = default;
         }
     }
 
-    public new delegate void RequestServerListServerFailedToRespondSignalHandler(long requestHandle, long server);
-    private RequestServerListServerFailedToRespondSignalHandler _requestServerListServerFailedToRespondSignal;
-    private Callable _requestServerListServerFailedToRespondSignalCallable;
-    public event RequestServerListServerFailedToRespondSignalHandler RequestServerListServerFailedToRespondSignal
+    public new delegate void FriendsFailedToRespondSignalHandler();
+    private FriendsFailedToRespondSignalHandler _friendsFailedToRespondSignal;
+    private Callable _friendsFailedToRespondSignalCallable;
+    public event FriendsFailedToRespondSignalHandler FriendsFailedToRespondSignal
     {
         add
         {
-            if (_requestServerListServerFailedToRespondSignal is null)
+            if (_friendsFailedToRespondSignal is null)
             {
-                _requestServerListServerFailedToRespondSignalCallable = Callable.From((Variant requestHandle, Variant server) => 
-                    _requestServerListServerFailedToRespondSignal?.Invoke(requestHandle.As<long>(), server.As<long>()));
-                Connect(GDExtensionSignalName.RequestServerListServerFailedToRespond, _requestServerListServerFailedToRespondSignalCallable);
+                _friendsFailedToRespondSignalCallable = Callable.From(() => 
+                    _friendsFailedToRespondSignal?.Invoke());
+                Connect(GDExtensionSignalName.FriendsFailedToRespond, _friendsFailedToRespondSignalCallable);
             }
-            _requestServerListServerFailedToRespondSignal += value;
+            _friendsFailedToRespondSignal += value;
         }
         remove
         {
-            _requestServerListServerFailedToRespondSignal -= value;
-            if (_requestServerListServerFailedToRespondSignal is not null) return;
-            Disconnect(GDExtensionSignalName.RequestServerListServerFailedToRespond, _requestServerListServerFailedToRespondSignalCallable);
-            _requestServerListServerFailedToRespondSignalCallable = default;
+            _friendsFailedToRespondSignal -= value;
+            if (_friendsFailedToRespondSignal is not null) return;
+            Disconnect(GDExtensionSignalName.FriendsFailedToRespond, _friendsFailedToRespondSignalCallable);
+            _friendsFailedToRespondSignalCallable = default;
         }
     }
 
-    public new delegate void RequestServerListRefreshCompleteSignalHandler(long requestHandle, long response);
-    private RequestServerListRefreshCompleteSignalHandler _requestServerListRefreshCompleteSignal;
-    private Callable _requestServerListRefreshCompleteSignalCallable;
-    public event RequestServerListRefreshCompleteSignalHandler RequestServerListRefreshCompleteSignal
+    public new delegate void FriendsRefreshCompleteSignalHandler();
+    private FriendsRefreshCompleteSignalHandler _friendsRefreshCompleteSignal;
+    private Callable _friendsRefreshCompleteSignalCallable;
+    public event FriendsRefreshCompleteSignalHandler FriendsRefreshCompleteSignal
     {
         add
         {
-            if (_requestServerListRefreshCompleteSignal is null)
+            if (_friendsRefreshCompleteSignal is null)
             {
-                _requestServerListRefreshCompleteSignalCallable = Callable.From((Variant requestHandle, Variant response) => 
-                    _requestServerListRefreshCompleteSignal?.Invoke(requestHandle.As<long>(), response.As<long>()));
-                Connect(GDExtensionSignalName.RequestServerListRefreshComplete, _requestServerListRefreshCompleteSignalCallable);
+                _friendsRefreshCompleteSignalCallable = Callable.From(() => 
+                    _friendsRefreshCompleteSignal?.Invoke());
+                Connect(GDExtensionSignalName.FriendsRefreshComplete, _friendsRefreshCompleteSignalCallable);
             }
-            _requestServerListRefreshCompleteSignal += value;
+            _friendsRefreshCompleteSignal += value;
         }
         remove
         {
-            _requestServerListRefreshCompleteSignal -= value;
-            if (_requestServerListRefreshCompleteSignal is not null) return;
-            Disconnect(GDExtensionSignalName.RequestServerListRefreshComplete, _requestServerListRefreshCompleteSignalCallable);
-            _requestServerListRefreshCompleteSignalCallable = default;
-        }
-    }
-
-    public new delegate void PingServerRespondedSignalHandler(Godot.Collections.Dictionary serverDetails);
-    private PingServerRespondedSignalHandler _pingServerRespondedSignal;
-    private Callable _pingServerRespondedSignalCallable;
-    public event PingServerRespondedSignalHandler PingServerRespondedSignal
-    {
-        add
-        {
-            if (_pingServerRespondedSignal is null)
-            {
-                _pingServerRespondedSignalCallable = Callable.From((Variant serverDetails) => 
-                    _pingServerRespondedSignal?.Invoke(serverDetails.As<Godot.Collections.Dictionary>()));
-                Connect(GDExtensionSignalName.PingServerResponded, _pingServerRespondedSignalCallable);
-            }
-            _pingServerRespondedSignal += value;
-        }
-        remove
-        {
-            _pingServerRespondedSignal -= value;
-            if (_pingServerRespondedSignal is not null) return;
-            Disconnect(GDExtensionSignalName.PingServerResponded, _pingServerRespondedSignalCallable);
-            _pingServerRespondedSignalCallable = default;
+            _friendsRefreshCompleteSignal -= value;
+            if (_friendsRefreshCompleteSignal is not null) return;
+            Disconnect(GDExtensionSignalName.FriendsRefreshComplete, _friendsRefreshCompleteSignalCallable);
+            _friendsRefreshCompleteSignalCallable = default;
         }
     }
 
@@ -4340,27 +4646,27 @@ public enum RemoteStoragePlatform
         }
     }
 
-    public new delegate void PlayerDetailsPlayerAddedSignalHandler(string name, long score, double timePlayed);
-    private PlayerDetailsPlayerAddedSignalHandler _playerDetailsPlayerAddedSignal;
-    private Callable _playerDetailsPlayerAddedSignalCallable;
-    public event PlayerDetailsPlayerAddedSignalHandler PlayerDetailsPlayerAddedSignal
+    public new delegate void PingServerRespondedSignalHandler(Godot.Collections.Dictionary serverDetails);
+    private PingServerRespondedSignalHandler _pingServerRespondedSignal;
+    private Callable _pingServerRespondedSignalCallable;
+    public event PingServerRespondedSignalHandler PingServerRespondedSignal
     {
         add
         {
-            if (_playerDetailsPlayerAddedSignal is null)
+            if (_pingServerRespondedSignal is null)
             {
-                _playerDetailsPlayerAddedSignalCallable = Callable.From((Variant name, Variant score, Variant timePlayed) => 
-                    _playerDetailsPlayerAddedSignal?.Invoke(name.As<string>(), score.As<long>(), timePlayed.As<double>()));
-                Connect(GDExtensionSignalName.PlayerDetailsPlayerAdded, _playerDetailsPlayerAddedSignalCallable);
+                _pingServerRespondedSignalCallable = Callable.From((Variant serverDetails) => 
+                    _pingServerRespondedSignal?.Invoke(serverDetails.As<Godot.Collections.Dictionary>()));
+                Connect(GDExtensionSignalName.PingServerResponded, _pingServerRespondedSignalCallable);
             }
-            _playerDetailsPlayerAddedSignal += value;
+            _pingServerRespondedSignal += value;
         }
         remove
         {
-            _playerDetailsPlayerAddedSignal -= value;
-            if (_playerDetailsPlayerAddedSignal is not null) return;
-            Disconnect(GDExtensionSignalName.PlayerDetailsPlayerAdded, _playerDetailsPlayerAddedSignalCallable);
-            _playerDetailsPlayerAddedSignalCallable = default;
+            _pingServerRespondedSignal -= value;
+            if (_pingServerRespondedSignal is not null) return;
+            Disconnect(GDExtensionSignalName.PingServerResponded, _pingServerRespondedSignalCallable);
+            _pingServerRespondedSignalCallable = default;
         }
     }
 
@@ -4388,6 +4694,30 @@ public enum RemoteStoragePlatform
         }
     }
 
+    public new delegate void PlayerDetailsPlayerAddedSignalHandler(string name, long score, double timePlayed);
+    private PlayerDetailsPlayerAddedSignalHandler _playerDetailsPlayerAddedSignal;
+    private Callable _playerDetailsPlayerAddedSignalCallable;
+    public event PlayerDetailsPlayerAddedSignalHandler PlayerDetailsPlayerAddedSignal
+    {
+        add
+        {
+            if (_playerDetailsPlayerAddedSignal is null)
+            {
+                _playerDetailsPlayerAddedSignalCallable = Callable.From((Variant name, Variant score, Variant timePlayed) => 
+                    _playerDetailsPlayerAddedSignal?.Invoke(name.As<string>(), score.As<long>(), timePlayed.As<double>()));
+                Connect(GDExtensionSignalName.PlayerDetailsPlayerAdded, _playerDetailsPlayerAddedSignalCallable);
+            }
+            _playerDetailsPlayerAddedSignal += value;
+        }
+        remove
+        {
+            _playerDetailsPlayerAddedSignal -= value;
+            if (_playerDetailsPlayerAddedSignal is not null) return;
+            Disconnect(GDExtensionSignalName.PlayerDetailsPlayerAdded, _playerDetailsPlayerAddedSignalCallable);
+            _playerDetailsPlayerAddedSignalCallable = default;
+        }
+    }
+
     public new delegate void PlayerDetailsRefreshCompleteSignalHandler();
     private PlayerDetailsRefreshCompleteSignalHandler _playerDetailsRefreshCompleteSignal;
     private Callable _playerDetailsRefreshCompleteSignalCallable;
@@ -4412,27 +4742,75 @@ public enum RemoteStoragePlatform
         }
     }
 
-    public new delegate void ServerRulesRespondedSignalHandler(string rule, string value);
-    private ServerRulesRespondedSignalHandler _serverRulesRespondedSignal;
-    private Callable _serverRulesRespondedSignalCallable;
-    public event ServerRulesRespondedSignalHandler ServerRulesRespondedSignal
+    public new delegate void RequestServerListRefreshCompleteSignalHandler(long requestHandle, long response);
+    private RequestServerListRefreshCompleteSignalHandler _requestServerListRefreshCompleteSignal;
+    private Callable _requestServerListRefreshCompleteSignalCallable;
+    public event RequestServerListRefreshCompleteSignalHandler RequestServerListRefreshCompleteSignal
     {
         add
         {
-            if (_serverRulesRespondedSignal is null)
+            if (_requestServerListRefreshCompleteSignal is null)
             {
-                _serverRulesRespondedSignalCallable = Callable.From((Variant rule, Variant value) => 
-                    _serverRulesRespondedSignal?.Invoke(rule.As<string>(), value.As<string>()));
-                Connect(GDExtensionSignalName.ServerRulesResponded, _serverRulesRespondedSignalCallable);
+                _requestServerListRefreshCompleteSignalCallable = Callable.From((Variant requestHandle, Variant response) => 
+                    _requestServerListRefreshCompleteSignal?.Invoke(requestHandle.As<long>(), response.As<long>()));
+                Connect(GDExtensionSignalName.RequestServerListRefreshComplete, _requestServerListRefreshCompleteSignalCallable);
             }
-            _serverRulesRespondedSignal += value;
+            _requestServerListRefreshCompleteSignal += value;
         }
         remove
         {
-            _serverRulesRespondedSignal -= value;
-            if (_serverRulesRespondedSignal is not null) return;
-            Disconnect(GDExtensionSignalName.ServerRulesResponded, _serverRulesRespondedSignalCallable);
-            _serverRulesRespondedSignalCallable = default;
+            _requestServerListRefreshCompleteSignal -= value;
+            if (_requestServerListRefreshCompleteSignal is not null) return;
+            Disconnect(GDExtensionSignalName.RequestServerListRefreshComplete, _requestServerListRefreshCompleteSignalCallable);
+            _requestServerListRefreshCompleteSignalCallable = default;
+        }
+    }
+
+    public new delegate void RequestServerListServerFailedToRespondSignalHandler(long requestHandle, long server);
+    private RequestServerListServerFailedToRespondSignalHandler _requestServerListServerFailedToRespondSignal;
+    private Callable _requestServerListServerFailedToRespondSignalCallable;
+    public event RequestServerListServerFailedToRespondSignalHandler RequestServerListServerFailedToRespondSignal
+    {
+        add
+        {
+            if (_requestServerListServerFailedToRespondSignal is null)
+            {
+                _requestServerListServerFailedToRespondSignalCallable = Callable.From((Variant requestHandle, Variant server) => 
+                    _requestServerListServerFailedToRespondSignal?.Invoke(requestHandle.As<long>(), server.As<long>()));
+                Connect(GDExtensionSignalName.RequestServerListServerFailedToRespond, _requestServerListServerFailedToRespondSignalCallable);
+            }
+            _requestServerListServerFailedToRespondSignal += value;
+        }
+        remove
+        {
+            _requestServerListServerFailedToRespondSignal -= value;
+            if (_requestServerListServerFailedToRespondSignal is not null) return;
+            Disconnect(GDExtensionSignalName.RequestServerListServerFailedToRespond, _requestServerListServerFailedToRespondSignalCallable);
+            _requestServerListServerFailedToRespondSignalCallable = default;
+        }
+    }
+
+    public new delegate void RequestServerListServerRespondedSignalHandler(long requestHandle, long server);
+    private RequestServerListServerRespondedSignalHandler _requestServerListServerRespondedSignal;
+    private Callable _requestServerListServerRespondedSignalCallable;
+    public event RequestServerListServerRespondedSignalHandler RequestServerListServerRespondedSignal
+    {
+        add
+        {
+            if (_requestServerListServerRespondedSignal is null)
+            {
+                _requestServerListServerRespondedSignalCallable = Callable.From((Variant requestHandle, Variant server) => 
+                    _requestServerListServerRespondedSignal?.Invoke(requestHandle.As<long>(), server.As<long>()));
+                Connect(GDExtensionSignalName.RequestServerListServerResponded, _requestServerListServerRespondedSignalCallable);
+            }
+            _requestServerListServerRespondedSignal += value;
+        }
+        remove
+        {
+            _requestServerListServerRespondedSignal -= value;
+            if (_requestServerListServerRespondedSignal is not null) return;
+            Disconnect(GDExtensionSignalName.RequestServerListServerResponded, _requestServerListServerRespondedSignalCallable);
+            _requestServerListServerRespondedSignalCallable = default;
         }
     }
 
@@ -4484,6 +4862,30 @@ public enum RemoteStoragePlatform
         }
     }
 
+    public new delegate void ServerRulesRespondedSignalHandler(string rule, string value);
+    private ServerRulesRespondedSignalHandler _serverRulesRespondedSignal;
+    private Callable _serverRulesRespondedSignalCallable;
+    public event ServerRulesRespondedSignalHandler ServerRulesRespondedSignal
+    {
+        add
+        {
+            if (_serverRulesRespondedSignal is null)
+            {
+                _serverRulesRespondedSignalCallable = Callable.From((Variant rule, Variant value) => 
+                    _serverRulesRespondedSignal?.Invoke(rule.As<string>(), value.As<string>()));
+                Connect(GDExtensionSignalName.ServerRulesResponded, _serverRulesRespondedSignalCallable);
+            }
+            _serverRulesRespondedSignal += value;
+        }
+        remove
+        {
+            _serverRulesRespondedSignal -= value;
+            if (_serverRulesRespondedSignal is not null) return;
+            Disconnect(GDExtensionSignalName.ServerRulesResponded, _serverRulesRespondedSignalCallable);
+            _serverRulesRespondedSignalCallable = default;
+        }
+    }
+
     public new delegate void MusicPlaybackStatusHasChangedSignalHandler();
     private MusicPlaybackStatusHasChangedSignalHandler _musicPlaybackStatusHasChangedSignal;
     private Callable _musicPlaybackStatusHasChangedSignalCallable;
@@ -4529,342 +4931,6 @@ public enum RemoteStoragePlatform
             if (_musicVolumeHasChangedSignal is not null) return;
             Disconnect(GDExtensionSignalName.MusicVolumeHasChanged, _musicVolumeHasChangedSignalCallable);
             _musicVolumeHasChangedSignalCallable = default;
-        }
-    }
-
-    public new delegate void MusicPlayerRemoteToFrontSignalHandler();
-    private MusicPlayerRemoteToFrontSignalHandler _musicPlayerRemoteToFrontSignal;
-    private Callable _musicPlayerRemoteToFrontSignalCallable;
-    public event MusicPlayerRemoteToFrontSignalHandler MusicPlayerRemoteToFrontSignal
-    {
-        add
-        {
-            if (_musicPlayerRemoteToFrontSignal is null)
-            {
-                _musicPlayerRemoteToFrontSignalCallable = Callable.From(() => 
-                    _musicPlayerRemoteToFrontSignal?.Invoke());
-                Connect(GDExtensionSignalName.MusicPlayerRemoteToFront, _musicPlayerRemoteToFrontSignalCallable);
-            }
-            _musicPlayerRemoteToFrontSignal += value;
-        }
-        remove
-        {
-            _musicPlayerRemoteToFrontSignal -= value;
-            if (_musicPlayerRemoteToFrontSignal is not null) return;
-            Disconnect(GDExtensionSignalName.MusicPlayerRemoteToFront, _musicPlayerRemoteToFrontSignalCallable);
-            _musicPlayerRemoteToFrontSignalCallable = default;
-        }
-    }
-
-    public new delegate void MusicPlayerRemoteWillActivateSignalHandler();
-    private MusicPlayerRemoteWillActivateSignalHandler _musicPlayerRemoteWillActivateSignal;
-    private Callable _musicPlayerRemoteWillActivateSignalCallable;
-    public event MusicPlayerRemoteWillActivateSignalHandler MusicPlayerRemoteWillActivateSignal
-    {
-        add
-        {
-            if (_musicPlayerRemoteWillActivateSignal is null)
-            {
-                _musicPlayerRemoteWillActivateSignalCallable = Callable.From(() => 
-                    _musicPlayerRemoteWillActivateSignal?.Invoke());
-                Connect(GDExtensionSignalName.MusicPlayerRemoteWillActivate, _musicPlayerRemoteWillActivateSignalCallable);
-            }
-            _musicPlayerRemoteWillActivateSignal += value;
-        }
-        remove
-        {
-            _musicPlayerRemoteWillActivateSignal -= value;
-            if (_musicPlayerRemoteWillActivateSignal is not null) return;
-            Disconnect(GDExtensionSignalName.MusicPlayerRemoteWillActivate, _musicPlayerRemoteWillActivateSignalCallable);
-            _musicPlayerRemoteWillActivateSignalCallable = default;
-        }
-    }
-
-    public new delegate void MusicPlayerRemoteWillDeactivateSignalHandler();
-    private MusicPlayerRemoteWillDeactivateSignalHandler _musicPlayerRemoteWillDeactivateSignal;
-    private Callable _musicPlayerRemoteWillDeactivateSignalCallable;
-    public event MusicPlayerRemoteWillDeactivateSignalHandler MusicPlayerRemoteWillDeactivateSignal
-    {
-        add
-        {
-            if (_musicPlayerRemoteWillDeactivateSignal is null)
-            {
-                _musicPlayerRemoteWillDeactivateSignalCallable = Callable.From(() => 
-                    _musicPlayerRemoteWillDeactivateSignal?.Invoke());
-                Connect(GDExtensionSignalName.MusicPlayerRemoteWillDeactivate, _musicPlayerRemoteWillDeactivateSignalCallable);
-            }
-            _musicPlayerRemoteWillDeactivateSignal += value;
-        }
-        remove
-        {
-            _musicPlayerRemoteWillDeactivateSignal -= value;
-            if (_musicPlayerRemoteWillDeactivateSignal is not null) return;
-            Disconnect(GDExtensionSignalName.MusicPlayerRemoteWillDeactivate, _musicPlayerRemoteWillDeactivateSignalCallable);
-            _musicPlayerRemoteWillDeactivateSignalCallable = default;
-        }
-    }
-
-    public new delegate void MusicPlayerSelectsPlaylistEntrySignalHandler(long entry);
-    private MusicPlayerSelectsPlaylistEntrySignalHandler _musicPlayerSelectsPlaylistEntrySignal;
-    private Callable _musicPlayerSelectsPlaylistEntrySignalCallable;
-    public event MusicPlayerSelectsPlaylistEntrySignalHandler MusicPlayerSelectsPlaylistEntrySignal
-    {
-        add
-        {
-            if (_musicPlayerSelectsPlaylistEntrySignal is null)
-            {
-                _musicPlayerSelectsPlaylistEntrySignalCallable = Callable.From((Variant entry) => 
-                    _musicPlayerSelectsPlaylistEntrySignal?.Invoke(entry.As<long>()));
-                Connect(GDExtensionSignalName.MusicPlayerSelectsPlaylistEntry, _musicPlayerSelectsPlaylistEntrySignalCallable);
-            }
-            _musicPlayerSelectsPlaylistEntrySignal += value;
-        }
-        remove
-        {
-            _musicPlayerSelectsPlaylistEntrySignal -= value;
-            if (_musicPlayerSelectsPlaylistEntrySignal is not null) return;
-            Disconnect(GDExtensionSignalName.MusicPlayerSelectsPlaylistEntry, _musicPlayerSelectsPlaylistEntrySignalCallable);
-            _musicPlayerSelectsPlaylistEntrySignalCallable = default;
-        }
-    }
-
-    public new delegate void MusicPlayerSelectsQueueEntrySignalHandler(long entry);
-    private MusicPlayerSelectsQueueEntrySignalHandler _musicPlayerSelectsQueueEntrySignal;
-    private Callable _musicPlayerSelectsQueueEntrySignalCallable;
-    public event MusicPlayerSelectsQueueEntrySignalHandler MusicPlayerSelectsQueueEntrySignal
-    {
-        add
-        {
-            if (_musicPlayerSelectsQueueEntrySignal is null)
-            {
-                _musicPlayerSelectsQueueEntrySignalCallable = Callable.From((Variant entry) => 
-                    _musicPlayerSelectsQueueEntrySignal?.Invoke(entry.As<long>()));
-                Connect(GDExtensionSignalName.MusicPlayerSelectsQueueEntry, _musicPlayerSelectsQueueEntrySignalCallable);
-            }
-            _musicPlayerSelectsQueueEntrySignal += value;
-        }
-        remove
-        {
-            _musicPlayerSelectsQueueEntrySignal -= value;
-            if (_musicPlayerSelectsQueueEntrySignal is not null) return;
-            Disconnect(GDExtensionSignalName.MusicPlayerSelectsQueueEntry, _musicPlayerSelectsQueueEntrySignalCallable);
-            _musicPlayerSelectsQueueEntrySignalCallable = default;
-        }
-    }
-
-    public new delegate void MusicPlayerWantsLoopedSignalHandler(bool looped);
-    private MusicPlayerWantsLoopedSignalHandler _musicPlayerWantsLoopedSignal;
-    private Callable _musicPlayerWantsLoopedSignalCallable;
-    public event MusicPlayerWantsLoopedSignalHandler MusicPlayerWantsLoopedSignal
-    {
-        add
-        {
-            if (_musicPlayerWantsLoopedSignal is null)
-            {
-                _musicPlayerWantsLoopedSignalCallable = Callable.From((Variant looped) => 
-                    _musicPlayerWantsLoopedSignal?.Invoke(looped.As<bool>()));
-                Connect(GDExtensionSignalName.MusicPlayerWantsLooped, _musicPlayerWantsLoopedSignalCallable);
-            }
-            _musicPlayerWantsLoopedSignal += value;
-        }
-        remove
-        {
-            _musicPlayerWantsLoopedSignal -= value;
-            if (_musicPlayerWantsLoopedSignal is not null) return;
-            Disconnect(GDExtensionSignalName.MusicPlayerWantsLooped, _musicPlayerWantsLoopedSignalCallable);
-            _musicPlayerWantsLoopedSignalCallable = default;
-        }
-    }
-
-    public new delegate void MusicPlayerWantsPauseSignalHandler();
-    private MusicPlayerWantsPauseSignalHandler _musicPlayerWantsPauseSignal;
-    private Callable _musicPlayerWantsPauseSignalCallable;
-    public event MusicPlayerWantsPauseSignalHandler MusicPlayerWantsPauseSignal
-    {
-        add
-        {
-            if (_musicPlayerWantsPauseSignal is null)
-            {
-                _musicPlayerWantsPauseSignalCallable = Callable.From(() => 
-                    _musicPlayerWantsPauseSignal?.Invoke());
-                Connect(GDExtensionSignalName.MusicPlayerWantsPause, _musicPlayerWantsPauseSignalCallable);
-            }
-            _musicPlayerWantsPauseSignal += value;
-        }
-        remove
-        {
-            _musicPlayerWantsPauseSignal -= value;
-            if (_musicPlayerWantsPauseSignal is not null) return;
-            Disconnect(GDExtensionSignalName.MusicPlayerWantsPause, _musicPlayerWantsPauseSignalCallable);
-            _musicPlayerWantsPauseSignalCallable = default;
-        }
-    }
-
-    public new delegate void MusicPlayerWantsPlayingRepeatStatusSignalHandler(long status);
-    private MusicPlayerWantsPlayingRepeatStatusSignalHandler _musicPlayerWantsPlayingRepeatStatusSignal;
-    private Callable _musicPlayerWantsPlayingRepeatStatusSignalCallable;
-    public event MusicPlayerWantsPlayingRepeatStatusSignalHandler MusicPlayerWantsPlayingRepeatStatusSignal
-    {
-        add
-        {
-            if (_musicPlayerWantsPlayingRepeatStatusSignal is null)
-            {
-                _musicPlayerWantsPlayingRepeatStatusSignalCallable = Callable.From((Variant status) => 
-                    _musicPlayerWantsPlayingRepeatStatusSignal?.Invoke(status.As<long>()));
-                Connect(GDExtensionSignalName.MusicPlayerWantsPlayingRepeatStatus, _musicPlayerWantsPlayingRepeatStatusSignalCallable);
-            }
-            _musicPlayerWantsPlayingRepeatStatusSignal += value;
-        }
-        remove
-        {
-            _musicPlayerWantsPlayingRepeatStatusSignal -= value;
-            if (_musicPlayerWantsPlayingRepeatStatusSignal is not null) return;
-            Disconnect(GDExtensionSignalName.MusicPlayerWantsPlayingRepeatStatus, _musicPlayerWantsPlayingRepeatStatusSignalCallable);
-            _musicPlayerWantsPlayingRepeatStatusSignalCallable = default;
-        }
-    }
-
-    public new delegate void MusicPlayerWantsPlayNextSignalHandler();
-    private MusicPlayerWantsPlayNextSignalHandler _musicPlayerWantsPlayNextSignal;
-    private Callable _musicPlayerWantsPlayNextSignalCallable;
-    public event MusicPlayerWantsPlayNextSignalHandler MusicPlayerWantsPlayNextSignal
-    {
-        add
-        {
-            if (_musicPlayerWantsPlayNextSignal is null)
-            {
-                _musicPlayerWantsPlayNextSignalCallable = Callable.From(() => 
-                    _musicPlayerWantsPlayNextSignal?.Invoke());
-                Connect(GDExtensionSignalName.MusicPlayerWantsPlayNext, _musicPlayerWantsPlayNextSignalCallable);
-            }
-            _musicPlayerWantsPlayNextSignal += value;
-        }
-        remove
-        {
-            _musicPlayerWantsPlayNextSignal -= value;
-            if (_musicPlayerWantsPlayNextSignal is not null) return;
-            Disconnect(GDExtensionSignalName.MusicPlayerWantsPlayNext, _musicPlayerWantsPlayNextSignalCallable);
-            _musicPlayerWantsPlayNextSignalCallable = default;
-        }
-    }
-
-    public new delegate void MusicPlayerWantsPlayPreviousSignalHandler();
-    private MusicPlayerWantsPlayPreviousSignalHandler _musicPlayerWantsPlayPreviousSignal;
-    private Callable _musicPlayerWantsPlayPreviousSignalCallable;
-    public event MusicPlayerWantsPlayPreviousSignalHandler MusicPlayerWantsPlayPreviousSignal
-    {
-        add
-        {
-            if (_musicPlayerWantsPlayPreviousSignal is null)
-            {
-                _musicPlayerWantsPlayPreviousSignalCallable = Callable.From(() => 
-                    _musicPlayerWantsPlayPreviousSignal?.Invoke());
-                Connect(GDExtensionSignalName.MusicPlayerWantsPlayPrevious, _musicPlayerWantsPlayPreviousSignalCallable);
-            }
-            _musicPlayerWantsPlayPreviousSignal += value;
-        }
-        remove
-        {
-            _musicPlayerWantsPlayPreviousSignal -= value;
-            if (_musicPlayerWantsPlayPreviousSignal is not null) return;
-            Disconnect(GDExtensionSignalName.MusicPlayerWantsPlayPrevious, _musicPlayerWantsPlayPreviousSignalCallable);
-            _musicPlayerWantsPlayPreviousSignalCallable = default;
-        }
-    }
-
-    public new delegate void MusicPlayerWantsPlaySignalHandler();
-    private MusicPlayerWantsPlaySignalHandler _musicPlayerWantsPlaySignal;
-    private Callable _musicPlayerWantsPlaySignalCallable;
-    public event MusicPlayerWantsPlaySignalHandler MusicPlayerWantsPlaySignal
-    {
-        add
-        {
-            if (_musicPlayerWantsPlaySignal is null)
-            {
-                _musicPlayerWantsPlaySignalCallable = Callable.From(() => 
-                    _musicPlayerWantsPlaySignal?.Invoke());
-                Connect(GDExtensionSignalName.MusicPlayerWantsPlay, _musicPlayerWantsPlaySignalCallable);
-            }
-            _musicPlayerWantsPlaySignal += value;
-        }
-        remove
-        {
-            _musicPlayerWantsPlaySignal -= value;
-            if (_musicPlayerWantsPlaySignal is not null) return;
-            Disconnect(GDExtensionSignalName.MusicPlayerWantsPlay, _musicPlayerWantsPlaySignalCallable);
-            _musicPlayerWantsPlaySignalCallable = default;
-        }
-    }
-
-    public new delegate void MusicPlayerWantsShuffledSignalHandler(bool shuffled);
-    private MusicPlayerWantsShuffledSignalHandler _musicPlayerWantsShuffledSignal;
-    private Callable _musicPlayerWantsShuffledSignalCallable;
-    public event MusicPlayerWantsShuffledSignalHandler MusicPlayerWantsShuffledSignal
-    {
-        add
-        {
-            if (_musicPlayerWantsShuffledSignal is null)
-            {
-                _musicPlayerWantsShuffledSignalCallable = Callable.From((Variant shuffled) => 
-                    _musicPlayerWantsShuffledSignal?.Invoke(shuffled.As<bool>()));
-                Connect(GDExtensionSignalName.MusicPlayerWantsShuffled, _musicPlayerWantsShuffledSignalCallable);
-            }
-            _musicPlayerWantsShuffledSignal += value;
-        }
-        remove
-        {
-            _musicPlayerWantsShuffledSignal -= value;
-            if (_musicPlayerWantsShuffledSignal is not null) return;
-            Disconnect(GDExtensionSignalName.MusicPlayerWantsShuffled, _musicPlayerWantsShuffledSignalCallable);
-            _musicPlayerWantsShuffledSignalCallable = default;
-        }
-    }
-
-    public new delegate void MusicPlayerWantsVolumeSignalHandler(double volume);
-    private MusicPlayerWantsVolumeSignalHandler _musicPlayerWantsVolumeSignal;
-    private Callable _musicPlayerWantsVolumeSignalCallable;
-    public event MusicPlayerWantsVolumeSignalHandler MusicPlayerWantsVolumeSignal
-    {
-        add
-        {
-            if (_musicPlayerWantsVolumeSignal is null)
-            {
-                _musicPlayerWantsVolumeSignalCallable = Callable.From((Variant volume) => 
-                    _musicPlayerWantsVolumeSignal?.Invoke(volume.As<double>()));
-                Connect(GDExtensionSignalName.MusicPlayerWantsVolume, _musicPlayerWantsVolumeSignalCallable);
-            }
-            _musicPlayerWantsVolumeSignal += value;
-        }
-        remove
-        {
-            _musicPlayerWantsVolumeSignal -= value;
-            if (_musicPlayerWantsVolumeSignal is not null) return;
-            Disconnect(GDExtensionSignalName.MusicPlayerWantsVolume, _musicPlayerWantsVolumeSignalCallable);
-            _musicPlayerWantsVolumeSignalCallable = default;
-        }
-    }
-
-    public new delegate void MusicPlayerWillQuitSignalHandler();
-    private MusicPlayerWillQuitSignalHandler _musicPlayerWillQuitSignal;
-    private Callable _musicPlayerWillQuitSignalCallable;
-    public event MusicPlayerWillQuitSignalHandler MusicPlayerWillQuitSignal
-    {
-        add
-        {
-            if (_musicPlayerWillQuitSignal is null)
-            {
-                _musicPlayerWillQuitSignalCallable = Callable.From(() => 
-                    _musicPlayerWillQuitSignal?.Invoke());
-                Connect(GDExtensionSignalName.MusicPlayerWillQuit, _musicPlayerWillQuitSignalCallable);
-            }
-            _musicPlayerWillQuitSignal += value;
-        }
-        remove
-        {
-            _musicPlayerWillQuitSignal -= value;
-            if (_musicPlayerWillQuitSignal is not null) return;
-            Disconnect(GDExtensionSignalName.MusicPlayerWillQuit, _musicPlayerWillQuitSignalCallable);
-            _musicPlayerWillQuitSignalCallable = default;
         }
     }
 
@@ -5012,7 +5078,7 @@ public enum RemoteStoragePlatform
         }
     }
 
-    public new delegate void FakeIpResultSignalHandler(long result, long remoteFakeSteamId, string fakeIp, Godot.Collections.Array portList);
+    public new delegate void FakeIpResultSignalHandler(long result, long remoteFakeSteamId, string fakeIp, int[] portList);
     private FakeIpResultSignalHandler _fakeIpResultSignal;
     private Callable _fakeIpResultSignalCallable;
     public event FakeIpResultSignalHandler FakeIpResultSignal
@@ -5022,7 +5088,7 @@ public enum RemoteStoragePlatform
             if (_fakeIpResultSignal is null)
             {
                 _fakeIpResultSignalCallable = Callable.From((Variant result, Variant remoteFakeSteamId, Variant fakeIp, Variant portList) => 
-                    _fakeIpResultSignal?.Invoke(result.As<long>(), remoteFakeSteamId.As<long>(), fakeIp.As<string>(), portList.As<Godot.Collections.Array>()));
+                    _fakeIpResultSignal?.Invoke(result.As<long>(), remoteFakeSteamId.As<long>(), fakeIp.As<string>(), portList.As<int[]>()));
                 Connect(GDExtensionSignalName.FakeIpResult, _fakeIpResultSignalCallable);
             }
             _fakeIpResultSignal += value;
@@ -5228,6 +5294,54 @@ public enum RemoteStoragePlatform
         }
     }
 
+    public new delegate void RemotePlayGuestInviteSignalHandler(string inviteUrl);
+    private RemotePlayGuestInviteSignalHandler _remotePlayGuestInviteSignal;
+    private Callable _remotePlayGuestInviteSignalCallable;
+    public event RemotePlayGuestInviteSignalHandler RemotePlayGuestInviteSignal
+    {
+        add
+        {
+            if (_remotePlayGuestInviteSignal is null)
+            {
+                _remotePlayGuestInviteSignalCallable = Callable.From((Variant inviteUrl) => 
+                    _remotePlayGuestInviteSignal?.Invoke(inviteUrl.As<string>()));
+                Connect(GDExtensionSignalName.RemotePlayGuestInvite, _remotePlayGuestInviteSignalCallable);
+            }
+            _remotePlayGuestInviteSignal += value;
+        }
+        remove
+        {
+            _remotePlayGuestInviteSignal -= value;
+            if (_remotePlayGuestInviteSignal is not null) return;
+            Disconnect(GDExtensionSignalName.RemotePlayGuestInvite, _remotePlayGuestInviteSignalCallable);
+            _remotePlayGuestInviteSignalCallable = default;
+        }
+    }
+
+    public new delegate void RemotePlaySessionAvatarLoadedSignalHandler(long sessionId, long avatarIndex, long width, long height);
+    private RemotePlaySessionAvatarLoadedSignalHandler _remotePlaySessionAvatarLoadedSignal;
+    private Callable _remotePlaySessionAvatarLoadedSignalCallable;
+    public event RemotePlaySessionAvatarLoadedSignalHandler RemotePlaySessionAvatarLoadedSignal
+    {
+        add
+        {
+            if (_remotePlaySessionAvatarLoadedSignal is null)
+            {
+                _remotePlaySessionAvatarLoadedSignalCallable = Callable.From((Variant sessionId, Variant avatarIndex, Variant width, Variant height) => 
+                    _remotePlaySessionAvatarLoadedSignal?.Invoke(sessionId.As<long>(), avatarIndex.As<long>(), width.As<long>(), height.As<long>()));
+                Connect(GDExtensionSignalName.RemotePlaySessionAvatarLoaded, _remotePlaySessionAvatarLoadedSignalCallable);
+            }
+            _remotePlaySessionAvatarLoadedSignal += value;
+        }
+        remove
+        {
+            _remotePlaySessionAvatarLoadedSignal -= value;
+            if (_remotePlaySessionAvatarLoadedSignal is not null) return;
+            Disconnect(GDExtensionSignalName.RemotePlaySessionAvatarLoaded, _remotePlaySessionAvatarLoadedSignalCallable);
+            _remotePlaySessionAvatarLoadedSignalCallable = default;
+        }
+    }
+
     public new delegate void RemotePlaySessionConnectedSignalHandler(long sessionId);
     private RemotePlaySessionConnectedSignalHandler _remotePlaySessionConnectedSignal;
     private Callable _remotePlaySessionConnectedSignalCallable;
@@ -5369,6 +5483,54 @@ public enum RemoteStoragePlatform
             if (_downloadUgcResultSignal is not null) return;
             Disconnect(GDExtensionSignalName.DownloadUgcResult, _downloadUgcResultSignalCallable);
             _downloadUgcResultSignalCallable = default;
+        }
+    }
+
+    public new delegate void PublishedFileSubscribedSignalHandler(long fileId, long appId);
+    private PublishedFileSubscribedSignalHandler _publishedFileSubscribedSignal;
+    private Callable _publishedFileSubscribedSignalCallable;
+    public event PublishedFileSubscribedSignalHandler PublishedFileSubscribedSignal
+    {
+        add
+        {
+            if (_publishedFileSubscribedSignal is null)
+            {
+                _publishedFileSubscribedSignalCallable = Callable.From((Variant fileId, Variant appId) => 
+                    _publishedFileSubscribedSignal?.Invoke(fileId.As<long>(), appId.As<long>()));
+                Connect(GDExtensionSignalName.PublishedFileSubscribed, _publishedFileSubscribedSignalCallable);
+            }
+            _publishedFileSubscribedSignal += value;
+        }
+        remove
+        {
+            _publishedFileSubscribedSignal -= value;
+            if (_publishedFileSubscribedSignal is not null) return;
+            Disconnect(GDExtensionSignalName.PublishedFileSubscribed, _publishedFileSubscribedSignalCallable);
+            _publishedFileSubscribedSignalCallable = default;
+        }
+    }
+
+    public new delegate void PublishedFileUnsubscribedSignalHandler(long fileId, long appId);
+    private PublishedFileUnsubscribedSignalHandler _publishedFileUnsubscribedSignal;
+    private Callable _publishedFileUnsubscribedSignalCallable;
+    public event PublishedFileUnsubscribedSignalHandler PublishedFileUnsubscribedSignal
+    {
+        add
+        {
+            if (_publishedFileUnsubscribedSignal is null)
+            {
+                _publishedFileUnsubscribedSignalCallable = Callable.From((Variant fileId, Variant appId) => 
+                    _publishedFileUnsubscribedSignal?.Invoke(fileId.As<long>(), appId.As<long>()));
+                Connect(GDExtensionSignalName.PublishedFileUnsubscribed, _publishedFileUnsubscribedSignalCallable);
+            }
+            _publishedFileUnsubscribedSignal += value;
+        }
+        remove
+        {
+            _publishedFileUnsubscribedSignal -= value;
+            if (_publishedFileUnsubscribedSignal is not null) return;
+            Disconnect(GDExtensionSignalName.PublishedFileUnsubscribed, _publishedFileUnsubscribedSignalCallable);
+            _publishedFileUnsubscribedSignalCallable = default;
         }
     }
 
@@ -5588,55 +5750,7 @@ public enum RemoteStoragePlatform
         }
     }
 
-    public new delegate void ItemCreatedSignalHandler(long result, long fileId, bool acceptTos);
-    private ItemCreatedSignalHandler _itemCreatedSignal;
-    private Callable _itemCreatedSignalCallable;
-    public event ItemCreatedSignalHandler ItemCreatedSignal
-    {
-        add
-        {
-            if (_itemCreatedSignal is null)
-            {
-                _itemCreatedSignalCallable = Callable.From((Variant result, Variant fileId, Variant acceptTos) => 
-                    _itemCreatedSignal?.Invoke(result.As<long>(), fileId.As<long>(), acceptTos.As<bool>()));
-                Connect(GDExtensionSignalName.ItemCreated, _itemCreatedSignalCallable);
-            }
-            _itemCreatedSignal += value;
-        }
-        remove
-        {
-            _itemCreatedSignal -= value;
-            if (_itemCreatedSignal is not null) return;
-            Disconnect(GDExtensionSignalName.ItemCreated, _itemCreatedSignalCallable);
-            _itemCreatedSignalCallable = default;
-        }
-    }
-
-    public new delegate void ItemDownloadedSignalHandler(long result, long fileId, long appId);
-    private ItemDownloadedSignalHandler _itemDownloadedSignal;
-    private Callable _itemDownloadedSignalCallable;
-    public event ItemDownloadedSignalHandler ItemDownloadedSignal
-    {
-        add
-        {
-            if (_itemDownloadedSignal is null)
-            {
-                _itemDownloadedSignalCallable = Callable.From((Variant result, Variant fileId, Variant appId) => 
-                    _itemDownloadedSignal?.Invoke(result.As<long>(), fileId.As<long>(), appId.As<long>()));
-                Connect(GDExtensionSignalName.ItemDownloaded, _itemDownloadedSignalCallable);
-            }
-            _itemDownloadedSignal += value;
-        }
-        remove
-        {
-            _itemDownloadedSignal -= value;
-            if (_itemDownloadedSignal is not null) return;
-            Disconnect(GDExtensionSignalName.ItemDownloaded, _itemDownloadedSignalCallable);
-            _itemDownloadedSignalCallable = default;
-        }
-    }
-
-    public new delegate void GetAppDependenciesResultSignalHandler(long result, long fileId, long appDependencies, long totalAppDependencies);
+    public new delegate void GetAppDependenciesResultSignalHandler(long result, long fileId, long appDependencies, long totalAppDependencies, int[] appIds);
     private GetAppDependenciesResultSignalHandler _getAppDependenciesResultSignal;
     private Callable _getAppDependenciesResultSignalCallable;
     public event GetAppDependenciesResultSignalHandler GetAppDependenciesResultSignal
@@ -5645,8 +5759,8 @@ public enum RemoteStoragePlatform
         {
             if (_getAppDependenciesResultSignal is null)
             {
-                _getAppDependenciesResultSignalCallable = Callable.From((Variant result, Variant fileId, Variant appDependencies, Variant totalAppDependencies) => 
-                    _getAppDependenciesResultSignal?.Invoke(result.As<long>(), fileId.As<long>(), appDependencies.As<long>(), totalAppDependencies.As<long>()));
+                _getAppDependenciesResultSignalCallable = Callable.From((Variant result, Variant fileId, Variant appDependencies, Variant totalAppDependencies, Variant appIds) => 
+                    _getAppDependenciesResultSignal?.Invoke(result.As<long>(), fileId.As<long>(), appDependencies.As<long>(), totalAppDependencies.As<long>(), appIds.As<int[]>()));
                 Connect(GDExtensionSignalName.GetAppDependenciesResult, _getAppDependenciesResultSignalCallable);
             }
             _getAppDependenciesResultSignal += value;
@@ -5657,30 +5771,6 @@ public enum RemoteStoragePlatform
             if (_getAppDependenciesResultSignal is not null) return;
             Disconnect(GDExtensionSignalName.GetAppDependenciesResult, _getAppDependenciesResultSignalCallable);
             _getAppDependenciesResultSignalCallable = default;
-        }
-    }
-
-    public new delegate void ItemDeletedSignalHandler(long result, long fileId);
-    private ItemDeletedSignalHandler _itemDeletedSignal;
-    private Callable _itemDeletedSignalCallable;
-    public event ItemDeletedSignalHandler ItemDeletedSignal
-    {
-        add
-        {
-            if (_itemDeletedSignal is null)
-            {
-                _itemDeletedSignalCallable = Callable.From((Variant result, Variant fileId) => 
-                    _itemDeletedSignal?.Invoke(result.As<long>(), fileId.As<long>()));
-                Connect(GDExtensionSignalName.ItemDeleted, _itemDeletedSignalCallable);
-            }
-            _itemDeletedSignal += value;
-        }
-        remove
-        {
-            _itemDeletedSignal -= value;
-            if (_itemDeletedSignal is not null) return;
-            Disconnect(GDExtensionSignalName.ItemDeleted, _itemDeletedSignalCallable);
-            _itemDeletedSignalCallable = default;
         }
     }
 
@@ -5708,6 +5798,78 @@ public enum RemoteStoragePlatform
         }
     }
 
+    public new delegate void ItemCreatedSignalHandler(long result, long fileId, bool acceptTos);
+    private ItemCreatedSignalHandler _itemCreatedSignal;
+    private Callable _itemCreatedSignalCallable;
+    public event ItemCreatedSignalHandler ItemCreatedSignal
+    {
+        add
+        {
+            if (_itemCreatedSignal is null)
+            {
+                _itemCreatedSignalCallable = Callable.From((Variant result, Variant fileId, Variant acceptTos) => 
+                    _itemCreatedSignal?.Invoke(result.As<long>(), fileId.As<long>(), acceptTos.As<bool>()));
+                Connect(GDExtensionSignalName.ItemCreated, _itemCreatedSignalCallable);
+            }
+            _itemCreatedSignal += value;
+        }
+        remove
+        {
+            _itemCreatedSignal -= value;
+            if (_itemCreatedSignal is not null) return;
+            Disconnect(GDExtensionSignalName.ItemCreated, _itemCreatedSignalCallable);
+            _itemCreatedSignalCallable = default;
+        }
+    }
+
+    public new delegate void ItemDeletedSignalHandler(long result, long fileId);
+    private ItemDeletedSignalHandler _itemDeletedSignal;
+    private Callable _itemDeletedSignalCallable;
+    public event ItemDeletedSignalHandler ItemDeletedSignal
+    {
+        add
+        {
+            if (_itemDeletedSignal is null)
+            {
+                _itemDeletedSignalCallable = Callable.From((Variant result, Variant fileId) => 
+                    _itemDeletedSignal?.Invoke(result.As<long>(), fileId.As<long>()));
+                Connect(GDExtensionSignalName.ItemDeleted, _itemDeletedSignalCallable);
+            }
+            _itemDeletedSignal += value;
+        }
+        remove
+        {
+            _itemDeletedSignal -= value;
+            if (_itemDeletedSignal is not null) return;
+            Disconnect(GDExtensionSignalName.ItemDeleted, _itemDeletedSignalCallable);
+            _itemDeletedSignalCallable = default;
+        }
+    }
+
+    public new delegate void ItemDownloadedSignalHandler(long result, long fileId, long appId);
+    private ItemDownloadedSignalHandler _itemDownloadedSignal;
+    private Callable _itemDownloadedSignalCallable;
+    public event ItemDownloadedSignalHandler ItemDownloadedSignal
+    {
+        add
+        {
+            if (_itemDownloadedSignal is null)
+            {
+                _itemDownloadedSignalCallable = Callable.From((Variant result, Variant fileId, Variant appId) => 
+                    _itemDownloadedSignal?.Invoke(result.As<long>(), fileId.As<long>(), appId.As<long>()));
+                Connect(GDExtensionSignalName.ItemDownloaded, _itemDownloadedSignalCallable);
+            }
+            _itemDownloadedSignal += value;
+        }
+        remove
+        {
+            _itemDownloadedSignal -= value;
+            if (_itemDownloadedSignal is not null) return;
+            Disconnect(GDExtensionSignalName.ItemDownloaded, _itemDownloadedSignalCallable);
+            _itemDownloadedSignalCallable = default;
+        }
+    }
+
     public new delegate void ItemInstalledSignalHandler(long appId, long fileId);
     private ItemInstalledSignalHandler _itemInstalledSignal;
     private Callable _itemInstalledSignalCallable;
@@ -5729,6 +5891,30 @@ public enum RemoteStoragePlatform
             if (_itemInstalledSignal is not null) return;
             Disconnect(GDExtensionSignalName.ItemInstalled, _itemInstalledSignalCallable);
             _itemInstalledSignalCallable = default;
+        }
+    }
+
+    public new delegate void ItemUpdatedSignalHandler(long result, bool needToAcceptTos, long fileId);
+    private ItemUpdatedSignalHandler _itemUpdatedSignal;
+    private Callable _itemUpdatedSignalCallable;
+    public event ItemUpdatedSignalHandler ItemUpdatedSignal
+    {
+        add
+        {
+            if (_itemUpdatedSignal is null)
+            {
+                _itemUpdatedSignalCallable = Callable.From((Variant result, Variant needToAcceptTos, Variant fileId) => 
+                    _itemUpdatedSignal?.Invoke(result.As<long>(), needToAcceptTos.As<bool>(), fileId.As<long>()));
+                Connect(GDExtensionSignalName.ItemUpdated, _itemUpdatedSignalCallable);
+            }
+            _itemUpdatedSignal += value;
+        }
+        remove
+        {
+            _itemUpdatedSignal -= value;
+            if (_itemUpdatedSignal is not null) return;
+            Disconnect(GDExtensionSignalName.ItemUpdated, _itemUpdatedSignalCallable);
+            _itemUpdatedSignalCallable = default;
         }
     }
 
@@ -5828,30 +6014,6 @@ public enum RemoteStoragePlatform
         }
     }
 
-    public new delegate void UgcQueryCompletedSignalHandler(long handle, long result, long resultsReturned, long totalMatching, bool cached);
-    private UgcQueryCompletedSignalHandler _ugcQueryCompletedSignal;
-    private Callable _ugcQueryCompletedSignalCallable;
-    public event UgcQueryCompletedSignalHandler UgcQueryCompletedSignal
-    {
-        add
-        {
-            if (_ugcQueryCompletedSignal is null)
-            {
-                _ugcQueryCompletedSignalCallable = Callable.From((Variant handle, Variant result, Variant resultsReturned, Variant totalMatching, Variant cached) => 
-                    _ugcQueryCompletedSignal?.Invoke(handle.As<long>(), result.As<long>(), resultsReturned.As<long>(), totalMatching.As<long>(), cached.As<bool>()));
-                Connect(GDExtensionSignalName.UgcQueryCompleted, _ugcQueryCompletedSignalCallable);
-            }
-            _ugcQueryCompletedSignal += value;
-        }
-        remove
-        {
-            _ugcQueryCompletedSignal -= value;
-            if (_ugcQueryCompletedSignal is not null) return;
-            Disconnect(GDExtensionSignalName.UgcQueryCompleted, _ugcQueryCompletedSignalCallable);
-            _ugcQueryCompletedSignalCallable = default;
-        }
-    }
-
     public new delegate void StopPlaytimeTrackingSignalHandler(long result);
     private StopPlaytimeTrackingSignalHandler _stopPlaytimeTrackingSignal;
     private Callable _stopPlaytimeTrackingSignalCallable;
@@ -5876,27 +6038,27 @@ public enum RemoteStoragePlatform
         }
     }
 
-    public new delegate void ItemUpdatedSignalHandler(long result, bool needToAcceptTos);
-    private ItemUpdatedSignalHandler _itemUpdatedSignal;
-    private Callable _itemUpdatedSignalCallable;
-    public event ItemUpdatedSignalHandler ItemUpdatedSignal
+    public new delegate void UgcQueryCompletedSignalHandler(long handle, long result, long resultsReturned, long totalMatching, bool cached, string nextCursor);
+    private UgcQueryCompletedSignalHandler _ugcQueryCompletedSignal;
+    private Callable _ugcQueryCompletedSignalCallable;
+    public event UgcQueryCompletedSignalHandler UgcQueryCompletedSignal
     {
         add
         {
-            if (_itemUpdatedSignal is null)
+            if (_ugcQueryCompletedSignal is null)
             {
-                _itemUpdatedSignalCallable = Callable.From((Variant result, Variant needToAcceptTos) => 
-                    _itemUpdatedSignal?.Invoke(result.As<long>(), needToAcceptTos.As<bool>()));
-                Connect(GDExtensionSignalName.ItemUpdated, _itemUpdatedSignalCallable);
+                _ugcQueryCompletedSignalCallable = Callable.From((Variant handle, Variant result, Variant resultsReturned, Variant totalMatching, Variant cached, Variant nextCursor) => 
+                    _ugcQueryCompletedSignal?.Invoke(handle.As<long>(), result.As<long>(), resultsReturned.As<long>(), totalMatching.As<long>(), cached.As<bool>(), nextCursor.As<string>()));
+                Connect(GDExtensionSignalName.UgcQueryCompleted, _ugcQueryCompletedSignalCallable);
             }
-            _itemUpdatedSignal += value;
+            _ugcQueryCompletedSignal += value;
         }
         remove
         {
-            _itemUpdatedSignal -= value;
-            if (_itemUpdatedSignal is not null) return;
-            Disconnect(GDExtensionSignalName.ItemUpdated, _itemUpdatedSignalCallable);
-            _itemUpdatedSignalCallable = default;
+            _ugcQueryCompletedSignal -= value;
+            if (_ugcQueryCompletedSignal is not null) return;
+            Disconnect(GDExtensionSignalName.UgcQueryCompleted, _ugcQueryCompletedSignalCallable);
+            _ugcQueryCompletedSignalCallable = default;
         }
     }
 
@@ -5924,30 +6086,6 @@ public enum RemoteStoragePlatform
         }
     }
 
-    public new delegate void WorkshopEulaStatusSignalHandler(long result, long appId, Godot.Collections.Dictionary eulaData);
-    private WorkshopEulaStatusSignalHandler _workshopEulaStatusSignal;
-    private Callable _workshopEulaStatusSignalCallable;
-    public event WorkshopEulaStatusSignalHandler WorkshopEulaStatusSignal
-    {
-        add
-        {
-            if (_workshopEulaStatusSignal is null)
-            {
-                _workshopEulaStatusSignalCallable = Callable.From((Variant result, Variant appId, Variant eulaData) => 
-                    _workshopEulaStatusSignal?.Invoke(result.As<long>(), appId.As<long>(), eulaData.As<Godot.Collections.Dictionary>()));
-                Connect(GDExtensionSignalName.WorkshopEulaStatus, _workshopEulaStatusSignalCallable);
-            }
-            _workshopEulaStatusSignal += value;
-        }
-        remove
-        {
-            _workshopEulaStatusSignal -= value;
-            if (_workshopEulaStatusSignal is not null) return;
-            Disconnect(GDExtensionSignalName.WorkshopEulaStatus, _workshopEulaStatusSignalCallable);
-            _workshopEulaStatusSignalCallable = default;
-        }
-    }
-
     public new delegate void UserSubscribedItemsListChangedSignalHandler(long appId);
     private UserSubscribedItemsListChangedSignalHandler _userSubscribedItemsListChangedSignal;
     private Callable _userSubscribedItemsListChangedSignalCallable;
@@ -5972,7 +6110,31 @@ public enum RemoteStoragePlatform
         }
     }
 
-    public new delegate void ClientGameServerDenySignalHandler(long appId, string ip, long serverPort, long secure, long reason);
+    public new delegate void WorkshopEulaStatusSignalHandler(long result, long appId, Godot.Collections.Dictionary eulaData);
+    private WorkshopEulaStatusSignalHandler _workshopEulaStatusSignal;
+    private Callable _workshopEulaStatusSignalCallable;
+    public event WorkshopEulaStatusSignalHandler WorkshopEulaStatusSignal
+    {
+        add
+        {
+            if (_workshopEulaStatusSignal is null)
+            {
+                _workshopEulaStatusSignalCallable = Callable.From((Variant result, Variant appId, Variant eulaData) => 
+                    _workshopEulaStatusSignal?.Invoke(result.As<long>(), appId.As<long>(), eulaData.As<Godot.Collections.Dictionary>()));
+                Connect(GDExtensionSignalName.WorkshopEulaStatus, _workshopEulaStatusSignalCallable);
+            }
+            _workshopEulaStatusSignal += value;
+        }
+        remove
+        {
+            _workshopEulaStatusSignal -= value;
+            if (_workshopEulaStatusSignal is not null) return;
+            Disconnect(GDExtensionSignalName.WorkshopEulaStatus, _workshopEulaStatusSignalCallable);
+            _workshopEulaStatusSignalCallable = default;
+        }
+    }
+
+    public new delegate void ClientGameServerDenySignalHandler(long appId, string serverIp, long serverPort, long secure, long reason);
     private ClientGameServerDenySignalHandler _clientGameServerDenySignal;
     private Callable _clientGameServerDenySignalCallable;
     public event ClientGameServerDenySignalHandler ClientGameServerDenySignal
@@ -5981,8 +6143,8 @@ public enum RemoteStoragePlatform
         {
             if (_clientGameServerDenySignal is null)
             {
-                _clientGameServerDenySignalCallable = Callable.From((Variant appId, Variant ip, Variant serverPort, Variant secure, Variant reason) => 
-                    _clientGameServerDenySignal?.Invoke(appId.As<long>(), ip.As<string>(), serverPort.As<long>(), secure.As<long>(), reason.As<long>()));
+                _clientGameServerDenySignalCallable = Callable.From((Variant appId, Variant serverIp, Variant serverPort, Variant secure, Variant reason) => 
+                    _clientGameServerDenySignal?.Invoke(appId.As<long>(), serverIp.As<string>(), serverPort.As<long>(), secure.As<long>(), reason.As<long>()));
                 Connect(GDExtensionSignalName.ClientGameServerDeny, _clientGameServerDenySignalCallable);
             }
             _clientGameServerDenySignal += value;
@@ -6020,7 +6182,7 @@ public enum RemoteStoragePlatform
         }
     }
 
-    public new delegate void EncryptedAppTicketResponseSignalHandler(string result);
+    public new delegate void EncryptedAppTicketResponseSignalHandler(long result);
     private EncryptedAppTicketResponseSignalHandler _encryptedAppTicketResponseSignal;
     private Callable _encryptedAppTicketResponseSignalCallable;
     public event EncryptedAppTicketResponseSignalHandler EncryptedAppTicketResponseSignal
@@ -6030,7 +6192,7 @@ public enum RemoteStoragePlatform
             if (_encryptedAppTicketResponseSignal is null)
             {
                 _encryptedAppTicketResponseSignalCallable = Callable.From((Variant result) => 
-                    _encryptedAppTicketResponseSignal?.Invoke(result.As<string>()));
+                    _encryptedAppTicketResponseSignal?.Invoke(result.As<long>()));
                 Connect(GDExtensionSignalName.EncryptedAppTicketResponse, _encryptedAppTicketResponseSignalCallable);
             }
             _encryptedAppTicketResponseSignal += value;
@@ -6092,7 +6254,7 @@ public enum RemoteStoragePlatform
         }
     }
 
-    public new delegate void GetTicketForWebApiSignalHandler(long authTicket, long result, long ticketSize, Godot.Collections.Array ticketBuffer);
+    public new delegate void GetTicketForWebApiSignalHandler(long authTicket, long result, long ticketSize, byte[] ticketBuffer);
     private GetTicketForWebApiSignalHandler _getTicketForWebApiSignal;
     private Callable _getTicketForWebApiSignalCallable;
     public event GetTicketForWebApiSignalHandler GetTicketForWebApiSignal
@@ -6102,7 +6264,7 @@ public enum RemoteStoragePlatform
             if (_getTicketForWebApiSignal is null)
             {
                 _getTicketForWebApiSignalCallable = Callable.From((Variant authTicket, Variant result, Variant ticketSize, Variant ticketBuffer) => 
-                    _getTicketForWebApiSignal?.Invoke(authTicket.As<long>(), result.As<long>(), ticketSize.As<long>(), ticketBuffer.As<Godot.Collections.Array>()));
+                    _getTicketForWebApiSignal?.Invoke(authTicket.As<long>(), result.As<long>(), ticketSize.As<long>(), ticketBuffer.As<byte[]>()));
                 Connect(GDExtensionSignalName.GetTicketForWebApi, _getTicketForWebApiSignalCallable);
             }
             _getTicketForWebApiSignal += value;
@@ -6161,6 +6323,30 @@ public enum RemoteStoragePlatform
             if (_licensesUpdatedSignal is not null) return;
             Disconnect(GDExtensionSignalName.LicensesUpdated, _licensesUpdatedSignalCallable);
             _licensesUpdatedSignalCallable = default;
+        }
+    }
+
+    public new delegate void MarketEligibilityResponseSignalHandler(bool isAllowed, long disallowReason, long allowedAtTime, long steamGuardRequiredDays, long newDeviceCooldown);
+    private MarketEligibilityResponseSignalHandler _marketEligibilityResponseSignal;
+    private Callable _marketEligibilityResponseSignalCallable;
+    public event MarketEligibilityResponseSignalHandler MarketEligibilityResponseSignal
+    {
+        add
+        {
+            if (_marketEligibilityResponseSignal is null)
+            {
+                _marketEligibilityResponseSignalCallable = Callable.From((Variant isAllowed, Variant disallowReason, Variant allowedAtTime, Variant steamGuardRequiredDays, Variant newDeviceCooldown) => 
+                    _marketEligibilityResponseSignal?.Invoke(isAllowed.As<bool>(), disallowReason.As<long>(), allowedAtTime.As<long>(), steamGuardRequiredDays.As<long>(), newDeviceCooldown.As<long>()));
+                Connect(GDExtensionSignalName.MarketEligibilityResponse, _marketEligibilityResponseSignalCallable);
+            }
+            _marketEligibilityResponseSignal += value;
+        }
+        remove
+        {
+            _marketEligibilityResponseSignal -= value;
+            if (_marketEligibilityResponseSignal is not null) return;
+            Disconnect(GDExtensionSignalName.MarketEligibilityResponse, _marketEligibilityResponseSignalCallable);
+            _marketEligibilityResponseSignalCallable = default;
         }
     }
 
@@ -6236,7 +6422,7 @@ public enum RemoteStoragePlatform
         }
     }
 
-    public new delegate void SteamServerDisconnectedSignalHandler();
+    public new delegate void SteamServerDisconnectedSignalHandler(long result);
     private SteamServerDisconnectedSignalHandler _steamServerDisconnectedSignal;
     private Callable _steamServerDisconnectedSignalCallable;
     public event SteamServerDisconnectedSignalHandler SteamServerDisconnectedSignal
@@ -6245,8 +6431,8 @@ public enum RemoteStoragePlatform
         {
             if (_steamServerDisconnectedSignal is null)
             {
-                _steamServerDisconnectedSignalCallable = Callable.From(() => 
-                    _steamServerDisconnectedSignal?.Invoke());
+                _steamServerDisconnectedSignalCallable = Callable.From((Variant result) => 
+                    _steamServerDisconnectedSignal?.Invoke(result.As<long>()));
                 Connect(GDExtensionSignalName.SteamServerDisconnected, _steamServerDisconnectedSignalCallable);
             }
             _steamServerDisconnectedSignal += value;
@@ -6284,7 +6470,7 @@ public enum RemoteStoragePlatform
         }
     }
 
-    public new delegate void ValidateAuthTicketResponseSignalHandler(long authId, long reponse, long ownerId);
+    public new delegate void ValidateAuthTicketResponseSignalHandler(long authId, long response, long ownerId);
     private ValidateAuthTicketResponseSignalHandler _validateAuthTicketResponseSignal;
     private Callable _validateAuthTicketResponseSignalCallable;
     public event ValidateAuthTicketResponseSignalHandler ValidateAuthTicketResponseSignal
@@ -6293,8 +6479,8 @@ public enum RemoteStoragePlatform
         {
             if (_validateAuthTicketResponseSignal is null)
             {
-                _validateAuthTicketResponseSignalCallable = Callable.From((Variant authId, Variant reponse, Variant ownerId) => 
-                    _validateAuthTicketResponseSignal?.Invoke(authId.As<long>(), reponse.As<long>(), ownerId.As<long>()));
+                _validateAuthTicketResponseSignalCallable = Callable.From((Variant authId, Variant response, Variant ownerId) => 
+                    _validateAuthTicketResponseSignal?.Invoke(authId.As<long>(), response.As<long>(), ownerId.As<long>()));
                 Connect(GDExtensionSignalName.ValidateAuthTicketResponse, _validateAuthTicketResponseSignalCallable);
             }
             _validateAuthTicketResponseSignal += value;
@@ -6305,30 +6491,6 @@ public enum RemoteStoragePlatform
             if (_validateAuthTicketResponseSignal is not null) return;
             Disconnect(GDExtensionSignalName.ValidateAuthTicketResponse, _validateAuthTicketResponseSignalCallable);
             _validateAuthTicketResponseSignalCallable = default;
-        }
-    }
-
-    public new delegate void CurrentStatsReceivedSignalHandler(long gameId, long result, long userId);
-    private CurrentStatsReceivedSignalHandler _currentStatsReceivedSignal;
-    private Callable _currentStatsReceivedSignalCallable;
-    public event CurrentStatsReceivedSignalHandler CurrentStatsReceivedSignal
-    {
-        add
-        {
-            if (_currentStatsReceivedSignal is null)
-            {
-                _currentStatsReceivedSignalCallable = Callable.From((Variant gameId, Variant result, Variant userId) => 
-                    _currentStatsReceivedSignal?.Invoke(gameId.As<long>(), result.As<long>(), userId.As<long>()));
-                Connect(GDExtensionSignalName.CurrentStatsReceived, _currentStatsReceivedSignalCallable);
-            }
-            _currentStatsReceivedSignal += value;
-        }
-        remove
-        {
-            _currentStatsReceivedSignal -= value;
-            if (_currentStatsReceivedSignal is not null) return;
-            Disconnect(GDExtensionSignalName.CurrentStatsReceived, _currentStatsReceivedSignalCallable);
-            _currentStatsReceivedSignalCallable = default;
         }
     }
 
@@ -6356,7 +6518,7 @@ public enum RemoteStoragePlatform
         }
     }
 
-    public new delegate void GlobalStatsReceivedSignalHandler(long gameId, string result);
+    public new delegate void GlobalStatsReceivedSignalHandler(long gameId, long result);
     private GlobalStatsReceivedSignalHandler _globalStatsReceivedSignal;
     private Callable _globalStatsReceivedSignalCallable;
     public event GlobalStatsReceivedSignalHandler GlobalStatsReceivedSignal
@@ -6366,7 +6528,7 @@ public enum RemoteStoragePlatform
             if (_globalStatsReceivedSignal is null)
             {
                 _globalStatsReceivedSignalCallable = Callable.From((Variant gameId, Variant result) => 
-                    _globalStatsReceivedSignal?.Invoke(gameId.As<long>(), result.As<string>()));
+                    _globalStatsReceivedSignal?.Invoke(gameId.As<long>(), result.As<long>()));
                 Connect(GDExtensionSignalName.GlobalStatsReceived, _globalStatsReceivedSignalCallable);
             }
             _globalStatsReceivedSignal += value;
@@ -6452,7 +6614,7 @@ public enum RemoteStoragePlatform
         }
     }
 
-    public new delegate void LeaderboardUgcSetSignalHandler(long leaderboardHandle, string result);
+    public new delegate void LeaderboardUgcSetSignalHandler(long leaderboardHandle, long result);
     private LeaderboardUgcSetSignalHandler _leaderboardUgcSetSignal;
     private Callable _leaderboardUgcSetSignalCallable;
     public event LeaderboardUgcSetSignalHandler LeaderboardUgcSetSignal
@@ -6462,7 +6624,7 @@ public enum RemoteStoragePlatform
             if (_leaderboardUgcSetSignal is null)
             {
                 _leaderboardUgcSetSignalCallable = Callable.From((Variant leaderboardHandle, Variant result) => 
-                    _leaderboardUgcSetSignal?.Invoke(leaderboardHandle.As<long>(), result.As<string>()));
+                    _leaderboardUgcSetSignal?.Invoke(leaderboardHandle.As<long>(), result.As<long>()));
                 Connect(GDExtensionSignalName.LeaderboardUgcSet, _leaderboardUgcSetSignalCallable);
             }
             _leaderboardUgcSetSignal += value;
@@ -6620,7 +6782,7 @@ public enum RemoteStoragePlatform
         }
     }
 
-    public new delegate void CheckFileSignatureSignalHandler(string signature);
+    public new delegate void CheckFileSignatureSignalHandler(long signature);
     private CheckFileSignatureSignalHandler _checkFileSignatureSignal;
     private Callable _checkFileSignatureSignalCallable;
     public event CheckFileSignatureSignalHandler CheckFileSignatureSignal
@@ -6630,7 +6792,7 @@ public enum RemoteStoragePlatform
             if (_checkFileSignatureSignal is null)
             {
                 _checkFileSignatureSignalCallable = Callable.From((Variant signature) => 
-                    _checkFileSignatureSignal?.Invoke(signature.As<string>()));
+                    _checkFileSignatureSignal?.Invoke(signature.As<long>()));
                 Connect(GDExtensionSignalName.CheckFileSignature, _checkFileSignatureSignalCallable);
             }
             _checkFileSignatureSignal += value;
@@ -6934,7 +7096,7 @@ public enum RemoteStoragePlatform
 
     public new static class GDExtensionPropertyName
     {
-        public new static readonly StringName BrowserHandle = "browser_handle";
+        public new static readonly StringName CurrentBrowserHandle = "current_browser_handle";
         public new static readonly StringName CurrentClanId = "current_clan_id";
         public new static readonly StringName InventoryHandle = "inventory_handle";
         public new static readonly StringName InventoryUpdateHandle = "inventory_update_handle";
@@ -6942,13 +7104,14 @@ public enum RemoteStoragePlatform
         public new static readonly StringName LeaderboardDetailsMax = "leaderboard_details_max";
         public new static readonly StringName LeaderboardEntriesArray = "leaderboard_entries_array";
         public new static readonly StringName LeaderboardHandle = "leaderboard_handle";
+        public new static readonly StringName LeaderboardUgcHandle = "leaderboard_ugc_handle";
         public new static readonly StringName CurrentAppId = "current_app_id";
     }
 
-    public new long BrowserHandle
+    public new long CurrentBrowserHandle
     {
-        get => Get(GDExtensionPropertyName.BrowserHandle).As<long>();
-        set => Set(GDExtensionPropertyName.BrowserHandle, value);
+        get => Get(GDExtensionPropertyName.CurrentBrowserHandle).As<long>();
+        set => Set(GDExtensionPropertyName.CurrentBrowserHandle, value);
     }
 
     public new long CurrentClanId
@@ -6993,6 +7156,12 @@ public enum RemoteStoragePlatform
         set => Set(GDExtensionPropertyName.LeaderboardHandle, value);
     }
 
+    public new long LeaderboardUgcHandle
+    {
+        get => Get(GDExtensionPropertyName.LeaderboardUgcHandle).As<long>();
+        set => Set(GDExtensionPropertyName.LeaderboardUgcHandle, value);
+    }
+
     public new long CurrentAppId
     {
         get => Get(GDExtensionPropertyName.CurrentAppId).As<long>();
@@ -7015,6 +7184,7 @@ public enum RemoteStoragePlatform
         public new static readonly StringName RestartAppIfNecessary = "restartAppIfNecessary";
         public new static readonly StringName SteamInit = "steamInit";
         public new static readonly StringName SteamInitEx = "steamInitEx";
+        public new static readonly StringName ReleaseCurrentThreadMemory = "releaseCurrentThreadMemory";
         public new static readonly StringName SteamShutdown = "steamShutdown";
         public new static readonly StringName GetServerListRequest = "get_server_list_request";
         public new static readonly StringName GetSteamInitResult = "get_steam_init_result";
@@ -7050,10 +7220,13 @@ public enum RemoteStoragePlatform
         public new static readonly StringName MarkContentCorrupt = "markContentCorrupt";
         public new static readonly StringName SetActiveBeta = "setActiveBeta";
         public new static readonly StringName SetDlcContext = "setDLCContext";
+        public new static readonly StringName SetGamePerformanceSettings = "setGamePerformanceSettings";
+        public new static readonly StringName SetGameRenderResolution = "setGameRenderResolution";
         public new static readonly StringName UninstallDlc = "uninstallDLC";
         public new static readonly StringName ActivateGameOverlay = "activateGameOverlay";
         public new static readonly StringName ActivateGameOverlayInviteDialog = "activateGameOverlayInviteDialog";
         public new static readonly StringName ActivateGameOverlayInviteDialogConnectString = "activateGameOverlayInviteDialogConnectString";
+        public new static readonly StringName ActivateGameOverlayRemotePlayTogetherInviteDialog = "activateGameOverlayRemotePlayTogetherInviteDialog";
         public new static readonly StringName ActivateGameOverlayToStore = "activateGameOverlayToStore";
         public new static readonly StringName ActivateGameOverlayToUser = "activateGameOverlayToUser";
         public new static readonly StringName ActivateGameOverlayToWebPage = "activateGameOverlayToWebPage";
@@ -7065,7 +7238,6 @@ public enum RemoteStoragePlatform
         public new static readonly StringName GetClanActivityCounts = "getClanActivityCounts";
         public new static readonly StringName GetClanByIndex = "getClanByIndex";
         public new static readonly StringName GetClanChatMemberCount = "getClanChatMemberCount";
-        public new static readonly StringName GetClanChatMessage = "getClanChatMessage";
         public new static readonly StringName GetClanCount = "getClanCount";
         public new static readonly StringName GetClanName = "getClanName";
         public new static readonly StringName GetClanOfficerByIndex = "getClanOfficerByIndex";
@@ -7082,7 +7254,6 @@ public enum RemoteStoragePlatform
         public new static readonly StringName GetFriendCountFromSource = "getFriendCountFromSource";
         public new static readonly StringName GetFriendFromSourceByIndex = "getFriendFromSourceByIndex";
         public new static readonly StringName GetFriendGamePlayed = "getFriendGamePlayed";
-        public new static readonly StringName GetFriendMessage = "getFriendMessage";
         public new static readonly StringName GetFriendPersonaName = "getFriendPersonaName";
         public new static readonly StringName GetFriendPersonaNameHistory = "getFriendPersonaNameHistory";
         public new static readonly StringName GetFriendPersonaState = "getFriendPersonaState";
@@ -7132,20 +7303,6 @@ public enum RemoteStoragePlatform
         public new static readonly StringName SetListenForFriendsMessages = "setListenForFriendsMessages";
         public new static readonly StringName SetPlayedWith = "setPlayedWith";
         public new static readonly StringName SetRichPresence = "setRichPresence";
-        public new static readonly StringName AddGameSearchParams = "addGameSearchParams";
-        public new static readonly StringName SearchForGameWithLobby = "searchForGameWithLobby";
-        public new static readonly StringName SearchForGameSolo = "searchForGameSolo";
-        public new static readonly StringName AcceptGame = "acceptGame";
-        public new static readonly StringName DeclineGame = "declineGame";
-        public new static readonly StringName RetrieveConnectionDetails = "retrieveConnectionDetails";
-        public new static readonly StringName EndGameSearch = "endGameSearch";
-        public new static readonly StringName SetGameHostParams = "setGameHostParams";
-        public new static readonly StringName SetConnectionDetails = "setConnectionDetails";
-        public new static readonly StringName RequestPlayersForGame = "requestPlayersForGame";
-        public new static readonly StringName HostConfirmGameStart = "hostConfirmGameStart";
-        public new static readonly StringName CancelRequestPlayersForGame = "cancelRequestPlayersForGame";
-        public new static readonly StringName SubmitPlayerResult = "submitPlayerResult";
-        public new static readonly StringName EndGame = "endGame";
         public new static readonly StringName AddHeader = "addHeader";
         public new static readonly StringName AllowStartRequest = "allowStartRequest";
         public new static readonly StringName CopyToClipboard = "copyToClipboard";
@@ -7241,7 +7398,6 @@ public enum RemoteStoragePlatform
         public new static readonly StringName TriggerRepeatedHapticPulse = "triggerRepeatedHapticPulse";
         public new static readonly StringName TriggerVibration = "triggerVibration";
         public new static readonly StringName SetInputActionManifestFilePath = "setInputActionManifestFilePath";
-        public new static readonly StringName SetDualSenseTriggerEffect = "setDualSenseTriggerEffect";
         public new static readonly StringName WaitForData = "waitForData";
         public new static readonly StringName NewDataAvailable = "newDataAvailable";
         public new static readonly StringName EnableDeviceCallbacks = "enableDeviceCallbacks";
@@ -7335,6 +7491,7 @@ public enum RemoteStoragePlatform
         public new static readonly StringName RequestInternetServerList = "requestInternetServerList";
         public new static readonly StringName RequestLanServerList = "requestLANServerList";
         public new static readonly StringName RequestSpectatorServerList = "requestSpectatorServerList";
+        public new static readonly StringName ServerFriends = "serverFriends";
         public new static readonly StringName ServerRules = "serverRules";
         public new static readonly StringName MusicIsEnabled = "musicIsEnabled";
         public new static readonly StringName MusicIsPlaying = "musicIsPlaying";
@@ -7345,38 +7502,6 @@ public enum RemoteStoragePlatform
         public new static readonly StringName MusicPlayNext = "musicPlayNext";
         public new static readonly StringName MusicPlayPrev = "musicPlayPrev";
         public new static readonly StringName MusicSetVolume = "musicSetVolume";
-        public new static readonly StringName ActivationSuccess = "activationSuccess";
-        public new static readonly StringName IsCurrentMusicRemote = "isCurrentMusicRemote";
-        public new static readonly StringName CurrentEntryDidChange = "currentEntryDidChange";
-        public new static readonly StringName CurrentEntryIsAvailable = "currentEntryIsAvailable";
-        public new static readonly StringName CurrentEntryWillChange = "currentEntryWillChange";
-        public new static readonly StringName DeregisterSteamMusicRemote = "deregisterSteamMusicRemote";
-        public new static readonly StringName EnableLooped = "enableLooped";
-        public new static readonly StringName EnablePlaylists = "enablePlaylists";
-        public new static readonly StringName EnablePlayNext = "enablePlayNext";
-        public new static readonly StringName EnablePlayPrevious = "enablePlayPrevious";
-        public new static readonly StringName EnableQueue = "enableQueue";
-        public new static readonly StringName EnableShuffled = "enableShuffled";
-        public new static readonly StringName PlaylistDidChange = "playlistDidChange";
-        public new static readonly StringName PlaylistWillChange = "playlistWillChange";
-        public new static readonly StringName QueueDidChange = "queueDidChange";
-        public new static readonly StringName QueueWillChange = "queueWillChange";
-        public new static readonly StringName RegisterSteamMusicRemote = "registerSteamMusicRemote";
-        public new static readonly StringName ResetPlaylistEntries = "resetPlaylistEntries";
-        public new static readonly StringName ResetQueueEntries = "resetQueueEntries";
-        public new static readonly StringName SetCurrentPlaylistEntry = "setCurrentPlaylistEntry";
-        public new static readonly StringName SetCurrentQueueEntry = "setCurrentQueueEntry";
-        public new static readonly StringName SetDisplayName = "setDisplayName";
-        public new static readonly StringName SetPlaylistEntry = "setPlaylistEntry";
-        public new static readonly StringName SetPngIcon64x64 = "setPNGIcon64x64";
-        public new static readonly StringName SetQueueEntry = "setQueueEntry";
-        public new static readonly StringName UpdateCurrentEntryCoverArt = "updateCurrentEntryCoverArt";
-        public new static readonly StringName UpdateCurrentEntryElapsedSeconds = "updateCurrentEntryElapsedSeconds";
-        public new static readonly StringName UpdateCurrentEntryText = "updateCurrentEntryText";
-        public new static readonly StringName UpdateLooped = "updateLooped";
-        public new static readonly StringName UpdatePlaybackStatus = "updatePlaybackStatus";
-        public new static readonly StringName UpdateShuffled = "updateShuffled";
-        public new static readonly StringName UpdateVolume = "updateVolume";
         public new static readonly StringName AcceptP2pSessionWithUser = "acceptP2PSessionWithUser";
         public new static readonly StringName AllowP2pPacketRelay = "allowP2PPacketRelay";
         public new static readonly StringName CloseP2pChannelWithUser = "closeP2PChannelWithUser";
@@ -7400,7 +7525,6 @@ public enum RemoteStoragePlatform
         public new static readonly StringName ConnectByIpAddress = "connectByIPAddress";
         public new static readonly StringName ConnectToHostedDedicatedServer = "connectToHostedDedicatedServer";
         public new static readonly StringName CreateFakeUdpPort = "createFakeUDPPort";
-        public new static readonly StringName CreateHostedDedicatedServerListenSocket = "createHostedDedicatedServerListenSocket";
         public new static readonly StringName CreateListenSocketIp = "createListenSocketIP";
         public new static readonly StringName CreateListenSocketP2p = "createListenSocketP2P";
         public new static readonly StringName CreateListenSocketP2pFakeIp = "createListenSocketP2PFakeIP";
@@ -7425,10 +7549,12 @@ public enum RemoteStoragePlatform
         public new static readonly StringName ReceiveMessagesOnPollGroup = "receiveMessagesOnPollGroup";
         public new static readonly StringName ResetIdentity = "resetIdentity";
         public new static readonly StringName RunNetworkingCallbacks = "runNetworkingCallbacks";
+        public new static readonly StringName SendMessages = "sendMessages";
         public new static readonly StringName SendMessageToConnection = "sendMessageToConnection";
         public new static readonly StringName SetCertificate = "setCertificate";
         public new static readonly StringName SetConnectionPollGroup = "setConnectionPollGroup";
         public new static readonly StringName SetConnectionName = "setConnectionName";
+        public new static readonly StringName SetConnectionUserData = "setConnectionUserData";
         public new static readonly StringName CheckPingDataUpToDate = "checkPingDataUpToDate";
         public new static readonly StringName ConvertPingLocationToString = "convertPingLocationToString";
         public new static readonly StringName EstimatePingTimeBetweenTwoLocations = "estimatePingTimeBetweenTwoLocations";
@@ -7436,13 +7562,17 @@ public enum RemoteStoragePlatform
         public new static readonly StringName GetConfigValue = "getConfigValue";
         public new static readonly StringName GetConfigValueInfo = "getConfigValueInfo";
         public new static readonly StringName GetDirectPingToPop = "getDirectPingToPOP";
+        public new static readonly StringName GetIPv4FakeIpType = "getIPv4FakeIPType";
         public new static readonly StringName GetLocalPingLocation = "getLocalPingLocation";
         public new static readonly StringName GetLocalTimestamp = "getLocalTimestamp";
         public new static readonly StringName GetPingToDataCenter = "getPingToDataCenter";
         public new static readonly StringName GetPopCount = "getPOPCount";
         public new static readonly StringName GetPopList = "getPOPList";
+        public new static readonly StringName GetRealIdentityForFakeIp = "getRealIdentityForFakeIP";
         public new static readonly StringName GetRelayNetworkStatus = "getRelayNetworkStatus";
         public new static readonly StringName InitRelayNetworkAccess = "initRelayNetworkAccess";
+        public new static readonly StringName IsFakeIPv4 = "isFakeIPv4";
+        public new static readonly StringName IterateGenericEditableConfigValues = "iterateGenericEditableConfigValues";
         public new static readonly StringName ParsePingLocationString = "parsePingLocationString";
         public new static readonly StringName SetConnectionConfigValueFloat = "setConnectionConfigValueFloat";
         public new static readonly StringName SetConnectionConfigValueInt32 = "setConnectionConfigValueInt32";
@@ -7465,18 +7595,24 @@ public enum RemoteStoragePlatform
         public new static readonly StringName GetBeaconDetails = "getBeaconDetails";
         public new static readonly StringName GetBeaconLocationData = "getBeaconLocationData";
         public new static readonly StringName GetNumActiveBeacons = "getNumActiveBeacons";
+        public new static readonly StringName GetNumAvailableBeaconLocations = "getNumAvailableBeaconLocations";
         public new static readonly StringName JoinParty = "joinParty";
         public new static readonly StringName OnReservationCompleted = "onReservationCompleted";
         public new static readonly StringName EnableRemotePlayTogetherDirectInput = "enableRemotePlayTogetherDirectInput";
         public new static readonly StringName DisableRemotePlayTogetherDirectInput = "disableRemotePlayTogetherDirectInput";
         public new static readonly StringName GetInput = "getInput";
+        public new static readonly StringName GetLargeSessionAvatar = "getLargeSessionAvatar";
+        public new static readonly StringName GetMediumSessionAvatar = "getMediumSessionAvatar";
         public new static readonly StringName GetSessionCount = "getSessionCount";
+        public new static readonly StringName GetSessionGuestId = "getSessionGuestID";
         public new static readonly StringName GetSessionId = "getSessionID";
         public new static readonly StringName GetSessionSteamId = "getSessionSteamID";
+        public new static readonly StringName GetSmallSessionAvatar = "getSmallSessionAvatar";
         public new static readonly StringName GetSessionClientName = "getSessionClientName";
         public new static readonly StringName GetSessionClientFormFactor = "getSessionClientFormFactor";
         public new static readonly StringName GetSessionClientResolution = "getSessionClientResolution";
         public new static readonly StringName SendRemotePlayTogetherInvite = "sendRemotePlayTogetherInvite";
+        public new static readonly StringName SessionRemotePlayTogether = "sessionRemotePlayTogether";
         public new static readonly StringName SetMouseCursor = "setMouseCursor";
         public new static readonly StringName SetMousePosition = "setMousePosition";
         public new static readonly StringName SetMouseVisibility = "setMouseVisibility";
@@ -7554,16 +7690,21 @@ public enum RemoteStoragePlatform
         public new static readonly StringName AddRequiredTag = "addRequiredTag";
         public new static readonly StringName AddRequiredTagGroup = "addRequiredTagGroup";
         public new static readonly StringName InitWorkshopForGameServer = "initWorkshopForGameServer";
+        public new static readonly StringName MarkDownloadedItemAsUnused = "markDownloadedItemAsUnused";
         public new static readonly StringName CreateItem = "createItem";
-        public new static readonly StringName CreateQueryAllUgcRequest = "createQueryAllUGCRequest";
+        public new static readonly StringName CreateQueryAllUgcRequestPage = "createQueryAllUGCRequestPage";
+        public new static readonly StringName CreateQueryAllUgcRequestCursor = "createQueryAllUGCRequestCursor";
         public new static readonly StringName CreateQueryUgcDetailsRequest = "createQueryUGCDetailsRequest";
         public new static readonly StringName CreateQueryUserUgcRequest = "createQueryUserUGCRequest";
         public new static readonly StringName DeleteItem = "deleteItem";
         public new static readonly StringName DownloadItem = "downloadItem";
+        public new static readonly StringName GetAppDependencies = "getAppDependencies";
+        public new static readonly StringName GetDownloadedItems = "getDownloadedItems";
         public new static readonly StringName GetItemDownloadInfo = "getItemDownloadInfo";
         public new static readonly StringName GetItemInstallInfo = "getItemInstallInfo";
         public new static readonly StringName GetItemState = "getItemState";
         public new static readonly StringName GetItemUpdateProgress = "getItemUpdateProgress";
+        public new static readonly StringName GetNumDownloadedItems = "getNumDownloadedItems";
         public new static readonly StringName GetNumSubscribedItems = "getNumSubscribedItems";
         public new static readonly StringName GetNumSupportedGameVersions = "getNumSupportedGameVersions";
         public new static readonly StringName GetQueryUgcAdditionalPreview = "getQueryUGCAdditionalPreview";
@@ -7584,6 +7725,7 @@ public enum RemoteStoragePlatform
         public new static readonly StringName GetUserContentDescriptorPreferences = "getUserContentDescriptorPreferences";
         public new static readonly StringName GetUserItemVote = "getUserItemVote";
         public new static readonly StringName ReleaseQueryUgcRequest = "releaseQueryUGCRequest";
+        public new static readonly StringName RemoveAllItemKeyValueTags = "removeAllItemKeyValueTags";
         public new static readonly StringName RemoveAppDependency = "removeAppDependency";
         public new static readonly StringName RemoveContentDescriptor = "removeContentDescriptor";
         public new static readonly StringName RemoveDependency = "removeDependency";
@@ -7593,6 +7735,7 @@ public enum RemoteStoragePlatform
         public new static readonly StringName SendQueryUgcRequest = "sendQueryUGCRequest";
         public new static readonly StringName SetAdminQuery = "setAdminQuery";
         public new static readonly StringName SetAllowCachedResponse = "setAllowCachedResponse";
+        public new static readonly StringName SetAllowLegacyUpload = "setAllowLegacyUpload";
         public new static readonly StringName SetCloudFileNameFilter = "setCloudFileNameFilter";
         public new static readonly StringName SetItemContent = "setItemContent";
         public new static readonly StringName SetItemDescription = "setItemDescription";
@@ -7622,7 +7765,6 @@ public enum RemoteStoragePlatform
         public new static readonly StringName StartPlaytimeTracking = "startPlaytimeTracking";
         public new static readonly StringName StopPlaytimeTracking = "stopPlaytimeTracking";
         public new static readonly StringName StopPlaytimeTrackingForAllItems = "stopPlaytimeTrackingForAllItems";
-        public new static readonly StringName GetAppDependencies = "getAppDependencies";
         public new static readonly StringName SubmitItemUpdate = "submitItemUpdate";
         public new static readonly StringName SubscribeItem = "subscribeItem";
         public new static readonly StringName SuspendDownloads = "suspendDownloads";
@@ -7721,14 +7863,16 @@ public enum RemoteStoragePlatform
         public new static readonly StringName GetSecondsSinceAppActive = "getSecondsSinceAppActive";
         public new static readonly StringName GetSecondsSinceComputerActive = "getSecondsSinceComputerActive";
         public new static readonly StringName GetServerRealTime = "getServerRealTime";
+        public new static readonly StringName GetSteamHardwareDefaultConfig = "getSteamHardwareDefaultConfig";
         public new static readonly StringName GetSteamUiLanguage = "getSteamUILanguage";
         public new static readonly StringName InitFilterText = "initFilterText";
         public new static readonly StringName IsApiCallCompleted = "isAPICallCompleted";
         public new static readonly StringName IsOverlayEnabled = "isOverlayEnabled";
+        public new static readonly StringName IsRunningOnSteamHardware = "isRunningOnSteamHardware";
         public new static readonly StringName IsSteamChinaLauncher = "isSteamChinaLauncher";
+        public new static readonly StringName IsRunningUnderProton = "isRunningUnderProton";
         public new static readonly StringName IsSteamInBigPictureMode = "isSteamInBigPictureMode";
         public new static readonly StringName IsSteamRunningInVr = "isSteamRunningInVR";
-        public new static readonly StringName IsSteamRunningOnSteamDeck = "isSteamRunningOnSteamDeck";
         public new static readonly StringName IsVrHeadsetStreamingEnabled = "isVRHeadsetStreamingEnabled";
         public new static readonly StringName OverlayNeedsPresent = "overlayNeedsPresent";
         public new static readonly StringName SetGameLauncherMode = "setGameLauncherMode";
@@ -7786,6 +7930,9 @@ public enum RemoteStoragePlatform
     public new Godot.Collections.Dictionary SteamInitEx(long appId = 0, bool embedCallbacks = false) => 
         Call(GDExtensionMethodName.SteamInitEx, [appId, embedCallbacks]).As<Godot.Collections.Dictionary>();
 
+    public new void ReleaseCurrentThreadMemory() => 
+        Call(GDExtensionMethodName.ReleaseCurrentThreadMemory, []);
+
     public new void SteamShutdown() => 
         Call(GDExtensionMethodName.SteamShutdown, []);
 
@@ -7801,8 +7948,8 @@ public enum RemoteStoragePlatform
     public new long GetAppBuildId() => 
         Call(GDExtensionMethodName.GetAppBuildId, []).As<long>();
 
-    public new Godot.Collections.Dictionary GetAppInstallDir(long appId) => 
-        Call(GDExtensionMethodName.GetAppInstallDir, [appId]).As<Godot.Collections.Dictionary>();
+    public new string GetAppInstallDir(long appId) => 
+        Call(GDExtensionMethodName.GetAppInstallDir, [appId]).As<string>();
 
     public new long GetAppOwner() => 
         Call(GDExtensionMethodName.GetAppOwner, []).As<long>();
@@ -7891,26 +8038,35 @@ public enum RemoteStoragePlatform
     public new bool SetDlcContext(long appId) => 
         Call(GDExtensionMethodName.SetDlcContext, [appId]).As<bool>();
 
+    public new void SetGamePerformanceSettings(Steam.GamePerformanceSetting setting) => 
+        Call(GDExtensionMethodName.SetGamePerformanceSettings, [Variant.From(setting)]);
+
+    public new void SetGameRenderResolution(long width, long height) => 
+        Call(GDExtensionMethodName.SetGameRenderResolution, [width, height]);
+
     public new void UninstallDlc(long dlcId) => 
         Call(GDExtensionMethodName.UninstallDlc, [dlcId]);
 
     public new void ActivateGameOverlay(string type = "") => 
         Call(GDExtensionMethodName.ActivateGameOverlay, [type]);
 
-    public new void ActivateGameOverlayInviteDialog(long steamId) => 
-        Call(GDExtensionMethodName.ActivateGameOverlayInviteDialog, [steamId]);
+    public new void ActivateGameOverlayInviteDialog(long lobbyId) => 
+        Call(GDExtensionMethodName.ActivateGameOverlayInviteDialog, [lobbyId]);
 
     public new void ActivateGameOverlayInviteDialogConnectString(string connectString) => 
         Call(GDExtensionMethodName.ActivateGameOverlayInviteDialogConnectString, [connectString]);
 
-    public new void ActivateGameOverlayToStore(long appId = 0) => 
-        Call(GDExtensionMethodName.ActivateGameOverlayToStore, [appId]);
+    public new void ActivateGameOverlayRemotePlayTogetherInviteDialog(long lobbyId) => 
+        Call(GDExtensionMethodName.ActivateGameOverlayRemotePlayTogetherInviteDialog, [lobbyId]);
+
+    public new void ActivateGameOverlayToStore(long appId, Steam.OverlayToStoreFlag storeFlag = Steam.OverlayToStoreFlag.None) => 
+        Call(GDExtensionMethodName.ActivateGameOverlayToStore, [appId, Variant.From(storeFlag)]);
 
     public new void ActivateGameOverlayToUser(string type = "", long steamId = 0) => 
         Call(GDExtensionMethodName.ActivateGameOverlayToUser, [type, steamId]);
 
-    public new void ActivateGameOverlayToWebPage(string url, long/* "Empty Enum Constant String" */ webpageMode) => 
-        Call(GDExtensionMethodName.ActivateGameOverlayToWebPage, [url, webpageMode]);
+    public new void ActivateGameOverlayToWebPage(string url, Steam.OverlayToWebPageMode webpageMode = Steam.OverlayToWebPageMode.Default) => 
+        Call(GDExtensionMethodName.ActivateGameOverlayToWebPage, [url, Variant.From(webpageMode)]);
 
     public new void ClearRichPresence() => 
         Call(GDExtensionMethodName.ClearRichPresence, []);
@@ -7918,8 +8074,8 @@ public enum RemoteStoragePlatform
     public new bool CloseClanChatWindowInSteam(long chatId) => 
         Call(GDExtensionMethodName.CloseClanChatWindowInSteam, [chatId]).As<bool>();
 
-    public new void DownloadClanActivityCounts(long chatId, long clansToRequest) => 
-        Call(GDExtensionMethodName.DownloadClanActivityCounts, [chatId, clansToRequest]);
+    public new void DownloadClanActivityCounts(long[] clanIdArray) => 
+        Call(GDExtensionMethodName.DownloadClanActivityCounts, [clanIdArray]);
 
     public new void EnumerateFollowingList(long startIndex) => 
         Call(GDExtensionMethodName.EnumerateFollowingList, [startIndex]);
@@ -7936,17 +8092,14 @@ public enum RemoteStoragePlatform
     public new long GetClanChatMemberCount(long clanId) => 
         Call(GDExtensionMethodName.GetClanChatMemberCount, [clanId]).As<long>();
 
-    public new Godot.Collections.Dictionary GetClanChatMessage(long chatId, long message) => 
-        Call(GDExtensionMethodName.GetClanChatMessage, [chatId, message]).As<Godot.Collections.Dictionary>();
-
     public new long GetClanCount() => 
         Call(GDExtensionMethodName.GetClanCount, []).As<long>();
 
     public new string GetClanName(long clanId) => 
         Call(GDExtensionMethodName.GetClanName, [clanId]).As<string>();
 
-    public new long GetClanOfficerByIndex(long clanId, long officer) => 
-        Call(GDExtensionMethodName.GetClanOfficerByIndex, [clanId, officer]).As<long>();
+    public new long GetClanOfficerByIndex(long clanId, long officerIndex) => 
+        Call(GDExtensionMethodName.GetClanOfficerByIndex, [clanId, officerIndex]).As<long>();
 
     public new long GetClanOfficerCount(long clanId) => 
         Call(GDExtensionMethodName.GetClanOfficerCount, [clanId]).As<long>();
@@ -7957,8 +8110,8 @@ public enum RemoteStoragePlatform
     public new string GetClanTag(long clanId) => 
         Call(GDExtensionMethodName.GetClanTag, [clanId]).As<string>();
 
-    public new long GetCoplayFriend(long friendNumber) => 
-        Call(GDExtensionMethodName.GetCoplayFriend, [friendNumber]).As<long>();
+    public new long GetCoplayFriend(long friendIndex) => 
+        Call(GDExtensionMethodName.GetCoplayFriend, [friendIndex]).As<long>();
 
     public new long GetCoplayFriendCount() => 
         Call(GDExtensionMethodName.GetCoplayFriendCount, []).As<long>();
@@ -7987,20 +8140,17 @@ public enum RemoteStoragePlatform
     public new Godot.Collections.Dictionary GetFriendGamePlayed(long steamId) => 
         Call(GDExtensionMethodName.GetFriendGamePlayed, [steamId]).As<Godot.Collections.Dictionary>();
 
-    public new Godot.Collections.Dictionary GetFriendMessage(long friendId, long message) => 
-        Call(GDExtensionMethodName.GetFriendMessage, [friendId, message]).As<Godot.Collections.Dictionary>();
-
     public new string GetFriendPersonaName(long steamId) => 
         Call(GDExtensionMethodName.GetFriendPersonaName, [steamId]).As<string>();
 
     public new string GetFriendPersonaNameHistory(long steamId, long nameHistory) => 
         Call(GDExtensionMethodName.GetFriendPersonaNameHistory, [steamId, nameHistory]).As<string>();
 
-    public new PersonaState GetFriendPersonaState(long steamId) =>
-        Call(GDExtensionMethodName.GetFriendPersonaState, [steamId]).As<PersonaState>();
+    public new Steam.PersonaState GetFriendPersonaState(long steamId) => 
+        Call(GDExtensionMethodName.GetFriendPersonaState, [steamId]).As<Steam.PersonaState>();
 
-    public new FriendRelationship GetFriendRelationship(long steamId) =>
-        Call(GDExtensionMethodName.GetFriendRelationship, [steamId]).As<FriendRelationship>();
+    public new Steam.FriendRelationship GetFriendRelationship(long steamId) => 
+        Call(GDExtensionMethodName.GetFriendRelationship, [steamId]).As<Steam.FriendRelationship>();
 
     public new string GetFriendRichPresence(long friendId, string key) => 
         Call(GDExtensionMethodName.GetFriendRichPresence, [friendId, key]).As<string>();
@@ -8008,8 +8158,8 @@ public enum RemoteStoragePlatform
     public new long GetFriendRichPresenceKeyCount(long friendId) => 
         Call(GDExtensionMethodName.GetFriendRichPresenceKeyCount, [friendId]).As<long>();
 
-    public new string GetFriendRichPresenceKeyByIndex(long friendId, long key) => 
-        Call(GDExtensionMethodName.GetFriendRichPresenceKeyByIndex, [friendId, key]).As<string>();
+    public new string GetFriendRichPresenceKeyByIndex(long friendId, long keyIndex) => 
+        Call(GDExtensionMethodName.GetFriendRichPresenceKeyByIndex, [friendId, keyIndex]).As<string>();
 
     public new long GetFriendsGroupCount() => 
         Call(GDExtensionMethodName.GetFriendsGroupCount, []).As<long>();
@@ -8038,8 +8188,8 @@ public enum RemoteStoragePlatform
     public new string GetPersonaName() => 
         Call(GDExtensionMethodName.GetPersonaName, []).As<string>();
 
-    public new PersonaState GetPersonaState() =>
-        Call(GDExtensionMethodName.GetPersonaState, []).As<PersonaState>();
+    public new Steam.PersonaState GetPersonaState() => 
+        Call(GDExtensionMethodName.GetPersonaState, []).As<Steam.PersonaState>();
 
     public new void GetPlayerAvatar(long size = 2, long steamId = 0) => 
         Call(GDExtensionMethodName.GetPlayerAvatar, [size, steamId]);
@@ -8047,11 +8197,11 @@ public enum RemoteStoragePlatform
     public new string GetPlayerNickname(long steamId) => 
         Call(GDExtensionMethodName.GetPlayerNickname, [steamId]).As<string>();
 
-    public new string GetProfileItemPropertyString(long steamId, long/* "Empty Enum Constant String" */ itemType, long/* "Empty Enum Constant String" */ itemProperty) => 
-        Call(GDExtensionMethodName.GetProfileItemPropertyString, [steamId, itemType, itemProperty]).As<string>();
+    public new string GetProfileItemPropertyString(long steamId, Steam.CommunityProfileItemType itemType, Steam.CommunityProfileItemProperty itemProperty) => 
+        Call(GDExtensionMethodName.GetProfileItemPropertyString, [steamId, Variant.From(itemType), Variant.From(itemProperty)]).As<string>();
 
-    public new long GetProfileItemPropertyInt(long steamId, long/* "Empty Enum Constant String" */ itemType, long/* "Empty Enum Constant String" */ itemProperty) => 
-        Call(GDExtensionMethodName.GetProfileItemPropertyInt, [steamId, itemType, itemProperty]).As<long>();
+    public new long GetProfileItemPropertyInt(long steamId, Steam.CommunityProfileItemType itemType, Steam.CommunityProfileItemProperty itemProperty) => 
+        Call(GDExtensionMethodName.GetProfileItemPropertyInt, [steamId, Variant.From(itemType), Variant.From(itemProperty)]).As<long>();
 
     public new Godot.Collections.Array GetRecentPlayers() => 
         Call(GDExtensionMethodName.GetRecentPlayers, []).As<Godot.Collections.Array>();
@@ -8068,8 +8218,8 @@ public enum RemoteStoragePlatform
     public new Godot.Collections.Array GetUserSteamGroups() => 
         Call(GDExtensionMethodName.GetUserSteamGroups, []).As<Godot.Collections.Array>();
 
-    public new bool HasEquippedProfileItem(long steamId, long/* "Empty Enum Constant String" */ friendFlags) => 
-        Call(GDExtensionMethodName.HasEquippedProfileItem, [steamId, friendFlags]).As<bool>();
+    public new bool HasEquippedProfileItem(long steamId, Steam.CommunityProfileItemType friendFlags) => 
+        Call(GDExtensionMethodName.HasEquippedProfileItem, [steamId, Variant.From(friendFlags)]).As<bool>();
 
     public new bool HasFriend(long steamId, long friendFlags) => 
         Call(GDExtensionMethodName.HasFriend, [steamId, friendFlags]).As<bool>();
@@ -8128,8 +8278,8 @@ public enum RemoteStoragePlatform
     public new void SetInGameVoiceSpeaking(long steamId, bool speaking) => 
         Call(GDExtensionMethodName.SetInGameVoiceSpeaking, [steamId, speaking]);
 
-    public new bool SetListenForFriendsMessages(bool intercept) => 
-        Call(GDExtensionMethodName.SetListenForFriendsMessages, [intercept]).As<bool>();
+    public new bool SetListenForFriendsMessages(bool interceptEnabled) => 
+        Call(GDExtensionMethodName.SetListenForFriendsMessages, [interceptEnabled]).As<bool>();
 
     public new void SetPlayedWith(long steamId) => 
         Call(GDExtensionMethodName.SetPlayedWith, [steamId]);
@@ -8137,161 +8287,119 @@ public enum RemoteStoragePlatform
     public new bool SetRichPresence(string key, string value) => 
         Call(GDExtensionMethodName.SetRichPresence, [key, value]).As<bool>();
 
-    public new long AddGameSearchParams(string key, string values) => 
-        Call(GDExtensionMethodName.AddGameSearchParams, [key, values]).As<long>();
+    public new void AddHeader(string key, string value, long browserHandle = 0) => 
+        Call(GDExtensionMethodName.AddHeader, [key, value, browserHandle]);
 
-    public new long SearchForGameWithLobby(long lobbyId, long playerMin, long playerMax) => 
-        Call(GDExtensionMethodName.SearchForGameWithLobby, [lobbyId, playerMin, playerMax]).As<long>();
+    public new void AllowStartRequest(bool allowed, long browserHandle = 0) => 
+        Call(GDExtensionMethodName.AllowStartRequest, [allowed, browserHandle]);
 
-    public new long SearchForGameSolo(long playerMin, long playerMax) => 
-        Call(GDExtensionMethodName.SearchForGameSolo, [playerMin, playerMax]).As<long>();
-
-    public new long AcceptGame() => 
-        Call(GDExtensionMethodName.AcceptGame, []).As<long>();
-
-    public new long DeclineGame() => 
-        Call(GDExtensionMethodName.DeclineGame, []).As<long>();
-
-    public new string RetrieveConnectionDetails(long hostId) => 
-        Call(GDExtensionMethodName.RetrieveConnectionDetails, [hostId]).As<string>();
-
-    public new long EndGameSearch() => 
-        Call(GDExtensionMethodName.EndGameSearch, []).As<long>();
-
-    public new long SetGameHostParams(string key, string value) => 
-        Call(GDExtensionMethodName.SetGameHostParams, [key, value]).As<long>();
-
-    public new long SetConnectionDetails(string details, long connectionDetails) => 
-        Call(GDExtensionMethodName.SetConnectionDetails, [details, connectionDetails]).As<long>();
-
-    public new long RequestPlayersForGame(long playerMin, long playerMax, long maxTeamSize) => 
-        Call(GDExtensionMethodName.RequestPlayersForGame, [playerMin, playerMax, maxTeamSize]).As<long>();
-
-    public new long HostConfirmGameStart(long gameId) => 
-        Call(GDExtensionMethodName.HostConfirmGameStart, [gameId]).As<long>();
-
-    public new long CancelRequestPlayersForGame() => 
-        Call(GDExtensionMethodName.CancelRequestPlayersForGame, []).As<long>();
-
-    public new long SubmitPlayerResult(long gameId, long playerId, long/* "Empty Enum Constant String" */ playerResult) => 
-        Call(GDExtensionMethodName.SubmitPlayerResult, [gameId, playerId, playerResult]).As<long>();
-
-    public new long EndGame(long gameId) => 
-        Call(GDExtensionMethodName.EndGame, [gameId]).As<long>();
-
-    public new void AddHeader(string key, string value, long thisHandle = 0) => 
-        Call(GDExtensionMethodName.AddHeader, [key, value, thisHandle]);
-
-    public new void AllowStartRequest(bool allowed, long thisHandle = 0) => 
-        Call(GDExtensionMethodName.AllowStartRequest, [allowed, thisHandle]);
-
-    public new void CopyToClipboard(long thisHandle = 0) => 
-        Call(GDExtensionMethodName.CopyToClipboard, [thisHandle]);
+    public new void CopyToClipboard(long browserHandle = 0) => 
+        Call(GDExtensionMethodName.CopyToClipboard, [browserHandle]);
 
     public new void CreateBrowser(string userAgent = "", string userCss = "") => 
         Call(GDExtensionMethodName.CreateBrowser, [userAgent, userCss]);
 
-    public new void ExecuteJavascript(string script, long thisHandle = 0) => 
-        Call(GDExtensionMethodName.ExecuteJavascript, [script, thisHandle]);
+    public new void ExecuteJavascript(string script, long browserHandle = 0) => 
+        Call(GDExtensionMethodName.ExecuteJavascript, [script, browserHandle]);
 
-    public new void Find(string search, bool currentlyInFind, bool reverse, long thisHandle = 0) => 
-        Call(GDExtensionMethodName.Find, [search, currentlyInFind, reverse, thisHandle]);
+    public new void Find(string search, bool currentlyInFind, bool reverse, long browserHandle = 0) => 
+        Call(GDExtensionMethodName.Find, [search, currentlyInFind, reverse, browserHandle]);
 
-    public new void GetLinkAtPosition(long x, long y, long thisHandle = 0) => 
-        Call(GDExtensionMethodName.GetLinkAtPosition, [x, y, thisHandle]);
+    public new void GetLinkAtPosition(long x, long y, long browserHandle = 0) => 
+        Call(GDExtensionMethodName.GetLinkAtPosition, [x, y, browserHandle]);
 
-    public new void GoBack(long thisHandle = 0) => 
-        Call(GDExtensionMethodName.GoBack, [thisHandle]);
+    public new void GoBack(long browserHandle = 0) => 
+        Call(GDExtensionMethodName.GoBack, [browserHandle]);
 
-    public new void GoForward(long thisHandle = 0) => 
-        Call(GDExtensionMethodName.GoForward, [thisHandle]);
+    public new void GoForward(long browserHandle = 0) => 
+        Call(GDExtensionMethodName.GoForward, [browserHandle]);
 
     public new bool HtmlInit() => 
         Call(GDExtensionMethodName.HtmlInit, []).As<bool>();
 
-    public new void JsDialogResponse(bool result, long thisHandle = 0) => 
-        Call(GDExtensionMethodName.JsDialogResponse, [result, thisHandle]);
+    public new void JsDialogResponse(bool result, long browserHandle = 0) => 
+        Call(GDExtensionMethodName.JsDialogResponse, [result, browserHandle]);
 
-    public new void KeyChar(long unicodeChar, long keyModifiers, long thisHandle = 0) => 
-        Call(GDExtensionMethodName.KeyChar, [unicodeChar, keyModifiers, thisHandle]);
+    public new void KeyChar(long unicodeChar, long keyModifiers, long browserHandle = 0) => 
+        Call(GDExtensionMethodName.KeyChar, [unicodeChar, keyModifiers, browserHandle]);
 
-    public new void KeyDown(long nativeKeyCode, long keyModifiers, long thisHandle = 0, bool isSystemKey = false) => 
-        Call(GDExtensionMethodName.KeyDown, [nativeKeyCode, keyModifiers, thisHandle, isSystemKey]);
+    public new void KeyDown(long nativeKeyCode, long keyModifiers, long browserHandle = 0, bool isSystemKey = false) => 
+        Call(GDExtensionMethodName.KeyDown, [nativeKeyCode, keyModifiers, browserHandle, isSystemKey]);
 
-    public new void KeyUp(long nativeKeyCode, long keyModifiers, long thisHandle = 0) => 
-        Call(GDExtensionMethodName.KeyUp, [nativeKeyCode, keyModifiers, thisHandle]);
+    public new void KeyUp(long nativeKeyCode, long keyModifiers, long browserHandle = 0) => 
+        Call(GDExtensionMethodName.KeyUp, [nativeKeyCode, keyModifiers, browserHandle]);
 
-    public new void LoadUrl(string url, string postData, long thisHandle = 0) => 
-        Call(GDExtensionMethodName.LoadUrl, [url, postData, thisHandle]);
+    public new void LoadUrl(string url, string postData, long browserHandle = 0) => 
+        Call(GDExtensionMethodName.LoadUrl, [url, postData, browserHandle]);
 
-    public new void MouseDoubleClick(long/* "Empty Enum Constant String" */ mouseButton, long thisHandle = 0) => 
-        Call(GDExtensionMethodName.MouseDoubleClick, [mouseButton, thisHandle]);
+    public new void MouseDoubleClick(Steam.HtmlMouseButton mouseButton, long browserHandle = 0) => 
+        Call(GDExtensionMethodName.MouseDoubleClick, [Variant.From(mouseButton), browserHandle]);
 
-    public new void MouseDown(long/* "Empty Enum Constant String" */ mouseButton, long thisHandle = 0) => 
-        Call(GDExtensionMethodName.MouseDown, [mouseButton, thisHandle]);
+    public new void MouseDown(Steam.HtmlMouseButton mouseButton, long browserHandle = 0) => 
+        Call(GDExtensionMethodName.MouseDown, [Variant.From(mouseButton), browserHandle]);
 
-    public new void MouseMove(long x, long y, long thisHandle = 0) => 
-        Call(GDExtensionMethodName.MouseMove, [x, y, thisHandle]);
+    public new void MouseMove(long x, long y, long browserHandle = 0) => 
+        Call(GDExtensionMethodName.MouseMove, [x, y, browserHandle]);
 
-    public new void MouseUp(long/* "Empty Enum Constant String" */ mouseButton, long thisHandle = 0) => 
-        Call(GDExtensionMethodName.MouseUp, [mouseButton, thisHandle]);
+    public new void MouseUp(Steam.HtmlMouseButton mouseButton, long browserHandle = 0) => 
+        Call(GDExtensionMethodName.MouseUp, [Variant.From(mouseButton), browserHandle]);
 
-    public new void MouseWheel(long delta, long thisHandle = 0) => 
-        Call(GDExtensionMethodName.MouseWheel, [delta, thisHandle]);
+    public new void MouseWheel(long delta, long browserHandle = 0) => 
+        Call(GDExtensionMethodName.MouseWheel, [delta, browserHandle]);
 
-    public new void OpenDeveloperTools(long thisHandle = 0) => 
-        Call(GDExtensionMethodName.OpenDeveloperTools, [thisHandle]);
+    public new void OpenDeveloperTools(long browserHandle = 0) => 
+        Call(GDExtensionMethodName.OpenDeveloperTools, [browserHandle]);
 
-    public new void PasteFromClipboard(long thisHandle = 0) => 
-        Call(GDExtensionMethodName.PasteFromClipboard, [thisHandle]);
+    public new void PasteFromClipboard(long browserHandle = 0) => 
+        Call(GDExtensionMethodName.PasteFromClipboard, [browserHandle]);
 
-    public new void Reload(long thisHandle = 0) => 
-        Call(GDExtensionMethodName.Reload, [thisHandle]);
+    public new void Reload(long browserHandle = 0) => 
+        Call(GDExtensionMethodName.Reload, [browserHandle]);
 
-    public new void RemoveBrowser(long thisHandle = 0) => 
-        Call(GDExtensionMethodName.RemoveBrowser, [thisHandle]);
+    public new void RemoveBrowser(long browserHandle = 0) => 
+        Call(GDExtensionMethodName.RemoveBrowser, [browserHandle]);
 
-    public new void SetBackgroundMode(bool backgroundMode, long thisHandle = 0) => 
-        Call(GDExtensionMethodName.SetBackgroundMode, [backgroundMode, thisHandle]);
+    public new void SetBackgroundMode(bool backgroundMode, long browserHandle = 0) => 
+        Call(GDExtensionMethodName.SetBackgroundMode, [backgroundMode, browserHandle]);
 
     public new void SetCookie(string hostname, string key, string value, string path, long expires, bool secure, bool httpOnly) => 
         Call(GDExtensionMethodName.SetCookie, [hostname, key, value, path, expires, secure, httpOnly]);
 
-    public new void SetDpiScalingFactor(double dpiScaling, long thisHandle) => 
-        Call(GDExtensionMethodName.SetDpiScalingFactor, [dpiScaling, thisHandle]);
+    public new void SetDpiScalingFactor(double dpiScaling, long browserHandle) => 
+        Call(GDExtensionMethodName.SetDpiScalingFactor, [dpiScaling, browserHandle]);
 
-    public new void SetHorizontalScroll(long absolutePixelScroll, long thisHandle = 0) => 
-        Call(GDExtensionMethodName.SetHorizontalScroll, [absolutePixelScroll, thisHandle]);
+    public new void SetHorizontalScroll(long absolutePixelScroll, long browserHandle = 0) => 
+        Call(GDExtensionMethodName.SetHorizontalScroll, [absolutePixelScroll, browserHandle]);
 
-    public new void SetKeyFocus(bool hasKeyFocus, long thisHandle = 0) => 
-        Call(GDExtensionMethodName.SetKeyFocus, [hasKeyFocus, thisHandle]);
+    public new void SetKeyFocus(bool hasKeyFocus, long browserHandle = 0) => 
+        Call(GDExtensionMethodName.SetKeyFocus, [hasKeyFocus, browserHandle]);
 
-    public new void SetPageScaleFactor(double zoom, long pointX, long pointY, long thisHandle = 0) => 
-        Call(GDExtensionMethodName.SetPageScaleFactor, [zoom, pointX, pointY, thisHandle]);
+    public new void SetPageScaleFactor(double zoom, long pointX, long pointY, long browserHandle = 0) => 
+        Call(GDExtensionMethodName.SetPageScaleFactor, [zoom, pointX, pointY, browserHandle]);
 
-    public new void SetSize(long width, long height, long thisHandle = 0) => 
-        Call(GDExtensionMethodName.SetSize, [width, height, thisHandle]);
+    public new void SetSize(long width, long height, long browserHandle = 0) => 
+        Call(GDExtensionMethodName.SetSize, [width, height, browserHandle]);
 
-    public new void SetVerticalScroll(long absolutePixelScroll, long thisHandle = 0) => 
-        Call(GDExtensionMethodName.SetVerticalScroll, [absolutePixelScroll, thisHandle]);
+    public new void SetVerticalScroll(long absolutePixelScroll, long browserHandle = 0) => 
+        Call(GDExtensionMethodName.SetVerticalScroll, [absolutePixelScroll, browserHandle]);
 
     public new bool HtmlShutdown() => 
         Call(GDExtensionMethodName.HtmlShutdown, []).As<bool>();
 
-    public new void StopFind(long thisHandle = 0) => 
-        Call(GDExtensionMethodName.StopFind, [thisHandle]);
+    public new void StopFind(long browserHandle = 0) => 
+        Call(GDExtensionMethodName.StopFind, [browserHandle]);
 
-    public new void StopLoad(long thisHandle = 0) => 
-        Call(GDExtensionMethodName.StopLoad, [thisHandle]);
+    public new void StopLoad(long browserHandle = 0) => 
+        Call(GDExtensionMethodName.StopLoad, [browserHandle]);
 
-    public new void ViewSource(long thisHandle = 0) => 
-        Call(GDExtensionMethodName.ViewSource, [thisHandle]);
+    public new void ViewSource(long browserHandle = 0) => 
+        Call(GDExtensionMethodName.ViewSource, [browserHandle]);
 
     public new long CreateCookieContainer(bool allowResponseToModify) => 
         Call(GDExtensionMethodName.CreateCookieContainer, [allowResponseToModify]).As<long>();
 
-    public new long CreateHttpRequest(long/* "Empty Enum Constant String" */ requestMethod, string absoluteUrl) => 
-        Call(GDExtensionMethodName.CreateHttpRequest, [requestMethod, absoluteUrl]).As<long>();
+    public new long CreateHttpRequest(Steam.HttpMethod requestMethod, string absoluteUrl) => 
+        Call(GDExtensionMethodName.CreateHttpRequest, [Variant.From(requestMethod), absoluteUrl]).As<long>();
 
     public new bool DeferHttpRequest(long requestHandle) => 
         Call(GDExtensionMethodName.DeferHttpRequest, [requestHandle]).As<bool>();
@@ -8332,8 +8440,8 @@ public enum RemoteStoragePlatform
     public new bool SendHttpRequestAndStreamResponse(long requestHandle) => 
         Call(GDExtensionMethodName.SendHttpRequestAndStreamResponse, [requestHandle]).As<bool>();
 
-    public new bool SetHttpCookie(long cookieHandle, string host, string url, string cookie) => 
-        Call(GDExtensionMethodName.SetHttpCookie, [cookieHandle, host, url, cookie]).As<bool>();
+    public new bool SetHttpCookie(long cookieHandle, string host, string url, string cookieName) => 
+        Call(GDExtensionMethodName.SetHttpCookie, [cookieHandle, host, url, cookieName]).As<bool>();
 
     public new bool SetHttpRequestAbsoluteTimeoutMs(long requestHandle, long milliseconds) => 
         Call(GDExtensionMethodName.SetHttpRequestAbsoluteTimeoutMs, [requestHandle, milliseconds]).As<bool>();
@@ -8344,8 +8452,8 @@ public enum RemoteStoragePlatform
     public new bool SetHttpRequestCookieContainer(long requestHandle, long cookieHandle) => 
         Call(GDExtensionMethodName.SetHttpRequestCookieContainer, [requestHandle, cookieHandle]).As<bool>();
 
-    public new bool SetHttpRequestGetOrPostParameter(long requestHandle, string name, string value) => 
-        Call(GDExtensionMethodName.SetHttpRequestGetOrPostParameter, [requestHandle, name, value]).As<bool>();
+    public new bool SetHttpRequestGetOrPostParameter(long requestHandle, string paramName, string paramValue) => 
+        Call(GDExtensionMethodName.SetHttpRequestGetOrPostParameter, [requestHandle, paramName, paramValue]).As<bool>();
 
     public new bool SetHttpRequestHeaderValue(long requestHandle, string headerName, string headerValue) => 
         Call(GDExtensionMethodName.SetHttpRequestHeaderValue, [requestHandle, headerName, headerValue]).As<bool>();
@@ -8377,8 +8485,8 @@ public enum RemoteStoragePlatform
     public new long GetActionSetHandle(string actionSetName) => 
         Call(GDExtensionMethodName.GetActionSetHandle, [actionSetName]).As<long>();
 
-    public new long/* "Empty Enum Constant String" */ GetActionOriginFromXboxOrigin(long inputHandle, long origin) => 
-        Call(GDExtensionMethodName.GetActionOriginFromXboxOrigin, [inputHandle, origin]).As<long/* "Empty Enum Constant String" */>();
+    public new Steam.InputActionOrigin GetActionOriginFromXboxOrigin(long inputHandle, Steam.XboxOrigin origin) => 
+        Call(GDExtensionMethodName.GetActionOriginFromXboxOrigin, [inputHandle, Variant.From(origin)]).As<Steam.InputActionOrigin>();
 
     public new Godot.Collections.Array GetActiveActionSetLayers(long inputHandle) => 
         Call(GDExtensionMethodName.GetActiveActionSetLayers, [inputHandle]).As<Godot.Collections.Array>();
@@ -8416,11 +8524,11 @@ public enum RemoteStoragePlatform
     public new long GetGamepadIndexForController(long inputHandle) => 
         Call(GDExtensionMethodName.GetGamepadIndexForController, [inputHandle]).As<long>();
 
-    public new string GetGlyphForActionOrigin(long/* "Empty Enum Constant String" */ origin) => 
-        Call(GDExtensionMethodName.GetGlyphForActionOrigin, [origin]).As<string>();
+    public new string GetGlyphForActionOrigin(Steam.InputActionOrigin origin) => 
+        Call(GDExtensionMethodName.GetGlyphForActionOrigin, [Variant.From(origin)]).As<string>();
 
-    public new long/* "Empty Enum Constant String" */ GetInputTypeForHandle(long inputHandle) => 
-        Call(GDExtensionMethodName.GetInputTypeForHandle, [inputHandle]).As<long/* "Empty Enum Constant String" */>();
+    public new Steam.InputType GetInputTypeForHandle(long inputHandle) => 
+        Call(GDExtensionMethodName.GetInputTypeForHandle, [inputHandle]).As<Steam.InputType>();
 
     public new Godot.Collections.Dictionary GetMotionData(long inputHandle) => 
         Call(GDExtensionMethodName.GetMotionData, [inputHandle]).As<Godot.Collections.Dictionary>();
@@ -8428,8 +8536,8 @@ public enum RemoteStoragePlatform
     public new long GetRemotePlaySessionId(long inputHandle) => 
         Call(GDExtensionMethodName.GetRemotePlaySessionId, [inputHandle]).As<long>();
 
-    public new string GetStringForActionOrigin(long/* "Empty Enum Constant String" */ origin) => 
-        Call(GDExtensionMethodName.GetStringForActionOrigin, [origin]).As<string>();
+    public new string GetStringForActionOrigin(Steam.InputActionOrigin origin) => 
+        Call(GDExtensionMethodName.GetStringForActionOrigin, [Variant.From(origin)]).As<string>();
 
     public new bool InputInit(bool explicitlyCallRunframe = false) => 
         Call(GDExtensionMethodName.InputInit, [explicitlyCallRunframe]).As<bool>();
@@ -8440,8 +8548,8 @@ public enum RemoteStoragePlatform
     public new void RunFrame(bool reservedValue = true) => 
         Call(GDExtensionMethodName.RunFrame, [reservedValue]);
 
-    public new void SetLedColor(long inputHandle, long colorR, long colorG, long colorB, long flags) => 
-        Call(GDExtensionMethodName.SetLedColor, [inputHandle, colorR, colorG, colorB, flags]);
+    public new void SetLedColor(long inputHandle, long colorR, long colorG, long colorB, Steam.InputLedFlag flags) => 
+        Call(GDExtensionMethodName.SetLedColor, [inputHandle, colorR, colorG, colorB, Variant.From(flags)]);
 
     public new bool ShowBindingPanel(long inputHandle) => 
         Call(GDExtensionMethodName.ShowBindingPanel, [inputHandle]).As<bool>();
@@ -8449,23 +8557,20 @@ public enum RemoteStoragePlatform
     public new void StopAnalogActionMomentum(long inputHandle, long action) => 
         Call(GDExtensionMethodName.StopAnalogActionMomentum, [inputHandle, action]);
 
-    public new long TranslateActionOrigin(long/* "Empty Enum Constant String" */ destinationInput, long/* "Empty Enum Constant String" */ sourceOrigin) => 
-        Call(GDExtensionMethodName.TranslateActionOrigin, [destinationInput, sourceOrigin]).As<long>();
+    public new Steam.InputActionOrigin TranslateActionOrigin(Steam.InputType destinationInput, Steam.InputActionOrigin sourceOrigin) => 
+        Call(GDExtensionMethodName.TranslateActionOrigin, [Variant.From(destinationInput), Variant.From(sourceOrigin)]).As<Steam.InputActionOrigin>();
 
-    public new void TriggerHapticPulse(long inputHandle, long targetPad, long duration) => 
-        Call(GDExtensionMethodName.TriggerHapticPulse, [inputHandle, targetPad, duration]);
+    public new void TriggerHapticPulse(long inputHandle, Steam.SteamControllerPad targetPad, long duration) => 
+        Call(GDExtensionMethodName.TriggerHapticPulse, [inputHandle, Variant.From(targetPad), duration]);
 
-    public new void TriggerRepeatedHapticPulse(long inputHandle, long targetPad, long duration, long offset, long repeat, long flags) => 
-        Call(GDExtensionMethodName.TriggerRepeatedHapticPulse, [inputHandle, targetPad, duration, offset, repeat, flags]);
+    public new void TriggerRepeatedHapticPulse(long inputHandle, Steam.SteamControllerPad targetPad, long duration, long offset, long repeat, long flags) => 
+        Call(GDExtensionMethodName.TriggerRepeatedHapticPulse, [inputHandle, Variant.From(targetPad), duration, offset, repeat, flags]);
 
     public new void TriggerVibration(long inputHandle, long leftSpeed, long rightSpeed) => 
         Call(GDExtensionMethodName.TriggerVibration, [inputHandle, leftSpeed, rightSpeed]);
 
     public new bool SetInputActionManifestFilePath(string manifestPath) => 
         Call(GDExtensionMethodName.SetInputActionManifestFilePath, [manifestPath]).As<bool>();
-
-    public new void SetDualSenseTriggerEffect(long inputHandle, long parameters, long triggerMask, long/* "Empty Enum Constant String" */ effectMode, long position, long amplitude, long frequency) => 
-        Call(GDExtensionMethodName.SetDualSenseTriggerEffect, [inputHandle, parameters, triggerMask, effectMode, position, amplitude, frequency]);
 
     public new bool WaitForData(bool waitForever, long timeout) => 
         Call(GDExtensionMethodName.WaitForData, [waitForever, timeout]).As<bool>();
@@ -8479,23 +8584,23 @@ public enum RemoteStoragePlatform
     public new void EnableActionEventCallbacks() => 
         Call(GDExtensionMethodName.EnableActionEventCallbacks, []);
 
-    public new string GetGlyphPngForActionOrigin(long/* "Empty Enum Constant String" */ origin, long/* "Empty Enum Constant String" */ size, long flags) => 
-        Call(GDExtensionMethodName.GetGlyphPngForActionOrigin, [origin, size, flags]).As<string>();
+    public new string GetGlyphPngForActionOrigin(Steam.InputActionOrigin origin, Steam.InputGlyphSize size, long flags) => 
+        Call(GDExtensionMethodName.GetGlyphPngForActionOrigin, [Variant.From(origin), Variant.From(size), flags]).As<string>();
 
-    public new string GetGlyphSvgForActionOrigin(long/* "Empty Enum Constant String" */ origin, long flags) => 
-        Call(GDExtensionMethodName.GetGlyphSvgForActionOrigin, [origin, flags]).As<string>();
+    public new string GetGlyphSvgForActionOrigin(Steam.InputActionOrigin origin, long flags) => 
+        Call(GDExtensionMethodName.GetGlyphSvgForActionOrigin, [Variant.From(origin), flags]).As<string>();
 
     public new void TriggerVibrationExtended(long inputHandle, long leftSpeed, long rightSpeed, long leftTriggerSpeed, long rightTriggerSpeed) => 
         Call(GDExtensionMethodName.TriggerVibrationExtended, [inputHandle, leftSpeed, rightSpeed, leftTriggerSpeed, rightTriggerSpeed]);
 
-    public new void TriggerSimpleHapticEvent(long inputHandle, long hapticLocation, long intensity, string gainDb, long otherIntensity, string otherGainDb) => 
-        Call(GDExtensionMethodName.TriggerSimpleHapticEvent, [inputHandle, hapticLocation, intensity, gainDb, otherIntensity, otherGainDb]);
+    public new void TriggerSimpleHapticEvent(long inputHandle, Steam.ControllerHapticLocation hapticLocation, long intensity, string gainDb, long otherIntensity, string otherGainDb) => 
+        Call(GDExtensionMethodName.TriggerSimpleHapticEvent, [inputHandle, Variant.From(hapticLocation), intensity, gainDb, otherIntensity, otherGainDb]);
 
-    public new string GetStringForXboxOrigin(long origin) => 
-        Call(GDExtensionMethodName.GetStringForXboxOrigin, [origin]).As<string>();
+    public new string GetStringForXboxOrigin(Steam.XboxOrigin origin) => 
+        Call(GDExtensionMethodName.GetStringForXboxOrigin, [Variant.From(origin)]).As<string>();
 
-    public new string GetGlyphForXboxOrigin(long origin) => 
-        Call(GDExtensionMethodName.GetGlyphForXboxOrigin, [origin]).As<string>();
+    public new string GetGlyphForXboxOrigin(Steam.XboxOrigin origin) => 
+        Call(GDExtensionMethodName.GetGlyphForXboxOrigin, [Variant.From(origin)]).As<string>();
 
     public new long GetSessionInputConfigurationSettings() => 
         Call(GDExtensionMethodName.GetSessionInputConfigurationSettings, []).As<long>();
@@ -8551,8 +8656,8 @@ public enum RemoteStoragePlatform
     public new Godot.Collections.Array GetResultItems(long thisInventoryHandle = 0) => 
         Call(GDExtensionMethodName.GetResultItems, [thisInventoryHandle]).As<Godot.Collections.Array>();
 
-    public new long/* "Empty Enum Constant String" */ GetResultStatus(long thisInventoryHandle = 0) => 
-        Call(GDExtensionMethodName.GetResultStatus, [thisInventoryHandle]).As<long/* "Empty Enum Constant String" */>();
+    public new Steam.Result GetResultStatus(long thisInventoryHandle = 0) => 
+        Call(GDExtensionMethodName.GetResultStatus, [thisInventoryHandle]).As<Steam.Result>();
 
     public new long GetResultTimestamp(long thisInventoryHandle = 0) => 
         Call(GDExtensionMethodName.GetResultTimestamp, [thisInventoryHandle]).As<long>();
@@ -8581,8 +8686,8 @@ public enum RemoteStoragePlatform
     public new long TriggerItemDrop(long definition) => 
         Call(GDExtensionMethodName.TriggerItemDrop, [definition]).As<long>();
 
-    public new void StartUpdateProperties() => 
-        Call(GDExtensionMethodName.StartUpdateProperties, []);
+    public new long StartUpdateProperties() => 
+        Call(GDExtensionMethodName.StartUpdateProperties, []).As<long>();
 
     public new long SubmitUpdateProperties(long thisInventoryUpdateHandle = 0) => 
         Call(GDExtensionMethodName.SubmitUpdateProperties, [thisInventoryUpdateHandle]).As<long>();
@@ -8614,11 +8719,11 @@ public enum RemoteStoragePlatform
     public new void RequestLobbyList() => 
         Call(GDExtensionMethodName.RequestLobbyList, []);
 
-    public new void AddRequestLobbyListStringFilter(string keyToMatch, string valueToMatch, long/* "Empty Enum Constant String" */ comparisonType) => 
-        Call(GDExtensionMethodName.AddRequestLobbyListStringFilter, [keyToMatch, valueToMatch, comparisonType]);
+    public new void AddRequestLobbyListStringFilter(string keyToMatch, string valueToMatch, Steam.LobbyComparison comparisonType) => 
+        Call(GDExtensionMethodName.AddRequestLobbyListStringFilter, [keyToMatch, valueToMatch, Variant.From(comparisonType)]);
 
-    public new void AddRequestLobbyListNumericalFilter(string keyToMatch, long valueToMatch, long/* "Empty Enum Constant String" */ comparisonType) => 
-        Call(GDExtensionMethodName.AddRequestLobbyListNumericalFilter, [keyToMatch, valueToMatch, comparisonType]);
+    public new void AddRequestLobbyListNumericalFilter(string keyToMatch, long valueToMatch, Steam.LobbyComparison comparisonType) => 
+        Call(GDExtensionMethodName.AddRequestLobbyListNumericalFilter, [keyToMatch, valueToMatch, Variant.From(comparisonType)]);
 
     public new void AddRequestLobbyListNearValueFilter(string keyToMatch, long valueToBeCloseTo) => 
         Call(GDExtensionMethodName.AddRequestLobbyListNearValueFilter, [keyToMatch, valueToBeCloseTo]);
@@ -8626,14 +8731,14 @@ public enum RemoteStoragePlatform
     public new void AddRequestLobbyListFilterSlotsAvailable(long slotsAvailable) => 
         Call(GDExtensionMethodName.AddRequestLobbyListFilterSlotsAvailable, [slotsAvailable]);
 
-    public new void AddRequestLobbyListDistanceFilter(long/* "Empty Enum Constant String" */ distanceFilter) => 
-        Call(GDExtensionMethodName.AddRequestLobbyListDistanceFilter, [distanceFilter]);
+    public new void AddRequestLobbyListDistanceFilter(Steam.LobbyDistanceFilter distanceFilter) => 
+        Call(GDExtensionMethodName.AddRequestLobbyListDistanceFilter, [Variant.From(distanceFilter)]);
 
     public new void AddRequestLobbyListResultCountFilter(long maxResults) => 
         Call(GDExtensionMethodName.AddRequestLobbyListResultCountFilter, [maxResults]);
 
-    public new void CreateLobby(long/* "Empty Enum Constant String" */ lobbyType, long maxMembers = 2) => 
-        Call(GDExtensionMethodName.CreateLobby, [lobbyType, maxMembers]);
+    public new void CreateLobby(Steam.LobbyType lobbyType, long maxMembers = 2) => 
+        Call(GDExtensionMethodName.CreateLobby, [Variant.From(lobbyType), maxMembers]);
 
     public new void JoinLobby(long steamLobbyId) => 
         Call(GDExtensionMethodName.JoinLobby, [steamLobbyId]);
@@ -8686,8 +8791,8 @@ public enum RemoteStoragePlatform
     public new long GetLobbyMemberLimit(long steamLobbyId) => 
         Call(GDExtensionMethodName.GetLobbyMemberLimit, [steamLobbyId]).As<long>();
 
-    public new bool SetLobbyType(long steamLobbyId, long/* "Empty Enum Constant String" */ lobbyType) => 
-        Call(GDExtensionMethodName.SetLobbyType, [steamLobbyId, lobbyType]).As<bool>();
+    public new bool SetLobbyType(long steamLobbyId, Steam.LobbyType lobbyType) => 
+        Call(GDExtensionMethodName.SetLobbyType, [steamLobbyId, Variant.From(lobbyType)]).As<bool>();
 
     public new bool SetLobbyJoinable(long steamLobbyId, bool joinable) => 
         Call(GDExtensionMethodName.SetLobbyJoinable, [steamLobbyId, joinable]).As<bool>();
@@ -8746,6 +8851,9 @@ public enum RemoteStoragePlatform
     public new long RequestSpectatorServerList(long appId, Godot.Collections.Array filters) => 
         Call(GDExtensionMethodName.RequestSpectatorServerList, [appId, filters]).As<long>();
 
+    public new long ServerFriends(string ip, long port) => 
+        Call(GDExtensionMethodName.ServerFriends, [ip, port]).As<long>();
+
     public new long ServerRules(string ip, long port) => 
         Call(GDExtensionMethodName.ServerRules, [ip, port]).As<long>();
 
@@ -8755,8 +8863,8 @@ public enum RemoteStoragePlatform
     public new bool MusicIsPlaying() => 
         Call(GDExtensionMethodName.MusicIsPlaying, []).As<bool>();
 
-    public new long/* "Empty Enum Constant String" */ GetPlaybackStatus() => 
-        Call(GDExtensionMethodName.GetPlaybackStatus, []).As<long/* "Empty Enum Constant String" */>();
+    public new Steam.AudioPlaybackStatus GetPlaybackStatus() => 
+        Call(GDExtensionMethodName.GetPlaybackStatus, []).As<Steam.AudioPlaybackStatus>();
 
     public new double MusicGetVolume() => 
         Call(GDExtensionMethodName.MusicGetVolume, []).As<double>();
@@ -8776,102 +8884,6 @@ public enum RemoteStoragePlatform
     public new void MusicSetVolume(double volume) => 
         Call(GDExtensionMethodName.MusicSetVolume, [volume]);
 
-    public new bool ActivationSuccess(bool activate) => 
-        Call(GDExtensionMethodName.ActivationSuccess, [activate]).As<bool>();
-
-    public new bool IsCurrentMusicRemote() => 
-        Call(GDExtensionMethodName.IsCurrentMusicRemote, []).As<bool>();
-
-    public new bool CurrentEntryDidChange() => 
-        Call(GDExtensionMethodName.CurrentEntryDidChange, []).As<bool>();
-
-    public new bool CurrentEntryIsAvailable(bool available) => 
-        Call(GDExtensionMethodName.CurrentEntryIsAvailable, [available]).As<bool>();
-
-    public new bool CurrentEntryWillChange() => 
-        Call(GDExtensionMethodName.CurrentEntryWillChange, []).As<bool>();
-
-    public new bool DeregisterSteamMusicRemote() => 
-        Call(GDExtensionMethodName.DeregisterSteamMusicRemote, []).As<bool>();
-
-    public new bool EnableLooped(bool loop) => 
-        Call(GDExtensionMethodName.EnableLooped, [loop]).As<bool>();
-
-    public new bool EnablePlaylists(bool playlists) => 
-        Call(GDExtensionMethodName.EnablePlaylists, [playlists]).As<bool>();
-
-    public new bool EnablePlayNext(bool next) => 
-        Call(GDExtensionMethodName.EnablePlayNext, [next]).As<bool>();
-
-    public new bool EnablePlayPrevious(bool previous) => 
-        Call(GDExtensionMethodName.EnablePlayPrevious, [previous]).As<bool>();
-
-    public new bool EnableQueue(bool queue) => 
-        Call(GDExtensionMethodName.EnableQueue, [queue]).As<bool>();
-
-    public new bool EnableShuffled(bool shuffle) => 
-        Call(GDExtensionMethodName.EnableShuffled, [shuffle]).As<bool>();
-
-    public new bool PlaylistDidChange() => 
-        Call(GDExtensionMethodName.PlaylistDidChange, []).As<bool>();
-
-    public new bool PlaylistWillChange() => 
-        Call(GDExtensionMethodName.PlaylistWillChange, []).As<bool>();
-
-    public new bool QueueDidChange() => 
-        Call(GDExtensionMethodName.QueueDidChange, []).As<bool>();
-
-    public new bool QueueWillChange() => 
-        Call(GDExtensionMethodName.QueueWillChange, []).As<bool>();
-
-    public new bool RegisterSteamMusicRemote(string name) => 
-        Call(GDExtensionMethodName.RegisterSteamMusicRemote, [name]).As<bool>();
-
-    public new bool ResetPlaylistEntries() => 
-        Call(GDExtensionMethodName.ResetPlaylistEntries, []).As<bool>();
-
-    public new bool ResetQueueEntries() => 
-        Call(GDExtensionMethodName.ResetQueueEntries, []).As<bool>();
-
-    public new bool SetCurrentPlaylistEntry(long id) => 
-        Call(GDExtensionMethodName.SetCurrentPlaylistEntry, [id]).As<bool>();
-
-    public new bool SetCurrentQueueEntry(long id) => 
-        Call(GDExtensionMethodName.SetCurrentQueueEntry, [id]).As<bool>();
-
-    public new bool SetDisplayName(string name) => 
-        Call(GDExtensionMethodName.SetDisplayName, [name]).As<bool>();
-
-    public new bool SetPlaylistEntry(long id, long position, string entryText) => 
-        Call(GDExtensionMethodName.SetPlaylistEntry, [id, position, entryText]).As<bool>();
-
-    public new bool SetPngIcon64x64(byte[] icon) => 
-        Call(GDExtensionMethodName.SetPngIcon64x64, [icon]).As<bool>();
-
-    public new bool SetQueueEntry(long id, long position, string entryText) => 
-        Call(GDExtensionMethodName.SetQueueEntry, [id, position, entryText]).As<bool>();
-
-    public new bool UpdateCurrentEntryCoverArt(byte[] art) => 
-        Call(GDExtensionMethodName.UpdateCurrentEntryCoverArt, [art]).As<bool>();
-
-    public new bool UpdateCurrentEntryElapsedSeconds(long seconds) => 
-        Call(GDExtensionMethodName.UpdateCurrentEntryElapsedSeconds, [seconds]).As<bool>();
-
-    public new bool UpdateCurrentEntryText(string text) => 
-        Call(GDExtensionMethodName.UpdateCurrentEntryText, [text]).As<bool>();
-
-    public new bool UpdateLooped(bool looped) => 
-        Call(GDExtensionMethodName.UpdateLooped, [looped]).As<bool>();
-
-    public new bool UpdatePlaybackStatus(long/* "Empty Enum Constant String" */ status) => 
-        Call(GDExtensionMethodName.UpdatePlaybackStatus, [status]).As<bool>();
-
-    public new bool UpdateShuffled(bool shuffle) => 
-        Call(GDExtensionMethodName.UpdateShuffled, [shuffle]).As<bool>();
-
-    public new bool UpdateVolume(double volume) => 
-        Call(GDExtensionMethodName.UpdateVolume, [volume]).As<bool>();
-
     public new bool AcceptP2pSessionWithUser(long remoteSteamId) => 
         Call(GDExtensionMethodName.AcceptP2pSessionWithUser, [remoteSteamId]).As<bool>();
 
@@ -8890,11 +8902,11 @@ public enum RemoteStoragePlatform
     public new long GetAvailableP2pPacketSize(long channel = 0) => 
         Call(GDExtensionMethodName.GetAvailableP2pPacketSize, [channel]).As<long>();
 
-    public new Godot.Collections.Dictionary ReadP2pPacket(long packet, long channel = 0) => 
-        Call(GDExtensionMethodName.ReadP2pPacket, [packet, channel]).As<Godot.Collections.Dictionary>();
+    public new Godot.Collections.Dictionary ReadP2pPacket(long packetSize, long channel = 0) => 
+        Call(GDExtensionMethodName.ReadP2pPacket, [packetSize, channel]).As<Godot.Collections.Dictionary>();
 
-    public new bool SendP2pPacket(long remoteSteamId, byte[] data, long/* "Empty Enum Constant String" */ sendType, long channel = 0) => 
-        Call(GDExtensionMethodName.SendP2pPacket, [remoteSteamId, data, sendType, channel]).As<bool>();
+    public new bool SendP2pPacket(long remoteSteamId, byte[] data, Steam.P2pSend sendType, long channel = 0) => 
+        Call(GDExtensionMethodName.SendP2pPacket, [remoteSteamId, data, Variant.From(sendType), channel]).As<bool>();
 
     public new bool AcceptSessionWithUser(long remoteSteamId) => 
         Call(GDExtensionMethodName.AcceptSessionWithUser, [remoteSteamId]).As<bool>();
@@ -8920,8 +8932,8 @@ public enum RemoteStoragePlatform
     public new bool BeginAsyncRequestFakeIp(long numPorts) => 
         Call(GDExtensionMethodName.BeginAsyncRequestFakeIp, [numPorts]).As<bool>();
 
-    public new bool CloseConnection(long peer, long reason, string debugMessage, bool linger) => 
-        Call(GDExtensionMethodName.CloseConnection, [peer, reason, debugMessage, linger]).As<bool>();
+    public new bool CloseConnection(long connectionHandle, long reason, string debugMessage, bool linger) => 
+        Call(GDExtensionMethodName.CloseConnection, [connectionHandle, reason, debugMessage, linger]).As<bool>();
 
     public new bool CloseListenSocket(long socket) => 
         Call(GDExtensionMethodName.CloseListenSocket, [socket]).As<bool>();
@@ -8940,9 +8952,6 @@ public enum RemoteStoragePlatform
 
     public new void CreateFakeUdpPort(long fakeServerPort) => 
         Call(GDExtensionMethodName.CreateFakeUdpPort, [fakeServerPort]);
-
-    public new long CreateHostedDedicatedServerListenSocket(long virtualPort, Godot.Collections.Dictionary options) => 
-        Call(GDExtensionMethodName.CreateHostedDedicatedServerListenSocket, [virtualPort, options]).As<long>();
 
     public new long CreateListenSocketIp(string ipReference, Godot.Collections.Dictionary options) => 
         Call(GDExtensionMethodName.CreateListenSocketIp, [ipReference, options]).As<long>();
@@ -8965,8 +8974,8 @@ public enum RemoteStoragePlatform
     public new long FlushMessagesOnConnection(long connectionHandle) => 
         Call(GDExtensionMethodName.FlushMessagesOnConnection, [connectionHandle]).As<long>();
 
-    public new long/* "Empty Enum Constant String" */ GetAuthenticationStatus() => 
-        Call(GDExtensionMethodName.GetAuthenticationStatus, []).As<long/* "Empty Enum Constant String" */>();
+    public new Steam.NetworkingAvailability GetAuthenticationStatus() => 
+        Call(GDExtensionMethodName.GetAuthenticationStatus, []).As<Steam.NetworkingAvailability>();
 
     public new Godot.Collections.Dictionary GetCertificateRequest() => 
         Call(GDExtensionMethodName.GetCertificateRequest, []).As<Godot.Collections.Dictionary>();
@@ -8974,14 +8983,14 @@ public enum RemoteStoragePlatform
     public new Godot.Collections.Dictionary GetConnectionInfo(long connectionHandle) => 
         Call(GDExtensionMethodName.GetConnectionInfo, [connectionHandle]).As<Godot.Collections.Dictionary>();
 
-    public new string GetConnectionName(long peer) => 
-        Call(GDExtensionMethodName.GetConnectionName, [peer]).As<string>();
+    public new string GetConnectionName(long connectionHandle) => 
+        Call(GDExtensionMethodName.GetConnectionName, [connectionHandle]).As<string>();
 
     public new Godot.Collections.Dictionary GetConnectionRealTimeStatus(long connectionHandle, long lanes, bool getStatus = true) => 
         Call(GDExtensionMethodName.GetConnectionRealTimeStatus, [connectionHandle, lanes, getStatus]).As<Godot.Collections.Dictionary>();
 
-    public new long GetConnectionUserData(long peer) => 
-        Call(GDExtensionMethodName.GetConnectionUserData, [peer]).As<long>();
+    public new long GetConnectionUserData(long connectionHandle) => 
+        Call(GDExtensionMethodName.GetConnectionUserData, [connectionHandle]).As<long>();
 
     public new Godot.Collections.Dictionary GetDetailedConnectionStatus(long connectionHandle) => 
         Call(GDExtensionMethodName.GetDetailedConnectionStatus, [connectionHandle]).As<Godot.Collections.Dictionary>();
@@ -9001,11 +9010,11 @@ public enum RemoteStoragePlatform
     public new Godot.Collections.Dictionary GetRemoteFakeIpForConnection(long connection) => 
         Call(GDExtensionMethodName.GetRemoteFakeIpForConnection, [connection]).As<Godot.Collections.Dictionary>();
 
-    public new long/* "Empty Enum Constant String" */ InitAuthentication() => 
-        Call(GDExtensionMethodName.InitAuthentication, []).As<long/* "Empty Enum Constant String" */>();
+    public new Steam.NetworkingAvailability InitAuthentication() => 
+        Call(GDExtensionMethodName.InitAuthentication, []).As<Steam.NetworkingAvailability>();
 
-    public new Godot.Collections.Array ReceiveMessagesOnConnection(long connection, long maxMessages) => 
-        Call(GDExtensionMethodName.ReceiveMessagesOnConnection, [connection, maxMessages]).As<Godot.Collections.Array>();
+    public new Godot.Collections.Array ReceiveMessagesOnConnection(long connectionHandle, long maxMessages) => 
+        Call(GDExtensionMethodName.ReceiveMessagesOnConnection, [connectionHandle, maxMessages]).As<Godot.Collections.Array>();
 
     public new Godot.Collections.Array ReceiveMessagesOnPollGroup(long pollGroup, long maxMessages) => 
         Call(GDExtensionMethodName.ReceiveMessagesOnPollGroup, [pollGroup, maxMessages]).As<Godot.Collections.Array>();
@@ -9016,8 +9025,11 @@ public enum RemoteStoragePlatform
     public new void RunNetworkingCallbacks() => 
         Call(GDExtensionMethodName.RunNetworkingCallbacks, []);
 
-    public new Godot.Collections.Dictionary SendMessageToConnection(long connectionHandle, byte[] data, long flags) => 
-        Call(GDExtensionMethodName.SendMessageToConnection, [connectionHandle, data, flags]).As<Godot.Collections.Dictionary>();
+    public new long[] SendMessages(long connectionHandle, Godot.Collections.Array messages, long flags, bool deleteFailedMessages) => 
+        Call(GDExtensionMethodName.SendMessages, [connectionHandle, messages, flags, deleteFailedMessages]).As<long[]>();
+
+    public new Godot.Collections.Dictionary SendMessageToConnection(long connectionHandle, byte[] message, long flags) => 
+        Call(GDExtensionMethodName.SendMessageToConnection, [connectionHandle, message, flags]).As<Godot.Collections.Dictionary>();
 
     public new Godot.Collections.Dictionary SetCertificate(byte[] certificate) => 
         Call(GDExtensionMethodName.SetCertificate, [certificate]).As<Godot.Collections.Dictionary>();
@@ -9025,8 +9037,11 @@ public enum RemoteStoragePlatform
     public new bool SetConnectionPollGroup(long connectionHandle, long pollGroup) => 
         Call(GDExtensionMethodName.SetConnectionPollGroup, [connectionHandle, pollGroup]).As<bool>();
 
-    public new void SetConnectionName(long peer, string name) => 
-        Call(GDExtensionMethodName.SetConnectionName, [peer, name]);
+    public new void SetConnectionName(long connectionHandle, string name) => 
+        Call(GDExtensionMethodName.SetConnectionName, [connectionHandle, name]);
+
+    public new bool SetConnectionUserData(long connectionHandle, long userData) => 
+        Call(GDExtensionMethodName.SetConnectionUserData, [connectionHandle, userData]).As<bool>();
 
     public new bool CheckPingDataUpToDate(double maxAgeInSeconds) => 
         Call(GDExtensionMethodName.CheckPingDataUpToDate, [maxAgeInSeconds]).As<bool>();
@@ -9040,14 +9055,17 @@ public enum RemoteStoragePlatform
     public new long EstimatePingTimeFromLocalHost(byte[] location) => 
         Call(GDExtensionMethodName.EstimatePingTimeFromLocalHost, [location]).As<long>();
 
-    public new Godot.Collections.Dictionary GetConfigValue(long/* "Empty Enum Constant String" */ configValue, long/* "Empty Enum Constant String" */ scopeType, long connectionHandle) => 
-        Call(GDExtensionMethodName.GetConfigValue, [configValue, scopeType, connectionHandle]).As<Godot.Collections.Dictionary>();
+    public new Godot.Collections.Dictionary GetConfigValue(Steam.NetworkingConfigValue configValue, Steam.NetworkingConfigScope scopeType, long connectionHandle) => 
+        Call(GDExtensionMethodName.GetConfigValue, [Variant.From(configValue), Variant.From(scopeType), connectionHandle]).As<Godot.Collections.Dictionary>();
 
-    public new Godot.Collections.Dictionary GetConfigValueInfo(long/* "Empty Enum Constant String" */ configValue) => 
-        Call(GDExtensionMethodName.GetConfigValueInfo, [configValue]).As<Godot.Collections.Dictionary>();
+    public new Godot.Collections.Dictionary GetConfigValueInfo(Steam.NetworkingConfigValue configValue) => 
+        Call(GDExtensionMethodName.GetConfigValueInfo, [Variant.From(configValue)]).As<Godot.Collections.Dictionary>();
 
     public new long GetDirectPingToPop(long popId) => 
         Call(GDExtensionMethodName.GetDirectPingToPop, [popId]).As<long>();
+
+    public new Steam.NetworkingFakeIpType GetIPv4FakeIpType(string ipv4) => 
+        Call(GDExtensionMethodName.GetIPv4FakeIpType, [ipv4]).As<Steam.NetworkingFakeIpType>();
 
     public new Godot.Collections.Dictionary GetLocalPingLocation() => 
         Call(GDExtensionMethodName.GetLocalPingLocation, []).As<Godot.Collections.Dictionary>();
@@ -9064,32 +9082,41 @@ public enum RemoteStoragePlatform
     public new Godot.Collections.Array GetPopList() => 
         Call(GDExtensionMethodName.GetPopList, []).As<Godot.Collections.Array>();
 
-    public new long/* "Empty Enum Constant String" */ GetRelayNetworkStatus() => 
-        Call(GDExtensionMethodName.GetRelayNetworkStatus, []).As<long/* "Empty Enum Constant String" */>();
+    public new Godot.Collections.Dictionary GetRealIdentityForFakeIp(string fakeIp) => 
+        Call(GDExtensionMethodName.GetRealIdentityForFakeIp, [fakeIp]).As<Godot.Collections.Dictionary>();
+
+    public new Steam.NetworkingAvailability GetRelayNetworkStatus() => 
+        Call(GDExtensionMethodName.GetRelayNetworkStatus, []).As<Steam.NetworkingAvailability>();
 
     public new void InitRelayNetworkAccess() => 
         Call(GDExtensionMethodName.InitRelayNetworkAccess, []);
 
+    public new bool IsFakeIPv4(string ipAddress) => 
+        Call(GDExtensionMethodName.IsFakeIPv4, [ipAddress]).As<bool>();
+
+    public new Steam.NetworkingConfigValue IterateGenericEditableConfigValues(Steam.NetworkingConfigValue currentValue, bool enumerateDevVars) => 
+        Call(GDExtensionMethodName.IterateGenericEditableConfigValues, [Variant.From(currentValue), enumerateDevVars]).As<Steam.NetworkingConfigValue>();
+
     public new Godot.Collections.Dictionary ParsePingLocationString(string @string) => 
         Call(GDExtensionMethodName.ParsePingLocationString, [@string]).As<Godot.Collections.Dictionary>();
 
-    public new bool SetConnectionConfigValueFloat(long connection, long/* "Empty Enum Constant String" */ config, double value) => 
-        Call(GDExtensionMethodName.SetConnectionConfigValueFloat, [connection, config, value]).As<bool>();
+    public new bool SetConnectionConfigValueFloat(long connectionHandle, Steam.NetworkingConfigValue config, double value) => 
+        Call(GDExtensionMethodName.SetConnectionConfigValueFloat, [connectionHandle, Variant.From(config), value]).As<bool>();
 
-    public new bool SetConnectionConfigValueInt32(long connection, long/* "Empty Enum Constant String" */ config, long value) => 
-        Call(GDExtensionMethodName.SetConnectionConfigValueInt32, [connection, config, value]).As<bool>();
+    public new bool SetConnectionConfigValueInt32(long connectionHandle, Steam.NetworkingConfigValue config, long value) => 
+        Call(GDExtensionMethodName.SetConnectionConfigValueInt32, [connectionHandle, Variant.From(config), value]).As<bool>();
 
-    public new bool SetConnectionConfigValueString(long connection, long/* "Empty Enum Constant String" */ config, string value) => 
-        Call(GDExtensionMethodName.SetConnectionConfigValueString, [connection, config, value]).As<bool>();
+    public new bool SetConnectionConfigValueString(long connectionHandle, Steam.NetworkingConfigValue config, string value) => 
+        Call(GDExtensionMethodName.SetConnectionConfigValueString, [connectionHandle, Variant.From(config), value]).As<bool>();
 
-    public new bool SetGlobalConfigValueFloat(long/* "Empty Enum Constant String" */ config, double value) => 
-        Call(GDExtensionMethodName.SetGlobalConfigValueFloat, [config, value]).As<bool>();
+    public new bool SetGlobalConfigValueFloat(Steam.NetworkingConfigValue config, double value) => 
+        Call(GDExtensionMethodName.SetGlobalConfigValueFloat, [Variant.From(config), value]).As<bool>();
 
-    public new bool SetGlobalConfigValueInt32(long/* "Empty Enum Constant String" */ config, long value) => 
-        Call(GDExtensionMethodName.SetGlobalConfigValueInt32, [config, value]).As<bool>();
+    public new bool SetGlobalConfigValueInt32(Steam.NetworkingConfigValue config, long value) => 
+        Call(GDExtensionMethodName.SetGlobalConfigValueInt32, [Variant.From(config), value]).As<bool>();
 
-    public new bool SetGlobalConfigValueString(long/* "Empty Enum Constant String" */ config, string value) => 
-        Call(GDExtensionMethodName.SetGlobalConfigValueString, [config, value]).As<bool>();
+    public new bool SetGlobalConfigValueString(Steam.NetworkingConfigValue config, string value) => 
+        Call(GDExtensionMethodName.SetGlobalConfigValueString, [Variant.From(config), value]).As<bool>();
 
     public new bool IsParentalLockEnabled() => 
         Call(GDExtensionMethodName.IsParentalLockEnabled, []).As<bool>();
@@ -9103,11 +9130,11 @@ public enum RemoteStoragePlatform
     public new bool IsAppInBlockList(long appId) => 
         Call(GDExtensionMethodName.IsAppInBlockList, [appId]).As<bool>();
 
-    public new bool IsFeatureBlocked(long/* "Empty Enum Constant String" */ feature) => 
-        Call(GDExtensionMethodName.IsFeatureBlocked, [feature]).As<bool>();
+    public new bool IsFeatureBlocked(Steam.ParentalFeature feature) => 
+        Call(GDExtensionMethodName.IsFeatureBlocked, [Variant.From(feature)]).As<bool>();
 
-    public new bool IsFeatureInBlockList(long/* "Empty Enum Constant String" */ feature) => 
-        Call(GDExtensionMethodName.IsFeatureInBlockList, [feature]).As<bool>();
+    public new bool IsFeatureInBlockList(Steam.ParentalFeature feature) => 
+        Call(GDExtensionMethodName.IsFeatureInBlockList, [Variant.From(feature)]).As<bool>();
 
     public new void CancelReservation(long beaconId, long steamId) => 
         Call(GDExtensionMethodName.CancelReservation, [beaconId, steamId]);
@@ -9115,14 +9142,14 @@ public enum RemoteStoragePlatform
     public new void ChangeNumOpenSlots(long beaconId, long openSlots) => 
         Call(GDExtensionMethodName.ChangeNumOpenSlots, [beaconId, openSlots]);
 
-    public new void CreateBeacon(long openSlots, long locationId, long/* "Empty Enum Constant String" */ type, string connectString, string beaconMetadata) => 
-        Call(GDExtensionMethodName.CreateBeacon, [openSlots, locationId, type, connectString, beaconMetadata]);
+    public new void CreateBeacon(long openSlots, long locationId, Steam.PartyBeaconLocationType locationType, string connectString, string beaconMetadata) => 
+        Call(GDExtensionMethodName.CreateBeacon, [openSlots, locationId, Variant.From(locationType), connectString, beaconMetadata]);
 
     public new bool DestroyBeacon(long beaconId) => 
         Call(GDExtensionMethodName.DestroyBeacon, [beaconId]).As<bool>();
 
-    public new Godot.Collections.Array GetAvailableBeaconLocations(long max) => 
-        Call(GDExtensionMethodName.GetAvailableBeaconLocations, [max]).As<Godot.Collections.Array>();
+    public new Godot.Collections.Array GetAvailableBeaconLocations(long maxLocations) => 
+        Call(GDExtensionMethodName.GetAvailableBeaconLocations, [maxLocations]).As<Godot.Collections.Array>();
 
     public new long GetBeaconByIndex(long index) => 
         Call(GDExtensionMethodName.GetBeaconByIndex, [index]).As<long>();
@@ -9130,11 +9157,14 @@ public enum RemoteStoragePlatform
     public new Godot.Collections.Dictionary GetBeaconDetails(long beaconId) => 
         Call(GDExtensionMethodName.GetBeaconDetails, [beaconId]).As<Godot.Collections.Dictionary>();
 
-    public new string GetBeaconLocationData(long locationId, long/* "Empty Enum Constant String" */ locationType, long/* "Empty Enum Constant String" */ locationData) => 
-        Call(GDExtensionMethodName.GetBeaconLocationData, [locationId, locationType, locationData]).As<string>();
+    public new string GetBeaconLocationData(long locationId, Steam.PartyBeaconLocationType locationType, Steam.PartyBeaconLocationData locationData) => 
+        Call(GDExtensionMethodName.GetBeaconLocationData, [locationId, Variant.From(locationType), Variant.From(locationData)]).As<string>();
 
     public new long GetNumActiveBeacons() => 
         Call(GDExtensionMethodName.GetNumActiveBeacons, []).As<long>();
+
+    public new long GetNumAvailableBeaconLocations() => 
+        Call(GDExtensionMethodName.GetNumAvailableBeaconLocations, []).As<long>();
 
     public new void JoinParty(long beaconId) => 
         Call(GDExtensionMethodName.JoinParty, [beaconId]);
@@ -9151,8 +9181,17 @@ public enum RemoteStoragePlatform
     public new Godot.Collections.Array GetInput(long maxEvents) => 
         Call(GDExtensionMethodName.GetInput, [maxEvents]).As<Godot.Collections.Array>();
 
+    public new long GetLargeSessionAvatar(long sessionId) => 
+        Call(GDExtensionMethodName.GetLargeSessionAvatar, [sessionId]).As<long>();
+
+    public new long GetMediumSessionAvatar(long sessionId) => 
+        Call(GDExtensionMethodName.GetMediumSessionAvatar, [sessionId]).As<long>();
+
     public new long GetSessionCount() => 
         Call(GDExtensionMethodName.GetSessionCount, []).As<long>();
+
+    public new long GetSessionGuestId(long sessionId) => 
+        Call(GDExtensionMethodName.GetSessionGuestId, [sessionId]).As<long>();
 
     public new long GetSessionId(long index) => 
         Call(GDExtensionMethodName.GetSessionId, [index]).As<long>();
@@ -9160,17 +9199,23 @@ public enum RemoteStoragePlatform
     public new long GetSessionSteamId(long sessionId) => 
         Call(GDExtensionMethodName.GetSessionSteamId, [sessionId]).As<long>();
 
+    public new long GetSmallSessionAvatar(long sessionId) => 
+        Call(GDExtensionMethodName.GetSmallSessionAvatar, [sessionId]).As<long>();
+
     public new string GetSessionClientName(long sessionId) => 
         Call(GDExtensionMethodName.GetSessionClientName, [sessionId]).As<string>();
 
-    public new long GetSessionClientFormFactor(long sessionId) => 
-        Call(GDExtensionMethodName.GetSessionClientFormFactor, [sessionId]).As<long>();
+    public new Steam.DeviceFormFactor GetSessionClientFormFactor(long sessionId) => 
+        Call(GDExtensionMethodName.GetSessionClientFormFactor, [sessionId]).As<Steam.DeviceFormFactor>();
 
     public new Godot.Collections.Dictionary GetSessionClientResolution(long sessionId) => 
         Call(GDExtensionMethodName.GetSessionClientResolution, [sessionId]).As<Godot.Collections.Dictionary>();
 
     public new bool SendRemotePlayTogetherInvite(long friendId) => 
         Call(GDExtensionMethodName.SendRemotePlayTogetherInvite, [friendId]).As<bool>();
+
+    public new bool SessionRemotePlayTogether(long sessionId) => 
+        Call(GDExtensionMethodName.SessionRemotePlayTogether, [sessionId]).As<bool>();
 
     public new void SetMouseCursor(long sessionId, long cursorId) => 
         Call(GDExtensionMethodName.SetMouseCursor, [sessionId, cursorId]);
@@ -9256,8 +9301,8 @@ public enum RemoteStoragePlatform
     public new Godot.Collections.Dictionary GetQuota() => 
         Call(GDExtensionMethodName.GetQuota, []).As<Godot.Collections.Dictionary>();
 
-    public new Godot.Collections.Dictionary GetSyncPlatforms(string file) => 
-        Call(GDExtensionMethodName.GetSyncPlatforms, [file]).As<Godot.Collections.Dictionary>();
+    public new long GetSyncPlatforms(string file) => 
+        Call(GDExtensionMethodName.GetSyncPlatforms, [file]).As<long>();
 
     public new Godot.Collections.Dictionary GetUgcDetails(long content) => 
         Call(GDExtensionMethodName.GetUgcDetails, [content]).As<Godot.Collections.Dictionary>();
@@ -9283,14 +9328,14 @@ public enum RemoteStoragePlatform
     public new void UgcDownloadToLocation(long content, string location, long priority) => 
         Call(GDExtensionMethodName.UgcDownloadToLocation, [content, location, priority]);
 
-    public new byte[] UgcRead(long content, long dataSize, long offset, long/* "Empty Enum Constant String" */ action) => 
-        Call(GDExtensionMethodName.UgcRead, [content, dataSize, offset, action]).As<byte[]>();
+    public new byte[] UgcRead(long content, long dataSize, long offset, Steam.UgcReadAction action) => 
+        Call(GDExtensionMethodName.UgcRead, [content, dataSize, offset, Variant.From(action)]).As<byte[]>();
 
     public new long AddScreenshotToLibrary(string filename, string thumbnailFilename, long width, long height) => 
         Call(GDExtensionMethodName.AddScreenshotToLibrary, [filename, thumbnailFilename, width, height]).As<long>();
 
-    public new long AddVrScreenshotToLibrary(long/* "Empty Enum Constant String" */ type, string filename, string vrFilename) => 
-        Call(GDExtensionMethodName.AddVrScreenshotToLibrary, [type, filename, vrFilename]).As<long>();
+    public new long AddVrScreenshotToLibrary(Steam.VrScreenshotType type, string filename, string vrFilename) => 
+        Call(GDExtensionMethodName.AddVrScreenshotToLibrary, [Variant.From(type), filename, vrFilename]).As<long>();
 
     public new void HookScreenshots(bool hook) => 
         Call(GDExtensionMethodName.HookScreenshots, [hook]);
@@ -9316,17 +9361,17 @@ public enum RemoteStoragePlatform
     public new void AddGamePhaseTag(string tagName, string tagIcon, string tagGroup, long priority) => 
         Call(GDExtensionMethodName.AddGamePhaseTag, [tagName, tagIcon, tagGroup, priority]);
 
-    public new long AddInstantaneousTimelineEvent(string title, string description, string icon, long iconPriority, double startOffsetSeconds, long/* "Empty Enum Constant String" */ possibleClip = 1) => 
-        Call(GDExtensionMethodName.AddInstantaneousTimelineEvent, [title, description, icon, iconPriority, startOffsetSeconds, possibleClip]).As<long>();
+    public new long AddInstantaneousTimelineEvent(string title, string description, string icon, long iconPriority, double startOffsetSeconds, Steam.TimelineEventClipPriority possibleClip = Steam.TimelineEventClipPriority.None) => 
+        Call(GDExtensionMethodName.AddInstantaneousTimelineEvent, [title, description, icon, iconPriority, startOffsetSeconds, Variant.From(possibleClip)]).As<long>();
 
-    public new long AddRangeTimelineEvent(string title, string description, string icon, long iconPriority, double startOffsetSeconds, double duration, long/* "Empty Enum Constant String" */ possibleClip = 1) => 
-        Call(GDExtensionMethodName.AddRangeTimelineEvent, [title, description, icon, iconPriority, startOffsetSeconds, duration, possibleClip]).As<long>();
+    public new long AddRangeTimelineEvent(string title, string description, string icon, long iconPriority, double startOffsetSeconds, double duration, Steam.TimelineEventClipPriority possibleClip = Steam.TimelineEventClipPriority.None) => 
+        Call(GDExtensionMethodName.AddRangeTimelineEvent, [title, description, icon, iconPriority, startOffsetSeconds, duration, Variant.From(possibleClip)]).As<long>();
 
     public new void ClearTimelineTooltip(double timeDelta) => 
         Call(GDExtensionMethodName.ClearTimelineTooltip, [timeDelta]);
 
-    public new void DoesEventRecordingExist(long thisEvent) => 
-        Call(GDExtensionMethodName.DoesEventRecordingExist, [thisEvent]);
+    public new void DoesEventRecordingExist(long timelineEventHandle) => 
+        Call(GDExtensionMethodName.DoesEventRecordingExist, [timelineEventHandle]);
 
     public new void DoesGamePhaseRecordingExist(string phaseId) => 
         Call(GDExtensionMethodName.DoesGamePhaseRecordingExist, [phaseId]);
@@ -9334,17 +9379,17 @@ public enum RemoteStoragePlatform
     public new void EndGamePhase() => 
         Call(GDExtensionMethodName.EndGamePhase, []);
 
-    public new void EndRangeTimelineEvent(long thisEvent, double endOffsetSeconds) => 
-        Call(GDExtensionMethodName.EndRangeTimelineEvent, [thisEvent, endOffsetSeconds]);
+    public new void EndRangeTimelineEvent(long timelineEventHandle, double endOffsetSeconds) => 
+        Call(GDExtensionMethodName.EndRangeTimelineEvent, [timelineEventHandle, endOffsetSeconds]);
 
     public new void OpenOverlayToGamePhase(string phaseId) => 
         Call(GDExtensionMethodName.OpenOverlayToGamePhase, [phaseId]);
 
-    public new void OpenOverlayToTimelineEvent(long thisEvent) => 
-        Call(GDExtensionMethodName.OpenOverlayToTimelineEvent, [thisEvent]);
+    public new void OpenOverlayToTimelineEvent(long timelineEventHandle) => 
+        Call(GDExtensionMethodName.OpenOverlayToTimelineEvent, [timelineEventHandle]);
 
-    public new void RemoveTimelineEvent(long thisEvent) => 
-        Call(GDExtensionMethodName.RemoveTimelineEvent, [thisEvent]);
+    public new void RemoveTimelineEvent(long timelineEventHandle) => 
+        Call(GDExtensionMethodName.RemoveTimelineEvent, [timelineEventHandle]);
 
     public new void SetGamePhaseAttribute(string attributeGroup, string attributeValue, long priority) => 
         Call(GDExtensionMethodName.SetGamePhaseAttribute, [attributeGroup, attributeValue, priority]);
@@ -9352,8 +9397,8 @@ public enum RemoteStoragePlatform
     public new void SetGamePhaseId(string phaseId) => 
         Call(GDExtensionMethodName.SetGamePhaseId, [phaseId]);
 
-    public new void SetTimelineGameMode(long/* "Empty Enum Constant String" */ mode) => 
-        Call(GDExtensionMethodName.SetTimelineGameMode, [mode]);
+    public new void SetTimelineGameMode(Steam.TimelineGameMode mode) => 
+        Call(GDExtensionMethodName.SetTimelineGameMode, [Variant.From(mode)]);
 
     public new void SetTimelineTooltip(string description, double timeDelta) => 
         Call(GDExtensionMethodName.SetTimelineTooltip, [description, timeDelta]);
@@ -9361,17 +9406,17 @@ public enum RemoteStoragePlatform
     public new void StartGamePhase() => 
         Call(GDExtensionMethodName.StartGamePhase, []);
 
-    public new long StartRangeTimelineEvent(string title, string description, string icon, long priority, double startOffsetSeconds, long/* "Empty Enum Constant String" */ possibleClip = 1) => 
-        Call(GDExtensionMethodName.StartRangeTimelineEvent, [title, description, icon, priority, startOffsetSeconds, possibleClip]).As<long>();
+    public new long StartRangeTimelineEvent(string title, string description, string icon, long priority, double startOffsetSeconds, Steam.TimelineEventClipPriority possibleClip = Steam.TimelineEventClipPriority.None) => 
+        Call(GDExtensionMethodName.StartRangeTimelineEvent, [title, description, icon, priority, startOffsetSeconds, Variant.From(possibleClip)]).As<long>();
 
-    public new void UpdateRangeTimelineEvent(long thisEvent, string title, string description, string icon, long priority, long/* "Empty Enum Constant String" */ possibleClip = 1) => 
-        Call(GDExtensionMethodName.UpdateRangeTimelineEvent, [thisEvent, title, description, icon, priority, possibleClip]);
+    public new void UpdateRangeTimelineEvent(long timelineEventHandle, string title, string description, string icon, long priority, Steam.TimelineEventClipPriority possibleClip = Steam.TimelineEventClipPriority.None) => 
+        Call(GDExtensionMethodName.UpdateRangeTimelineEvent, [timelineEventHandle, title, description, icon, priority, Variant.From(possibleClip)]);
 
     public new void AddAppDependency(long publishedFileId, long appId) => 
         Call(GDExtensionMethodName.AddAppDependency, [publishedFileId, appId]);
 
-    public new bool AddContentDescriptor(long updateHandle, long descriptorId) => 
-        Call(GDExtensionMethodName.AddContentDescriptor, [updateHandle, descriptorId]).As<bool>();
+    public new bool AddContentDescriptor(long updateHandle, Steam.UgcContentDescriptorId descriptorId) => 
+        Call(GDExtensionMethodName.AddContentDescriptor, [updateHandle, Variant.From(descriptorId)]).As<bool>();
 
     public new void AddDependency(long publishedFileId, long childPublishedFileId) => 
         Call(GDExtensionMethodName.AddDependency, [publishedFileId, childPublishedFileId]);
@@ -9379,14 +9424,14 @@ public enum RemoteStoragePlatform
     public new bool AddExcludedTag(long queryHandle, string tagName) => 
         Call(GDExtensionMethodName.AddExcludedTag, [queryHandle, tagName]).As<bool>();
 
-    public new bool AddItemKeyValueTag(long queryHandle, string key, string value) => 
-        Call(GDExtensionMethodName.AddItemKeyValueTag, [queryHandle, key, value]).As<bool>();
+    public new bool AddItemKeyValueTag(long updateHandle, string key, string value) => 
+        Call(GDExtensionMethodName.AddItemKeyValueTag, [updateHandle, key, value]).As<bool>();
 
-    public new bool AddItemPreviewFile(long queryHandle, string previewFile, long/* "Empty Enum Constant String" */ type) => 
-        Call(GDExtensionMethodName.AddItemPreviewFile, [queryHandle, previewFile, type]).As<bool>();
+    public new bool AddItemPreviewFile(long updateHandle, string previewFile, Steam.ItemPreviewType previewType) => 
+        Call(GDExtensionMethodName.AddItemPreviewFile, [updateHandle, previewFile, Variant.From(previewType)]).As<bool>();
 
-    public new bool AddItemPreviewVideo(long queryHandle, string videoId) => 
-        Call(GDExtensionMethodName.AddItemPreviewVideo, [queryHandle, videoId]).As<bool>();
+    public new bool AddItemPreviewVideo(long updateHandle, string videoId) => 
+        Call(GDExtensionMethodName.AddItemPreviewVideo, [updateHandle, videoId]).As<bool>();
 
     public new void AddItemToFavorites(long appId, long publishedFileId) => 
         Call(GDExtensionMethodName.AddItemToFavorites, [appId, publishedFileId]);
@@ -9403,23 +9448,35 @@ public enum RemoteStoragePlatform
     public new bool InitWorkshopForGameServer(long workshopDepotId, string folder) => 
         Call(GDExtensionMethodName.InitWorkshopForGameServer, [workshopDepotId, folder]).As<bool>();
 
-    public new void CreateItem(long appId, long/* "Empty Enum Constant String" */ fileType) => 
-        Call(GDExtensionMethodName.CreateItem, [appId, fileType]);
+    public new bool MarkDownloadedItemAsUnused(long publishedFileId) => 
+        Call(GDExtensionMethodName.MarkDownloadedItemAsUnused, [publishedFileId]).As<bool>();
 
-    public new long CreateQueryAllUgcRequest(long/* "Empty Enum Constant String" */ queryType, long/* "Empty Enum Constant String" */ matchingType, long creatorId, long consumerId, long page) => 
-        Call(GDExtensionMethodName.CreateQueryAllUgcRequest, [queryType, matchingType, creatorId, consumerId, page]).As<long>();
+    public new void CreateItem(long appId, Steam.WorkshopFileType fileType) => 
+        Call(GDExtensionMethodName.CreateItem, [appId, Variant.From(fileType)]);
 
-    public new long CreateQueryUgcDetailsRequest(Godot.Collections.Array publishedFileId) => 
-        Call(GDExtensionMethodName.CreateQueryUgcDetailsRequest, [publishedFileId]).As<long>();
+    public new long CreateQueryAllUgcRequestPage(Steam.UgcQuery queryType, Steam.UgcMatchingUgcType matchingType, long creatorId, long consumerId, long page) => 
+        Call(GDExtensionMethodName.CreateQueryAllUgcRequestPage, [Variant.From(queryType), Variant.From(matchingType), creatorId, consumerId, page]).As<long>();
 
-    public new long CreateQueryUserUgcRequest(long accountId, long/* "Empty Enum Constant String" */ listType, long/* "Empty Enum Constant String" */ matchingUgcType, long/* "Empty Enum Constant String" */ sortOrder, long creatorId, long consumerId, long page) => 
-        Call(GDExtensionMethodName.CreateQueryUserUgcRequest, [accountId, listType, matchingUgcType, sortOrder, creatorId, consumerId, page]).As<long>();
+    public new long CreateQueryAllUgcRequestCursor(Steam.UgcQuery queryType, Steam.UgcMatchingUgcType matchingType, long creatorId, long consumerId, string cursor) => 
+        Call(GDExtensionMethodName.CreateQueryAllUgcRequestCursor, [Variant.From(queryType), Variant.From(matchingType), creatorId, consumerId, cursor]).As<long>();
+
+    public new long CreateQueryUgcDetailsRequest(Godot.Collections.Array publishedFileIdArray) => 
+        Call(GDExtensionMethodName.CreateQueryUgcDetailsRequest, [publishedFileIdArray]).As<long>();
+
+    public new long CreateQueryUserUgcRequest(long accountId, Steam.UserUgcList listType, Steam.UgcMatchingUgcType matchingUgcType, Steam.UserUgcListSortOrder sortOrder, long creatorId, long consumerId, long page) => 
+        Call(GDExtensionMethodName.CreateQueryUserUgcRequest, [accountId, Variant.From(listType), Variant.From(matchingUgcType), Variant.From(sortOrder), creatorId, consumerId, page]).As<long>();
 
     public new void DeleteItem(long publishedFileId) => 
         Call(GDExtensionMethodName.DeleteItem, [publishedFileId]);
 
     public new bool DownloadItem(long publishedFileId, bool highPriority) => 
         Call(GDExtensionMethodName.DownloadItem, [publishedFileId, highPriority]).As<bool>();
+
+    public new void GetAppDependencies(long publishedFileId) => 
+        Call(GDExtensionMethodName.GetAppDependencies, [publishedFileId]);
+
+    public new long[] GetDownloadedItems(long maxEntries) => 
+        Call(GDExtensionMethodName.GetDownloadedItems, [maxEntries]).As<long[]>();
 
     public new Godot.Collections.Dictionary GetItemDownloadInfo(long publishedFileId) => 
         Call(GDExtensionMethodName.GetItemDownloadInfo, [publishedFileId]).As<Godot.Collections.Dictionary>();
@@ -9433,6 +9490,9 @@ public enum RemoteStoragePlatform
     public new Godot.Collections.Dictionary GetItemUpdateProgress(long updateHandle) => 
         Call(GDExtensionMethodName.GetItemUpdateProgress, [updateHandle]).As<Godot.Collections.Dictionary>();
 
+    public new long GetNumDownloadedItems() => 
+        Call(GDExtensionMethodName.GetNumDownloadedItems, []).As<long>();
+
     public new long GetNumSubscribedItems(bool includeLocallyDisabled = false) => 
         Call(GDExtensionMethodName.GetNumSubscribedItems, [includeLocallyDisabled]).As<long>();
 
@@ -9445,7 +9505,7 @@ public enum RemoteStoragePlatform
     public new Godot.Collections.Dictionary GetQueryUgcChildren(long queryHandle, long index, long childCount) => 
         Call(GDExtensionMethodName.GetQueryUgcChildren, [queryHandle, index, childCount]).As<Godot.Collections.Dictionary>();
 
-    public new Godot.Collections.Dictionary GetQueryUgcContentDescriptors(long queryHandle, long index, long maxEntries) => 
+    public new Godot.Collections.Dictionary GetQueryUgcContentDescriptors(long queryHandle, long index, long maxEntries = 5) => 
         Call(GDExtensionMethodName.GetQueryUgcContentDescriptors, [queryHandle, index, maxEntries]).As<Godot.Collections.Dictionary>();
 
     public new Godot.Collections.Dictionary GetQueryUgcKeyValueTag(long queryHandle, long index, long keyValueTagIndex) => 
@@ -9469,8 +9529,8 @@ public enum RemoteStoragePlatform
     public new Godot.Collections.Dictionary GetQueryUgcResult(long queryHandle, long index) => 
         Call(GDExtensionMethodName.GetQueryUgcResult, [queryHandle, index]).As<Godot.Collections.Dictionary>();
 
-    public new Godot.Collections.Dictionary GetQueryUgcStatistic(long queryHandle, long index, long/* "Empty Enum Constant String" */ statType) => 
-        Call(GDExtensionMethodName.GetQueryUgcStatistic, [queryHandle, index, statType]).As<Godot.Collections.Dictionary>();
+    public new Godot.Collections.Dictionary GetQueryUgcStatistic(long queryHandle, long index, Steam.ItemStatistic statType) => 
+        Call(GDExtensionMethodName.GetQueryUgcStatistic, [queryHandle, index, Variant.From(statType)]).As<Godot.Collections.Dictionary>();
 
     public new string GetQueryUgcTag(long queryHandle, long index, long tagIndex) => 
         Call(GDExtensionMethodName.GetQueryUgcTag, [queryHandle, index, tagIndex]).As<string>();
@@ -9484,7 +9544,7 @@ public enum RemoteStoragePlatform
     public new Godot.Collections.Dictionary GetSupportedGameVersionData(long queryHandle, long index, long versionIndex) => 
         Call(GDExtensionMethodName.GetSupportedGameVersionData, [queryHandle, index, versionIndex]).As<Godot.Collections.Dictionary>();
 
-    public new Godot.Collections.Array GetUserContentDescriptorPreferences(long maxEntries) => 
+    public new Godot.Collections.Array GetUserContentDescriptorPreferences(long maxEntries = 5) => 
         Call(GDExtensionMethodName.GetUserContentDescriptorPreferences, [maxEntries]).As<Godot.Collections.Array>();
 
     public new void GetUserItemVote(long publishedFileId) => 
@@ -9493,11 +9553,14 @@ public enum RemoteStoragePlatform
     public new bool ReleaseQueryUgcRequest(long queryHandle) => 
         Call(GDExtensionMethodName.ReleaseQueryUgcRequest, [queryHandle]).As<bool>();
 
+    public new bool RemoveAllItemKeyValueTags(long updateHandle) => 
+        Call(GDExtensionMethodName.RemoveAllItemKeyValueTags, [updateHandle]).As<bool>();
+
     public new void RemoveAppDependency(long publishedFileId, long appId) => 
         Call(GDExtensionMethodName.RemoveAppDependency, [publishedFileId, appId]);
 
-    public new bool RemoveContentDescriptor(long updateHandle, long descriptorId) => 
-        Call(GDExtensionMethodName.RemoveContentDescriptor, [updateHandle, descriptorId]).As<bool>();
+    public new bool RemoveContentDescriptor(long updateHandle, Steam.UgcContentDescriptorId descriptorId) => 
+        Call(GDExtensionMethodName.RemoveContentDescriptor, [updateHandle, Variant.From(descriptorId)]).As<bool>();
 
     public new void RemoveDependency(long publishedFileId, long childPublishedFileId) => 
         Call(GDExtensionMethodName.RemoveDependency, [publishedFileId, childPublishedFileId]);
@@ -9511,17 +9574,20 @@ public enum RemoteStoragePlatform
     public new bool RemoveItemPreview(long updateHandle, long index) => 
         Call(GDExtensionMethodName.RemoveItemPreview, [updateHandle, index]).As<bool>();
 
-    public new void SendQueryUgcRequest(long updateHandle) => 
-        Call(GDExtensionMethodName.SendQueryUgcRequest, [updateHandle]);
+    public new void SendQueryUgcRequest(long queryHandle) => 
+        Call(GDExtensionMethodName.SendQueryUgcRequest, [queryHandle]);
 
-    public new bool SetAdminQuery(long updateHandle, bool adminQuery) => 
-        Call(GDExtensionMethodName.SetAdminQuery, [updateHandle, adminQuery]).As<bool>();
+    public new bool SetAdminQuery(long queryHandle, bool adminQuery) => 
+        Call(GDExtensionMethodName.SetAdminQuery, [queryHandle, adminQuery]).As<bool>();
 
     public new bool SetAllowCachedResponse(long updateHandle, long maxAgeSeconds) => 
         Call(GDExtensionMethodName.SetAllowCachedResponse, [updateHandle, maxAgeSeconds]).As<bool>();
 
-    public new bool SetCloudFileNameFilter(long updateHandle, string matchCloudFilename) => 
-        Call(GDExtensionMethodName.SetCloudFileNameFilter, [updateHandle, matchCloudFilename]).As<bool>();
+    public new bool SetAllowLegacyUpload(long updateHandle, bool allowLegacyUpload) => 
+        Call(GDExtensionMethodName.SetAllowLegacyUpload, [updateHandle, allowLegacyUpload]).As<bool>();
+
+    public new bool SetCloudFileNameFilter(long queryHandle, string matchCloudFilename) => 
+        Call(GDExtensionMethodName.SetCloudFileNameFilter, [queryHandle, matchCloudFilename]).As<bool>();
 
     public new bool SetItemContent(long updateHandle, string contentFolder) => 
         Call(GDExtensionMethodName.SetItemContent, [updateHandle, contentFolder]).As<bool>();
@@ -9544,8 +9610,8 @@ public enum RemoteStoragePlatform
     public new bool SetItemUpdateLanguage(long updateHandle, string language) => 
         Call(GDExtensionMethodName.SetItemUpdateLanguage, [updateHandle, language]).As<bool>();
 
-    public new bool SetItemVisibility(long updateHandle, long/* "Empty Enum Constant String" */ visibility) => 
-        Call(GDExtensionMethodName.SetItemVisibility, [updateHandle, visibility]).As<bool>();
+    public new bool SetItemVisibility(long updateHandle, Steam.RemoteStoragePublishedFileVisibility visibility) => 
+        Call(GDExtensionMethodName.SetItemVisibility, [updateHandle, Variant.From(visibility)]).As<bool>();
 
     public new bool SetItemsDisabledLocally(long[] fileIds, bool disabledLocally) => 
         Call(GDExtensionMethodName.SetItemsDisabledLocally, [fileIds, disabledLocally]).As<bool>();
@@ -9607,10 +9673,7 @@ public enum RemoteStoragePlatform
     public new void StopPlaytimeTrackingForAllItems() => 
         Call(GDExtensionMethodName.StopPlaytimeTrackingForAllItems, []);
 
-    public new void GetAppDependencies(long publishedFileId) => 
-        Call(GDExtensionMethodName.GetAppDependencies, [publishedFileId]);
-
-    public new void SubmitItemUpdate(long updateHandle, string changeNote) => 
+    public new void SubmitItemUpdate(long updateHandle, string changeNote = "") => 
         Call(GDExtensionMethodName.SubmitItemUpdate, [updateHandle, changeNote]);
 
     public new void SubscribeItem(long publishedFileId) => 
@@ -9640,17 +9703,17 @@ public enum RemoteStoragePlatform
     public new bool SetTimeUpdatedDateRange(long updateHandle, long start, long end) => 
         Call(GDExtensionMethodName.SetTimeUpdatedDateRange, [updateHandle, start, end]).As<bool>();
 
-    public new void AdvertiseGame(string serverIp, long port) => 
+    public new void AdvertiseGame(string serverIp = "", long port = 0) => 
         Call(GDExtensionMethodName.AdvertiseGame, [serverIp, port]);
 
-    public new long/* "Empty Enum Constant String" */ BeginAuthSession(byte[] ticket, long ticketSize, long steamId) => 
-        Call(GDExtensionMethodName.BeginAuthSession, [ticket, ticketSize, steamId]).As<long/* "Empty Enum Constant String" */>();
+    public new Steam.BeginAuthSessionResult BeginAuthSession(byte[] ticket, long ticketSize, long steamId) => 
+        Call(GDExtensionMethodName.BeginAuthSession, [ticket, ticketSize, steamId]).As<Steam.BeginAuthSessionResult>();
 
     public new void CancelAuthTicket(long authTicket) => 
         Call(GDExtensionMethodName.CancelAuthTicket, [authTicket]);
 
-    public new Godot.Collections.Dictionary DecompressVoice(byte[] voice, long sampleRate, long bufferSizeOverride = 20480) => 
-        Call(GDExtensionMethodName.DecompressVoice, [voice, sampleRate, bufferSizeOverride]).As<Godot.Collections.Dictionary>();
+    public new Godot.Collections.Dictionary DecompressVoice(byte[] voiceData, long sampleRate = 11025, long bufferSize = 20480) => 
+        Call(GDExtensionMethodName.DecompressVoice, [voiceData, sampleRate, bufferSize]).As<Godot.Collections.Dictionary>();
 
     public new void EndAuthSession(long steamId) => 
         Call(GDExtensionMethodName.EndAuthSession, [steamId]);
@@ -9679,8 +9742,8 @@ public enum RemoteStoragePlatform
     public new ulong GetSteamId() =>
         Call(GDExtensionMethodName.GetSteamId, []).As<ulong>();
 
-    public new Godot.Collections.Dictionary GetVoice(long bufferSizeOverride = 0) => 
-        Call(GDExtensionMethodName.GetVoice, [bufferSizeOverride]).As<Godot.Collections.Dictionary>();
+    public new Godot.Collections.Dictionary GetVoice(long bufferSize = 1024) => 
+        Call(GDExtensionMethodName.GetVoice, [bufferSize]).As<Godot.Collections.Dictionary>();
 
     public new long GetVoiceOptimalSampleRate() => 
         Call(GDExtensionMethodName.GetVoiceOptimalSampleRate, []).As<long>();
@@ -9709,14 +9772,14 @@ public enum RemoteStoragePlatform
     public new void RequestEncryptedAppTicket(string secret) => 
         Call(GDExtensionMethodName.RequestEncryptedAppTicket, [secret]);
 
-    public new void RequestStoreAuthUrl(string redirect) => 
-        Call(GDExtensionMethodName.RequestStoreAuthUrl, [redirect]);
+    public new void RequestStoreAuthUrl(string redirectUrl) => 
+        Call(GDExtensionMethodName.RequestStoreAuthUrl, [redirectUrl]);
 
     public new void StartVoiceRecording() => 
         Call(GDExtensionMethodName.StartVoiceRecording, []);
 
-    public new bool SetDurationControlOnlineState(long newState) => 
-        Call(GDExtensionMethodName.SetDurationControlOnlineState, [newState]).As<bool>();
+    public new bool SetDurationControlOnlineState(Steam.DurationControlOnlineState newState) => 
+        Call(GDExtensionMethodName.SetDurationControlOnlineState, [Variant.From(newState)]).As<bool>();
 
     public new void StopVoiceRecording() => 
         Call(GDExtensionMethodName.StopVoiceRecording, []);
@@ -9724,8 +9787,8 @@ public enum RemoteStoragePlatform
     public new void TerminateGameConnection(string serverIp, long serverPort) => 
         Call(GDExtensionMethodName.TerminateGameConnection, [serverIp, serverPort]);
 
-    public new long UserHasLicenseForApp(long steamId, long appId) => 
-        Call(GDExtensionMethodName.UserHasLicenseForApp, [steamId, appId]).As<long>();
+    public new Steam.UserHasLicenseForAppResult UserHasLicenseForApp(long steamId, long appId) => 
+        Call(GDExtensionMethodName.UserHasLicenseForApp, [steamId, appId]).As<Steam.UserHasLicenseForAppResult>();
 
     public new void AttachLeaderboardUgc(long ugcHandle, long thisLeaderboard = 0) => 
         Call(GDExtensionMethodName.AttachLeaderboardUgc, [ugcHandle, thisLeaderboard]);
@@ -9733,8 +9796,8 @@ public enum RemoteStoragePlatform
     public new bool ClearAchievement(string achievementName) => 
         Call(GDExtensionMethodName.ClearAchievement, [achievementName]).As<bool>();
 
-    public new void DownloadLeaderboardEntries(long start, long end, long/* "Empty Enum Constant String" */ type = 0, long thisLeaderboard = 0) => 
-        Call(GDExtensionMethodName.DownloadLeaderboardEntries, [start, end, type, thisLeaderboard]);
+    public new void DownloadLeaderboardEntries(long start, long end, Steam.LeaderboardDataRequest type = Steam.LeaderboardDataRequest.Global, long thisLeaderboard = 0) => 
+        Call(GDExtensionMethodName.DownloadLeaderboardEntries, [start, end, Variant.From(type), thisLeaderboard]);
 
     public new void DownloadLeaderboardEntriesForUsers(Godot.Collections.Array usersId, long thisLeaderboard = 0) => 
         Call(GDExtensionMethodName.DownloadLeaderboardEntriesForUsers, [usersId, thisLeaderboard]);
@@ -9742,8 +9805,8 @@ public enum RemoteStoragePlatform
     public new void FindLeaderboard(string leaderboardName) => 
         Call(GDExtensionMethodName.FindLeaderboard, [leaderboardName]);
 
-    public new void FindOrCreateLeaderboard(string leaderboardName, long/* "Empty Enum Constant String" */ sortMethod, long/* "Empty Enum Constant String" */ displayType) => 
-        Call(GDExtensionMethodName.FindOrCreateLeaderboard, [leaderboardName, sortMethod, displayType]);
+    public new void FindOrCreateLeaderboard(string leaderboardName, Steam.LeaderboardSortMethod sortMethod, Steam.LeaderboardDisplayType displayType) => 
+        Call(GDExtensionMethodName.FindOrCreateLeaderboard, [leaderboardName, Variant.From(sortMethod), Variant.From(displayType)]);
 
     public new Godot.Collections.Dictionary GetAchievement(string achievementName) => 
         Call(GDExtensionMethodName.GetAchievement, [achievementName]).As<Godot.Collections.Dictionary>();
@@ -9760,8 +9823,8 @@ public enum RemoteStoragePlatform
     public new long GetAchievementIcon(string achievementName) => 
         Call(GDExtensionMethodName.GetAchievementIcon, [achievementName]).As<long>();
 
-    public new string GetAchievementName(long achievement) => 
-        Call(GDExtensionMethodName.GetAchievementName, [achievement]).As<string>();
+    public new string GetAchievementName(long achievementIndex) => 
+        Call(GDExtensionMethodName.GetAchievementName, [achievementIndex]).As<string>();
 
     public new Godot.Collections.Dictionary GetAchievementProgressLimitsInt(string achievementName) => 
         Call(GDExtensionMethodName.GetAchievementProgressLimitsInt, [achievementName]).As<Godot.Collections.Dictionary>();
@@ -9781,8 +9844,8 @@ public enum RemoteStoragePlatform
     public new double[] GetGlobalStatFloatHistory(string statName) => 
         Call(GDExtensionMethodName.GetGlobalStatFloatHistory, [statName]).As<double[]>();
 
-    public new Godot.Collections.Dictionary GetLeaderboardDisplayType(long thisLeaderboard = 0) => 
-        Call(GDExtensionMethodName.GetLeaderboardDisplayType, [thisLeaderboard]).As<Godot.Collections.Dictionary>();
+    public new Steam.LeaderboardDisplayType GetLeaderboardDisplayType(long thisLeaderboard = 0) => 
+        Call(GDExtensionMethodName.GetLeaderboardDisplayType, [thisLeaderboard]).As<Steam.LeaderboardDisplayType>();
 
     public new long GetLeaderboardEntryCount(long thisLeaderboard = 0) => 
         Call(GDExtensionMethodName.GetLeaderboardEntryCount, [thisLeaderboard]).As<long>();
@@ -9790,8 +9853,8 @@ public enum RemoteStoragePlatform
     public new string GetLeaderboardName(long thisLeaderboard = 0) => 
         Call(GDExtensionMethodName.GetLeaderboardName, [thisLeaderboard]).As<string>();
 
-    public new Godot.Collections.Dictionary GetLeaderboardSortMethod(long thisLeaderboard = 0) => 
-        Call(GDExtensionMethodName.GetLeaderboardSortMethod, [thisLeaderboard]).As<Godot.Collections.Dictionary>();
+    public new Steam.LeaderboardSortMethod GetLeaderboardSortMethod(long thisLeaderboard = 0) => 
+        Call(GDExtensionMethodName.GetLeaderboardSortMethod, [thisLeaderboard]).As<Steam.LeaderboardSortMethod>();
 
     public new Godot.Collections.Dictionary GetMostAchievedAchievementInfo() => 
         Call(GDExtensionMethodName.GetMostAchievedAchievementInfo, []).As<Godot.Collections.Dictionary>();
@@ -9811,20 +9874,20 @@ public enum RemoteStoragePlatform
     public new long GetStatInt(string statName) => 
         Call(GDExtensionMethodName.GetStatInt, [statName]).As<long>();
 
-    public new Godot.Collections.Dictionary GetUserAchievement(long steamId, string name) => 
-        Call(GDExtensionMethodName.GetUserAchievement, [steamId, name]).As<Godot.Collections.Dictionary>();
+    public new Godot.Collections.Dictionary GetUserAchievement(long steamId, string achievementName) => 
+        Call(GDExtensionMethodName.GetUserAchievement, [steamId, achievementName]).As<Godot.Collections.Dictionary>();
 
-    public new Godot.Collections.Dictionary GetUserAchievementAndUnlockTime(long steamId, string name) => 
-        Call(GDExtensionMethodName.GetUserAchievementAndUnlockTime, [steamId, name]).As<Godot.Collections.Dictionary>();
+    public new Godot.Collections.Dictionary GetUserAchievementAndUnlockTime(long steamId, string achievementName) => 
+        Call(GDExtensionMethodName.GetUserAchievementAndUnlockTime, [steamId, achievementName]).As<Godot.Collections.Dictionary>();
 
-    public new double GetUserStatFloat(long steamId, string name) => 
-        Call(GDExtensionMethodName.GetUserStatFloat, [steamId, name]).As<double>();
+    public new double GetUserStatFloat(long steamId, string statName) => 
+        Call(GDExtensionMethodName.GetUserStatFloat, [steamId, statName]).As<double>();
 
-    public new long GetUserStatInt(long steamId, string name) => 
-        Call(GDExtensionMethodName.GetUserStatInt, [steamId, name]).As<long>();
+    public new long GetUserStatInt(long steamId, string statName) => 
+        Call(GDExtensionMethodName.GetUserStatInt, [steamId, statName]).As<long>();
 
-    public new bool IndicateAchievementProgress(string name, long currentProgress, long maxProgress) => 
-        Call(GDExtensionMethodName.IndicateAchievementProgress, [name, currentProgress, maxProgress]).As<bool>();
+    public new bool IndicateAchievementProgress(string achievementName, long currentProgress, long maxProgress) => 
+        Call(GDExtensionMethodName.IndicateAchievementProgress, [achievementName, currentProgress, maxProgress]).As<bool>();
 
     public new void RequestGlobalAchievementPercentages() => 
         Call(GDExtensionMethodName.RequestGlobalAchievementPercentages, []);
@@ -9838,20 +9901,20 @@ public enum RemoteStoragePlatform
     public new bool ResetAllStats(bool achievementsToo) => 
         Call(GDExtensionMethodName.ResetAllStats, [achievementsToo]).As<bool>();
 
-    public new bool SetAchievement(string name) => 
-        Call(GDExtensionMethodName.SetAchievement, [name]).As<bool>();
+    public new bool SetAchievement(string achievementName) => 
+        Call(GDExtensionMethodName.SetAchievement, [achievementName]).As<bool>();
 
-    public new bool SetStatFloat(string name, double value) => 
-        Call(GDExtensionMethodName.SetStatFloat, [name, value]).As<bool>();
+    public new bool SetStatFloat(string statName, double value) => 
+        Call(GDExtensionMethodName.SetStatFloat, [statName, value]).As<bool>();
 
-    public new bool SetStatInt(string name, long value) => 
-        Call(GDExtensionMethodName.SetStatInt, [name, value]).As<bool>();
+    public new bool SetStatInt(string statName, long value) => 
+        Call(GDExtensionMethodName.SetStatInt, [statName, value]).As<bool>();
 
     public new bool StoreStats() => 
         Call(GDExtensionMethodName.StoreStats, []).As<bool>();
 
-    public new bool UpdateAvgRateStat(string name, double thisSession, double sessionLength) => 
-        Call(GDExtensionMethodName.UpdateAvgRateStat, [name, thisSession, sessionLength]).As<bool>();
+    public new bool UpdateAvgRateStat(string statName, double thisSession, double sessionLength) => 
+        Call(GDExtensionMethodName.UpdateAvgRateStat, [statName, thisSession, sessionLength]).As<bool>();
 
     public new void UploadLeaderboardScore(long score, bool keepBest = true, int[] details = default, long thisLeaderboard = 0) => 
         Call(GDExtensionMethodName.UploadLeaderboardScore, [score, keepBest, details, thisLeaderboard]);
@@ -9865,26 +9928,26 @@ public enum RemoteStoragePlatform
     public new bool DismissGamepadTextInput() => 
         Call(GDExtensionMethodName.DismissGamepadTextInput, []).As<bool>();
 
-    public new string FilterText(long/* "Empty Enum Constant String" */ context, long steamId, string message) => 
-        Call(GDExtensionMethodName.FilterText, [context, steamId, message]).As<string>();
+    public new string FilterText(Steam.TextFilteringContext context, long steamId, string message) => 
+        Call(GDExtensionMethodName.FilterText, [Variant.From(context), steamId, message]).As<string>();
 
-    public new string GetApiCallFailureReason() => 
-        Call(GDExtensionMethodName.GetApiCallFailureReason, []).As<string>();
+    public new Steam.ApiCallFailure GetApiCallFailureReason() => 
+        Call(GDExtensionMethodName.GetApiCallFailureReason, []).As<Steam.ApiCallFailure>();
 
     public new long GetAppId() => 
         Call(GDExtensionMethodName.GetAppId, []).As<long>();
 
-    public new long/* "Empty Enum Constant String" */ GetConnectedUniverse() => 
-        Call(GDExtensionMethodName.GetConnectedUniverse, []).As<long/* "Empty Enum Constant String" */>();
+    public new Steam.Universe GetConnectedUniverse() => 
+        Call(GDExtensionMethodName.GetConnectedUniverse, []).As<Steam.Universe>();
 
     public new long GetCurrentBatteryPower() => 
         Call(GDExtensionMethodName.GetCurrentBatteryPower, []).As<long>();
 
-    public new Godot.Collections.Dictionary GetImageRgba(long image) => 
-        Call(GDExtensionMethodName.GetImageRgba, [image]).As<Godot.Collections.Dictionary>();
+    public new Godot.Collections.Dictionary GetImageRgba(long imageHandle) => 
+        Call(GDExtensionMethodName.GetImageRgba, [imageHandle]).As<Godot.Collections.Dictionary>();
 
-    public new Godot.Collections.Dictionary GetImageSize(long image) => 
-        Call(GDExtensionMethodName.GetImageSize, [image]).As<Godot.Collections.Dictionary>();
+    public new Godot.Collections.Dictionary GetImageSize(long imageHandle) => 
+        Call(GDExtensionMethodName.GetImageSize, [imageHandle]).As<Godot.Collections.Dictionary>();
 
     public new long GetIpcCallCount() => 
         Call(GDExtensionMethodName.GetIpcCallCount, []).As<long>();
@@ -9892,8 +9955,8 @@ public enum RemoteStoragePlatform
     public new string GetIpCountry() => 
         Call(GDExtensionMethodName.GetIpCountry, []).As<string>();
 
-    public new long/* "Empty Enum Constant String" */ GetIPv6ConnectivityState(long/* "Empty Enum Constant String" */ protocol) => 
-        Call(GDExtensionMethodName.GetIPv6ConnectivityState, [protocol]).As<long/* "Empty Enum Constant String" */>();
+    public new Steam.IPv6ConnectivityState GetIPv6ConnectivityState(Steam.IPv6ConnectivityProtocol protocol) => 
+        Call(GDExtensionMethodName.GetIPv6ConnectivityState, [Variant.From(protocol)]).As<Steam.IPv6ConnectivityState>();
 
     public new long GetSecondsSinceAppActive() => 
         Call(GDExtensionMethodName.GetSecondsSinceAppActive, []).As<long>();
@@ -9903,6 +9966,9 @@ public enum RemoteStoragePlatform
 
     public new long GetServerRealTime() => 
         Call(GDExtensionMethodName.GetServerRealTime, []).As<long>();
+
+    public new Steam.SteamHardwareDefaultConfig GetSteamHardwareDefaultConfig() => 
+        Call(GDExtensionMethodName.GetSteamHardwareDefaultConfig, []).As<Steam.SteamHardwareDefaultConfig>();
 
     public new string GetSteamUiLanguage() => 
         Call(GDExtensionMethodName.GetSteamUiLanguage, []).As<string>();
@@ -9916,17 +9982,20 @@ public enum RemoteStoragePlatform
     public new bool IsOverlayEnabled() => 
         Call(GDExtensionMethodName.IsOverlayEnabled, []).As<bool>();
 
+    public new Steam.SteamHardwareType IsRunningOnSteamHardware() => 
+        Call(GDExtensionMethodName.IsRunningOnSteamHardware, []).As<Steam.SteamHardwareType>();
+
     public new bool IsSteamChinaLauncher() => 
         Call(GDExtensionMethodName.IsSteamChinaLauncher, []).As<bool>();
+
+    public new bool IsRunningUnderProton() => 
+        Call(GDExtensionMethodName.IsRunningUnderProton, []).As<bool>();
 
     public new bool IsSteamInBigPictureMode() => 
         Call(GDExtensionMethodName.IsSteamInBigPictureMode, []).As<bool>();
 
     public new bool IsSteamRunningInVr() => 
         Call(GDExtensionMethodName.IsSteamRunningInVr, []).As<bool>();
-
-    public new bool IsSteamRunningOnSteamDeck() => 
-        Call(GDExtensionMethodName.IsSteamRunningOnSteamDeck, []).As<bool>();
 
     public new bool IsVrHeadsetStreamingEnabled() => 
         Call(GDExtensionMethodName.IsVrHeadsetStreamingEnabled, []).As<bool>();
@@ -9940,17 +10009,17 @@ public enum RemoteStoragePlatform
     public new void SetOverlayNotificationInset(long horizontal, long vertical) => 
         Call(GDExtensionMethodName.SetOverlayNotificationInset, [horizontal, vertical]);
 
-    public new void SetOverlayNotificationPosition(long pos) => 
-        Call(GDExtensionMethodName.SetOverlayNotificationPosition, [pos]);
+    public new void SetOverlayNotificationPosition(Steam.NotificationPosition position) => 
+        Call(GDExtensionMethodName.SetOverlayNotificationPosition, [Variant.From(position)]);
 
     public new void SetVrHeadsetStreamingEnabled(bool enabled = true) => 
         Call(GDExtensionMethodName.SetVrHeadsetStreamingEnabled, [enabled]);
 
-    public new bool ShowFloatingGamepadTextInput(long/* "Empty Enum Constant String" */ inputMode, long textFieldXPosition, long textFieldYPosition, long textFieldWidth, long textFieldHeight) => 
-        Call(GDExtensionMethodName.ShowFloatingGamepadTextInput, [inputMode, textFieldXPosition, textFieldYPosition, textFieldWidth, textFieldHeight]).As<bool>();
+    public new bool ShowFloatingGamepadTextInput(Steam.FloatingGamepadTextInputMode inputMode, long textFieldXPosition, long textFieldYPosition, long textFieldWidth, long textFieldHeight) => 
+        Call(GDExtensionMethodName.ShowFloatingGamepadTextInput, [Variant.From(inputMode), textFieldXPosition, textFieldYPosition, textFieldWidth, textFieldHeight]).As<bool>();
 
-    public new bool ShowGamepadTextInput(long/* "Empty Enum Constant String" */ inputMode, long/* "Empty Enum Constant String" */ lineInputMode, string description, long maxText, string presetText) => 
-        Call(GDExtensionMethodName.ShowGamepadTextInput, [inputMode, lineInputMode, description, maxText, presetText]).As<bool>();
+    public new bool ShowGamepadTextInput(Steam.GamepadTextInputMode inputMode, Steam.GamepadTextInputLineMode lineInputMode, string description, long maxText, string presetText) => 
+        Call(GDExtensionMethodName.ShowGamepadTextInput, [Variant.From(inputMode), Variant.From(lineInputMode), description, maxText, presetText]).As<bool>();
 
     public new void StartVrDashboard() => 
         Call(GDExtensionMethodName.StartVrDashboard, []);
